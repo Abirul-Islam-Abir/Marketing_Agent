@@ -1,0 +1,5 @@
+class AppSvg{
+
+
+  AppSvg._();
+}
