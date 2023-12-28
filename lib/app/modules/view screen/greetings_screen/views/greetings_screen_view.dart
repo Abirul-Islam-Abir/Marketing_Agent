@@ -45,7 +45,7 @@ class GreetingsScreenView extends GetView<GreetingsScreenController> {
               ),
             ),
           ),
-          const AnimateCongratulate()
+            const AnimateCongratulate()
         ],
       ),
     );

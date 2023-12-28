@@ -13,7 +13,7 @@ class NotificationDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: secondaryAppbar(AppString.notification,(){}),
+      appBar: secondaryAppbar(AppString.notification ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
         child: Container(

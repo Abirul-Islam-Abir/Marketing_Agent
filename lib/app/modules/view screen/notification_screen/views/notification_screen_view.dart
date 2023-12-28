@@ -18,7 +18,7 @@ class NotificationScreenView extends GetView<NotificationScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: secondaryAppbar(AppString.notification,(){}),
+      appBar: secondaryAppbar(AppString.notification ),
       backgroundColor: AppColor.kScaffold,
       body: Center(
         child: SizedBox(

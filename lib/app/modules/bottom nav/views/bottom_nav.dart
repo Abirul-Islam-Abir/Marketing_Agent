@@ -1,10 +1,12 @@
 import 'package:amin_agent/app/modules/view%20screen/map_screen/views/map_screen_view.dart';
 import 'package:amin_agent/app/modules/view%20screen/notification_screen/views/notification_screen_view.dart';
 import 'package:amin_agent/app/modules/view%20screen/profile%20screen/views/profile_screen_view.dart';
-import 'package:amin_agent/app/modules/view%20screen/shedule%20screen/views/shedule_screen_view.dart';
+ import 'package:amin_agent/app/routes/app_pages.dart';
 import 'package:amin_agent/app/theme/app_color.dart';
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../view screen/greetings_screen/controllers/greetings_screen_controller.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({Key? key}) : super(key: key);
@@ -16,7 +18,7 @@ class BottomNav extends StatefulWidget {
 class _BottomNavState extends State<BottomNav> {
   final _pageController = PageController(initialPage: 0);
   int maxCount = 3;
-
+  final controller = Get.put(GreetingsScreenController());
   @override
   void dispose() {
     _pageController.dispose();
@@ -25,7 +27,7 @@ class _BottomNavState extends State<BottomNav> {
 
   /// widget list
   final List<Widget> bottomBarPages = [
-    MapScreenView(),
+    const MapScreenView(),
     ProfileScreenView(),
     NotificationScreenView()
   ];
@@ -45,10 +47,10 @@ class _BottomNavState extends State<BottomNav> {
               color: Colors.black.withOpacity(0.3), // Shadow color
               spreadRadius: 5,
               blurRadius: 7,
-              offset: Offset(0, 3), // Changes the position of the shadow
+              offset: const Offset(0, 3), // Changes the position of the shadow
             ),
           ],
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topRight: Radius.circular(20),
             topLeft: Radius.circular(20),
           ),
@@ -58,11 +60,19 @@ class _BottomNavState extends State<BottomNav> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             BottomNavItems(
-                text: 'Schedule', icon: Icons.schedule, onTap: () {}),
+                text: 'Schedule',
+                icon: Icons.schedule,
+                onTap: () {
+                  Get.toNamed(RouteName.scheduleScreen);
+                }),
             BottomNavItems(
-                text: 'Profile', icon: Icons.account_circle, onTap: () {}),
+                text: 'Profile', icon: Icons.account_circle, onTap: () {
+              Get.toNamed(RouteName.profileScreen);
+            }),
             BottomNavItems(
-                text: 'Notification', icon: Icons.notifications, onTap: () {}),
+                text: 'Notification', icon: Icons.notifications, onTap: () {
+              Get.toNamed(RouteName.notificationScreen);
+            }),
           ],
         ),
       ),
@@ -99,7 +109,7 @@ class BottomNavItems extends StatelessWidget {
             ),
             Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.bold, color: AppColor.kPrimaryColor),
             )
           ],

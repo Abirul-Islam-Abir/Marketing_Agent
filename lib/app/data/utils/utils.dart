@@ -6,6 +6,7 @@ import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../modules/view screen/greetings_screen/components/animate_congratulate.dart';
 import '../../modules/widgets/primary_button.dart';
 import '../../theme/app_color.dart';
 
@@ -315,65 +316,70 @@ void completedLocationTaskDialog() {
           alignment: Alignment.topCenter,
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(20)),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          child: Stack( alignment: Alignment.center,
             children: [
-              SizedBox(
-                height: 150,
-                child: Stack(
-                  clipBehavior: Clip.antiAlias,
-                  children: [
-                    Image.asset(
-                      'assets/images/Rectangle 51.png',
-                      height: 120,
-                      fit: BoxFit.cover,
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 150,
+                    child: Stack(
+                      clipBehavior: Clip.antiAlias,
+                      children: [
+                        Image.asset(
+                          'assets/images/Rectangle 51.png',
+                          height: 120,
+                          fit: BoxFit.cover,
+                        ),
+                        Positioned(
+                          bottom: -10,
+                          right: 50,
+                          left: 50,
+                          child: Image.asset(
+                            'assets/images/medal_1498838 1.png',
+                            height: 120,
+                            width: 120,
+                          ),
+                        ),
+                      ],
                     ),
-                    Positioned(
-                      bottom: -10,
-                      right: 50,
-                      left: 50,
-                      child: Image.asset(
-                        'assets/images/medal_1498838 1.png',
-                        height: 120,
-                        width: 120,
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      "Congratulations!",
+                      style: TextStyle(
+                          color: AppColor.kBlackColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
+                  ),
+                  const Text('You completed your this months target.'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: 35,
+                    width: 150,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Get.offAllNamed(RouteName.bottomNav);
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColor.kPrimaryColor),
+                      child: const Text(
+                        'Continue',
+                        style: TextStyle(color: AppColor.kWhiteColor),
                       ),
                     ),
-                  ],
-                ),
+                  )
+                ],
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text(
-                  "Congratulations!",
-                  style: TextStyle(
-                      color: AppColor.kBlackColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
-                ),
-              ),
-              const Text('You completed your this months target.'),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 35,
-                width: 150,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Get.offAllNamed(RouteName.bottomNav);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColor.kPrimaryColor),
-                  child: const Text(
-                    'Continue',
-                    style: TextStyle(color: AppColor.kWhiteColor),
-                  ),
-                ),
-              )
+                const AnimateCongratulate(),
             ],
           ),
         ),

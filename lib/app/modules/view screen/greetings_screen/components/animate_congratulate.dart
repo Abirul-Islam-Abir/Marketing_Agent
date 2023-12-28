@@ -1,13 +1,20 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../controllers/greetings_screen_controller.dart';
 
-class AnimateCongratulate extends GetView<GreetingsScreenController> {
-  const AnimateCongratulate({super.key});
+class AnimateCongratulate extends StatefulWidget {
+    const AnimateCongratulate({super.key});
+
+  @override
+  State<AnimateCongratulate> createState() => _AnimateCongratulateState();
+}
+
+class _AnimateCongratulateState extends State<AnimateCongratulate> {
+  bool isPlaying = false;
+  final controller = ConfettiController();
 
   Path drawStar( size) {
     // Method to convert degree to radians
@@ -45,11 +52,25 @@ class AnimateCongratulate extends GetView<GreetingsScreenController> {
 
     return path;
   }
+  @override
+  void initState() {
+    controller.play();
+    Timer.periodic(const Duration(seconds: 1), (timer) {
+      controller.stop();
+    });
+    super.initState();
+  }
+  @override
+  void dispose() {
+
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return ConfettiWidget(
-      emissionFrequency: 0.50,
+      emissionFrequency: 0.00,
       colors: const [
         Colors.green,
         Colors.blue,
@@ -60,9 +81,11 @@ class AnimateCongratulate extends GetView<GreetingsScreenController> {
       // manually specify the colors to be used
       createParticlePath: drawStar,
       shouldLoop: true,
-      confettiController: controller.controller,
+      confettiController:  controller,
       blastDirectionality: BlastDirectionality.explosive,
-      numberOfParticles: 50,
+      numberOfParticles: 20,
+      minBlastForce: 1,
+      maxBlastForce: 10,
     );
   }
 }

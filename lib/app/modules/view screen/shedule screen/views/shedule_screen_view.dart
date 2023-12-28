@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../data/dummy data/schedule_dummy_data.dart';
-import '../../../../data/utils/app_string.dart';
 import '../../../../data/utils/utils.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../../theme/app_color.dart';
@@ -20,7 +19,7 @@ class ScheduleScreenView extends GetView<SheduleScreenController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.kWhiteColor,
-      appBar:  secondaryAppbar('Schedule', (){}),
+      appBar:  secondaryAppbar('Schedule' ),
       body: Center(
         child: SizedBox(
           width: Get.width / 0.6,

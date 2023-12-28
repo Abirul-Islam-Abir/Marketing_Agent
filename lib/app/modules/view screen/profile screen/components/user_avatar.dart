@@ -1,9 +1,7 @@
 
-import 'package:amin_agent/app/data/utils/app_images.dart';
 import 'package:amin_agent/app/theme/app_color.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 class UserAvatar extends StatelessWidget {
   const UserAvatar(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../theme/app_color.dart';
 
@@ -13,11 +14,13 @@ AppBar buildPrimaryAppbar(title) {
   );
 }
 
-AppBar secondaryAppbar(title,onTap) {
+AppBar secondaryAppbar(title) {
   return AppBar(
     backgroundColor: AppColor.appBarColor,
     leading: InkWell(
-      onTap: onTap,
+      onTap: () {
+        Get.back();
+      },
       child: const Icon(
         Icons.arrow_back_ios_new_outlined,
         color: AppColor.kWhiteColor,
