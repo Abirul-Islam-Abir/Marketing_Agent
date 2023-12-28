@@ -13,7 +13,7 @@ AppBar buildPrimaryAppbar(title) {
   );
 }
 
-AppBar notificationAppbar(title,onTap) {
+AppBar secondaryAppbar(title,onTap) {
   return AppBar(
     backgroundColor: AppColor.appBarColor,
     leading: InkWell(

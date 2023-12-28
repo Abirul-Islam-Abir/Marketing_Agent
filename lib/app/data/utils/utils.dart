@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../modules/widgets/primary_button.dart';
 import '../../theme/app_color.dart';
@@ -79,7 +80,7 @@ Future<void> primaryDialog(context) async {
 void forgotPasswordDialog() {
   Get.bottomSheet(
     Container(
-      height: Get.height / 2.5,
+      height:  40.h,
       decoration: const BoxDecoration(
         color: AppColor.kWhiteColor,
         borderRadius: BorderRadius.only(
@@ -87,60 +88,62 @@ void forgotPasswordDialog() {
           topRight: Radius.circular(30),
         ),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 18),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(height: 20),
-          Container(
-            height: 5,
-            width: 100,
-            color: AppColor.kGreyColor,
-          ),
-          const SizedBox(height: 20),
-          const Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'Forgot Password?',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: AppColor.kBlackColor),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 10),
+            Container(
+              height: 5,
+              width: 100,
+              color: AppColor.kGreyColor,
             ),
-          ),
-          const SizedBox(height: 5),
-          const Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'Enter your phone number for verification process, We will send 4 digits code to your phone.',
-              style: TextStyle(
-                  fontWeight: FontWeight.w500, color: AppColor.kGreyColor),
-            ),
-          ),
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.all(0),
-            child: TextFormField(
-              decoration: const InputDecoration(
-                hintStyle: TextStyle(
-                    color: AppColor.kBlackColor, fontWeight: FontWeight.normal),
-                contentPadding: EdgeInsets.all(10),
-                hintText: 'Phone number',
-                disabledBorder: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(),
-                enabledBorder: OutlineInputBorder(),
-                errorBorder: OutlineInputBorder(),
+            const SizedBox(height: 20),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Forgot Password?',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: AppColor.kBlackColor),
               ),
             ),
-          ),
-          const SizedBox(height: 20),
-          PrimaryButton(
-              onTap: () {
-                Get.back();
-                inputVerifyPinDialog();
-              },
-              text: 'Continue'),
-        ],
+            const SizedBox(height: 5),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Enter your phone number for verification process, We will send 4 digits code to your phone.',
+                style: TextStyle(
+                    fontWeight: FontWeight.w500, color: AppColor.kGreyColor),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.all(0),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  hintStyle: TextStyle(
+                      color: AppColor.kBlackColor, fontWeight: FontWeight.normal),
+                  contentPadding: EdgeInsets.all(10),
+                  hintText: 'Phone number',
+                  disabledBorder: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(),
+                  enabledBorder: OutlineInputBorder(),
+                  errorBorder: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            PrimaryButton(
+                onTap: () {
+                  Get.back();
+                  inputVerifyPinDialog();
+                },
+                text: 'Continue'),
+          ],
+        ),
       ),
     ),
   );
@@ -151,7 +154,7 @@ void forgotPasswordDialog() {
 void inputVerifyPinDialog() {
   Get.bottomSheet(
     Container(
-      height: Get.height / 2.5,
+      height:  40.h,
       decoration: const BoxDecoration(
         color: AppColor.kWhiteColor,
         borderRadius: BorderRadius.only(
@@ -159,57 +162,59 @@ void inputVerifyPinDialog() {
           topRight: Radius.circular(30),
         ),
       ),
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(height: 20),
-          Container(
-            height: 5,
-            width: 100,
-            color: AppColor.kGreyColor,
-          ),
-          const SizedBox(height: 20),
-          const Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'Enter 4 digit code',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: AppColor.kBlackColor),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 20),
+            Container(
+              height: 5,
+              width: 100,
+              color: AppColor.kGreyColor,
             ),
-          ),
-          const SizedBox(height: 10),
-          const Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'Enter the 4 digit code that send to your phone.',
-              style: TextStyle(
-                  fontWeight: FontWeight.w500, color: AppColor.kGreyColor),
+            const SizedBox(height: 20),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Enter 4 digit code',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: AppColor.kBlackColor),
+              ),
             ),
-          ),
-          const SizedBox(height: 20),
-          OTPTextField(
-            length: 4,
-            width: double.infinity,
-            fieldWidth: 50,
-            style: const TextStyle(
-                fontSize: 25,
-                color: AppColor.kPrimaryColor,
-                fontWeight: FontWeight.bold),
-            textFieldAlignment: MainAxisAlignment.spaceAround,
-            fieldStyle: FieldStyle.box,
-            onCompleted: (pin) {},
-          ),
-          const SizedBox(height: 20),
-          PrimaryButton(
-            text: 'Continue',
-            onTap: () {
-              Get.offAllNamed(RouteName.bottomNav);
-            },
-          )
-        ],
+            const SizedBox(height: 10),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Enter the 4 digit code that send to your phone.',
+                style: TextStyle(
+                    fontWeight: FontWeight.w500, color: AppColor.kGreyColor),
+              ),
+            ),
+            const SizedBox(height: 20),
+            OTPTextField(
+              length: 4,
+              width: double.infinity,
+              fieldWidth: 50,
+              style: const TextStyle(
+                  fontSize: 25,
+                  color: AppColor.kPrimaryColor,
+                  fontWeight: FontWeight.bold),
+              textFieldAlignment: MainAxisAlignment.spaceAround,
+              fieldStyle: FieldStyle.box,
+              onCompleted: (pin) {},
+            ),
+            const SizedBox(height: 20),
+            PrimaryButton(
+              text: 'Continue',
+              onTap: () {
+                Get.offAllNamed(RouteName.bottomNav);
+              },
+            )
+          ],
+        ),
       ),
     ),
   );

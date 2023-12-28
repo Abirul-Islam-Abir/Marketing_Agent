@@ -20,7 +20,7 @@ class ScheduleScreenView extends GetView<SheduleScreenController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.kWhiteColor,
-      appBar: buildPrimaryAppbar(AppString.schedule),
+      appBar:  secondaryAppbar('Schedule', (){}),
       body: Center(
         child: SizedBox(
           width: Get.width / 0.6,
