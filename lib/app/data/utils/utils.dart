@@ -10,7 +10,7 @@ import '../../modules/view screen/greetings_screen/components/animate_congratula
 import '../../modules/widgets/primary_button.dart';
 import '../../theme/app_color.dart';
 
-Future<void> primaryDialog(context) async {
+Future primaryDialog(context,{img,title,body,yesTap}) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must tap button!
@@ -21,23 +21,22 @@ Future<void> primaryDialog(context) async {
             radius: 50,
             backgroundColor: AppColor.kPrimaryColor.withOpacity(0.20),
             child: SvgPicture.asset(
-              'assets/svg/tick-svgrepo-com 1.svg',
-              // ignore: deprecated_member_use
+             img ,
               color: AppColor.kPrimaryColor,
               height: 50,
               width: 50,
             )),
-        content: const SingleChildScrollView(
+        content:   SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text(
-                'Are you sure?',
+                title,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
               Text(
-                'This visit is done!',
+               body,
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 ),
@@ -52,10 +51,7 @@ Future<void> primaryDialog(context) async {
             child: const Text('Yes',
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: AppColor.kWhiteColor)),
-            onPressed: () {
-              completedLocationTaskDialog();
-              //  Get.toNamed(RouteName.greetingsScreen);
-            },
+            onPressed: yesTap,
           ),
           SizedBox(
             width: Get.width / 6,
@@ -78,7 +74,7 @@ Future<void> primaryDialog(context) async {
   );
 }
 
-void forgotPasswordDialog() {
+void forgotPasswordDialog({  title,body,tap}) {
   Get.bottomSheet(
     Container(
       height:  40.h,
@@ -101,10 +97,10 @@ void forgotPasswordDialog() {
               color: AppColor.kGreyColor,
             ),
             const SizedBox(height: 20),
-            const Align(
+              Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Forgot Password?',
+                title,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
@@ -112,10 +108,10 @@ void forgotPasswordDialog() {
               ),
             ),
             const SizedBox(height: 5),
-            const Align(
+              Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Enter your phone number for verification process, We will send 4 digits code to your phone.',
+              body,
                 style: TextStyle(
                     fontWeight: FontWeight.w500, color: AppColor.kGreyColor),
               ),
@@ -138,10 +134,7 @@ void forgotPasswordDialog() {
             ),
             const SizedBox(height: 20),
             PrimaryButton(
-                onTap: () {
-                  Get.back();
-                  inputVerifyPinDialog();
-                },
+                onTap: tap,
                 text: 'Continue'),
           ],
         ),

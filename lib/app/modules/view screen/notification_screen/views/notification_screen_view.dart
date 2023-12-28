@@ -27,7 +27,6 @@ class NotificationScreenView extends GetView<NotificationScreenController> {
             itemCount: notificationList.length,
             itemBuilder: (context, index) =>
                 NotificationCard(
-
                   seeMoreTap: () {
                     Get.to(()=>NotificationDetailsScreen(
                       name: 'Hi, John!',

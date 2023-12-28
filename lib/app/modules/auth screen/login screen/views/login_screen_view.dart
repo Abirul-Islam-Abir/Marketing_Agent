@@ -29,21 +29,27 @@ class LoginScreenView extends GetView<LoginScreenController> {
               children: [
                 SizedBox(height: 15.h),
                 WelcomeText(text: AppString.welcome),
-                  LoginToContinueText(AppString.loginToContinue),
+                LoginToContinueText(AppString.loginToContinue),
                 SizedBox(height: 5.h),
                 CustomTextField(
-                    hintText: AppString.phone,
-                    img: AppImages.textFieldPhone),
+                    hintText: AppString.phone, img: AppImages.textFieldPhone),
                 CustomTextField(
-                    hintText: AppString.password,
-                    img:AppImages.textFieldPass ),
+                    hintText: AppString.password, img: AppImages.textFieldPass),
                 ForgetButton(
                     text: AppString.forgetPassword,
-                    onPressed:forgotPasswordDialog),
+                    onPressed: () {
+                      forgotPasswordDialog(
+                        title: 'Forgot Password?',
+                        body:
+                            'Enter your phone number for verification process, We will send 4 digits code to your phone.',
+                        tap: () {
+                          Get.back();
+                          inputVerifyPinDialog();
+                        },
+                      );
+                    }),
                 SizedBox(height: 10.h),
-                LoginButton(
-                    onTap: inputVerifyPinDialog,
-                    text: AppString.login),
+                LoginButton(onTap: inputVerifyPinDialog, text: AppString.login),
               ],
             ),
           ),

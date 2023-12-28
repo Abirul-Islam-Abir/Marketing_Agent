@@ -8,5 +8,6 @@ class AppImages{
   static String locationSvg = 'assets/svg/Vector.svg';
   static String textFieldPhone = 'assets/images/phone-svgrepo-com 1.png';
   static String textFieldPass = 'assets/images/key-svgrepo-com.png';
+  static String doneIcon = 'assets/svg/tick-svgrepo-com 1.svg';
   AppImages._();
 }

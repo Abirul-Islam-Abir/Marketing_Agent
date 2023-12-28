@@ -25,14 +25,6 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: GetBuilder<ProfileScreenController>(
-        builder: (controller) => controller.selectedIndex == 0
-            ? CustomFloatingButton(
-                image: AppImages.uploadSvg,
-                onTap: addPhotoDialog,
-              )
-            : const Text(''),
-      ),
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
@@ -82,6 +74,14 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
             child: ProfileBackButton(),
           ),
         ],
+      ),
+      floatingActionButton: GetBuilder<ProfileScreenController>(
+        builder: (controller) => controller.selectedIndex == 0
+            ? CustomFloatingButton(
+                image: AppImages.uploadSvg,
+                onTap: addPhotoDialog,
+              )
+            : const Text(''),
       ),
     );
   }
