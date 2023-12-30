@@ -45,6 +45,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                         tap: () {
                           Get.back();
                           inputVerifyPinDialog();
+                          //
                         },
                       );
                     }),
