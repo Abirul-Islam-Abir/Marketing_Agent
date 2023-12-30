@@ -39,9 +39,9 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     text: AppString.forgetPassword,
                     onPressed: () {
                       forgotPasswordDialog(
-                        title: 'Forgot Password?',
+                        title: AppString.forgetPassword,
                         body:
-                            'Enter your phone number for verification process, We will send 4 digits code to your phone.',
+                           AppString.sentCode4Digit,
                         tap: () {
                           Get.back();
                           inputVerifyPinDialog();

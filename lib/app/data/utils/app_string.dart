@@ -19,6 +19,7 @@ static String picture =  'Picture';
 static String targetComplete =  'Target complete';
 static String visitDone =   'Visit done';
 static String loginToContinue =  'Login to continue';
+static String sentCode4Digit =   'Enter your phone number for verification process, We will send 4 digits code to your phone.';
 
   AppString._();
 }
