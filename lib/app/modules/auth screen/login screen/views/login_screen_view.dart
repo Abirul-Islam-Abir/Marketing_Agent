@@ -50,7 +50,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                       );
                     }),
                 SizedBox(height: 10.h),
-                LoginButton(onTap: inputVerifyPinDialog, text: AppString.login),
+//
               ],
             ),
           ),

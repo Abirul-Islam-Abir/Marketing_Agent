@@ -10,23 +10,25 @@ import '../../modules/view screen/greetings_screen/components/animate_congratula
 import '../../modules/widgets/primary_button.dart';
 import '../../theme/app_color.dart';
 
-Future primaryDialog(context,{img,title,body,yesTap}) async {
+Future primaryDialog(context, {img, title, body, yesTap}) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
         title: CircleAvatar(
             radius: 50,
             backgroundColor: AppColor.kPrimaryColor.withOpacity(0.20),
             child: SvgPicture.asset(
-             img ,
+              img,
               color: AppColor.kPrimaryColor,
               height: 50,
               width: 50,
             )),
-        content:   SingleChildScrollView(
+        content: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,7 +38,7 @@ Future primaryDialog(context,{img,title,body,yesTap}) async {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
               Text(
-               body,
+                body,
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 ),
@@ -48,10 +50,10 @@ Future primaryDialog(context,{img,title,body,yesTap}) async {
           ElevatedButton(
             style: ElevatedButton.styleFrom(
                 backgroundColor: AppColor.kPrimaryColor),
+            onPressed: yesTap,
             child: const Text('Yes',
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: AppColor.kWhiteColor)),
-            onPressed: yesTap,
           ),
           SizedBox(
             width: Get.width / 6,
@@ -74,10 +76,10 @@ Future primaryDialog(context,{img,title,body,yesTap}) async {
   );
 }
 
-void forgotPasswordDialog({  title,body,tap}) {
+void forgotPasswordDialog({title, body, tap}) {
   Get.bottomSheet(
     Container(
-      height:  40.h,
+      height: 40.h,
       decoration: const BoxDecoration(
         color: AppColor.kWhiteColor,
         borderRadius: BorderRadius.only(
@@ -97,7 +99,7 @@ void forgotPasswordDialog({  title,body,tap}) {
               color: AppColor.kGreyColor,
             ),
             const SizedBox(height: 20),
-              Align(
+            Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 title,
@@ -108,10 +110,10 @@ void forgotPasswordDialog({  title,body,tap}) {
               ),
             ),
             const SizedBox(height: 5),
-              Align(
+            Align(
               alignment: Alignment.centerLeft,
               child: Text(
-              body,
+                body,
                 style: TextStyle(
                     fontWeight: FontWeight.w500, color: AppColor.kGreyColor),
               ),
@@ -122,7 +124,8 @@ void forgotPasswordDialog({  title,body,tap}) {
               child: TextFormField(
                 decoration: const InputDecoration(
                   hintStyle: TextStyle(
-                      color: AppColor.kBlackColor, fontWeight: FontWeight.normal),
+                      color: AppColor.kBlackColor,
+                      fontWeight: FontWeight.normal),
                   contentPadding: EdgeInsets.all(10),
                   hintText: 'Phone number',
                   disabledBorder: OutlineInputBorder(),
@@ -133,9 +136,7 @@ void forgotPasswordDialog({  title,body,tap}) {
               ),
             ),
             const SizedBox(height: 20),
-            PrimaryButton(
-                onTap: tap,
-                text: 'Continue'),
+            PrimaryButton(onTap: tap, text: 'Continue'),
           ],
         ),
       ),
@@ -143,12 +144,10 @@ void forgotPasswordDialog({  title,body,tap}) {
   );
 }
 
-
-
 void inputVerifyPinDialog() {
   Get.bottomSheet(
     Container(
-      height:  40.h,
+      height: 40.h,
       decoration: const BoxDecoration(
         color: AppColor.kWhiteColor,
         borderRadius: BorderRadius.only(
@@ -309,7 +308,8 @@ void completedLocationTaskDialog() {
           alignment: Alignment.topCenter,
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(20)),
-          child: Stack( alignment: Alignment.center,
+          child: Stack(
+            alignment: Alignment.center,
             children: [
               Column(
                 mainAxisSize: MainAxisSize.min,
@@ -372,7 +372,7 @@ void completedLocationTaskDialog() {
                   )
                 ],
               ),
-                const AnimateCongratulate(),
+              const AnimateCongratulate(),
             ],
           ),
         ),
