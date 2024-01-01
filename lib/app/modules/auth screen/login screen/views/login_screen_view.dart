@@ -40,17 +40,15 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     onPressed: () {
                       forgotPasswordDialog(
                         title: AppString.forgetPassword,
-                        body:
-                           AppString.sentCode4Digit,
+                        body: AppString.sentCode4Digit,
                         tap: () {
                           Get.back();
                           inputVerifyPinDialog();
-                          //
                         },
                       );
                     }),
                 SizedBox(height: 10.h),
-//
+                LoginButton(text: 'Login'),
               ],
             ),
           ),
