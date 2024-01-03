@@ -1,12 +1,12 @@
 import '../../../../data/const/export.dart';
 
-class CommissionReportCard extends StatelessWidget {
-  const CommissionReportCard({
+class DoctorOnboardCard extends StatelessWidget {
+  const DoctorOnboardCard({
     super.key,
     required this.location,
-    required this.target,
+    required this.date,
   });
-  final String location, target;
+  final String location, date;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,9 +30,9 @@ class CommissionReportCard extends StatelessWidget {
                   fontSize: 20),
             ),
             Text(
-              target,
+              date,
               style: const TextStyle(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w400,
                   color: AppColor.kWhiteColor,
                   fontSize: 15),
             ),

@@ -25,5 +25,3 @@ class ProfilePictureGridBuilder extends StatelessWidget {
     );
   }
 }
-
-

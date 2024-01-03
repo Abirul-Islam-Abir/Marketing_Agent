@@ -1,6 +1,15 @@
 
+import 'package:amin_agent/app/modules/view%20screen/doctor%20onboard%20screen/views/doctor_onboard_screen_view.dart';
+
 import '../data/const/export.dart';
 import '../modules/view screen/commission report screen/views/commission_report_screen_view.dart';
+import '../modules/view screen/doctor onboard screen/bindings/doctor_onboard_screen_binding.dart';
+import '../modules/view screen/greetings screen/bindings/greetings_screen_binding.dart';
+import '../modules/view screen/greetings screen/views/greetings_screen_view.dart';
+import '../modules/view screen/map screen/bindings/map_screen_binding.dart';
+import '../modules/view screen/map screen/views/map_screen_view.dart';
+import '../modules/view screen/notification screen/bindings/notification_screen_binding.dart';
+import '../modules/view screen/notification screen/views/notification_screen_view.dart';
 import '../modules/view screen/sales target group screen/bindings/sales_target_group_screen_binding.dart';
 import '../modules/view screen/sales target group screen/views/sales_target_group_screen_view.dart';
 
@@ -64,6 +73,11 @@ class AppPages {
       name: RouteName.salesTargetGroupScreen,
       page: () => const SalesTargetGroupScreenView(),
       binding: SalesTargetGroupScreenBinding(),
+    ),
+    GetPage(
+      name: RouteName.doctorOnboardScreen,
+      page: () => const DoctorOnboardScreenView(),
+      binding: DoctorOnboardScreenBinding(),
     ),
   ];
 }

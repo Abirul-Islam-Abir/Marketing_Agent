@@ -1,6 +1,9 @@
 
 
 import '../../../data/const/export.dart';
+import '../../view screen/greetings screen/controllers/greetings_screen_controller.dart';
+import '../../view screen/map screen/views/map_screen_view.dart';
+import '../../view screen/notification screen/views/notification_screen_view.dart';
 import '../components/bottom_nav_items.dart';
 
 

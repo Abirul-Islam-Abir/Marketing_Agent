@@ -1,6 +1,5 @@
 import 'package:amin_agent/app/data/utils/app_string.dart';
-import 'package:amin_agent/app/modules/view%20screen/notification_screen/views/notification_details.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
@@ -9,6 +8,7 @@ import '../../../../theme/app_color.dart';
 import '../../../widgets/primary_appbar.dart';
 import '../components/notification_card.dart';
 import '../controllers/notification_screen_controller.dart';
+import 'notification_details.dart';
 
 class NotificationScreenView extends GetView<NotificationScreenController> {
   NotificationScreenView({Key? key}) : super(key: key);

@@ -6,7 +6,7 @@ import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../modules/view screen/greetings_screen/components/animate_congratulate.dart';
+ import '../../modules/view screen/greetings screen/components/animate_congratulate.dart';
 import '../../modules/widgets/primary_button.dart';
 import '../../theme/app_color.dart';
 

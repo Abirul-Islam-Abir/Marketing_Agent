@@ -19,9 +19,9 @@ class CommissionReportScreenController extends GetxController {
   List<String> ctScanList = ['Ct scan 1', 'Ct scan 2', 'Ct scan 3'];
   void valueUpdate(String? value, context) {
     selectedValue = value;
+    update();
     if (value == 'Ct scan') {
       showCtScanList(context);
     }
-    update();
   }
 }
