@@ -51,14 +51,14 @@ class SalesReportCard extends StatelessWidget {
               children: [
                 Text(
                   name,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: AppColor.kWhiteColor,
                       fontSize: 20),
                 ),
                 Text(
                   target,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: AppColor.kWhiteColor,
                       fontSize: 15),

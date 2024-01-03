@@ -24,14 +24,14 @@ class CommissionReportCard extends StatelessWidget {
           children: [
             Text(
               location,
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: AppColor.kWhiteColor,
                   fontSize: 20),
             ),
             Text(
               target,
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: AppColor.kWhiteColor,
                   fontSize: 15),

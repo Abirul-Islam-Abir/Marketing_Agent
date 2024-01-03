@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 import '../components/show_ct_scan_list.dart';
-import '../views/commission_report_screen_view.dart';
 
 class CommissionReportScreenController extends GetxController {
   final List<String> items = [

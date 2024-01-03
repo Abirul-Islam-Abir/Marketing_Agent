@@ -1,5 +1,4 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../data/const/export.dart';
 import '../../../widgets/custom_back_button.dart';
@@ -15,12 +14,12 @@ class DropdownButtonShow extends GetView<CommissionReportScreenController> {
       width: Get.width/ 0.9,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [  CustomBackButton(),
+        children: [  const CustomBackButton(),
           DropdownButtonHideUnderline(
             child: DropdownButton2<String>(
-              iconStyleData: IconStyleData(iconEnabledColor: Colors.white),
+              iconStyleData: const IconStyleData(iconEnabledColor: Colors.white),
               isExpanded: false,
-              hint: Text(
+              hint: const Text(
                 'Choose',
                 style: TextStyle(
                     fontSize: 14,
@@ -54,8 +53,8 @@ class DropdownButtonShow extends GetView<CommissionReportScreenController> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Icon(
               Icons.filter_alt_rounded,
               color: Colors.white,

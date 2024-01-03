@@ -1,7 +1,6 @@
 import 'package:amin_agent/app/theme/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 import '../../../../routes/app_pages.dart';
 import '../components/custom_chart.dart';
 import '../components/dashboard_text.dart';
@@ -23,8 +22,8 @@ class DashboardScreenView extends GetView<DashboardScreenController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                DashboardText('Dashboard'),
-                SizedBox(height: 20),
+                const DashboardText('Dashboard'),
+                const SizedBox(height: 20),
                 SmallDetailsDashboardCard(
                   leftOnTap: (){Get.toNamed(RouteName.commissionReportScreen);},
                   rightOnTap: (){Get.toNamed(RouteName.salesReportScreen);},
@@ -41,8 +40,8 @@ class DashboardScreenView extends GetView<DashboardScreenController> {
                   rightTitle: 'Doctor visited',
                   leftCount: '20',
                 ),
-                CustomChart(),
-                SalesTargetedProgressCard(
+                const CustomChart(),
+                const SalesTargetedProgressCard(
                     text: 'Sales Target',
                     progress: 0.5,
                     collaborate: '5',

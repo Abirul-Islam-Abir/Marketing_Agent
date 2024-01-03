@@ -1,13 +1,10 @@
 import 'package:amin_agent/app/data/dummy%20data/sales_target_group_list.dart';
-import 'package:amin_agent/app/modules/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../../data/dummy data/sales_report_dummy_data.dart';
 import '../../../../theme/app_color.dart';
 import '../../../widgets/filter_btn.dart';
-import '../../sales report screen/components/list_builder.dart';
 import '../controllers/sales_target_group_screen_controller.dart';
 
 class SalesTargetGroupScreenView
@@ -78,7 +75,7 @@ class SalesTargetGroupCard extends StatelessWidget {
                         color: AppColor.kWhiteColor,
                         fontWeight: FontWeight.normal),
                   ),
-                  SizedBox()
+                  const SizedBox()
                 ],
               ),
             ),

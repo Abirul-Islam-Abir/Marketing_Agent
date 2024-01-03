@@ -21,28 +21,26 @@ class BottomNavItems extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: InkWell(
         onTap: onTap,
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                size: 25,
-                color: selectedIndex == 0
-                    ? AppColor.kPrimaryColor
-                    : AppColor.kGreyColor,
-              ),
-              Text(
-                text,
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: selectedIndex == 0
-                        ? AppColor.kPrimaryColor
-                        : AppColor.kGreyColor),
-              )
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: 25,
+              color: selectedIndex == 0
+                  ? AppColor.kPrimaryColor
+                  : AppColor.kGreyColor,
+            ),
+            Text(
+              text,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: selectedIndex == 0
+                      ? AppColor.kPrimaryColor
+                      : AppColor.kGreyColor),
+            )
+          ],
         ),
       ),
     );
