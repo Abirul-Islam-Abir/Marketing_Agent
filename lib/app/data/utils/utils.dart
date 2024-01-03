@@ -35,11 +35,11 @@ Future primaryDialog(context, {img, title, body, yesTap}) async {
             children: <Widget>[
               Text(
                 title,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
               Text(
                 body,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -103,7 +103,7 @@ void forgotPasswordDialog({title, body, tap}) {
               alignment: Alignment.centerLeft,
               child: Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                     color: AppColor.kBlackColor),
@@ -114,7 +114,7 @@ void forgotPasswordDialog({title, body, tap}) {
               alignment: Alignment.centerLeft,
               child: Text(
                 body,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.w500, color: AppColor.kGreyColor),
               ),
             ),

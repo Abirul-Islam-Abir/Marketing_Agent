@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 
-import '../../../theme/app_color.dart';
+import '../../../../data/const/export.dart';
+
 
 class SalesTargetedProgressCard extends StatelessWidget {
   const SalesTargetedProgressCard({
@@ -18,7 +18,7 @@ class SalesTargetedProgressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       child: Container(
         height: 100,
         alignment: Alignment.center,
@@ -36,7 +36,7 @@ class SalesTargetedProgressCard extends StatelessWidget {
                 children: [
                   Text(
                     text,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: AppColor.kWhiteColor,
                         fontWeight: FontWeight.normal),
                   ),
@@ -44,13 +44,13 @@ class SalesTargetedProgressCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.manage_accounts_rounded,
                         color: AppColor.kWhiteColor,
                       ),
                       Text(
                         collaborate,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: AppColor.kWhiteColor,
                             fontWeight: FontWeight.bold),
                       )
@@ -60,8 +60,8 @@ class SalesTargetedProgressCard extends StatelessWidget {
               ),
             ),
             Text(
-              '${totalSales}/${totalCompletedSales}',
-              style: TextStyle(
+              '$totalSales/$totalCompletedSales',
+              style: const TextStyle(
                   color: AppColor.kWhiteColor, fontWeight: FontWeight.bold),
             ),
             Padding(

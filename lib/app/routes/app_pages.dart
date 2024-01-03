@@ -1,22 +1,5 @@
-import 'package:amin_agent/app/modules/bottom%20nav/binding/bottom_nav_binding.dart';
-import 'package:amin_agent/app/modules/dashboard%20screen/bindings/dashboard_screen_binding.dart';
-import 'package:amin_agent/app/modules/dashboard%20screen/views/dashboard_screen_view.dart';
-import 'package:amin_agent/app/modules/view%20screen/map_screen/bindings/map_screen_binding.dart';
-import 'package:amin_agent/app/modules/view%20screen/map_screen/views/map_screen_view.dart';
-import 'package:get/get.dart';
 
-import '../modules/auth screen/login screen/bindings/login_screen_binding.dart';
-import '../modules/auth screen/login screen/views/login_screen_view.dart';
-
-import '../modules/bottom nav/views/bottom_nav.dart';
-import '../modules/view screen/greetings_screen/bindings/greetings_screen_binding.dart';
-import '../modules/view screen/greetings_screen/views/greetings_screen_view.dart';
-import '../modules/view screen/notification_screen/bindings/notification_screen_binding.dart';
-import '../modules/view screen/notification_screen/views/notification_screen_view.dart';
-import '../modules/view screen/profile screen/bindings/profile_screen_binding.dart';
-import '../modules/view screen/profile screen/views/profile_screen_view.dart';
-import '../modules/view screen/shedule screen/bindings/shedule_screen_binding.dart';
-import '../modules/view screen/shedule screen/views/shedule_screen_view.dart';
+import '../data/const/export.dart';
 
 part 'app_routes.dart';
 
@@ -37,7 +20,7 @@ class AppPages {
     GetPage(
       name: RouteName.scheduleScreen,
       page: () => ScheduleScreenView(),
-      binding: SheduleScreenBinding(),
+      binding: ScheduleScreenBinding(),
     ),
     GetPage(
       name: RouteName.notificationScreen,
@@ -63,6 +46,16 @@ class AppPages {
       name: RouteName.dashboardScreen,
       page: () => const DashboardScreenView(),
       binding: DashboardScreenBinding(),
+    ),
+    GetPage(
+      name: RouteName.commissionReportScreen,
+      page: () => const CommissionReportScreenView(),
+      binding: CommissionReportScreenBinding(),
+    ),
+    GetPage(
+      name: RouteName.salesReportScreen,
+      page: () => const SalesReportScreenView(),
+      binding: SalesReportScreenBinding(),
     ),
   ];
 }

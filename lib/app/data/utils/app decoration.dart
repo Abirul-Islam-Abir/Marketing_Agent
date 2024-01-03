@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import '../const/export.dart';
 
-import '../../theme/app_color.dart';
-
-class AppDecoration{
-  static  BoxDecoration buildBottomDecoration() {
+class AppDecoration {
+  static BoxDecoration buildBottomDecoration() {
     return BoxDecoration(
       color: AppColor.kWhiteColor,
       boxShadow: [

@@ -1,14 +1,9 @@
-import 'package:amin_agent/app/data/utils/app%20decoration.dart';
-import 'package:amin_agent/app/modules/view%20screen/map_screen/views/map_screen_view.dart';
-import 'package:amin_agent/app/modules/view%20screen/notification_screen/views/notification_screen_view.dart';
-import 'package:amin_agent/app/modules/view%20screen/profile%20screen/views/profile_screen_view.dart';
- import 'package:amin_agent/app/routes/app_pages.dart';
-import 'package:amin_agent/app/theme/app_color.dart';
- import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../../view screen/greetings_screen/controllers/greetings_screen_controller.dart';
+
+import '../../../data/const/export.dart';
 import '../components/bottom_nav_items.dart';
+
+
 
 class BottomNav extends StatefulWidget {
   const BottomNav({Key? key}) : super(key: key);

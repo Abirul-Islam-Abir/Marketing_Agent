@@ -1,8 +1,11 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../../../theme/app_color.dart';
-class CustomChart extends StatefulWidget {
+import '../../../../theme/app_color.dart';
+
+
+
+ class CustomChart extends StatefulWidget {
   const CustomChart({super.key});
 
   @override
@@ -18,14 +21,14 @@ class _CustomChartState extends State<CustomChart> {
   bool showAvg = false;
 
   List<FlSpot> spotList = [
-    FlSpot(0, 5),
-    FlSpot(2.6, 2),
-    FlSpot(4.9, 5),
-    FlSpot(6.8, 3.1),
-    FlSpot(8, 4),
-    FlSpot(9.5, 3),
-    FlSpot(11, 4),
-    FlSpot(11, 5),
+    const FlSpot(0, 5),
+    const FlSpot(2.6, 2),
+    const FlSpot(4.9, 5),
+    const FlSpot(6.8, 3.1),
+    const FlSpot(8, 4),
+    const FlSpot(9.5, 3),
+    const FlSpot(11, 4),
+    const FlSpot(11, 5),
   ];
   @override
   Widget build(BuildContext context) {
@@ -125,7 +128,7 @@ class _CustomChartState extends State<CustomChart> {
         horizontalInterval: 1,
         verticalInterval: 1,
         getDrawingHorizontalLine: (value) {
-          return   FlLine(
+          return   const FlLine(
             color: AppColor.kGreyColor,
             strokeWidth: 1,
           );

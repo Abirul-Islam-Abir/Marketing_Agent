@@ -1,12 +1,7 @@
-import 'package:amin_agent/app/data/state%20holder%20binder/state_holder_binder.dart';
- import 'package:amin_agent/app/theme/theme.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import '../routes/app_pages.dart';
-import 'app_info.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../data/const/export.dart';
 
 class AminAgent extends StatelessWidget {
   const AminAgent({
@@ -33,5 +28,3 @@ class AminAgent extends StatelessWidget {
         maxTabletWidth: 900);
   }
 }
-
-

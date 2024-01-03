@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 
-import '../../../theme/app_color.dart';
+
+import '../../../../data/const/export.dart';
 
 class DashboardText extends StatelessWidget {
   const DashboardText(this.text,{
@@ -11,7 +11,7 @@ class DashboardText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text!,
-      style: TextStyle(
+      style: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 30,
           color: AppColor.kWhiteColor),

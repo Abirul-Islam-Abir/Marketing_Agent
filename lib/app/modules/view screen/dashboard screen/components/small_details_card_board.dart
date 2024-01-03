@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../../../theme/app_color.dart';
+import '../../../../data/const/export.dart';
 
 class SmallDetailsDashboardCard extends StatelessWidget {
   const SmallDetailsDashboardCard({
@@ -33,13 +31,13 @@ class SmallDetailsDashboardCard extends StatelessWidget {
                   children: [
                     Text(
                       leftTitle,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: AppColor.kWhiteColor),
                     ),
                     Text(
                       leftCount,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: AppColor.kWhiteColor,
                           fontSize: 25),
@@ -48,7 +46,7 @@ class SmallDetailsDashboardCard extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Expanded(
@@ -63,13 +61,13 @@ class SmallDetailsDashboardCard extends StatelessWidget {
                   children: [
                     Text(
                       rightTitle,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: AppColor.kWhiteColor),
                     ),
                     Text(
                       rightCount,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: AppColor.kWhiteColor,
                           fontSize: 25),

@@ -11,5 +11,7 @@ abstract class RouteName {
   static const mapScreen = '/map-screen';
   static const bottomNav = '/bottomNav-screen';
   static const dashboardScreen = '/Dashboard-screen';
+  static const commissionReportScreen = '/Commission-Report-screen';
+  static const salesReportScreen = '/Sales-Report-screen';
 }
 

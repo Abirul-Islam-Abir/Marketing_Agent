@@ -11,10 +11,10 @@ import '../../../widgets/primary_appbar.dart';
 import '../components/schedule_card.dart';
 import '../controllers/shedule_screen_controller.dart';
 
-class ScheduleScreenView extends GetView<SheduleScreenController> {
+class ScheduleScreenView extends GetView<ScheduleScreenController> {
   ScheduleScreenView({Key? key}) : super(key: key);
   @override
-  final controller = Get.put(SheduleScreenController());
+  final controller = Get.put(ScheduleScreenController());
 
   @override
   Widget build(BuildContext context) {
