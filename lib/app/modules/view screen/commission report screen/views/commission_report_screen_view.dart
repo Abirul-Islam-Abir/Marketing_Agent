@@ -15,8 +15,7 @@ class CommissionReportScreenView extends StatelessWidget {
   final controller = Get.put(CommissionReportScreenController());
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       backgroundColor: AppColor.kSecondaryColor, // Replace with your color
       body: SafeArea(
         child: SizedBox(
@@ -32,5 +31,4 @@ class CommissionReportScreenView extends StatelessWidget {
         ),
       ),
     );
-  }
 }
