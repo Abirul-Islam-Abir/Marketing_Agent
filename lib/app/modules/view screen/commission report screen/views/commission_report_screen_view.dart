@@ -1,23 +1,34 @@
-import 'package:flutter/material.dart';
+import 'package:amin_agent/app/data/const/export.dart';
+import 'package:amin_agent/app/model/commission_model.dart';
 
-import 'package:get/get.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../controllers/commission_report_screen_controller.dart';
+import '../../../../data/dummy data/commission_dummy_data.dart';
+import '../components/build_listview_builder.dart';
+import '../components/commission_report_card.dart';
+import '../components/dropdown_button_show.dart';
 
-class CommissionReportScreenView
-    extends GetView<CommissionReportScreenController> {
-  const CommissionReportScreenView({Key? key}) : super(key: key);
+class CommissionReportScreenView extends StatelessWidget {
+  CommissionReportScreenView({Key? key}) : super(key: key);
+
+  final controller = Get.put(CommissionReportScreenController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('CommissionReportScreenView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'CommissionReportScreenView is working',
-          style: TextStyle(fontSize: 20),
+      backgroundColor: AppColor.kSecondaryColor, // Replace with your color
+      body: SafeArea(
+        child: SizedBox(
+          width: double.infinity,
+          child: ListView(
+            physics: const NeverScrollableScrollPhysics(),
+            children: [
+              GetBuilder<CommissionReportScreenController>(
+                  builder: (controller) => DropdownButtonShow()),
+              BuildListViewBuilder(list: commissionDataList),
+            ],
+          ),
         ),
       ),
     );

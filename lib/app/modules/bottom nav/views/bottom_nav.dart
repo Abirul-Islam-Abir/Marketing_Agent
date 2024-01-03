@@ -22,6 +22,7 @@ class _BottomNavState extends State<BottomNav> {
     super.dispose();
   }
   final List<Widget> bottomBarPages = [
+    DashboardScreenView(),
     const MapScreenView(),
     ProfileScreenView(),
     NotificationScreenView()
@@ -41,16 +42,23 @@ class _BottomNavState extends State<BottomNav> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             BottomNavItems(
+              selectedIndex: 0,
+                text: 'Dashboard',
+                icon: Icons.dashboard,
+                onTap: () {
+               //   Get.toNamed(RouteName.dashboardScreen);
+                }),
+            BottomNavItems(selectedIndex: 1,
                 text: 'Schedule',
                 icon: Icons.schedule,
                 onTap: () {
                   Get.toNamed(RouteName.scheduleScreen);
                 }),
-            BottomNavItems(
+            BottomNavItems(selectedIndex: 2,
                 text: 'Profile', icon: Icons.account_circle, onTap: () {
               Get.toNamed(RouteName.profileScreen);
             }),
-            BottomNavItems(
+            BottomNavItems(selectedIndex: 3,
                 text: 'Notification', icon: Icons.notifications, onTap: () {
               Get.toNamed(RouteName.notificationScreen);
             }),

@@ -47,28 +47,30 @@ Future primaryDialog(context, {img, title, body, yesTap}) async {
           ),
         ),
         actions: <Widget>[
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: AppColor.kPrimaryColor),
-            onPressed: yesTap,
-            child: const Text('Yes',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold, color: AppColor.kWhiteColor)),
-          ),
-          SizedBox(
-            width: Get.width / 6,
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: AppColor.kPrimaryColor),
-            child: const Text(
-              'No',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold, color: AppColor.kWhiteColor),
-            ),
-            onPressed: () {
-              Get.back();
-            },
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.kPrimaryColor),
+                onPressed: yesTap,
+                child: const Text('Yes',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: AppColor.kWhiteColor)),
+              ),
+
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.kPrimaryColor),
+                child: const Text(
+                  'No',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: AppColor.kWhiteColor),
+                ),
+                onPressed: () {
+                  Get.back();
+                },
+              ),
+            ],
           ),
         ],
       );

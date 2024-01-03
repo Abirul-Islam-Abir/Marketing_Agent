@@ -1,5 +1,6 @@
 
 import '../data/const/export.dart';
+import '../modules/view screen/commission report screen/views/commission_report_screen_view.dart';
 
 part 'app_routes.dart';
 
@@ -49,7 +50,7 @@ class AppPages {
     ),
     GetPage(
       name: RouteName.commissionReportScreen,
-      page: () => const CommissionReportScreenView(),
+      page: () =>   CommissionReportScreenView(),
       binding: CommissionReportScreenBinding(),
     ),
     GetPage(
