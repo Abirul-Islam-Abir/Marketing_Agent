@@ -1,5 +1,7 @@
 import 'package:amin_agent/app/modules/bottom%20nav/binding/bottom_nav_binding.dart';
- import 'package:amin_agent/app/modules/view%20screen/map_screen/bindings/map_screen_binding.dart';
+import 'package:amin_agent/app/modules/dashboard%20screen/bindings/dashboard_screen_binding.dart';
+import 'package:amin_agent/app/modules/dashboard%20screen/views/dashboard_screen_view.dart';
+import 'package:amin_agent/app/modules/view%20screen/map_screen/bindings/map_screen_binding.dart';
 import 'package:amin_agent/app/modules/view%20screen/map_screen/views/map_screen_view.dart';
 import 'package:get/get.dart';
 
@@ -24,38 +26,43 @@ class AppPages {
   static final routes = [
     GetPage(
       name: RouteName.loginScreen,
-      page: () =>   LoginScreenView(),
+      page: () => LoginScreenView(),
       binding: LoginScreenBinding(),
     ),
     GetPage(
       name: RouteName.profileScreen,
-      page: () =>   ProfileScreenView(),
+      page: () => ProfileScreenView(),
       binding: ProfileScreenBinding(),
     ),
     GetPage(
       name: RouteName.scheduleScreen,
-      page: () =>   ScheduleScreenView(),
+      page: () => ScheduleScreenView(),
       binding: SheduleScreenBinding(),
     ),
     GetPage(
       name: RouteName.notificationScreen,
-      page: () =>   NotificationScreenView(),
+      page: () => NotificationScreenView(),
       binding: NotificationScreenBinding(),
     ),
     GetPage(
       name: RouteName.greetingsScreen,
-      page: () =>     GreetingsScreenView(),
+      page: () => GreetingsScreenView(),
       binding: GreetingsScreenBinding(),
     ),
     GetPage(
       name: RouteName.mapScreen,
-      page: () =>     const MapScreenView(),
+      page: () => const MapScreenView(),
       binding: MapScreenBinding(),
     ),
     GetPage(
       name: RouteName.bottomNav,
-      page: () =>   const BottomNav(),
+      page: () => const BottomNav(),
       binding: BottomNavBinding(),
+    ),
+    GetPage(
+      name: RouteName.dashboardScreen,
+      page: () => const DashboardScreenView(),
+      binding: DashboardScreenBinding(),
     ),
   ];
 }

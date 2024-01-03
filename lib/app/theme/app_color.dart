@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppColor {
-  static const kPrimaryColor = Color(0xFF0085E5);
+  static const kSecondaryColor = Color(0xFF0085E5);
   static const appBarColor = Color(0xFF0085E5);
-  static const kSecondaryColor = Color(0xFF00508A);
+  static const kPrimaryColor = Color(0xFF00508A);
   static const kTextColor = Colors.black54;
   static const kWhiteColor = Colors.white;
+  static const kButtonColor = Colors.white;
   static const kBlueColor = Colors.blue;
   static const kRedColor = Colors.red;
   static const kOrangeColor = Colors.orangeAccent;

@@ -10,5 +10,6 @@ abstract class RouteName {
   static const greetingsScreen = '/greetings-screen';
   static const mapScreen = '/map-screen';
   static const bottomNav = '/bottomNav-screen';
+  static const dashboardScreen = '/Dashboard-screen';
 }
 
