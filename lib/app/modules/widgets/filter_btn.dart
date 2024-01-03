@@ -1,5 +1,6 @@
 
 import '../../data/const/export.dart';
+import 'custom_back_button.dart';
 
 class FilterButton extends StatelessWidget {
   const FilterButton({
@@ -11,7 +12,7 @@ class FilterButton extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SizedBox(),
+        CustomBackButton(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Icon(

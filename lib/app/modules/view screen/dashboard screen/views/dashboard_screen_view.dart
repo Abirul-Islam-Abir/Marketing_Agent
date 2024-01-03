@@ -2,6 +2,7 @@ import 'package:amin_agent/app/theme/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import '../../../../routes/app_pages.dart';
 import '../components/custom_chart.dart';
 import '../components/dashboard_text.dart';
 import '../components/sales_targeted_dashboard_progress_card.dart';
@@ -13,7 +14,7 @@ class DashboardScreenView extends GetView<DashboardScreenController> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return   Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
       body: SafeArea(
         child: SizedBox(
@@ -25,12 +26,16 @@ class DashboardScreenView extends GetView<DashboardScreenController> {
                 DashboardText('Dashboard'),
                 SizedBox(height: 20),
                 SmallDetailsDashboardCard(
+                  leftOnTap: (){Get.toNamed(RouteName.commissionReportScreen);},
+                  rightOnTap: (){Get.toNamed(RouteName.salesReportScreen);},
                   leftTitle: 'Total commission',
                   rightCount: '10000',
                   rightTitle: 'Total Sales',
                   leftCount: '3500',
                 ),
                 SmallDetailsDashboardCard(
+                  leftOnTap: (){Get.toNamed(RouteName.doctorOnboardScreen);},
+                  rightOnTap: (){Get.toNamed(RouteName.salesTargetGroupScreen);},
                   leftTitle: 'Doctor onboard',
                   rightCount: '300',
                   rightTitle: 'Doctor visited',
@@ -51,5 +56,3 @@ class DashboardScreenView extends GetView<DashboardScreenController> {
     );
   }
 }
-
-

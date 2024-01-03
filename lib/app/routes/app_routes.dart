@@ -14,5 +14,6 @@ abstract class RouteName {
   static const commissionReportScreen = '/Commission-Report-screen';
   static const salesReportScreen = '/Sales-Report-screen';
   static const salesTargetGroupScreen = '/Sales-Target-Group-Screen';
+  static const doctorOnboardScreen = '/Doctor-Onboard-Screen';
 }
 

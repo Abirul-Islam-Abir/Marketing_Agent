@@ -1,3 +1,4 @@
+import 'package:amin_agent/app/modules/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -27,6 +28,7 @@ class SalesReportScreenView extends GetView<SalesReportScreenController> {
             child: ListView(
               physics: const NeverScrollableScrollPhysics(),
               children: [
+
                 const FilterButton(),
                 ListBuilder(list: salesReportDataList,)
               ],

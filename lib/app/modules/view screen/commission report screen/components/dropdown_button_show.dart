@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../data/const/export.dart';
+import '../../../widgets/custom_back_button.dart';
 
 class DropdownButtonShow extends GetView<CommissionReportScreenController> {
   const DropdownButtonShow({
@@ -14,7 +15,7 @@ class DropdownButtonShow extends GetView<CommissionReportScreenController> {
       width: Get.width/ 0.9,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
+        children: [  CustomBackButton(),
           DropdownButtonHideUnderline(
             child: DropdownButton2<String>(
               iconStyleData: IconStyleData(iconEnabledColor: Colors.white),
