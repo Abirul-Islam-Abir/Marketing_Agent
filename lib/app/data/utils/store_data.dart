@@ -23,5 +23,5 @@ class StoreData{
 Future getUserToken()async {
   final box = GetStorage();
   final token = box.read(UserDataKey.tokenKey);
-  StoreData.token = token;
+  if(token!=null) StoreData.token = token;
 }

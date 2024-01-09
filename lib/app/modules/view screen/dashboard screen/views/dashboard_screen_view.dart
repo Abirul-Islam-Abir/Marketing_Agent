@@ -33,12 +33,13 @@ class DashboardScreenView extends GetView<DashboardScreenController> {
                     _scaffoldKey.currentState?.openDrawer();
                   },
                   notificationTap: () async {
-                   final response = await logOutRequest();
-                   if(response['success']==true){
-                     Get.offAllNamed(RouteName.loginScreen);
-                     box.remove(UserDataKey.tokenKey);
-                   }
-                  //  Get.toNamed(RouteName.notificationScreen);
+                    final response = await logOutRequest();
+                    print(response);
+                    if (response['success'] == true) {
+                      Get.offAllNamed(RouteName.loginScreen);
+                      box.remove(UserDataKey.tokenKey);
+                    }
+                    //  Get.toNamed(RouteName.notificationScreen);
                   },
                 ),
                 const SizedBox(height: 20),
@@ -67,11 +68,10 @@ class DashboardScreenView extends GetView<DashboardScreenController> {
                   leftCount: '20',
                 ),
                 const CustomChart(),
-                  SalesTargetedProgressCard(
-                  onTap: (){
-                    print(StoreData.token);
-                    //Get.toNamed(RouteName.salesTargetScreen);
-                  },
+                SalesTargetedProgressCard(
+                    onTap: () {
+                      Get.toNamed(RouteName.salesTargetScreen);
+                    },
                     text: 'Sales Target',
                     progress: 0.5,
                     collaborate: '5',

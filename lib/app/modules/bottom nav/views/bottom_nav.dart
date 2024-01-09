@@ -1,12 +1,10 @@
-
+import 'package:stylish_bottom_bar/model/bar_items.dart';
 
 import '../../../data/const/export.dart';
 import '../../view screen/greetings screen/controllers/greetings_screen_controller.dart';
 import '../../view screen/map screen/views/map_screen_view.dart';
 import '../../view screen/notification screen/views/notification_screen_view.dart';
-import '../components/bottom_nav_items.dart';
-
-
+import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({Key? key}) : super(key: key);
@@ -19,58 +17,75 @@ class _BottomNavState extends State<BottomNav> {
   final _pageController = PageController(initialPage: 0);
   int maxCount = 3;
   final controller = Get.put(GreetingsScreenController());
+
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
   }
+
   final List<Widget> bottomBarPages = [
-      DashboardScreenView(),
+    DashboardScreenView(),
+    ScheduleScreenView(),
     const MapScreenView(),
     ProfileScreenView(),
-    NotificationScreenView()
   ];
   int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: bottomBarPages[selectedIndex],
-      extendBody: true,
-      bottomNavigationBar: Container(
-        height: 80,
-        decoration: AppDecoration.buildBottomDecoration(),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            BottomNavItems(
-              selectedIndex: 0,
-                text: 'Dashboard',
-                icon: Icons.dashboard,
-                onTap: () {
-               //   Get.toNamed(RouteName.dashboardScreen);
-                }),
-            BottomNavItems(selectedIndex: 1,
-                text: 'Schedule',
-                icon: Icons.schedule,
-                onTap: () {
-                  Get.toNamed(RouteName.scheduleScreen);
-                }),
-            BottomNavItems(selectedIndex: 2,
-                text: 'Profile', icon: Icons.account_circle, onTap: () {
-              Get.toNamed(RouteName.profileScreen);
-            }),
-            BottomNavItems(selectedIndex: 3,
-                text: 'Notification', icon: Icons.notifications, onTap: () {
-              Get.toNamed(RouteName.notificationScreen);
-            }),
+        body: bottomBarPages[selectedIndex],
+        extendBody: true,
+        bottomNavigationBar: StylishBottomBar(
+          option: BubbleBarOptions(
+            barStyle: BubbleBarStyle.horizotnal,
+            bubbleFillStyle: BubbleFillStyle.outlined,
+            opacity: 0.3,
+          ),
+          items: [
+            BottomBarItem(
+              icon: const Icon(
+                Icons.dashboard,
+                size: 25,
+              ),
+              title: const Text('Dashboard'),
+              backgroundColor: Colors.red,
+
+            ),
+            BottomBarItem(
+              icon: Icon(
+                Icons.schedule_outlined,
+                size: 25,
+              ),
+              title: const Text('Schedule'),
+              backgroundColor: Colors.orange,
+            ),
+            BottomBarItem(
+              icon: const Icon(
+                Icons.location_on_rounded,
+                size: 25,
+              ),
+              title: const Text('Map'),
+              backgroundColor: Colors.purple,
+            ),
+            BottomBarItem(
+              icon: const Icon(
+                Icons.account_circle,
+                size: 25,
+              ),
+              title: const Text('Profile'),
+              backgroundColor: Colors.purple,
+            ),
           ],
-        ),
-      ),
-    );
+          fabLocation: StylishBarFabLocation.center,
+          hasNotch: true,
+          currentIndex: selectedIndex,
+          onTap: (index) {
+            setState(() {
+              selectedIndex = index;
+            });
+          },
+        ));
   }
-
-
 }
-

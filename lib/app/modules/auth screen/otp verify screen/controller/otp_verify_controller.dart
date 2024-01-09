@@ -16,10 +16,8 @@ class OtpVerifyScreenController extends GetxController {
   String currentText = "";
   final formKey = GlobalKey<FormState>();
   bool _isProgress = false;
-
   bool get isProgress => _isProgress;
   final id = Get.arguments;
-
   var countdown = 60.obs;
   late Timer _timer;
   RxBool isTimeOut = true.obs;
@@ -42,13 +40,12 @@ class OtpVerifyScreenController extends GetxController {
 
   Future verifyOtp() async {
     final response = await verifyOtpRequest(id: id['id'], otp: otp.text);
-
     if (response['success'] == true) {
       print(response['message']);
       StoreData.storeToken(response['data']['token']);
       await getUserToken();
       Get.offAllNamed(RouteName.bottomNav);
-      AwesomeDialogs.showSuccessDialog(desc: response['message']);
+      Get.snackbar('Success', response['message']);
     } else {
       otp.clear();
       AwesomeDialogs.showErrorDialog(desc: response['message']);

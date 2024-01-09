@@ -26,6 +26,7 @@ dependencies:
   fl_chart: ^0.66.0
   badges: ^3.1.2
   get_storage: ^2.0.6
+  stylish_bottom_bar: ^1.0.3
 
 
 dev_dependencies: 
