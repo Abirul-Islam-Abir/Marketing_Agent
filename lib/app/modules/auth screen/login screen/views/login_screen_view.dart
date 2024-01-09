@@ -1,9 +1,10 @@
-import 'package:amin_agent/app/data/utils/utils.dart';
+import 'package:amin_agent/app/data/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../data/utils/app_images.dart';
 import '../../../../data/utils/app_string.dart';
+import '../../../../routes/app_pages.dart';
 import '../../../widgets/login_background_view.dart';
 import '../../../widgets/custom_text_field.dart';
 import '../components/forget_button.dart';
@@ -25,34 +26,40 @@ class LoginScreenView extends GetView<LoginScreenController> {
         body: LoginBackgroundView(
           image: AppImages.loginScreenBackground,
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(height: 15.h),
-                WelcomeText(text: AppString.welcome),
-                LoginToContinueText(AppString.loginToContinue),
-                SizedBox(height: 5.h),
-                CustomTextField(
-                    hintText: AppString.phone, img: AppImages.textFieldPhone),
-                CustomTextField(
-                    hintText: AppString.password, img: AppImages.textFieldPass),
-                ForgetButton(
-                    text: AppString.forgetPassword,
-                    onPressed: () {
-                      forgotPasswordDialog(
-                        title: AppString.forgetPassword,
-                        body: AppString.sentCode4Digit,
-                        tap: () {
-                          Get.back();
-                          inputVerifyPinDialog();
-                        },
-                      );
-                    }),
-                SizedBox(height: 10.h),
-                LoginButton(
-                  text: AppString.login,
-                  onTap: inputVerifyPinDialog,
-                ),
-              ],
+            child: Form(
+              key: controller.formKey,
+              child: Column(
+                children: [
+                  SizedBox(height: 15.h),
+                  WelcomeText(text: AppString.welcome),
+                  LoginToContinueText(AppString.loginToContinue),
+                  SizedBox(height: 5.h),
+                  CustomTextField(
+                      validator: validateMobile,
+                      controller: controller.number,
+                      hintText: AppString.phone,
+                      img: AppImages.textFieldPhone),
+                  CustomTextField(
+                      validator: validatePassword,
+                      controller: controller.password,
+                      hintText: AppString.password,
+                      img: AppImages.textFieldPass),
+                  ForgetButton(
+                      text: AppString.forgetPassword,
+                      onPressed: () {
+                      Get.toNamed(RouteName.forgetPasswordScreen);
+                      }),
+                  SizedBox(height: 10.h),
+                  GetBuilder<LoginScreenController>(
+                      builder: (_) => LoginButton(
+                          isProgress: controller.isProgress,
+                          text: AppString.login,
+                          onTap: () {
+                            // Get.toNamed(RouteName.otpVerifyScreen);
+                            controller.validateMethod(context);
+                          })),
+                ],
+              ),
             ),
           ),
         ),

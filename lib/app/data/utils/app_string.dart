@@ -1,5 +1,7 @@
 class AppString{
 static String login =  'Log In';
+static String continues =  'Continue';
+static String mobile =  'Mobile';
 static String email =  'Email';
 static String password =  'Password';
 static String forgetPassword =  'Forget Password';

@@ -1,14 +1,9 @@
-import 'package:amin_agent/app/routes/app_pages.dart';
-import 'package:flutter/material.dart';
+import 'package:amin_agent/app/data/const/export.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:otp_text_field/otp_field.dart';
-import 'package:otp_text_field/style.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
- import '../../modules/view screen/greetings screen/components/animate_congratulate.dart';
+import '../../modules/view screen/greetings screen/components/animate_congratulate.dart';
 import '../../modules/widgets/primary_button.dart';
-import '../../theme/app_color.dart';
 
 Future primaryDialog(context, {img, title, body, yesTap}) async {
   return showDialog<void>(
@@ -35,7 +30,8 @@ Future primaryDialog(context, {img, title, body, yesTap}) async {
             children: <Widget>[
               Text(
                 title,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
               Text(
                 body,
@@ -47,7 +43,8 @@ Future primaryDialog(context, {img, title, body, yesTap}) async {
           ),
         ),
         actions: <Widget>[
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -55,9 +52,9 @@ Future primaryDialog(context, {img, title, body, yesTap}) async {
                 onPressed: yesTap,
                 child: const Text('Yes',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold, color: AppColor.kWhiteColor)),
+                        fontWeight: FontWeight.bold,
+                        color: AppColor.kWhiteColor)),
               ),
-
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     backgroundColor: AppColor.kPrimaryColor),
@@ -146,74 +143,7 @@ void forgotPasswordDialog({title, body, tap}) {
   );
 }
 
-void inputVerifyPinDialog() {
-  Get.bottomSheet(
-    Container(
-      height: 40.h,
-      decoration: const BoxDecoration(
-        color: AppColor.kWhiteColor,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
-        ),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 20),
-            Container(
-              height: 5,
-              width: 100,
-              color: AppColor.kGreyColor,
-            ),
-            const SizedBox(height: 20),
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Enter 4 digit code',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: AppColor.kBlackColor),
-              ),
-            ),
-            const SizedBox(height: 10),
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Enter the 4 digit code that send to your phone.',
-                style: TextStyle(
-                    fontWeight: FontWeight.w500, color: AppColor.kGreyColor),
-              ),
-            ),
-            const SizedBox(height: 20),
-            OTPTextField(
-              length: 4,
-              width: double.infinity,
-              fieldWidth: 50,
-              style: const TextStyle(
-                  fontSize: 25,
-                  color: AppColor.kPrimaryColor,
-                  fontWeight: FontWeight.bold),
-              textFieldAlignment: MainAxisAlignment.spaceAround,
-              fieldStyle: FieldStyle.box,
-              onCompleted: (pin) {},
-            ),
-            const SizedBox(height: 20),
-            PrimaryButton(
-              text: 'Continue',
-              onTap: () {
-                Get.offAllNamed(RouteName.bottomNav);
-              },
-            )
-          ],
-        ),
-      ),
-    ),
-  );
-}
+
 
 void addPhotoDialog() {
   Get.bottomSheet(

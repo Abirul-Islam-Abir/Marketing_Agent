@@ -25,7 +25,7 @@ class _BottomNavState extends State<BottomNav> {
     super.dispose();
   }
   final List<Widget> bottomBarPages = [
-    const DashboardScreenView(),
+      DashboardScreenView(),
     const MapScreenView(),
     ProfileScreenView(),
     NotificationScreenView()

@@ -2,7 +2,8 @@ part of 'app_pages.dart';
 
 abstract class RouteName {
   RouteName._();
-  static const initial = RouteName.loginScreen ;
+  static const initial = RouteName.splashScreen ;
+  static const splashScreen = '/splash-screen';
   static const loginScreen = '/login-screen';
   static const profileScreen = '/profile-screen';
   static const scheduleScreen = '/schedule-screen';
@@ -10,10 +11,12 @@ abstract class RouteName {
   static const greetingsScreen = '/greetings-screen';
   static const mapScreen = '/map-screen';
   static const bottomNav = '/bottomNav-screen';
-  static const dashboardScreen = '/Dashboard-screen';
-  static const commissionReportScreen = '/Commission-Report-screen';
-  static const salesReportScreen = '/Sales-Report-screen';
-  static const salesTargetGroupScreen = '/Sales-Target-Group-Screen';
-  static const doctorOnboardScreen = '/Doctor-Onboard-Screen';
+  static const dashboardScreen = '/dashboard-screen';
+  static const commissionReportScreen = '/total-commission-screen';
+  static const salesReportScreen = '/sales-report-screen';
+  static const salesTargetScreen = '/sales-target-screen';
+  static const doctorOnboardScreen = '/doctor-onboard-screen';
+  static const otpVerifyScreen = '/otp-verify-screen';
+  static const forgetPasswordScreen = '/forget-password-screen';
 }
 

@@ -1,3 +1,6 @@
+import 'package:amin_agent/app/api%20services/auth/log_out.dart';
+import 'package:amin_agent/app/data/utils/store_data.dart';
+import 'package:amin_agent/app/data/utils/user_data_key.dart';
 import 'package:amin_agent/app/theme/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,11 +12,13 @@ import '../components/small_details_card_board.dart';
 import '../controllers/dashboard_screen_controller.dart';
 
 class DashboardScreenView extends GetView<DashboardScreenController> {
-  const DashboardScreenView({Key? key}) : super(key: key);
-
+  DashboardScreenView({Key? key}) : super(key: key);
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    return   Scaffold(
+    return Scaffold(
+      drawer: const Drawer(),
+      key: _scaffoldKey,
       backgroundColor: AppColor.kSecondaryColor,
       body: SafeArea(
         child: SizedBox(
@@ -22,26 +27,51 @@ class DashboardScreenView extends GetView<DashboardScreenController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const DashboardText('Dashboard'),
+                PrimaryAppBar(
+                  text: 'Dashboard',
+                  menuTap: () {
+                    _scaffoldKey.currentState?.openDrawer();
+                  },
+                  notificationTap: () async {
+                   final response = await logOutRequest();
+                   if(response['success']==true){
+                     Get.offAllNamed(RouteName.loginScreen);
+                     box.remove(UserDataKey.tokenKey);
+                   }
+                  //  Get.toNamed(RouteName.notificationScreen);
+                  },
+                ),
                 const SizedBox(height: 20),
                 SmallDetailsDashboardCard(
-                  leftOnTap: (){Get.toNamed(RouteName.commissionReportScreen);},
-                  rightOnTap: (){Get.toNamed(RouteName.salesReportScreen);},
+                  leftOnTap: () {
+                    Get.toNamed(RouteName.commissionReportScreen);
+                  },
+                  rightOnTap: () {
+                    Get.toNamed(RouteName.salesReportScreen);
+                  },
                   leftTitle: 'Total commission',
                   rightCount: '10000',
                   rightTitle: 'Total Sales',
                   leftCount: '3500',
                 ),
                 SmallDetailsDashboardCard(
-                  leftOnTap: (){Get.toNamed(RouteName.doctorOnboardScreen);},
-                  rightOnTap: (){Get.toNamed(RouteName.salesTargetGroupScreen);},
+                  leftOnTap: () {
+                    Get.toNamed(RouteName.doctorOnboardScreen);
+                  },
+                  rightOnTap: () {
+                    Get.toNamed(RouteName.salesTargetScreen);
+                  },
                   leftTitle: 'Doctor onboard',
                   rightCount: '300',
                   rightTitle: 'Doctor visited',
                   leftCount: '20',
                 ),
                 const CustomChart(),
-                const SalesTargetedProgressCard(
+                  SalesTargetedProgressCard(
+                  onTap: (){
+                    print(StoreData.token);
+                    //Get.toNamed(RouteName.salesTargetScreen);
+                  },
                     text: 'Sales Target',
                     progress: 0.5,
                     collaborate: '5',
