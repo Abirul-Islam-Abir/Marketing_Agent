@@ -1,4 +1,3 @@
-import 'package:amin_agent/app/api%20services/auth/resend_otp.dart';
 import 'package:amin_agent/app/data/utils/store_data.dart';
 
 import '../../../../api services/auth/forgot_password.dart';
@@ -9,24 +8,26 @@ class ForgetPasswordScreenController extends GetxController {
   final number = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
-  RxBool _isProgress = false.obs;
+  final RxBool _isProgress = false.obs;
   bool get isProgress => _isProgress.value;
 
 
-  Future forgotPassword() async {
+  Future forgotPassword(context) async {
     final response = await forgotPasswordRequest(number: number.text);
     if (response['success'] == true) {
+      StoreData.saveNumber(number.text);
       Get.toNamed(RouteName.passwordSetScreen,
           arguments: {'id': '${response['data']['user_id']}'});
+
     } else {
-      AwesomeDialogs.showErrorDialog(desc: response['data']['password'][0]);
+      AwesomeDialogs.showErrorDialog(context,desc: response['data']['password'][0]);
     }
   }
 
-  Future<void> forgotPasswordInitializeMethod() async {
+  Future<void> forgotPasswordInitializeMethod(context) async {
     _isProgress.value = true ;
     try {
-      await Future.wait([forgotPassword()]);
+      await Future.wait([forgotPassword(context)]);
     } catch (e) {
       throw Exception('$e');
     } finally {
@@ -34,9 +35,9 @@ class ForgetPasswordScreenController extends GetxController {
     }
   }
 
-  void validateMethod() {
+  void validateMethod(context) {
     if (formKey.currentState!.validate()) {
-      forgotPasswordInitializeMethod();
+      forgotPasswordInitializeMethod(context);
     } else {
       Get.snackbar('Ohh..', 'Required field');
     }

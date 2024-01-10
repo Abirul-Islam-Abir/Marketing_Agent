@@ -9,7 +9,6 @@ class DashboardScreenController extends GetxController {
   String text = 'Total commission';
  Future logout()async{
    final response = await logOutRequest();
-   print(response);
    if (response['success'] == true) {
      box.remove(UserDataKey.tokenKey);
      box.remove(UserDataKey.idKey);

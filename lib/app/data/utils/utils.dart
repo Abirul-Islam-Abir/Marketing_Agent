@@ -1,9 +1,9 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:amin_agent/app/data/const/export.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../modules/view screen/greetings screen/components/animate_congratulate.dart';
-import '../../modules/widgets/primary_button.dart';
 
 Future primaryDialog(context, {img, title, body, yesTap}) async {
   return showDialog<void>(
@@ -75,73 +75,6 @@ Future primaryDialog(context, {img, title, body, yesTap}) async {
   );
 }
 
-void forgotPasswordDialog({title, body, tap}) {
-  Get.bottomSheet(
-    Container(
-      height: 40.h,
-      decoration: const BoxDecoration(
-        color: AppColor.kWhiteColor,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
-        ),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 25),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 10),
-            Container(
-              height: 5,
-              width: 100,
-              color: AppColor.kGreyColor,
-            ),
-            const SizedBox(height: 20),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                title,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: AppColor.kBlackColor),
-              ),
-            ),
-            const SizedBox(height: 5),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                body,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w500, color: AppColor.kGreyColor),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.all(0),
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintStyle: TextStyle(
-                      color: AppColor.kBlackColor,
-                      fontWeight: FontWeight.normal),
-                  contentPadding: EdgeInsets.all(10),
-                  hintText: 'Phone number',
-                  disabledBorder: OutlineInputBorder(),
-                  focusedBorder: OutlineInputBorder(),
-                  enabledBorder: OutlineInputBorder(),
-                  errorBorder: OutlineInputBorder(),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            PrimaryButton(onTap: tap, text: 'Continue'),
-          ],
-        ),
-      ),
-    ),
-  );
-}
 
 
 

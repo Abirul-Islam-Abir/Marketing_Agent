@@ -1,11 +1,9 @@
 import 'package:amin_agent/app/data/const/export.dart';
-import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
 
 import '../controllers/splash_screen_controller.dart';
 
-class SplashScreenView extends GetView<SplashScreenController> {
+class SplashScreenView extends StatelessWidget {
     SplashScreenView({Key? key}) : super(key: key);
   final controller = Get.put(SplashScreenController());
   @override

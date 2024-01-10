@@ -38,9 +38,10 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                   SizedBox(height: 10.h),
                   ProfileText(AppString.profile),
                   const SizedBox(height: 10),
-                  UserAvatar(AppImages.userImage),
-                  UserName(AppString.userName),
-                  SalesExecutiveText(AppString.salesExecutive),
+                  UserAvatar('${controller.userProfileList['avatar']}'),
+                  UserName('${controller.userProfileList['name']}'),
+                  SalesExecutiveText(
+                      '${controller.userProfileList['designation']}'),
                   const SizedBox(height: 10),
                   VisitAndTargetCard(
                     visit: AppString.visitDone,

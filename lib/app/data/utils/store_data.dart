@@ -7,6 +7,8 @@ final box = GetStorage();
 class StoreData{
   static String token = '';
   static String id = '';
+  static String number = '';
+  static String password = '';
 
 
 
@@ -19,7 +21,12 @@ class StoreData{
   static void saveId(value)  {
     box.write(UserDataKey.idKey, value);
   }
-
+  static void saveNumber(value)  {
+    box.write(UserDataKey.numberKey, value);
+  }
+  static void savePassword(value)  {
+    box.write(UserDataKey.passwordKey, value);
+  }
   StoreData._();
 }
 
@@ -29,4 +36,11 @@ Future setUserTokenAndId()async {
   final id = box.read(UserDataKey.idKey);
   if(token!=null) StoreData.token = token;
   if(id!=null) StoreData.id = token;
+}
+Future setNumberAndPassword()async {
+  final box = GetStorage();
+  final number = box.read(UserDataKey.numberKey);
+  final password = box.read(UserDataKey.passwordKey);
+  if(number!=null) StoreData.number = number;
+  if(password!=null) StoreData.password = password;
 }

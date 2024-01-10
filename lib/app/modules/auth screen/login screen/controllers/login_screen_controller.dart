@@ -20,11 +20,11 @@ class LoginScreenController extends GetxController {
       Get.toNamed(RouteName.otpVerifyScreen,
           arguments: {'id': '${response['data']['user_id']}'});
     } else if (response['message'] == 'Validation error.') {
-      AwesomeDialogs.showErrorDialog(desc: response['data']['phone'][0]);
+      AwesomeDialogs.showErrorDialog(context,desc: response['data']['phone'][0]);
     } else if (response['message'] == 'Invalid password.') {
-      AwesomeDialogs.showErrorDialog(desc: response['message']);
+      AwesomeDialogs.showErrorDialog(context,desc: response['message']);
     } else {
-      AwesomeDialogs.showErrorDialog(desc: response['data']['password'][0]);
+      AwesomeDialogs.showErrorDialog(context,desc: response['data']['password'][0]);
     }
   }
 

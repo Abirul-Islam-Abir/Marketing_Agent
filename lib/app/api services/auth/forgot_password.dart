@@ -11,8 +11,6 @@ Future forgotPasswordRequest({number}) async {
 
   final response = await http.post(url, body: body, headers: headers);
   final decodedResponse = jsonDecode(response.body);
-  print(response.statusCode);
-  print(decodedResponse);
   if (response.statusCode == 200 && decodedResponse['success'] == true) {
     return decodedResponse;
   }

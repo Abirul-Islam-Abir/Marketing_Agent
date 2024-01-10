@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:amin_agent/app/data/utils/store_data.dart';
-import 'package:amin_agent/app/data/utils/user_data_key.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../api services/auth/resend_otp.dart';
@@ -22,15 +20,7 @@ class OtpVerifyScreenController extends GetxController {
   var countdown = 60.obs;
   late Timer _timer;
   RxBool isTimeOut = true.obs;
-  Future resendOtp() async {
-    final response = await resendOtpRequest(id: id['id']);
-    if (response['success'] == true) {
-      startCountdown();
-    } else {
-      AwesomeDialogs.showErrorDialog(desc: response['data']['phone'][0]);
 
-    }
-  }
 
   void startCountdown() {
     countdown.value = 10;
@@ -48,7 +38,7 @@ class OtpVerifyScreenController extends GetxController {
     });
   }
 
-  Future verifyOtp() async {
+  Future verifyOtp(context) async {
     final response = await verifyOtpRequest(id: id['id'], otp: otp.text);
     if (response['success'] == true) {
        StoreData.saveToken(response['data']['token']);
@@ -58,16 +48,24 @@ class OtpVerifyScreenController extends GetxController {
       Get.snackbar('Success', response['message']);
     } else {
       otp.clear();
-      AwesomeDialogs.showErrorDialog(desc: response['message']);
+      AwesomeDialogs.showErrorDialog(context,desc: response['message']);
     }
   }
+  Future resendOtp(context) async {
+    final response = await resendOtpRequest(id: id['id']);
+    if (response['success'] == true) {
+      startCountdown();
+    } else {
+      AwesomeDialogs.showErrorDialog(context,desc: response['data']['phone'][0]);
 
-  Future<void> otpVerifyInitializeMethod() async {
+    }
+  }
+  Future<void> otpVerifyInitializeMethod(context) async {
     _isProgress = true;
     update();
     try {
       await Future.wait([
-        verifyOtp(),
+        verifyOtp(context),
       ]);
     } catch (e) {
       throw Exception('$e');

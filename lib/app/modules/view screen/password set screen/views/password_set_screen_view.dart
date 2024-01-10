@@ -5,16 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../../data/utils/app_images.dart';
-import '../../../data/utils/app_string.dart';
-import '../../auth screen/login screen/components/login_button.dart';
-import '../../auth screen/otp verify screen/components/custom_pin_code_field.dart';
-import '../../auth screen/otp verify screen/components/enter_digit_code_send.dart';
-import '../../auth screen/otp verify screen/components/enter_digit_text.dart';
-import '../../auth screen/otp verify screen/components/long_line_subtitle.dart';
-import '../../auth screen/otp verify screen/controller/otp_verify_controller.dart';
-import '../../widgets/custom_back_button.dart';
-import '../../widgets/login_background_view.dart';
+import '../../../../data/utils/app_images.dart';
+import '../../../../data/utils/app_string.dart';
+import '../../../auth screen/login screen/components/login_button.dart';
+import '../../../auth screen/otp verify screen/components/custom_pin_code_field.dart';
+import '../../../auth screen/otp verify screen/components/enter_digit_code_send.dart';
+import '../../../auth screen/otp verify screen/components/enter_digit_text.dart';
+import '../../../widgets/custom_back_button.dart';
+import '../../../widgets/login_background_view.dart';
 import '../controllers/password_set_screen_controller.dart';
 
 class PasswordSetScreenView extends StatelessWidget {
@@ -57,7 +55,9 @@ class PasswordSetScreenView extends StatelessWidget {
                       const SizedBox(height: 50),
                       Obx(() => LoginButton(
                             text: 'Continue ',
-                            onTap: controller.validateMethod,
+                            onTap:(){
+                              controller.validateMethod(context);
+                            },
                             isProgress: controller.isProgress,
                           )),
                     ],

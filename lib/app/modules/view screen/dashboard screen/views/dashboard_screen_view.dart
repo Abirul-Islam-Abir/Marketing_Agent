@@ -1,6 +1,3 @@
-import 'package:amin_agent/app/api%20services/auth/log_out.dart';
-import 'package:amin_agent/app/data/utils/store_data.dart';
-import 'package:amin_agent/app/data/utils/user_data_key.dart';
 import 'package:amin_agent/app/modules/widgets/primary_button.dart';
 import 'package:amin_agent/app/theme/app_color.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +9,7 @@ import '../components/sales_targeted_dashboard_progress_card.dart';
 import '../components/small_details_card_board.dart';
 import '../controllers/dashboard_screen_controller.dart';
 
-class DashboardScreenView extends GetView<DashboardScreenController> {
+class DashboardScreenView extends StatelessWidget {
   DashboardScreenView({Key? key}) : super(key: key);
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final controller = Get.put(DashboardScreenController());
@@ -66,7 +63,8 @@ class DashboardScreenView extends GetView<DashboardScreenController> {
                 const CustomChart(),
                 SalesTargetedProgressCard(
                     onTap: () {
-                      Get.toNamed(RouteName.salesTargetScreen);
+
+                     // Get.toNamed(RouteName.salesTargetScreen);
                     },
                     text: 'Sales Target',
                     progress: 0.5,
@@ -97,10 +95,10 @@ class CustomDrawer extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Container(
+            const SizedBox(
               height: 200,
               width: double.infinity,
-              child: const Padding(
+              child: Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,8 +116,8 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
             ),
-          Divider(height: 2,),
-          SizedBox(height: 200,),
+          const Divider(height: 2,),
+          const SizedBox(height: 200,),
           PrimaryButton(text: 'Log Out',onTap:controller.logout),
 
           ],

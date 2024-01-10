@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import '../const/export.dart';
 
 class AppDecoration {
