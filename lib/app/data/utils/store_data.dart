@@ -6,22 +6,27 @@ final box = GetStorage();
 
 class StoreData{
   static String token = '';
+  static String id = '';
 
 
 
 
 
-  static void storeToken(value)  {
+  static void saveToken(value)  {
     box.write(UserDataKey.tokenKey, value);
   }
 
-
+  static void saveId(value)  {
+    box.write(UserDataKey.idKey, value);
+  }
 
   StoreData._();
 }
 
-Future getUserToken()async {
+Future setUserTokenAndId()async {
   final box = GetStorage();
   final token = box.read(UserDataKey.tokenKey);
+  final id = box.read(UserDataKey.idKey);
   if(token!=null) StoreData.token = token;
+  if(id!=null) StoreData.id = token;
 }

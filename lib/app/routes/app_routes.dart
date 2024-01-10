@@ -18,5 +18,6 @@ abstract class RouteName {
   static const doctorOnboardScreen = '/doctor-onboard-screen';
   static const otpVerifyScreen = '/otp-verify-screen';
   static const forgetPasswordScreen = '/forget-password-screen';
+  static const passwordSetScreen = '/password-set-screen';
 }
 

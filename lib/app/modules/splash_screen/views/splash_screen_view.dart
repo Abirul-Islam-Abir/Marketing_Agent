@@ -10,7 +10,7 @@ class SplashScreenView extends GetView<SplashScreenController> {
   final controller = Get.put(SplashScreenController());
   @override
   Widget build(BuildContext context) {
-    controller.checkIfLogged;
+    controller.userAlreadyLogged;
     return const Scaffold(
       backgroundColor: AppColor.kPrimaryColor,
       body: Center(

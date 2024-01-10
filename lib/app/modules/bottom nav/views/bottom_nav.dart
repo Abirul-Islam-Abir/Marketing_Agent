@@ -39,9 +39,6 @@ class _BottomNavState extends State<BottomNav> {
         extendBody: true,
         bottomNavigationBar: StylishBottomBar(
           option: BubbleBarOptions(
-            barStyle: BubbleBarStyle.horizotnal,
-            bubbleFillStyle: BubbleFillStyle.outlined,
-            opacity: 0.3,
           ),
           items: [
             BottomBarItem(
@@ -50,7 +47,7 @@ class _BottomNavState extends State<BottomNav> {
                 size: 25,
               ),
               title: const Text('Dashboard'),
-              backgroundColor: Colors.red,
+              backgroundColor:AppColor.kPrimaryColor,
 
             ),
             BottomBarItem(
@@ -67,7 +64,7 @@ class _BottomNavState extends State<BottomNav> {
                 size: 25,
               ),
               title: const Text('Map'),
-              backgroundColor: Colors.purple,
+              backgroundColor:AppColor.kPrimaryColor,
             ),
             BottomBarItem(
               icon: const Icon(
@@ -75,11 +72,11 @@ class _BottomNavState extends State<BottomNav> {
                 size: 25,
               ),
               title: const Text('Profile'),
-              backgroundColor: Colors.purple,
+              backgroundColor:AppColor.kPrimaryColor,
             ),
           ],
-          fabLocation: StylishBarFabLocation.center,
-          hasNotch: true,
+
+
           currentIndex: selectedIndex,
           onTap: (index) {
             setState(() {

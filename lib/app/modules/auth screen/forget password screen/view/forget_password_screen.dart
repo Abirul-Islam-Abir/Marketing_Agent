@@ -39,10 +39,8 @@ class ForgetPasswordScreen extends StatelessWidget {
                         img: AppImages.textFieldPhone),
                     const SizedBox(height: 40),
                     Obx(() => LoginButton(
-                        isProgress: controller.isLoading,
-                        onTap: () {
-                         Get.to(OtpVerifyScreen());
-                        },
+                        isProgress: controller.isProgress,
+                        onTap: controller.validateMethod,
                         text: AppString.continues)),
                   ],
                 ),

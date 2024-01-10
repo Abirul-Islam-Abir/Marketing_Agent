@@ -54,5 +54,11 @@ class LoginScreenController extends GetxController {
       Get.snackbar('Ohh..', 'Required field');
     }
   }
-
+@override
+  void dispose() {
+  number.dispose();
+  password.dispose();
+  otp.dispose();
+     super.dispose();
+  }
 }

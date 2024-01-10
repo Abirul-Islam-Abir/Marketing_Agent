@@ -3,6 +3,8 @@ import 'package:amin_agent/app/modules/auth%20screen/forget%20password%20screen/
 import 'package:amin_agent/app/modules/auth%20screen/forget%20password%20screen/view/forget_password_screen.dart';
 import 'package:amin_agent/app/modules/auth%20screen/otp%20verify%20screen/binding/otp_verify_screen_binding.dart';
 import 'package:amin_agent/app/modules/auth%20screen/otp%20verify%20screen/view/otp_screen.dart';
+import 'package:amin_agent/app/modules/password_set_screen/bindings/password_set_screen_binding.dart';
+import 'package:amin_agent/app/modules/password_set_screen/views/password_set_screen_view.dart';
 import 'package:amin_agent/app/modules/splash_screen/bindings/splash_screen_binding.dart';
 import 'package:amin_agent/app/modules/view%20screen/doctor%20onboard%20screen/views/doctor_onboard_screen_view.dart';
 
@@ -102,6 +104,11 @@ class AppPages {
       name: RouteName.initial,
       page: () =>   SplashScreenView(),
       binding: SplashScreenBinding(),
+    ),
+    GetPage(
+      name: RouteName.passwordSetScreen,
+      page: () =>   PasswordSetScreenView(),
+      binding: PasswordSetScreenBinding(),
     ),
   ];
 }

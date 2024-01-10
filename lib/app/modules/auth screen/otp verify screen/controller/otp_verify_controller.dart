@@ -5,6 +5,7 @@ import 'package:amin_agent/app/data/utils/user_data_key.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+import '../../../../api services/auth/resend_otp.dart';
 import '../../../../api services/auth/verify_otp.dart';
 import '../../../../data/const/export.dart';
 import '../../../../data/utils/awesome_dialog.dart';
@@ -21,9 +22,18 @@ class OtpVerifyScreenController extends GetxController {
   var countdown = 60.obs;
   late Timer _timer;
   RxBool isTimeOut = true.obs;
+  Future resendOtp() async {
+    final response = await resendOtpRequest(id: id['id']);
+    if (response['success'] == true) {
+      startCountdown();
+    } else {
+      AwesomeDialogs.showErrorDialog(desc: response['data']['phone'][0]);
+
+    }
+  }
 
   void startCountdown() {
-    countdown.value = 60;
+    countdown.value = 10;
     isTimeOut.value = true;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (countdown.value > 0) {
@@ -41,9 +51,9 @@ class OtpVerifyScreenController extends GetxController {
   Future verifyOtp() async {
     final response = await verifyOtpRequest(id: id['id'], otp: otp.text);
     if (response['success'] == true) {
-      print(response['message']);
-      StoreData.storeToken(response['data']['token']);
-      await getUserToken();
+       StoreData.saveToken(response['data']['token']);
+       StoreData.saveId(id['id']);
+      await setUserTokenAndId();
       Get.offAllNamed(RouteName.bottomNav);
       Get.snackbar('Success', response['message']);
     } else {

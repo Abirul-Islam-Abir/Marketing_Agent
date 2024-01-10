@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../theme/app_color.dart';
 
@@ -18,7 +19,7 @@ class ForgetButton extends StatelessWidget {
           onPressed:onPressed ,
           child: Text(
             text,
-            style: const TextStyle(fontWeight: FontWeight.bold,color: AppColor.kWhiteColor),
+            style:   TextStyle(fontWeight: FontWeight.bold,color: AppColor.kWhiteColor,fontSize: 15.sp),
           ),
         ),
       ),

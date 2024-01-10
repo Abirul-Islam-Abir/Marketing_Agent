@@ -5,11 +5,11 @@ import '../../../routes/app_pages.dart';
 
 class SplashScreenController extends GetxController {
 
-  Future checkIfLogged()async{
-   await getUserToken();
+  Future userAlreadyLogged()async{
+   await setUserTokenAndId();
  Future.delayed(Duration(seconds: 4)).then((value) {
-   if(StoreData.token.isNotEmpty){
-     Get.offAllNamed(RouteName.bottomNav);
+   if(StoreData.token.isNotEmpty && StoreData.id.isNotEmpty){
+     Get.offAllNamed(RouteName.loginScreen);
    }else{
      Get.offAllNamed(RouteName.loginScreen);
    }
@@ -18,7 +18,7 @@ class SplashScreenController extends GetxController {
 
   @override
   void onInit() {
-    checkIfLogged();
+    userAlreadyLogged();
      super.onInit();
   }
 }

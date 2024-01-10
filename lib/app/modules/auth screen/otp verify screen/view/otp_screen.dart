@@ -1,3 +1,4 @@
+import 'package:amin_agent/app/modules/auth%20screen/forget%20password%20screen/controller/forget_password_controller.dart';
 import 'package:amin_agent/app/modules/auth%20screen/login%20screen/components/login_button.dart';
 import 'package:amin_agent/app/modules/widgets/custom_back_button.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -43,14 +44,18 @@ class OtpVerifyScreen extends StatelessWidget {
                           text: AppString.didNotReceivedTheCode,
                           txt: controller.isTimeOut.value ? '' : ' RESEND',
                           onTap: () {
+                            controller.resendOtp();
                             controller.startCountdown();
                           },
                         )),
                     const SizedBox(height: 50),
                     GetBuilder<OtpVerifyScreenController>(
                         builder: (_) => LoginButton(
-                              text: 'Continue',
-                              onTap: controller.otpVerifyInitializeMethod,
+                              text: 'Continue ',
+                              onTap: (){
+
+                                 controller.otpVerifyInitializeMethod();
+                              },
                               isProgress: controller.isProgress,
                             )),
                   ],

@@ -1,5 +1,6 @@
 import 'package:amin_agent/app/theme/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class WelcomeText extends StatelessWidget {
   const WelcomeText({
@@ -17,8 +18,8 @@ class WelcomeText extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
         child: Text(
           text,
-          style: const TextStyle(
-              fontSize: 35,
+          style:   TextStyle(
+              fontSize: 30.sp,
               fontWeight: FontWeight.bold,
               color: AppColor.kWhiteColor),
         ),
