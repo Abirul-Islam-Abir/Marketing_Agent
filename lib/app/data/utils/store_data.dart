@@ -33,9 +33,7 @@ class StoreData{
 Future setUserTokenAndId()async {
   final box = GetStorage();
   final token = box.read(UserDataKey.tokenKey);
-  final id = box.read(UserDataKey.idKey);
   if(token!=null) StoreData.token = token;
-  if(id!=null) StoreData.id = token;
 }
 Future setNumberAndPassword()async {
   final box = GetStorage();

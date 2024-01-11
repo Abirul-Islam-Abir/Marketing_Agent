@@ -8,11 +8,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   runApp(
-     DevicePreview(
+   /*  DevicePreview(
     enabled: !kReleaseMode,
     builder: (context) => const AminAgent(), // Wrap your app
-  ),
-
-  //  const AminAgent(),
+  ),*/
+  const AminAgent(),
   );
 }

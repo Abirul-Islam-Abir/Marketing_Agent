@@ -6,24 +6,33 @@ import '../../../../data/utils/awesome_dialog.dart';
 
 
 class PasswordSetScreenController extends GetxController {
+  final id = Get.arguments;
   final formKey = GlobalKey<FormState>();
-  final otp = TextEditingController();
-  final password = TextEditingController();
+   final password = TextEditingController();
   final cPassword = TextEditingController();
   final RxBool _isProgress = false.obs;
-
   bool get isProgress => _isProgress.value;
-  final id = Get.arguments;
-
+  final passwordFocus = FocusNode();
+  final cPasswordFocus = FocusNode();
+  RxBool _isSecurePass = true.obs;
+  RxBool _isSecureCPass = true.obs;
+  bool get isSecurePass => _isSecurePass.value;
+  bool get isSecureCPass => _isSecureCPass.value;
+  void isSecurePassChange() {
+    _isSecurePass.value = !_isSecurePass.value;
+  }
+  void isSecureCPassChange() {
+    _isSecureCPass.value = !_isSecureCPass.value;
+  }
   Future resetPassword(context) async {
     final response = await resetPasswordRequest(
-        otp: otp.text, password: password.text, id: id['id']);
+        otp: id['otp'], password: password.text, id: id['id']);
     if (response['success'] == true) {
       StoreData.saveToken(response['data']['token']);
-      StoreData.saveId(id['id']);
       StoreData.savePassword(password.text);
       await setNumberAndPassword();
       await setUserTokenAndId();
+      AwesomeDialogs.showSuccessDialog(context,desc:'Log in successfully');
       Get.offAllNamed(RouteName.bottomNav);
     } else {
       AwesomeDialogs.showErrorDialog(context,desc: response['data']['password'][0]);
@@ -53,9 +62,13 @@ class PasswordSetScreenController extends GetxController {
 
   @override
   void dispose() {
-    otp.dispose();
     password.dispose();
     cPassword.dispose();
     super.dispose();
+  }
+  @override
+  void onInit() {
+
+     super.onInit();
   }
 }

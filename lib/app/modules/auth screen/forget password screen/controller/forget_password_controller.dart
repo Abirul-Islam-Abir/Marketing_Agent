@@ -6,7 +6,7 @@ import '../../../../data/utils/awesome_dialog.dart';
 
 class ForgetPasswordScreenController extends GetxController {
   final number = TextEditingController();
-
+final numberFocus = FocusNode();
   final formKey = GlobalKey<FormState>();
   final RxBool _isProgress = false.obs;
   bool get isProgress => _isProgress.value;
@@ -15,9 +15,10 @@ class ForgetPasswordScreenController extends GetxController {
   Future forgotPassword(context) async {
     final response = await forgotPasswordRequest(number: number.text);
     if (response['success'] == true) {
-      StoreData.saveNumber(number.text);
-      Get.toNamed(RouteName.passwordSetScreen,
-          arguments: {'id': '${response['data']['user_id']}'});
+      Get.toNamed(RouteName.otpVerifyScreen,
+          arguments: {'id': '${response['data']['user_id']}',
+            'forgot': true
+      });
 
     } else {
       AwesomeDialogs.showErrorDialog(context,desc: response['data']['password'][0]);

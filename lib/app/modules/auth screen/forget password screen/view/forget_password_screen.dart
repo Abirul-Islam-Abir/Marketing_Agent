@@ -13,9 +13,7 @@ import '../../login screen/components/welcome_text.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   ForgetPasswordScreen({super.key});
-
   final controller = Get.put(ForgetPasswordScreenController());
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,14 +27,15 @@ class ForgetPasswordScreen extends StatelessWidget {
                   children: [
                     const CustomBackButton(),
                     SizedBox(height: 15.h),
-                    WelcomeText(text: AppString.forgetPassword),
-                    const SizedBox(height: 40),
+                    WelcomeText(text: AppString.forgetPasswords),
+                      SizedBox(height: 5.h),
                     CustomTextField(
+                      focusNode: controller.numberFocus,
                         validator: validateMobile,
                         controller: controller.number,
                         hintText: AppString.phone,
                         img: AppImages.textFieldPhone),
-                    const SizedBox(height: 40),
+                    SizedBox(height: 10.h),
                     Obx(() => LoginButton(
                         isProgress: controller.isProgress,
                         onTap: (){controller.validateMethod(context);},

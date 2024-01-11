@@ -10,6 +10,7 @@ class ApiServices {
   static String forgotPasswordUrl = '$_baseUrl$_route/forgot-password';
   static String resetPasswordUrl = '$_baseUrl$_route/reset-password';
   static String userProfileUrl = '$_baseUrl$_route/me';
+  static String resetPassOtpManageUrl = '$_baseUrl$_route/reset-password-otp-match';
 
   ApiServices._();
 }

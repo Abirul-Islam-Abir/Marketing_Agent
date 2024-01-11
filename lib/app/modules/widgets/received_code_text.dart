@@ -1,13 +1,12 @@
-
 import 'package:flutter/gestures.dart';
 
-import '../../../../data/const/export.dart';
+import '../../data/const/export.dart';
 
-class LongLineSubtitleText extends StatelessWidget {
+class ReceivedCodeTextButton extends StatelessWidget {
   final String txt, text;
   final GestureTapCallback? onTap;
 
-  const LongLineSubtitleText(
+  const ReceivedCodeTextButton(
       {super.key, required this.txt, required this.text, this.onTap});
 
   @override
@@ -21,7 +20,7 @@ class LongLineSubtitleText extends StatelessWidget {
             TextSpan(
               text: txt,
               style: const TextStyle(
-                color: AppColor.kGreenColor,
+                color: AppColor.kWhiteColor,
                 fontWeight: FontWeight.bold,
                 fontSize: 15,
               ),

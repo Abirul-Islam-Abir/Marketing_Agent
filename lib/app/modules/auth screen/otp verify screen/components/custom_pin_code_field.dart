@@ -13,12 +13,11 @@ class CustomPinCodeField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 50),
       child: PinCodeTextField(
           appContext: context,
-          pastedTextStyle: const TextStyle(
-              color: Colors.green,
-              fontWeight: FontWeight.bold),
+          pastedTextStyle:
+              const TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
           length: 4,
           obscureText: false,
           obscuringCharacter: '*',
@@ -33,20 +32,21 @@ class CustomPinCodeField extends StatelessWidget {
           },
           pinTheme: PinTheme(
               shape: PinCodeFieldShape.box,
+              activeColor: AppColor.kWhiteColor,
+              inactiveColor: AppColor.kWhiteColor,
               borderRadius: BorderRadius.circular(5),
-              fieldHeight: 40,
-              fieldWidth: 40,
+              fieldHeight: 50,
+              fieldWidth: 50,
               activeFillColor: AppColor.kWhiteColor),
-          cursorColor: AppColor.kPrimaryColor,
-          animationDuration:
-          const Duration(milliseconds: 300),
+          cursorColor: AppColor.kWhiteColor,
+          animationDuration: const Duration(milliseconds: 300),
           enableActiveFill: false,
-          controller:  otp,
+          controller: otp,
           keyboardType: TextInputType.number,
           boxShadows: const [
             BoxShadow(
                 offset: Offset(0, 1),
-                color: AppColor.kPrimaryColor,
+                color: AppColor.kWhiteColor,
                 blurRadius: 10)
           ],
           onCompleted: (v) {},

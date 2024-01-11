@@ -12,13 +12,16 @@ class UserAvatar extends StatelessWidget {
   final String? img;
   @override
   Widget build(BuildContext context) {
-    return CircularProfileAvatar(
-      img!,
-      borderColor: AppColor.kPrimaryColor,
-      borderWidth: 5,
-      elevation: 2,
-      radius: 70,
-      child: Image.network(img!),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: CircularProfileAvatar(
+        img!,
+        borderColor: AppColor.kPrimaryColor,
+        borderWidth: 5,
+        elevation: 2,
+        radius: 70,
+        child: Image.network(img!),
+      ),
     );
   }
 }

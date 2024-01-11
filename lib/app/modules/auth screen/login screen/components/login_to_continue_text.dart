@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../theme/app_color.dart';
 
@@ -19,9 +20,9 @@ class LoginToContinueText extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 0),
         child: Text(
           text!,
-          style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+          style:   TextStyle(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.normal,
               color: AppColor.kWhiteColor),
         ),
       ),

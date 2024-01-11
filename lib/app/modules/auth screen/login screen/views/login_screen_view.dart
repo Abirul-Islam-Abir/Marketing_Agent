@@ -1,3 +1,4 @@
+import 'package:amin_agent/app/data/const/export.dart';
 import 'package:amin_agent/app/data/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,9 +22,9 @@ class LoginScreenView extends GetView<LoginScreenController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: LoginBackgroundView(
+    return Scaffold(
+      body: SafeArea(
+        child: LoginBackgroundView(
           image: AppImages.loginScreenBackground,
           child: SingleChildScrollView(
             child: Form(
@@ -35,19 +36,37 @@ class LoginScreenView extends GetView<LoginScreenController> {
                   LoginToContinueText(AppString.loginToContinue),
                   SizedBox(height: 5.h),
                   CustomTextField(
-                      validator: validateMobile,
-                      controller: controller.number,
-                      hintText: AppString.phone,
-                      img: AppImages.textFieldPhone),
-                  CustomTextField(
+                    focusNode: controller.numberFocus,
+                    validator: validateMobile,
+                    controller: controller.number,
+                    hintText: AppString.phone,
+                    img: AppImages.textFieldPhone,
+                    onFieldSubmitted: (p0) {},
+                  ),
+                  Obx(
+                    () => CustomTextField(
+                      focusNode: controller.passFocus,
+                      obscureText: controller.isSecure,
                       validator: validatePassword,
                       controller: controller.password,
                       hintText: AppString.password,
-                      img: AppImages.textFieldPass),
+                      img: AppImages.textFieldPass,
+                      icon: IconButton(
+                        onPressed: controller.isSecureChange,
+                        icon: Icon(
+                          controller.isSecure
+                              ? Icons.remove_red_eye_sharp
+                              : Icons.remove_red_eye_outlined,
+                          color: AppColor.kWhiteColor,
+                          size: 30,
+                        ),
+                      ),
+                    ),
+                  ),
                   ForgetButton(
                       text: AppString.forgetPassword,
                       onPressed: () {
-                      Get.toNamed(RouteName.forgetPasswordScreen);
+                        Get.toNamed(RouteName.forgetPasswordScreen);
                       }),
                   SizedBox(height: 10.h),
                   GetBuilder<LoginScreenController>(

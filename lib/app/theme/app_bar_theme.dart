@@ -4,8 +4,7 @@ import 'package:flutter/services.dart';
 
 
 AppBarTheme globalAppBarTheme() => const AppBarTheme(
-    systemOverlayStyle:
-    SystemUiOverlayStyle(statusBarColor: AppColor.kBlackColor),
+
 backgroundColor: AppColor.kTransparentColor,
     centerTitle: true,
     elevation: 0);

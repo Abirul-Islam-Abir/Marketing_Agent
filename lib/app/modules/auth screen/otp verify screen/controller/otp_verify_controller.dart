@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:amin_agent/app/api%20services/auth/reset_pass_otp_manage.dart';
 import 'package:amin_agent/app/data/utils/store_data.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -14,16 +15,15 @@ class OtpVerifyScreenController extends GetxController {
   bool hasError = false;
   String currentText = "";
   final formKey = GlobalKey<FormState>();
-  bool _isProgress = false;
-  bool get isProgress => _isProgress;
+  RxBool _isProgress = false.obs;
+  bool get isProgress => _isProgress.value;
   final id = Get.arguments;
   var countdown = 60.obs;
   late Timer _timer;
   RxBool isTimeOut = true.obs;
 
-
   void startCountdown() {
-    countdown.value = 10;
+    countdown.value = 120;
     isTimeOut.value = true;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (countdown.value > 0) {
@@ -39,30 +39,45 @@ class OtpVerifyScreenController extends GetxController {
   }
 
   Future verifyOtp(context) async {
-    final response = await verifyOtpRequest(id: id['id'], otp: otp.text);
-    if (response['success'] == true) {
-       StoreData.saveToken(response['data']['token']);
-       StoreData.saveId(id['id']);
-      await setUserTokenAndId();
-      Get.offAllNamed(RouteName.bottomNav);
-      Get.snackbar('Success', response['message']);
+    print(id['forgot']);
+    if (id['forgot'] == true) {
+      final response =
+          await resetPassOtpManageRequest(id: id['id'], otp: otp.text);
+      if (response['success'] == true) {
+        Get.snackbar('Success', response['message']);
+         Get.toNamed(RouteName.passwordSetScreen, arguments: {
+          'id': response['data']['user_id'].toString(),
+          'otp': response['data']['reset_otp'].toString()
+        });
+      } else {
+        AwesomeDialogs.showErrorDialog(context, desc: response['message']);
+      }
     } else {
-      otp.clear();
-      AwesomeDialogs.showErrorDialog(context,desc: response['message']);
+      final response = await verifyOtpRequest(id: id['id'], otp: otp.text);
+      if (response['success'] == true) {
+        StoreData.saveToken(response['data']['token']);
+        await setUserTokenAndId();
+        Get.snackbar('Success', response['message']);
+        Get.offAllNamed(RouteName.bottomNav);
+      } else {
+        otp.clear();
+        AwesomeDialogs.showErrorDialog(context, desc: response['message']);
+      }
     }
   }
+
   Future resendOtp(context) async {
     final response = await resendOtpRequest(id: id['id']);
     if (response['success'] == true) {
       startCountdown();
     } else {
-      AwesomeDialogs.showErrorDialog(context,desc: response['data']['phone'][0]);
-
+      AwesomeDialogs.showErrorDialog(context,
+          desc: response['data']['phone'][0]);
     }
   }
+
   Future<void> otpVerifyInitializeMethod(context) async {
-    _isProgress = true;
-    update();
+    _isProgress.value = true;
     try {
       await Future.wait([
         verifyOtp(context),
@@ -70,8 +85,13 @@ class OtpVerifyScreenController extends GetxController {
     } catch (e) {
       throw Exception('$e');
     } finally {
-      _isProgress = false;
-      update();
+      _isProgress.value = false;
+    }
+  }
+
+  void validateSubmit(context) {
+    if (formKey.currentState!.validate()) {
+      otpVerifyInitializeMethod(context);
     }
   }
 

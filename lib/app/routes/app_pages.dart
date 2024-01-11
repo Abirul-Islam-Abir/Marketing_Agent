@@ -6,16 +6,16 @@ import 'package:amin_agent/app/modules/auth%20screen/otp%20verify%20screen/view/
    import 'package:amin_agent/app/modules/view%20screen/doctor%20onboard%20screen/views/doctor_onboard_screen_view.dart';
 
 import '../data/const/export.dart';
- import '../modules/view screen/doctor onboard screen/bindings/doctor_onboard_screen_binding.dart';
+  import '../modules/auth screen/password reset screen/bindings/password_set_screen_binding.dart';
+import '../modules/auth screen/password reset screen/views/password_set_screen_view.dart';
+import '../modules/view screen/doctor onboard screen/bindings/doctor_onboard_screen_binding.dart';
 import '../modules/view screen/greetings screen/bindings/greetings_screen_binding.dart';
 import '../modules/view screen/greetings screen/views/greetings_screen_view.dart';
 import '../modules/view screen/map screen/bindings/map_screen_binding.dart';
 import '../modules/view screen/map screen/views/map_screen_view.dart';
 import '../modules/view screen/notification screen/bindings/notification_screen_binding.dart';
 import '../modules/view screen/notification screen/views/notification_screen_view.dart';
-import '../modules/view screen/password set screen/bindings/password_set_screen_binding.dart';
-import '../modules/view screen/password set screen/views/password_set_screen_view.dart';
-import '../modules/view screen/sales target  screen/bindings/sales_target_screen_binding.dart';
+ import '../modules/view screen/sales target  screen/bindings/sales_target_screen_binding.dart';
 import '../modules/view screen/sales target  screen/views/sales_target_screen_view.dart';
   import '../modules/view screen/splash screen/bindings/splash_screen_binding.dart';
 import '../modules/view screen/splash screen/views/splash_screen_view.dart';

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../routes/app_pages.dart';
 import '../components/custom_chart.dart';
+import '../components/custom_drawer.dart';
 import '../components/dashboard_text.dart';
 import '../components/sales_targeted_dashboard_progress_card.dart';
 import '../components/small_details_card_board.dart';
@@ -63,8 +64,7 @@ class DashboardScreenView extends StatelessWidget {
                 const CustomChart(),
                 SalesTargetedProgressCard(
                     onTap: () {
-
-                     // Get.toNamed(RouteName.salesTargetScreen);
+                   Get.toNamed(RouteName.salesTargetScreen);
                     },
                     text: 'Sales Target',
                     progress: 0.5,
@@ -80,49 +80,4 @@ class DashboardScreenView extends StatelessWidget {
   }
 }
 
-class CustomDrawer extends StatelessWidget {
-    CustomDrawer({
-    super.key,
-   });
 
- final controller = Get.put(DashboardScreenController());
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      child: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            const SizedBox(
-              height: 200,
-              width: double.infinity,
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CircleAvatar(
-                      radius: 40,
-                    ),
-                    Text(
-                      'Abirul Islam',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                    Text('0172273487'),
-                  ],
-                ),
-              ),
-            ),
-          const Divider(height: 2,),
-          const SizedBox(height: 200,),
-          PrimaryButton(text: 'Log Out',onTap:controller.logout),
-
-          ],
-        ),
-      ),
-    );
-  }
-}

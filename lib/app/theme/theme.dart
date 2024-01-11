@@ -5,12 +5,9 @@ import 'elevated_button_theme.dart';
 
 ThemeData mainTheme() => ThemeData(
 
-  brightness: Brightness.light,
       fontFamily: 'Rubik',
-      scaffoldBackgroundColor: AppColor.kWhiteColor,
       appBarTheme: globalAppBarTheme(),
       elevatedButtonTheme: globalElevatedButtonStyle(),
       inputDecorationTheme: const InputDecorationTheme(
-
       ),
     );
