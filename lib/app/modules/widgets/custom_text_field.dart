@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:amin_agent/app/data/const/export.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -31,6 +31,7 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
       child: TextFormField(
+        style: const TextStyle(color: AppColor.kWhiteColor,fontSize: 25),
         onFieldSubmitted: onFieldSubmitted,
         focusNode: focusNode,
         validator: validator,
@@ -40,6 +41,8 @@ class CustomTextField extends StatelessWidget {
         obscureText: obscureText,
         keyboardType: keyboardType,
         decoration: InputDecoration(
+
+          hintStyle: const TextStyle(color: AppColor.kWhiteColor),
           focusColor: Colors.green,
           suffixIcon: icon,
           hintText: hintText,

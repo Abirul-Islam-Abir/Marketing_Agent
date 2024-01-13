@@ -16,7 +16,3 @@ class ApiServices {
 }
 
 final headers = {'Content-Type': 'application/json'};
-final headerWithToken = {
-  'Content-Type': 'application/json',
-  'Authorization': 'Bearer ${StoreData.token}', // Corrected header for Bearer token
-};

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../api_services.dart';
-Future userProfileRequest() async {
+Future userProfileRequest(headerWithToken) async {
   final uri = ApiServices.userProfileUrl;
   final url = Uri.parse(uri);
   final response = await http.get(url,headers: headerWithToken);

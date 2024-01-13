@@ -8,4 +8,10 @@ class BottomNavController extends GetxController {
     selectedIndex = index;
     update();
   }
+
+
+  @override
+  void onInit() {
+     super.onInit();
+  }
 }

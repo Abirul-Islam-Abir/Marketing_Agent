@@ -7,26 +7,29 @@ import '../../../../routes/app_pages.dart';
 
 class DashboardScreenController extends GetxController {
   String text = 'Total commission';
+
   Future logout() async {
-    final response = await logOutRequest();
+    final token = await box.read(UserDataKey.tokenKey);
+    final headerWithToken = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token', // Corrected header for Bearer token
+    };
+    final response = await logOutRequest(headerWithToken);
+    print(response);
     if (response['success'] == true) {
-      box.remove(UserDataKey.tokenKey);
-      box.remove(UserDataKey.idKey);
+       box.erase();
       Get.offAllNamed(RouteName.loginScreen);
     } else {
+      print('No token');
       box.remove(UserDataKey.tokenKey);
       box.remove(UserDataKey.idKey);
       Get.offAllNamed(RouteName.loginScreen);
     }
   }
 
-  Future getUserData() async {
-    await setUserTokenAndId();
-  }
 
   @override
   void onInit() {
-    getUserData();
-    super.onInit();
+     super.onInit();
   }
 }

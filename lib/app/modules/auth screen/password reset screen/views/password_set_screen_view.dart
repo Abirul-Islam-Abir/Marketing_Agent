@@ -46,7 +46,6 @@ class PasswordSetScreenView extends StatelessWidget {
                         hintText: 'New Password',
                         img: AppImages.textFieldPass)),
                     Obx(() => CustomTextField(
-                        textInputAction: TextInputAction.done,
                         onFieldSubmitted: (v) {
                           controller.validateMethod(context);
                         },
@@ -65,6 +64,7 @@ class PasswordSetScreenView extends StatelessWidget {
                         focusNode: controller.cPasswordFocus,
                         validator: validatePassword,
                         controller: controller.cPassword,
+                        textInputAction: TextInputAction.done,
                         hintText: 'Confirm Password',
                         img: AppImages.textFieldPass)),
                     SizedBox(height: 5.h),

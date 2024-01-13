@@ -14,11 +14,18 @@ class SplashScreenView extends StatelessWidget {
       backgroundColor: AppColor.kPrimaryColor,
       body: Center(
         child: SizedBox(
-            height: 400,
             child: Column(
               children: [
+                Spacer(),
                 SvgPicture.asset('assets/images/img_linkedin.svg'),
                 SvgPicture.asset('assets/images/MPO TRACKING.svg'),
+               Spacer(),
+                Text(AppInfo.appName,style: TextStyle(color: AppColor.kGreyColor),),
+                InkWell(
+                    onTap: (){
+                      print('Hellow');
+                    },
+                    child: Text('Version:'+AppInfo.appVersion,style: TextStyle(color: AppColor.kGreyColor),)),
               ],
             )),
       ),

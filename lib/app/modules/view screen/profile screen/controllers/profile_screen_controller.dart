@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
 import '../../../../api services/auth/user_profile.dart';
+import '../../../../data/utils/store_data.dart';
+import '../../../../data/utils/user_data_key.dart';
 
 class ProfileScreenController extends GetxController {
   int selectedIndex = 0;
@@ -23,11 +25,17 @@ class ProfileScreenController extends GetxController {
   }
 
   Future userProfile() async {
-    final response = await userProfileRequest();
-    if (response['success'] == true) {
-      _userProfileList = response['data']['user'];
-    } else {
-      Get.snackbar('Ohh.', 'Token maybe expired.please login again');
+    final token = await box.read(UserDataKey.tokenKey);
+    final headerWithToken = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token', // Corrected header for Bearer token
+    };
+    if (token != null) {
+      final response = await userProfileRequest(headerWithToken);
+      print(response);
+      if (response['success'] == true) {
+        _userProfileList = response['data']['user'];
+      }
     }
   }
 

@@ -63,6 +63,7 @@ class LoginScreenController extends GetxController {
     password.dispose();
     otp.dispose();
     passFocus.unfocus();
+    numberFocus.dispose();
     super.dispose();
   }
 }

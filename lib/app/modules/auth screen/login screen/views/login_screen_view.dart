@@ -1,3 +1,5 @@
+import 'package:amin_agent/app/data/utils/user_data_key.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../data/const/export.dart';
@@ -32,11 +34,11 @@ class LoginScreenView extends GetView<LoginScreenController> {
                   ),
                   Obx(
                     () => CustomTextField(
-                      onFieldSubmitted: (v){
+                      onFieldSubmitted: (v) {
                         controller.validateMethod(context);
                       },
                       textInputAction: TextInputAction.done,
-                       focusNode: controller.passFocus,
+                      focusNode: controller.passFocus,
                       obscureText: controller.isSecure,
                       validator: validatePassword,
                       controller: controller.password,
@@ -61,12 +63,16 @@ class LoginScreenView extends GetView<LoginScreenController> {
                       }),
                   SizedBox(height: 10.h),
                   GetBuilder<LoginScreenController>(
-                      builder: (_) => LoginButton(
-                          isProgress: controller.isProgress,
-                          text: AppString.login,
-                          onTap: () {
-                             controller.validateMethod(context);
-                          })),
+                    builder: (_) => LoginButton(
+                      isProgress: controller.isProgress,
+                      text: AppString.login,
+                      onTap: () async {   final token = await box.read(UserDataKey.tokenKey);
+    if(token!=null){
+                        print(token);}
+                        controller.validateMethod(context);
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),

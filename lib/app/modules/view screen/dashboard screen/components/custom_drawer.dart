@@ -26,12 +26,6 @@ class CustomDrawer extends StatelessWidget {
                 ],
               ),
             ),
-            const DrawerUpdateCard(hint: 'Name',label: 'John Doe') ,
-            const DrawerUpdateCard(hint: '01722734871',label: 'Phone Number') ,
-            const DrawerUpdateCard(hint: 'Sales Executive',label: 'Designation') ,
-            const DrawerUpdateCard(hint: 'Company',label: 'Amin Diagnostics') ,
-            const DrawerUpdateCard(hint: '124578945124',label: 'NID Number') ,
-            const DrawerUpdateCard(hint: 'Uttara,Dhaka',label: 'Location') ,
 
             PrimaryButton(text: 'Log Out', onTap: dashboardController.logout)
           ],

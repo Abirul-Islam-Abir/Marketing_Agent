@@ -1,7 +1,5 @@
-
-
-
 import '../../../../data/const/export.dart';
+import '../../../../data/utils/user_data_key.dart';
 
 class DashboardScreenView extends StatelessWidget {
   DashboardScreenView({Key? key}) : super(key: key);
@@ -22,8 +20,13 @@ class DashboardScreenView extends StatelessWidget {
               children: [
                 PrimaryAppBar(
                   text: 'Dashboard',
-                  menuTap: () {
-                  //  _scaffoldKey.currentState?.openDrawer();
+                  menuTap: () async {
+                    final token = await box.read(UserDataKey.tokenKey);
+                    if (token != null) {
+                      print(token);
+                    }
+
+                    _scaffoldKey.currentState?.openDrawer();
                   },
                   notificationTap: () async {
                     Get.toNamed(RouteName.notificationScreen);
@@ -57,7 +60,7 @@ class DashboardScreenView extends StatelessWidget {
                 const CustomChart(),
                 SalesTargetedProgressCard(
                     onTap: () {
-                   Get.toNamed(RouteName.salesTargetScreen);
+                      Get.toNamed(RouteName.salesTargetScreen);
                     },
                     text: 'Sales Target',
                     progress: 0.5,
@@ -72,5 +75,3 @@ class DashboardScreenView extends StatelessWidget {
     );
   }
 }
-
-

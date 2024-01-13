@@ -40,7 +40,7 @@ class OtpVerifyScreenController extends GetxController {
       final response =
           await resetPassOtpManageRequest(id: id['id'], otp: otp.text);
       if (response['success'] == true) {
-        Get.snackbar('Success', response['message']);
+      await  StoreData.saveId(response['data']['user_id'].toString());
          Get.toNamed(RouteName.passwordSetScreen, arguments: {
           'id': response['data']['user_id'].toString(),
           'otp': response['data']['reset_otp'].toString()
@@ -51,9 +51,9 @@ class OtpVerifyScreenController extends GetxController {
     } else {
       final response = await verifyOtpRequest(id: id['id'], otp: otp.text);
       if (response['success'] == true) {
-        StoreData.saveToken(response['data']['token']);
-        await setUserTokenAndId();
-        Get.snackbar('Success', response['message']);
+        StoreData.saveToken(response['data']['token'].toString());
+        StoreData.saveId(response['data']['user_id'].toString());
+         Get.snackbar('Success', response['message']);
         Get.offAllNamed(RouteName.bottomNav);
       } else {
         otp.clear();

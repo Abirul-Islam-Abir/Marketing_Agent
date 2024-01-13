@@ -46,6 +46,7 @@ final numberFocus = FocusNode();
   @override
   void dispose() {
     number.dispose();
+    numberFocus.dispose();
     super.dispose();
   }
 }

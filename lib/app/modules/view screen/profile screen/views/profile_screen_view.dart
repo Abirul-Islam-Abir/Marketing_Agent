@@ -4,6 +4,7 @@
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../data/const/export.dart';
+import '../../../../data/utils/user_data_key.dart';
 
 class ProfileScreenView extends GetView<ProfileScreenController> {
   ProfileScreenView({Key? key}) : super(key: key);
@@ -49,6 +50,9 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
               backgroundColor: AppColor.kWhiteColor,
               child: IconButton(
                 onPressed: () {
+                  final token = box.read(UserDataKey.tokenKey);
+
+                  print(token);
                   Get.to(UserProfileEditScreen());
                 },
                 icon: const Icon(

@@ -1,5 +1,5 @@
 class AppInfo {
-  static String appName = 'Amin Agent';
+  static String appName = 'MPO Marketing';
   static String developerName = 'Abir';
   static String developerGmail = 'abir80503@gmail.com';
   static String developerNumber = '+8801722734871';
