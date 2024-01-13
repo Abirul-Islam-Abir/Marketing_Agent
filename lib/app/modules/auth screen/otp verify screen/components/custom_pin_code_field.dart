@@ -1,19 +1,21 @@
-
 import '../../../../data/const/export.dart';
 
 class CustomPinCodeField extends StatelessWidget {
-  const CustomPinCodeField({
+  CustomPinCodeField({
     super.key,
     required this.otp,
+    this.onCompleted,
   });
 
   final TextEditingController? otp;
-
+  final void Function(String)? onCompleted;
+  final controller = Get.put(OtpVerifyScreenController());
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: PinCodeTextField(
+          focusNode: controller.otpFocus,
           appContext: context,
           pastedTextStyle:
               const TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
@@ -48,7 +50,7 @@ class CustomPinCodeField extends StatelessWidget {
                 color: AppColor.kWhiteColor,
                 blurRadius: 10)
           ],
-          onCompleted: (v) {},
+          onCompleted: onCompleted,
           onChanged: (value) {},
           beforeTextPaste: (text) {
             debugPrint("Allowing to paste $text");

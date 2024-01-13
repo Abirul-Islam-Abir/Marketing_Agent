@@ -40,8 +40,6 @@ final numberFocus = FocusNode();
   void validateMethod(context) {
     if (formKey.currentState!.validate()) {
       forgotPasswordInitializeMethod(context);
-    } else {
-      Get.snackbar('Ohh..', 'Required field');
     }
   }
 

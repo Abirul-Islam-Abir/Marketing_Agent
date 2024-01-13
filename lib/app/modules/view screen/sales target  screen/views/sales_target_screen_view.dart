@@ -16,7 +16,7 @@ class SalesTargetScreenView extends GetView<SalesTargetScreenController> {
             child: ListView(
               physics: const NeverScrollableScrollPhysics(),
               children: [
-                const FilterButton(),
+                const SecondaryAppBar(text: 'Targets'),
                 ListView.builder(
                   itemCount: salesTargetGroupList.length,
                   shrinkWrap: true,

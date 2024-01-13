@@ -23,7 +23,7 @@ class DashboardScreenView extends StatelessWidget {
                 PrimaryAppBar(
                   text: 'Dashboard',
                   menuTap: () {
-                    _scaffoldKey.currentState?.openDrawer();
+                  //  _scaffoldKey.currentState?.openDrawer();
                   },
                   notificationTap: () async {
                     Get.toNamed(RouteName.notificationScreen);
@@ -47,7 +47,7 @@ class DashboardScreenView extends StatelessWidget {
                     Get.toNamed(RouteName.doctorOnboardScreen);
                   },
                   rightOnTap: () {
-                    Get.toNamed(RouteName.salesTargetScreen);
+                    Get.toNamed(RouteName.doctorVisitedScreen);
                   },
                   leftTitle: 'Doctor onboard',
                   rightCount: '300',

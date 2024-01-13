@@ -10,9 +10,9 @@ class LoginScreenView extends GetView<LoginScreenController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: LoginBackgroundView(
+    return SafeArea(
+      child: Scaffold(
+        body: LoginBackgroundView(
           image: AppImages.loginScreenBackground,
           child: SingleChildScrollView(
             child: Form(
@@ -29,11 +29,14 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     controller: controller.number,
                     hintText: AppString.phone,
                     img: AppImages.textFieldPhone,
-                    onFieldSubmitted: (p0) {},
                   ),
                   Obx(
                     () => CustomTextField(
-                      focusNode: controller.passFocus,
+                      onFieldSubmitted: (v){
+                        controller.validateMethod(context);
+                      },
+                      textInputAction: TextInputAction.done,
+                       focusNode: controller.passFocus,
                       obscureText: controller.isSecure,
                       validator: validatePassword,
                       controller: controller.password,
@@ -62,8 +65,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                           isProgress: controller.isProgress,
                           text: AppString.login,
                           onTap: () {
-                            // Get.toNamed(RouteName.otpVerifyScreen);
-                            controller.validateMethod(context);
+                             controller.validateMethod(context);
                           })),
                 ],
               ),

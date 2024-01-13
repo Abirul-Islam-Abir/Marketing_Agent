@@ -51,10 +51,9 @@ class LoginScreenController extends GetxController {
   }
 
   void validateMethod(context) {
+    passFocus.unfocus();
     if (formKey.currentState!.validate()) {
       loginInitializeMethod(context);
-    } else {
-      Get.snackbar('Ohh..', 'Required field');
     }
   }
 
@@ -63,6 +62,7 @@ class LoginScreenController extends GetxController {
     number.dispose();
     password.dispose();
     otp.dispose();
+    passFocus.unfocus();
     super.dispose();
   }
 }

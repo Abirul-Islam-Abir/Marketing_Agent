@@ -27,7 +27,9 @@ class OtpVerifyScreen extends StatelessWidget {
                         BigText(text: AppString.otpCode),
                         LoginToContinueText(AppString.enterDigitCode),
                         SizedBox(height: 10.h),
-                        CustomPinCodeField(otp: controller.otp),
+                        CustomPinCodeField(otp: controller.otp,onCompleted: (v){
+                          controller.validateSubmit(context);
+                        }),
                         const SizedBox(height: 30),
                         Obx(() => LongLineSubtitleText(
                             text: AppString.thisCodeWillExpired,

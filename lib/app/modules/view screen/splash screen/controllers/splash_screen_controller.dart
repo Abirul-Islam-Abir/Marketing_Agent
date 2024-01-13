@@ -7,7 +7,7 @@ import '../../../../routes/app_pages.dart';
 class SplashScreenController extends GetxController {
   Future userAlreadyLogged()async{
    await setUserTokenAndId();
- Future.delayed(const Duration(seconds: 1)).then((value) {
+ Future.delayed(const Duration(seconds: 200)).then((value) {
    if(StoreData.token.isNotEmpty){
      Get.offAllNamed(RouteName.bottomNav);
    }else{

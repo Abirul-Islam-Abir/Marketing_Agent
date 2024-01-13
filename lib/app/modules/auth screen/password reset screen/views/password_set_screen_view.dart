@@ -25,7 +25,12 @@ class PasswordSetScreenView extends StatelessWidget {
                     SizedBox(height: 10.h),
                     BigText(text: AppString.changePassword),
                     SizedBox(height: 5.h),
-                    CustomTextField(
+                    Obx(() => CustomTextField(
+                        textInputAction: TextInputAction.next,
+                        onFieldSubmitted: (v) {
+                          controller.passwordFocus.nextFocus();
+                        },
+                        obscureText: controller.isSecurePass,
                         icon: IconButton(
                             onPressed: controller.isSecurePassChange,
                             icon: Icon(
@@ -35,13 +40,17 @@ class PasswordSetScreenView extends StatelessWidget {
                               color: AppColor.kWhiteColor,
                               size: 30,
                             )),
-                        keyboardType: TextInputType.number,
                         focusNode: controller.passwordFocus,
                         validator: validatePassword,
                         controller: controller.password,
-                        hintText: 'new password',
-                        img: AppImages.textFieldPass),
-                    CustomTextField(
+                        hintText: 'New Password',
+                        img: AppImages.textFieldPass)),
+                    Obx(() => CustomTextField(
+                        textInputAction: TextInputAction.done,
+                        onFieldSubmitted: (v) {
+                          controller.validateMethod(context);
+                        },
+                        obscureText: controller.isSecureCPass,
                         icon: IconButton(
                           onPressed: controller.isSecureCPassChange,
                           icon: Icon(
@@ -56,8 +65,8 @@ class PasswordSetScreenView extends StatelessWidget {
                         focusNode: controller.cPasswordFocus,
                         validator: validatePassword,
                         controller: controller.cPassword,
-                        hintText: 'confirm password',
-                        img: AppImages.textFieldPass),
+                        hintText: 'Confirm Password',
+                        img: AppImages.textFieldPass)),
                     SizedBox(height: 5.h),
                     SizedBox(height: 5.h),
                     Obx(() => LoginButton(

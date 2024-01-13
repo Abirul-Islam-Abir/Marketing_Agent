@@ -52,9 +52,8 @@ class PasswordSetScreenController extends GetxController {
 
   void validateMethod(context ) {
     if (formKey.currentState!.validate()) {
+      passwordFocus.requestFocus();
       resetPasswordInitializeMethod( context);
-    } else {
-      Get.snackbar('Ohh..', 'Required field');
     }
   }
 

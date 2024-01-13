@@ -16,7 +16,7 @@ class AminAgent extends StatelessWidget {
             darkTheme: ThemeData.light(),
             debugShowCheckedModeBanner: false,
             title: AppInfo.appName,
-            initialRoute: RouteName.initial,
+            initialRoute: RouteName.splashScreen,
             getPages: AppPages.routes,
             initialBinding: StateHolderBinding(),
             theme: mainTheme(),
@@ -25,3 +25,4 @@ class AminAgent extends StatelessWidget {
         maxTabletWidth: 900);
   }
 }
+

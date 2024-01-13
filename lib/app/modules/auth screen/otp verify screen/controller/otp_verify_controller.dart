@@ -8,6 +8,7 @@ import '../../../../data/const/export.dart';
 class OtpVerifyScreenController extends GetxController {
   final TextEditingController otp = TextEditingController();
   StreamController<ErrorAnimationType>? errorController;
+  FocusNode otpFocus = FocusNode();
   bool hasError = false;
   String currentText = "";
   final formKey = GlobalKey<FormState>();
@@ -85,6 +86,7 @@ class OtpVerifyScreenController extends GetxController {
   }
 
   void validateSubmit(context) {
+    otpFocus.unfocus();
     if (formKey.currentState!.validate()) {
       otpVerifyInitializeMethod(context);
     }
@@ -101,6 +103,7 @@ class OtpVerifyScreenController extends GetxController {
   void dispose() {
     errorController!.close();
     otp.dispose();
+    otpFocus.dispose();
     super.dispose();
   }
 

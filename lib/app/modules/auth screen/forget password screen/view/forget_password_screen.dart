@@ -19,6 +19,12 @@ class ForgetPasswordScreen extends StatelessWidget {
                     BigText(text: AppString.forgetPasswords),
                     SizedBox(height: 5.h),
                     CustomTextField(
+                      onFieldSubmitted: (v){
+                        controller.validateMethod(context);
+                      },
+
+                        keyboardType: TextInputType.number,
+                        textInputAction: TextInputAction.done,
                         focusNode: controller.numberFocus,
                         validator: validateMobile,
                         controller: controller.number,

@@ -1,24 +1,31 @@
 import '../../../../data/const/export.dart';
 import 'package:badges/badges.dart' as badges;
+
 class PrimaryAppBar extends StatelessWidget {
-  const PrimaryAppBar(
-    {
-    super.key, required this.menuTap, required this.notificationTap,required this.text,
+  const PrimaryAppBar({
+    super.key,
+    required this.menuTap,
+    required this.notificationTap,
+    required this.text,
   });
 
   final String? text;
-final Function() menuTap,notificationTap;
+  final Function() menuTap, notificationTap;
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(height: 80,
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return SizedBox(
+      height: 80,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-              onPressed: menuTap,
-              icon: const Icon(
-                Icons.menu_outlined,
-                color: AppColor.kWhiteColor,
-              ),),
+            onPressed: menuTap,
+            icon: const Icon(
+              Icons.menu_outlined,
+              color: AppColor.kWhiteColor,
+            ),
+          ),
           Text(
             text!,
             style: const TextStyle(
@@ -30,10 +37,15 @@ final Function() menuTap,notificationTap;
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: IconButton(
               onPressed: notificationTap,
-              icon:const badges.Badge(
+              icon: const badges.Badge(
                 badgeContent: Text('3'),
-                child: Icon(Icons.notifications_none_rounded,color: AppColor.kWhiteColor,size: 30,),
-              )),
+                child: Icon(
+                  Icons.notifications_none_rounded,
+                  color: AppColor.kWhiteColor,
+                  size: 30,
+                ),
+              ),
+            ),
           ),
         ],
       ),
