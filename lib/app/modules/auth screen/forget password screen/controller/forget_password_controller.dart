@@ -1,8 +1,6 @@
-import 'package:amin_agent/app/data/utils/store_data.dart';
 
 import '../../../../api services/auth/forgot_password.dart';
 import '../../../../data/const/export.dart';
-import '../../../../data/utils/awesome_dialog.dart';
 
 class ForgetPasswordScreenController extends GetxController {
   final number = TextEditingController();
@@ -20,6 +18,9 @@ final numberFocus = FocusNode();
             'forgot': true
       });
 
+    }else if(response['success']==false){
+      AwesomeDialogs.showErrorDialog(context,desc: response['message']);
+
     } else {
       AwesomeDialogs.showErrorDialog(context,desc: response['data']['password'][0]);
     }
@@ -32,7 +33,7 @@ final numberFocus = FocusNode();
     } catch (e) {
       throw Exception('$e');
     } finally {
-      _isProgress.value = true ;
+      _isProgress.value = false ;
     }
   }
 

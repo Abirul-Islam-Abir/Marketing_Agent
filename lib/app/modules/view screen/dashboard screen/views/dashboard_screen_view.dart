@@ -1,14 +1,7 @@
-import 'package:amin_agent/app/modules/widgets/primary_button.dart';
-import 'package:amin_agent/app/theme/app_color.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../../../../routes/app_pages.dart';
-import '../components/custom_chart.dart';
-import '../components/custom_drawer.dart';
-import '../components/dashboard_text.dart';
-import '../components/sales_targeted_dashboard_progress_card.dart';
-import '../components/small_details_card_board.dart';
-import '../controllers/dashboard_screen_controller.dart';
+
+
+
+import '../../../../data/const/export.dart';
 
 class DashboardScreenView extends StatelessWidget {
   DashboardScreenView({Key? key}) : super(key: key);

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../data/utils/app_images.dart';
 
 class ProfileBackgroundView extends StatelessWidget {
   const ProfileBackgroundView({
@@ -17,7 +16,7 @@ class ProfileBackgroundView extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage(AppImages.profileScreenBackground),
+            image: AssetImage(image),
             fit: BoxFit.fitWidth,
             alignment: Alignment.topCenter),
       ),

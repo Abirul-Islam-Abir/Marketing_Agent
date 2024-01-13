@@ -1,7 +1,7 @@
 import 'package:amin_agent/app/api%20services/auth/reset_password.dart';
 import 'package:amin_agent/app/data/const/export.dart';
-import 'package:amin_agent/app/data/utils/store_data.dart';
 
+// ignore: unnecessary_import
 import '../../../../data/utils/awesome_dialog.dart';
 
 
@@ -14,8 +14,8 @@ class PasswordSetScreenController extends GetxController {
   bool get isProgress => _isProgress.value;
   final passwordFocus = FocusNode();
   final cPasswordFocus = FocusNode();
-  RxBool _isSecurePass = true.obs;
-  RxBool _isSecureCPass = true.obs;
+  final RxBool _isSecurePass = true.obs;
+  final RxBool _isSecureCPass = true.obs;
   bool get isSecurePass => _isSecurePass.value;
   bool get isSecureCPass => _isSecureCPass.value;
   void isSecurePassChange() {
@@ -29,9 +29,7 @@ class PasswordSetScreenController extends GetxController {
         otp: id['otp'], password: password.text, id: id['id']);
     if (response['success'] == true) {
       StoreData.saveToken(response['data']['token']);
-      StoreData.savePassword(password.text);
-      await setNumberAndPassword();
-      await setUserTokenAndId();
+       await setUserTokenAndId();
       AwesomeDialogs.showSuccessDialog(context,desc:'Log in successfully');
       Get.offAllNamed(RouteName.bottomNav);
     } else {
@@ -65,10 +63,5 @@ class PasswordSetScreenController extends GetxController {
     password.dispose();
     cPassword.dispose();
     super.dispose();
-  }
-  @override
-  void onInit() {
-
-     super.onInit();
   }
 }

@@ -4,11 +4,12 @@ import '../../../../theme/app_color.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton(
-      {super.key, required this.text, this.onTap, required this.isProgress});
+      {super.key, required this.text, this.onTap, required this.isProgress,   this.color = AppColor.kWhiteColor});
 
   final Function()? onTap;
   final String text;
   final bool isProgress;
+  final Color color;
   @override
   Widget build(BuildContext context) {
     return isProgress
@@ -18,7 +19,7 @@ class LoginButton extends StatelessWidget {
             width: 300,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColor.kWhiteColor,
+                backgroundColor: color,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -29,7 +30,7 @@ class LoginButton extends StatelessWidget {
                 style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
-                    color: AppColor.kPrimaryColor),
+                    color: AppColor.kGreyColor,),
               ),
             ),
           );

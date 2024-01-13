@@ -8,7 +8,6 @@ Future logOutRequest() async {
   final url = Uri.parse(uri);
   final response = await http.post(url, headers: headerWithToken);
   final decodedResponse = jsonDecode(response.body);
-  print(decodedResponse);
   if (response.statusCode == 200 && decodedResponse['success'] == true) {
     return decodedResponse;
   }

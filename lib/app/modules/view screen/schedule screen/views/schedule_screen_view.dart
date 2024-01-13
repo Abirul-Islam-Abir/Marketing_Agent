@@ -1,15 +1,8 @@
-import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
 
-import '../../../../data/dummy data/schedule_dummy_data.dart';
-import '../../../../data/utils/app_images.dart';
-import '../../../../data/utils/utils.dart';
-import '../../../../routes/app_pages.dart';
-import '../../../../theme/app_color.dart';
-import '../../../widgets/primary_appbar.dart';
-import '../components/schedule_card.dart';
-import '../controllers/shedule_screen_controller.dart';
+import 'package:amin_agent/app/modules/view%20screen/schedule%20screen/components/schedule_card.dart';
+
+import '../../../../data/const/export.dart';
 
 class ScheduleScreenView extends GetView<ScheduleScreenController> {
   ScheduleScreenView({Key? key}) : super(key: key);

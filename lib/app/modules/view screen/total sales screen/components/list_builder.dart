@@ -15,8 +15,10 @@ class ListBuilder extends StatelessWidget {
       itemCount: list.length,
       shrinkWrap: true,
       itemBuilder: (context, index) => TotalSalesCard(
+        sendTap: (){},
+          location: list[index].location,
           name: list[index].name,
-          target: list[index].target,
+          price: list[index].target,
           date: list[index].date,
           invoiceNb: list[index].invoiceNb),
     );

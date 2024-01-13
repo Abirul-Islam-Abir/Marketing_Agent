@@ -1,6 +1,6 @@
+
 import '../../../../data/const/export.dart';
 import '../../../widgets/primary_button.dart';
-import '../../../widgets/user_avatar.dart';
 
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({super.key});
@@ -26,13 +26,13 @@ class CustomDrawer extends StatelessWidget {
                 ],
               ),
             ),
-            DrawerUpdateCard(hint: 'Name',label: 'John Doe') ,
-            DrawerUpdateCard(hint: '01722734871',label: 'Phone Number') ,
-            DrawerUpdateCard(hint: 'Sales Executive',label: 'Designation') ,
-            DrawerUpdateCard(hint: 'Company',label: 'Amin Diagnostics') ,
-            DrawerUpdateCard(hint: '124578945124',label: 'NID Number') ,
-            DrawerUpdateCard(hint: 'Uttara,Dhaka',label: 'Location') ,
-            const SizedBox(height: 150),
+            const DrawerUpdateCard(hint: 'Name',label: 'John Doe') ,
+            const DrawerUpdateCard(hint: '01722734871',label: 'Phone Number') ,
+            const DrawerUpdateCard(hint: 'Sales Executive',label: 'Designation') ,
+            const DrawerUpdateCard(hint: 'Company',label: 'Amin Diagnostics') ,
+            const DrawerUpdateCard(hint: '124578945124',label: 'NID Number') ,
+            const DrawerUpdateCard(hint: 'Uttara,Dhaka',label: 'Location') ,
+
             PrimaryButton(text: 'Log Out', onTap: dashboardController.logout)
           ],
         ),
@@ -58,9 +58,9 @@ final String hint,label;
             hintText: hint,
             labelText:label,
             floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintStyle: TextStyle(
+            hintStyle: const TextStyle(
                 fontWeight: FontWeight.bold ,fontSize: 20),
-            border: OutlineInputBorder(),
+            border: const OutlineInputBorder(),
           ),
         ),
       ),

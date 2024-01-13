@@ -1,13 +1,9 @@
-import 'dart:async';
 
-import 'package:amin_agent/app/api%20services/auth/reset_pass_otp_manage.dart';
-import 'package:amin_agent/app/data/utils/store_data.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../../../../api services/auth/resend_otp.dart';
-import '../../../../api services/auth/verify_otp.dart';
+
+
+
 import '../../../../data/const/export.dart';
-import '../../../../data/utils/awesome_dialog.dart';
 
 class OtpVerifyScreenController extends GetxController {
   final TextEditingController otp = TextEditingController();
@@ -15,7 +11,7 @@ class OtpVerifyScreenController extends GetxController {
   bool hasError = false;
   String currentText = "";
   final formKey = GlobalKey<FormState>();
-  RxBool _isProgress = false.obs;
+  final RxBool _isProgress = false.obs;
   bool get isProgress => _isProgress.value;
   final id = Get.arguments;
   var countdown = 60.obs;
@@ -39,8 +35,7 @@ class OtpVerifyScreenController extends GetxController {
   }
 
   Future verifyOtp(context) async {
-    print(id['forgot']);
-    if (id['forgot'] == true) {
+     if (id['forgot'] == true) {
       final response =
           await resetPassOtpManageRequest(id: id['id'], otp: otp.text);
       if (response['success'] == true) {

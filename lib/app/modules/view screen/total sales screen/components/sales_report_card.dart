@@ -1,3 +1,6 @@
+import 'package:flutter_svg/svg.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+
 import '../../../../data/const/export.dart';
 
 class TotalSalesCard extends StatelessWidget {
@@ -6,17 +9,21 @@ class TotalSalesCard extends StatelessWidget {
     required this.invoiceNb,
     required this.date,
     required this.name,
-    required this.target,
+    required this.price,
+    this.sendTap,
+    required this.location,
   });
 
-  final String invoiceNb, date, name, target;
+  final String invoiceNb, date, name, price, location;
+
+  final Function()? sendTap;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+      padding: const EdgeInsets.only(left: 15,right: 15, top: 20),
       child: Container(
-        height: 100,
+        height: 150,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         width: Get.width / 0.9,
         decoration: BoxDecoration(
@@ -24,44 +31,67 @@ class TotalSalesCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   invoiceNb,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w400,
+                  style: TextStyle(
                       color: AppColor.kWhiteColor,
-                      fontSize: 15),
+                      fontSize: 14.sp),
                 ),
                 Text(
-                  date,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w400,
+                 date,
+                  style: TextStyle(
                       color: AppColor.kWhiteColor,
-                      fontSize: 15),
+                      fontSize: 14.sp, ),
                 ),
               ],
-            ),
+            ),   const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   name,
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: AppColor.kWhiteColor,
-                      fontSize: 20),
+                      fontSize: 17.sp),
                 ),
                 Text(
-                  target,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold,
+                  '\$$price',
+                  style: TextStyle(
                       color: AppColor.kWhiteColor,
-                      fontSize: 15),
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            const SizedBox(height: 5),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  location,
+                  style: const TextStyle(
+                      color: AppColor.kWhiteColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500),
+                ),
+                InkWell(
+                  onTap: sendTap,
+                  child: CircleAvatar(
+                      radius: 20,
+                      backgroundColor: AppColor.kWhiteColor,
+                      child: SvgPicture.asset(
+                        'assets/svg/Vector.svg',
+                        color: AppColor.kPrimaryColor,
+                      )),
                 ),
               ],
             ),

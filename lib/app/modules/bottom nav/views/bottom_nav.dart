@@ -1,5 +1,4 @@
 import '../../../data/const/export.dart';
-import '../../view screen/map screen/views/map_screen_view.dart';
 import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 
 class BottomNav extends StatefulWidget {
@@ -33,6 +32,7 @@ class _BottomNavState extends State<BottomNav> {
       extendBody: true,
       bottomNavigationBar: GetBuilder<BottomNavController>(
         builder: (_) => BottomBarBubble(
+          backgroundColor: AppColor.kWhiteColor,
           selectedIndex: controller.selectedIndex,
           items: List.generate(items.length, (index) => items[index]),
           onSelect: controller.selectIndex,

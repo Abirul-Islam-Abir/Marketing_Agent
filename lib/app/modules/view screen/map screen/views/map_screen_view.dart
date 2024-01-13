@@ -1,13 +1,9 @@
-import 'dart:async';
-import 'package:flutter/services.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
-import 'package:flutter/material.dart';
 
-import '../../../../data/dummy data/schedule_dummy_data.dart';
-import '../../../../data/utils/utils.dart';
-import '../../../../theme/app_color.dart';
-import '../components/user_card_location.dart';
+
+
+
+
+import '../../../../data/const/export.dart';
 
 class MapScreenView extends StatefulWidget {
   const MapScreenView({Key? key}) : super(key: key);

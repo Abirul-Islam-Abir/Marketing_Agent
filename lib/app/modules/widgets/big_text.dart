@@ -2,8 +2,8 @@ import 'package:amin_agent/app/theme/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class WelcomeText extends StatelessWidget {
-  const WelcomeText({
+class BigText extends StatelessWidget {
+  const BigText({
     super.key,
     required this.text,
   });

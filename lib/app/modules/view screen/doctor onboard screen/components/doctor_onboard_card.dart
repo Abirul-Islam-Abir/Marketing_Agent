@@ -12,7 +12,7 @@ class DoctorOnboardCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
       child: Container(
-        height: 80,
+        height: 120,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         width: Get.width / 0.9,
         decoration: BoxDecoration(

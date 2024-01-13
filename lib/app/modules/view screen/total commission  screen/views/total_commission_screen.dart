@@ -1,9 +1,7 @@
-import 'package:amin_agent/app/data/const/export.dart';
 
-import '../../../../data/dummy data/commission_dummy_data.dart';
-import '../../../widgets/secondary_appbar.dart';
-import '../components/build_listview_builder.dart';
- import '../controllers/commission_report_screen_controller.dart';
+
+
+import '../../../../data/const/export.dart';
 
 class TotalCommissionScreen extends StatelessWidget {
   TotalCommissionScreen({Key? key}) : super(key: key);
@@ -19,7 +17,7 @@ class TotalCommissionScreen extends StatelessWidget {
             child: ListView(
               physics: const NeverScrollableScrollPhysics(),
               children: [
-                  const SecondaryAppBar(text: 'Total Commission'),
+                  const SecondaryAppBar(text: 'Commissions'),
                 BuildListViewBuilder(list: commissionDataList),
               ],
             ),

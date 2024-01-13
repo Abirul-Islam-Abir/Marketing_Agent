@@ -1,14 +1,13 @@
 import 'package:amin_agent/app/api%20services/auth/login.dart';
 import 'package:amin_agent/app/data/const/export.dart';
-import 'package:amin_agent/app/data/utils/awesome_dialog.dart';
 
 class LoginScreenController extends GetxController {
-  final number = TextEditingController(text: '01722734871');
-  final password = TextEditingController(text: '12345678');
+  final number = TextEditingController( );
+  final password = TextEditingController( );
   final otp = TextEditingController();
   final numberFocus = FocusNode();
   final passFocus = FocusNode();
-  RxBool _isSecure = true.obs;
+  final RxBool _isSecure = true.obs;
   bool _isProgress = false;
   final formKey = GlobalKey<FormState>();
   bool get isSecure => _isSecure.value;

@@ -16,6 +16,8 @@ class BuildListViewBuilder extends StatelessWidget {
       itemBuilder: (context, index) => TotalCommissionCard(
         location: list[index].location,
         target: list[index].target,
+        date: '01/12/2024',
+        sendTap: (){},
       ),
     );
   }

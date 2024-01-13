@@ -7,22 +7,26 @@ import '../../../../routes/app_pages.dart';
 
 class DashboardScreenController extends GetxController {
   String text = 'Total commission';
- Future logout()async{
-   final response = await logOutRequest();
-   if (response['success'] == true) {
-     box.remove(UserDataKey.tokenKey);
-     box.remove(UserDataKey.idKey);
-     Get.offAllNamed(RouteName.loginScreen);
-   }else{
-     Get.snackbar('Error', response['error']['message']);
-   }
- }
- Future getUserData()async{
-   await setUserTokenAndId();
- }
- @override
+  Future logout() async {
+    final response = await logOutRequest();
+    if (response['success'] == true) {
+      box.remove(UserDataKey.tokenKey);
+      box.remove(UserDataKey.idKey);
+      Get.offAllNamed(RouteName.loginScreen);
+    } else {
+      box.remove(UserDataKey.tokenKey);
+      box.remove(UserDataKey.idKey);
+      Get.offAllNamed(RouteName.loginScreen);
+    }
+  }
+
+  Future getUserData() async {
+    await setUserTokenAndId();
+  }
+
+  @override
   void onInit() {
- getUserData();
-     super.onInit();
+    getUserData();
+    super.onInit();
   }
 }

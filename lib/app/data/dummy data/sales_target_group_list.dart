@@ -19,4 +19,22 @@ List<SalesTargetGroupModel> salesTargetGroupList = [
     progress: 0.65,
     completed: '16,250',
   ),
+  SalesTargetGroupModel(
+    target: '25,000',
+    name: 'Dr. Johnson',
+    progress: 0.65,
+    completed: '16,250',
+  ),
+  SalesTargetGroupModel(
+    target: '25,000',
+    name: 'Dr. Johnson',
+    progress: 0.65,
+    completed: '16,250',
+  ),
+  SalesTargetGroupModel(
+    target: '25,000',
+    name: 'Dr. Johnson',
+    progress: 0.65,
+    completed: '16,250',
+  ),
  ];

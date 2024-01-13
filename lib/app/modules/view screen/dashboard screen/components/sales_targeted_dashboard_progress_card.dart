@@ -22,14 +22,14 @@ final Function() onTap;
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         child: Container(
-          height: 100,
+          height: 120,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: AppColor.kWhiteColor.withOpacity(0.20),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),

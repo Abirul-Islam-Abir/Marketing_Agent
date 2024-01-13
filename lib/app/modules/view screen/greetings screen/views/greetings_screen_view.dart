@@ -1,17 +1,6 @@
-import 'package:amin_agent/app/data/utils/app_images.dart';
-import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../../../data/utils/app_string.dart';
-
-import '../../../../routes/app_pages.dart';
-import '../../../../theme/app_color.dart';
-import '../components/animate_congratulate.dart';
-import '../components/completed_target_text.dart';
-import '../components/continue_button.dart';
-import '../controllers/greetings_screen_controller.dart';
+import '../../../../data/const/export.dart';
 
 class GreetingsScreenView extends GetView<GreetingsScreenController> {
   GreetingsScreenView({Key? key}) : super(key: key);
@@ -45,7 +34,7 @@ class GreetingsScreenView extends GetView<GreetingsScreenController> {
               ),
             ),
           ),
-            const AnimateCongratulate()
+          const AnimateCongratulate()
         ],
       ),
     );

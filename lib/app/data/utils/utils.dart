@@ -3,7 +3,6 @@
 import 'package:amin_agent/app/data/const/export.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../modules/view screen/greetings screen/components/animate_congratulate.dart';
 
 Future primaryDialog(context, {img, title, body, yesTap}) async {
   return showDialog<void>(

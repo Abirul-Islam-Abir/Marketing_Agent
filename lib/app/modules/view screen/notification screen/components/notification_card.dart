@@ -9,11 +9,9 @@ class NotificationCard extends StatelessWidget {
     required this.data,
     required this.day,
     required this.time,
-    this.seeMoreTap,
   });
 
   final String data, day, time;
-  final Function()? seeMoreTap;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -64,18 +62,15 @@ class NotificationCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
-            InkWell(
-              onTap: seeMoreTap,
-              child: ReadMoreText(
-                data,
-                trimLines: 3,
-                style: const TextStyle(color: AppColor.kBlackColor),
-                colorClickableText: AppColor.kBlueColor,
-                trimMode: TrimMode.Line,
-                trimCollapsedText: 'Read more',
-                trimExpandedText: ' Less',
+            ReadMoreText(
+              data,
+              trimLines: 3,
+              style: const TextStyle(color: AppColor.kBlackColor),
+              colorClickableText: AppColor.kBlueColor,
+              trimMode: TrimMode.Line,
+              trimCollapsedText: 'Read more',
+              trimExpandedText: ' Less',
 
-              ),
             ),
             const SizedBox(height: 10),
           ],

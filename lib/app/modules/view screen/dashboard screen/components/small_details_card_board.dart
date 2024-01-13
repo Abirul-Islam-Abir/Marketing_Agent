@@ -14,7 +14,7 @@ class SmallDetailsDashboardCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 120,
       width: Get.width,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
