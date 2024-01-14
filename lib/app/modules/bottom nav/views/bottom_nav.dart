@@ -31,7 +31,7 @@ class _BottomNavState extends State<BottomNav> {
           builder: (_) => bottomBarPages[controller.selectedIndex]),
       extendBody: true,
       bottomNavigationBar: GetBuilder<BottomNavController>(
-        builder: (_) => BottomBarBubble(
+        builder: (_) => BottomBarBubble(color: AppColor.kPrimaryColor,
           backgroundColor: AppColor.kWhiteColor,
           selectedIndex: controller.selectedIndex,
           items: List.generate(items.length, (index) => items[index]),

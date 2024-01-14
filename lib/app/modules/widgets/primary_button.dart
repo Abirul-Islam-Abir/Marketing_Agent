@@ -14,20 +14,17 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: 50,
       width: 250,
+      decoration: BoxDecoration(
+          color: AppColor.kPrimaryColor,
+          borderRadius: BorderRadius.circular(5)),
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
-          ),
-          backgroundColor: AppColor.kPrimaryColor,
-        ),
         onPressed: onTap,
         child: Text(
           text,
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             color: AppColor.kWhiteColor,
           ),

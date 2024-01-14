@@ -1,10 +1,12 @@
+import 'package:amin_agent/app/modules/view%20screen/filter%20screen/views/filter_screen_view.dart';
+
 import '../../../../data/const/export.dart';
-import '../../../../data/utils/user_data_key.dart';
 
 class DashboardScreenView extends StatelessWidget {
   DashboardScreenView({Key? key}) : super(key: key);
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final controller = Get.put(DashboardScreenController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,12 +22,7 @@ class DashboardScreenView extends StatelessWidget {
               children: [
                 PrimaryAppBar(
                   text: 'Dashboard',
-                  menuTap: () async {
-                    final token = await box.read(UserDataKey.tokenKey);
-                    if (token != null) {
-                      print(token);
-                    }
-
+                  menuTap: () {
                     _scaffoldKey.currentState?.openDrawer();
                   },
                   notificationTap: () async {
@@ -67,6 +64,12 @@ class DashboardScreenView extends StatelessWidget {
                     collaborate: '5',
                     totalCompletedSales: '1000000',
                     totalSales: '500000'),
+                ElevatedButton(
+                  onPressed: () {
+                    Get.dialog(FilterScreenView());
+                  },
+                  child: const Text('Click here'),
+                )
               ],
             ),
           ),
