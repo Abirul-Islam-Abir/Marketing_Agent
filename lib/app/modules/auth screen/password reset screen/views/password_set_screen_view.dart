@@ -26,10 +26,8 @@ class PasswordSetScreenView extends StatelessWidget {
                     BigText(text: AppString.changePassword),
                     SizedBox(height: 5.h),
                     Obx(() => CustomTextField(
+                      keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.next,
-                        onFieldSubmitted: (v) {
-                          controller.passwordFocus.nextFocus();
-                        },
                         obscureText: controller.isSecurePass,
                         icon: IconButton(
                             onPressed: controller.isSecurePassChange,

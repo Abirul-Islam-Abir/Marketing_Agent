@@ -1,8 +1,3 @@
-
-
-
-
-
 import '../../../../data/const/export.dart';
 
 class OtpVerifyScreenController extends GetxController {
@@ -36,12 +31,12 @@ class OtpVerifyScreenController extends GetxController {
   }
 
   Future verifyOtp(context) async {
-     if (id['forgot'] == true) {
+    if (id['forgot'] == true) {
       final response =
           await resetPassOtpManageRequest(id: id['id'], otp: otp.text);
       if (response['success'] == true) {
-      await  StoreData.saveId(response['data']['user_id'].toString());
-         Get.toNamed(RouteName.passwordSetScreen, arguments: {
+        await StoreData.saveId(response['data']['user_id'].toString());
+        Get.toNamed(RouteName.passwordSetScreen, arguments: {
           'id': response['data']['user_id'].toString(),
           'otp': response['data']['reset_otp'].toString()
         });
@@ -53,7 +48,6 @@ class OtpVerifyScreenController extends GetxController {
       if (response['success'] == true) {
         StoreData.saveToken(response['data']['token'].toString());
         StoreData.saveId(response['data']['user_id'].toString());
-         Get.snackbar('Success', response['message']);
         Get.offAllNamed(RouteName.bottomNav);
       } else {
         otp.clear();

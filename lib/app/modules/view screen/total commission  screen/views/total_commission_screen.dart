@@ -2,6 +2,7 @@
 
 
 import '../../../../data/const/export.dart';
+import '../../filter screen/views/filter_screen_view.dart';
 
 class TotalCommissionScreen extends StatelessWidget {
   TotalCommissionScreen({Key? key}) : super(key: key);
@@ -14,10 +15,9 @@ class TotalCommissionScreen extends StatelessWidget {
         body: SafeArea(
           child: SizedBox(
             width: double.infinity,
-            child: ListView(
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                  const SecondaryAppBar(text: 'Commissions'),
+            child: Column(
+               children: [
+                    SecondaryAppBar(text: 'Commissions',filterTap: () => Get.dialog(FilterScreenView())),
                 BuildListViewBuilder(list: commissionDataList),
               ],
             ),

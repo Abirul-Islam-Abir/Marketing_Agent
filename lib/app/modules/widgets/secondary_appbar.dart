@@ -1,11 +1,13 @@
-
-   import '../../data/const/export.dart';
+import '../../data/const/export.dart';
 
 class SecondaryAppBar extends GetView<TotalCommissionScreenController> {
-  const SecondaryAppBar( {super.key, required this.text,
-
+  const SecondaryAppBar(
+     {
+    super.key,
+    required this.text,required this.filterTap,
   });
-final String text;
+  final String text;
+  final Function()? filterTap;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -21,57 +23,14 @@ final String text;
                 fontSize: 20,
                 color: AppColor.kWhiteColor),
           ),
-
-       /*   GetBuilder<TotalCommissionScreenController>(builder: (_) {
-            return DropdownButtonHideUnderline(
-              child: DropdownButton2<String>(
-                iconStyleData:
-                const IconStyleData(iconEnabledColor: Colors.white),
-                isExpanded: false,
-                hint: const Text(
-                  'Choose',
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: AppColor.kWhiteColor),
-                ),
-                items: controller.items
-                    .map(
-                      (String item) =>
-                      DropdownMenuItem<String>(
-                        value: item,
-                        child: Text(
-                          item.toUpperCase(),
-                          style: const TextStyle(
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
-                )
-                    .toList(),
-                value: controller.selectedValue,
-                onChanged: (v) {
-                  controller.valueUpdate(v, context);
-                },
-                buttonStyleData: const ButtonStyleData(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  height: 40,
-                  width: 140,
-                ),
-                menuItemStyleData: const MenuItemStyleData(
-                  height: 40,
-                ),
-              ),
-            );
-          }),
-         */
-
-
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Icon(
-              Icons.filter_alt_rounded,
-              color: Colors.white,
+            child: InkWell(
+              onTap: filterTap,
+              child: Icon(
+                Icons.filter_alt_rounded,
+                color: Colors.white,
+              ),
             ),
           ),
         ],

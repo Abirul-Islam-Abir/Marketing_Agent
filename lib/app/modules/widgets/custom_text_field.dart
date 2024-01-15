@@ -1,4 +1,5 @@
 import 'package:amin_agent/app/data/const/export.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -11,8 +12,8 @@ class CustomTextField extends StatelessWidget {
     this.icon,
     this.obscureText = false,
     required this.focusNode,
-    this.keyboardType = TextInputType.number,
-    this.textInputAction = TextInputAction.next,
+    required this.keyboardType,
+    required this.textInputAction,
     this.onFieldSubmitted,
   });
 
@@ -23,15 +24,15 @@ class CustomTextField extends StatelessWidget {
   final Widget? icon;
   final bool obscureText;
   final FocusNode focusNode;
-  final TextInputType? keyboardType;
-  final TextInputAction? textInputAction;
+  final TextInputType keyboardType;
+  final TextInputAction textInputAction;
   final void Function(String)? onFieldSubmitted;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
       child: TextFormField(
-        style: const TextStyle(color: AppColor.kWhiteColor,fontSize: 18),
+        style: TextStyle(color: AppColor.kWhiteColor, fontSize: 18.sp),
         onFieldSubmitted: onFieldSubmitted,
         focusNode: focusNode,
         validator: validator,
@@ -41,7 +42,6 @@ class CustomTextField extends StatelessWidget {
         obscureText: obscureText,
         keyboardType: keyboardType,
         decoration: InputDecoration(
-
           hintStyle: const TextStyle(color: AppColor.kWhiteColor),
           focusColor: Colors.green,
           suffixIcon: icon,

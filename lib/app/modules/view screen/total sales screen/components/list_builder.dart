@@ -11,16 +11,18 @@ class ListBuilder extends StatelessWidget {
   final List<SalesReportModel> list;
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: list.length,
-      shrinkWrap: true,
-      itemBuilder: (context, index) => TotalSalesCard(
-        sendTap: (){},
-          location: list[index].location,
-          name: list[index].name,
-          price: list[index].target,
-          date: list[index].date,
-          invoiceNb: list[index].invoiceNb),
+    return Expanded(
+      child: ListView.builder(
+        itemCount: list.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) => TotalSalesCard(
+          sendTap: (){},
+            location: list[index].location,
+            name: list[index].name,
+            price: list[index].target,
+            date: list[index].date,
+            invoiceNb: list[index].invoiceNb),
+      ),
     );
   }
 }

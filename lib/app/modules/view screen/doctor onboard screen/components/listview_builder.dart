@@ -9,12 +9,14 @@ class ListViewBuilder extends StatelessWidget {
   final List<DoctorOnboardModel> list;
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: list.length,
-      shrinkWrap: true,
-      itemBuilder: (context, index) => DoctorOnboardCard(
-        location: list[index].name,
-        date: list[index].date,
+    return Expanded(
+      child: ListView.builder(
+        itemCount: list.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) => DoctorOnboardCard(
+          location: list[index].name,
+          date: list[index].date,
+        ),
       ),
     );
   }

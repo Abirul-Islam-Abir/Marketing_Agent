@@ -19,7 +19,7 @@ class ForgetButton extends StatelessWidget {
           onPressed:onPressed ,
           child: Text(
             text,
-            style:   TextStyle(fontWeight: FontWeight.bold,color: AppColor.kWhiteColor,fontSize: 15.sp),
+            style:   TextStyle(fontWeight: FontWeight.bold,color: AppColor.kWhiteColor,fontSize: 16.sp),
           ),
         ),
       ),

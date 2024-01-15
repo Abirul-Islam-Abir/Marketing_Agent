@@ -26,6 +26,9 @@ class LoginScreenView extends GetView<LoginScreenController> {
                   LoginToContinueText(AppString.loginToContinue),
                   SizedBox(height: 5.h),
                   CustomTextField(
+
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.number,
                     focusNode: controller.numberFocus,
                     validator: validateMobile,
                     controller: controller.number,
@@ -34,7 +37,9 @@ class LoginScreenView extends GetView<LoginScreenController> {
                   ),
                   Obx(
                     () => CustomTextField(
+                      keyboardType: TextInputType.number,
                       onFieldSubmitted: (v) {
+
                         controller.validateMethod(context);
                       },
                       textInputAction: TextInputAction.done,
@@ -66,9 +71,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     builder: (_) => LoginButton(
                       isProgress: controller.isProgress,
                       text: AppString.login,
-                      onTap: () async {   final token = await box.read(UserDataKey.tokenKey);
-    if(token!=null){
-                        print(token);}
+                      onTap: () async {
                         controller.validateMethod(context);
                       },
                     ),

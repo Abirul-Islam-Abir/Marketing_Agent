@@ -20,7 +20,13 @@ class AppDecoration {
       ),
     );
   }
-
+static BoxDecoration roundAllBorderDialog(){
+    return BoxDecoration(
+      color: AppColor.kWhiteColor,
+      boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 10)],
+      borderRadius: BorderRadius.circular(20),
+    );
+}
   AppDecoration._();
 }
 List<BoxShadow>? shadow =  [

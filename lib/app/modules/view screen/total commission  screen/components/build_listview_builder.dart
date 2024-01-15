@@ -10,14 +10,16 @@ class BuildListViewBuilder extends StatelessWidget {
   final List<CommissionModel> list;
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: list.length,
-      shrinkWrap: true,
-      itemBuilder: (context, index) => TotalCommissionCard(
-        location: list[index].location,
-        target: list[index].target,
-        date: '01/12/2024',
-        sendTap: (){},
+    return Expanded(
+      child: ListView.builder(
+        itemCount: list.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) => TotalCommissionCard(
+          location: list[index].location,
+          target: list[index].target,
+          date: '01/12/2024',
+          sendTap: (){},
+        ),
       ),
     );
   }

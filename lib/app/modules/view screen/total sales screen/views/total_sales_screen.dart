@@ -2,6 +2,7 @@
 
 
 import '../../../../data/const/export.dart';
+import '../../filter screen/views/filter_screen_view.dart';
 
 class TotalSalesScreen extends GetView<TotalSalesScreeenController> {
   const TotalSalesScreen({Key? key}) : super(key: key);
@@ -12,10 +13,9 @@ class TotalSalesScreen extends GetView<TotalSalesScreeenController> {
         body: SafeArea(
           child: SizedBox(
             width: double.infinity,
-            child: ListView(
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                const SecondaryAppBar(text: 'Sales'),
+            child: Column(
+               children: [
+                  SecondaryAppBar(text: 'Sales',filterTap: () => Get.dialog(FilterScreenView())),
                 ListBuilder(
                   list: salesReportDataList,
                 )

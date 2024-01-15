@@ -17,6 +17,7 @@ class CustomPinCodeField extends StatelessWidget {
       child: PinCodeTextField(
           focusNode: controller.otpFocus,
           appContext: context,
+          autoFocus: true,
           pastedTextStyle:
               const TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
           length: 4,

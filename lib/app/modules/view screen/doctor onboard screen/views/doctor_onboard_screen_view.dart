@@ -1,6 +1,7 @@
 
 
 import '../../../../data/const/export.dart';
+import '../../filter screen/views/filter_screen_view.dart';
 
 class DoctorOnboardScreenView extends GetView<DoctorOnboardScreenController> {
   const DoctorOnboardScreenView({Key? key}) : super(key: key);
@@ -11,10 +12,9 @@ class DoctorOnboardScreenView extends GetView<DoctorOnboardScreenController> {
         body: SafeArea(
           child: SizedBox(
             width: double.infinity,
-            child: ListView(
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                const SecondaryAppBar(text: 'Doctor Onboard'),
+            child: Column(
+               children: [
+                  SecondaryAppBar(text: 'Doctor Onboard',filterTap: () => Get.dialog(FilterScreenView())),
                 ListViewBuilder(
                   list: doctorOnboardDataList,
                 )

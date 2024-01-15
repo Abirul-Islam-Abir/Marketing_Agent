@@ -18,15 +18,17 @@ class PrimaryButton extends StatelessWidget {
       height: 50,
       width: 250,
       decoration: BoxDecoration(
-          color: AppColor.kPrimaryColor,
+
           borderRadius: BorderRadius.circular(5)),
       child: ElevatedButton(
+        style: ElevatedButton.styleFrom( backgroundColor: AppColor.kPrimaryColor,),
         onPressed: onTap,
         child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: AppColor.kWhiteColor,
+
           ),
         ),
       ),

@@ -1,4 +1,3 @@
-
 import '../data/const/export.dart';
 import '../modules/view screen/doctor visited screen/bindings/doctor_visited_screen_binding.dart';
 
@@ -10,6 +9,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: RouteName.loginScreen,
+      transition: Transition.rightToLeftWithFade,
       page: () => LoginScreenView(),
       binding: LoginScreenBinding(),
     ),
@@ -40,6 +40,7 @@ class AppPages {
     ),
     GetPage(
       name: RouteName.bottomNav,
+      transition: Transition.rightToLeftWithFade,
       page: () => const BottomNav(),
       binding: BottomNavBinding(),
     ),
@@ -70,11 +71,13 @@ class AppPages {
     ),
     GetPage(
       name: RouteName.otpVerifyScreen,
+      transition: Transition.rightToLeftWithFade,
       page: () => OtpVerifyScreen(),
       binding: OtpVerifyScreenBinding(),
     ),
     GetPage(
       name: RouteName.forgetPasswordScreen,
+      transition: Transition.rightToLeftWithFade,
       page: () => ForgetPasswordScreen(),
       binding: ForgetPasswordScreenBinding(),
     ),
@@ -85,6 +88,7 @@ class AppPages {
     ),
     GetPage(
       name: RouteName.passwordSetScreen,
+      transition: Transition.rightToLeftWithFade,
       page: () => PasswordSetScreenView(),
       binding: PasswordSetScreenBinding(),
     ),
