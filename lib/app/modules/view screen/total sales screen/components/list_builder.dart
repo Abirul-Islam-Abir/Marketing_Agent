@@ -3,8 +3,8 @@
 import '../../../../data/const/export.dart';
 import '../../../../model/sales_model.dart';
 
-class ListBuilder extends StatelessWidget {
-  const ListBuilder({
+class TotalSalesListView extends StatelessWidget {
+  const TotalSalesListView({
     super.key,
     required this.list,
   });

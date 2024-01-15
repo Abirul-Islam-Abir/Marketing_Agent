@@ -12,8 +12,8 @@ abstract class RouteName {
   static const mapScreen = '/map-screen';
   static const bottomNav = '/bottomNav-screen';
   static const dashboardScreen = '/dashboard-screen';
-  static const commissionReportScreen = '/total-commission-screen';
-  static const salesReportScreen = '/sales-report-screen';
+  static const totalCommissionScreen = '/total-commission-screen';
+  static const totalSalesScreen = '/total-sales-screen';
   static const salesTargetScreen = '/sales-target-screen';
   static const doctorOnboardScreen = '/doctor-onboard-screen';
   static const otpVerifyScreen = '/otp-verify-screen';

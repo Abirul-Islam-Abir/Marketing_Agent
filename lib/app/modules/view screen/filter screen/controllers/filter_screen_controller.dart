@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../model/category_model.dart';
@@ -31,7 +30,6 @@ class FilterScreenController extends GetxController {
     formattedDates = selectedDates
         .map((date) => DateFormat('yyyy-MM-dd').format(date!))
         .toList();
-    print(formattedDates);
   }
   selectedChangeIndex (index) {
     selectedUserIndex =
@@ -46,6 +44,5 @@ class FilterScreenController extends GetxController {
     selectedIndex.value = 1;
   }
   setCategory(){
-     print(category);
   }
 }

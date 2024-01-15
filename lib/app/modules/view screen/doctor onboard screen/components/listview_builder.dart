@@ -2,8 +2,8 @@ import '../../../../data/const/export.dart';
 import '../../../../model/doctor_onboard_model.dart';
 import 'doctor_onboard_card.dart';
 
-class ListViewBuilder extends StatelessWidget {
-  const ListViewBuilder({
+class OnboardListView extends StatelessWidget {
+  const OnboardListView({
     super.key, required this.list,
   });
   final List<DoctorOnboardModel> list;

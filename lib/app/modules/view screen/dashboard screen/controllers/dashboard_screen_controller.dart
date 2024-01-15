@@ -15,12 +15,10 @@ class DashboardScreenController extends GetxController {
       'Authorization': 'Bearer $token', // Corrected header for Bearer token
     };
     final response = await logOutRequest(headerWithToken);
-    print(response);
     if (response['success'] == true) {
        box.erase();
       Get.offAllNamed(RouteName.loginScreen);
     } else {
-      print('No token');
       box.remove(UserDataKey.tokenKey);
       box.remove(UserDataKey.idKey);
       Get.offAllNamed(RouteName.loginScreen);
@@ -28,8 +26,4 @@ class DashboardScreenController extends GetxController {
   }
 
 
-  @override
-  void onInit() {
-     super.onInit();
-  }
 }

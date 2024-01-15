@@ -16,7 +16,7 @@ class TotalSalesScreen extends GetView<TotalSalesScreeenController> {
             child: Column(
                children: [
                   SecondaryAppBar(text: 'Sales',filterTap: () => Get.dialog(FilterScreenView())),
-                ListBuilder(
+                TotalSalesListView(
                   list: salesReportDataList,
                 )
               ],

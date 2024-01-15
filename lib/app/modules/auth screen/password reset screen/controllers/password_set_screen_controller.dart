@@ -33,7 +33,6 @@ class PasswordSetScreenController extends GetxController {
     final response = await resetPasswordRequest(
         otp: id['otp'], password: password.text, id: id['id']);
     if (response['success'] == true) {
-      print(response);
      await StoreData.saveToken(response['data']['token']);
        AwesomeDialogs.showSuccessDialog(context, desc: 'Log in successfully');
       Get.offAllNamed(RouteName.bottomNav);

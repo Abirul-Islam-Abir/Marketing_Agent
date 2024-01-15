@@ -14,21 +14,24 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      width: 250,
-      decoration: BoxDecoration(
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Container(
+        height: 50,
+        width: 250,
+        decoration: BoxDecoration(
 
-          borderRadius: BorderRadius.circular(5)),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom( backgroundColor: AppColor.kPrimaryColor,),
-        onPressed: onTap,
-        child: Text(
-          text,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            color: AppColor.kWhiteColor,
+            borderRadius: BorderRadius.circular(5)),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom( backgroundColor: AppColor.kPrimaryColor,),
+          onPressed: onTap,
+          child: Text(
+            text,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: AppColor.kWhiteColor,
 
+            ),
           ),
         ),
       ),

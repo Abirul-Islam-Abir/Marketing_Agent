@@ -16,16 +16,15 @@ class SplashScreenView extends StatelessWidget {
         child: SizedBox(
             child: Column(
               children: [
-                Spacer(),
+                const Spacer(),
                 SvgPicture.asset('assets/images/img_linkedin.svg'),
                 SvgPicture.asset('assets/images/MPO TRACKING.svg'),
-               Spacer(),
-                Text(AppInfo.appName,style: TextStyle(color: AppColor.kGreyColor),),
+               const Spacer(),
+                Text(AppInfo.appName,style: const TextStyle(color: AppColor.kGreyColor),),
                 InkWell(
                     onTap: (){
-                      print('Hellow');
                     },
-                    child: Text('Version:'+AppInfo.appVersion,style: TextStyle(color: AppColor.kGreyColor),)),
+                    child: Text('Version:${AppInfo.appVersion}',style: const TextStyle(color: AppColor.kGreyColor),)),
               ],
             )),
       ),

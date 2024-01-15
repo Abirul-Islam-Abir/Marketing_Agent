@@ -14,7 +14,7 @@ class DoctorVisitedScreenView extends GetView<DoctorVisitedScreenController> {
           child: Column(
              children: [
                 SecondaryAppBar(text: 'Doctor Visited',filterTap: () => Get.dialog(FilterScreenView())),
-              ListViewBuilder(
+              OnboardListView(
                 list: doctorOnboardDataList,
               )
             ],

@@ -16,7 +16,7 @@ class AminAgent extends StatelessWidget {
             darkTheme: ThemeData.light(),
             debugShowCheckedModeBanner: false,
             title: AppInfo.appName,
-            initialRoute: RouteName.splashScreen,
+            initialRoute: RouteName.initial,
             getPages: AppPages.routes,
             initialBinding: StateHolderBinding(),
             theme: mainTheme(),

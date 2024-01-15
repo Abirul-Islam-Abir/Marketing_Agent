@@ -1,3 +1,5 @@
+import 'package:amin_agent/app/modules/view%20screen/notification%20screen/components/build_listview.dart';
+
 import '../../../../data/const/export.dart';
 
 class NotificationScreenView extends GetView<NotificationScreenController> {
@@ -13,16 +15,11 @@ class NotificationScreenView extends GetView<NotificationScreenController> {
       body: Center(
         child: SizedBox(
           width: Get.width / 0.6,
-          child: ListView.builder(
-            itemCount: notificationList.length,
-            itemBuilder: (context, index) => NotificationCard(
-              data: notificationList[index].data,
-              day: notificationList[index].day,
-              time: notificationList[index].time,
-            ),
-          ),
+          child: SalesTargetListView(list: salesTargetGroupList,),
         ),
       ),
     );
   }
 }
+
+

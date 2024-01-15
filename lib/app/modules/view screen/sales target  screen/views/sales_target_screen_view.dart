@@ -4,6 +4,7 @@
 
 import '../../../../data/const/export.dart';
 import '../../filter screen/views/filter_screen_view.dart';
+import '../../notification screen/components/build_listview.dart';
 
 class SalesTargetScreenView extends GetView<SalesTargetScreenController> {
   const SalesTargetScreenView({Key? key}) : super(key: key);
@@ -18,16 +19,7 @@ class SalesTargetScreenView extends GetView<SalesTargetScreenController> {
                children: [
                   SecondaryAppBar(text: 'Targets',filterTap: () => Get.dialog(FilterScreenView())),
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: salesTargetGroupList.length,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) => SalesTargetCard(
-                        dayLeft: '15 days left',
-                        target: salesTargetGroupList[index].target,
-                        name: salesTargetGroupList[index].name,
-                        progress: salesTargetGroupList[index].progress,
-                        completed: salesTargetGroupList[index].completed),
-                  ),
+                  child: SalesTargetListView(list: salesTargetGroupList),
                 ),
               ],
             ),
@@ -35,5 +27,7 @@ class SalesTargetScreenView extends GetView<SalesTargetScreenController> {
         ),
       );
 }
+
+
 
 

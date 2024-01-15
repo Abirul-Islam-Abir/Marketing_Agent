@@ -19,7 +19,7 @@ class UserAvatar extends StatelessWidget {
         borderColor: AppColor.kPrimaryColor,
         borderWidth: 5,
         elevation: 2,
-        radius: 70,
+        radius: 60,
         child: Image.network(img!),
       ),
     );

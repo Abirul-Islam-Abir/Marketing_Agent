@@ -9,10 +9,10 @@ class FilterText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: Text(
         text!,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 25,
           fontWeight: FontWeight.bold,
           color: AppColor.kSecondaryColor,

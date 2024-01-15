@@ -24,10 +24,10 @@ class SecondaryAppBar extends GetView<TotalCommissionScreenController> {
                 color: AppColor.kWhiteColor),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: InkWell(
               onTap: filterTap,
-              child: Icon(
+              child: const Icon(
                 Icons.filter_alt_rounded,
                 color: Colors.white,
               ),

@@ -3,18 +3,15 @@ import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../data/utils/app decoration.dart';
-import '../../../../model/category_model.dart';
 import '../../../../theme/app_color.dart';
 import '../../../widgets/primary_button.dart';
 import '../../profile screen/components/picture_and_target_button.dart';
 import '../components/grid_builder.dart';
 import '../controllers/filter_screen_controller.dart';
 
-class FilterScreenView extends GetView<FilterScreenController> {
+class FilterScreenView extends StatelessWidget {
   FilterScreenView({Key? key}) : super(key: key);
 
   final controller = Get.put(FilterScreenController());
@@ -35,7 +32,7 @@ class FilterScreenView extends GetView<FilterScreenController> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    FilterText('Filter'),
+                    const FilterText('Filter'),
                     Obx(() => FittedBox(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +47,7 @@ class FilterScreenView extends GetView<FilterScreenController> {
                                     ? AppColor.kWhiteColor
                                     : AppColor.kPrimaryColor,
                               ),
-                              SizedBox(width: 10),
+                              const SizedBox(width: 10),
                               PictureAndTargetButton(
                                 tap: controller.selectCategoryFilter,
                                 text: 'Category',

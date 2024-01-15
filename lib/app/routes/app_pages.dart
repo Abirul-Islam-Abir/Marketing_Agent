@@ -50,12 +50,12 @@ class AppPages {
       binding: DashboardScreenBinding(),
     ),
     GetPage(
-      name: RouteName.commissionReportScreen,
+      name: RouteName.totalCommissionScreen,
       page: () => TotalCommissionScreen(),
       binding: TotalCommissionScreenBinding(),
     ),
     GetPage(
-      name: RouteName.salesReportScreen,
+      name: RouteName.totalSalesScreen,
       page: () => const TotalSalesScreen(),
       binding: TotalSalesScreenBinding(),
     ),

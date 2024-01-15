@@ -16,7 +16,7 @@ class PrimaryAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 80,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: AppColor.kSecondaryColor,
       ),
       child: Row(

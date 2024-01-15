@@ -23,7 +23,7 @@ class AppDecoration {
 static BoxDecoration roundAllBorderDialog(){
     return BoxDecoration(
       color: AppColor.kWhiteColor,
-      boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 10)],
+      boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 10)],
       borderRadius: BorderRadius.circular(20),
     );
 }
@@ -34,7 +34,7 @@ List<BoxShadow>? shadow =  [
     color: Colors.grey.withOpacity(0.2),
     spreadRadius: 3,
     blurRadius: 5,
-    offset: Offset(
+    offset: const Offset(
         0, 3), // changes position of shadow
   ),
 ];

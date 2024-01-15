@@ -32,7 +32,6 @@ class ProfileScreenController extends GetxController {
     };
     if (token != null) {
       final response = await userProfileRequest(headerWithToken);
-      print(response);
       if (response['success'] == true) {
         _userProfileList = response['data']['user'];
       }

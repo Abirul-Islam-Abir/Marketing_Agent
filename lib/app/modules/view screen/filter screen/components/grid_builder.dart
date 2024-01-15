@@ -20,7 +20,7 @@ class GridBuilder extends StatelessWidget {
           itemCount: controller.userList.length,
           shrinkWrap: true,
           gridDelegate:
-          SliverGridDelegateWithFixedCrossAxisCount(
+          const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               mainAxisExtent: 40,
               mainAxisSpacing: 10,

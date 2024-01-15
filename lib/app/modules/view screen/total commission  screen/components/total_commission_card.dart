@@ -1,4 +1,3 @@
-import 'package:flutter_svg/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../data/const/export.dart';
@@ -62,8 +61,8 @@ class TotalCommissionCard extends StatelessWidget {
                   child: CircleAvatar(
                       radius: 25,
                       backgroundColor: AppColor.kWhiteColor,
-                      child: SvgPicture.asset(
-                        'assets/svg/Vector.svg',
+                      child: Image.asset(
+                        'assets/icons/right_arrow.png',
                         color: AppColor.kPrimaryColor,height: 30,width: 30,
                       ),),
                 ),
