@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppColor {
   static const kSecondaryColor = Color(0xFF0085E5);
   static const appBarColor = Color(0xFF0085E5);
+  static const kScaffoldBlue = Color(0xFF56A9E5);
   static const kPrimaryColor = Color(0xFF00508A);
   static const kTextColor = Colors.black54;
   static const kWhiteColor = Colors.white;
@@ -15,6 +16,6 @@ class AppColor {
   static const kGreyColor = Colors.grey;
   static const kTransparentColor = Colors.transparent;
   static const kGreenColor = Colors.lightGreen;
-  static const kScaffold = AppColor.kWhiteColor;
+  static const kScaffoldWhite = AppColor.kWhiteColor;
   AppColor._();
 }

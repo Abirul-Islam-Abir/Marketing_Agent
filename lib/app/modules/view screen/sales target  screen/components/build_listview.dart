@@ -1,8 +1,8 @@
 import '../../../../data/const/export.dart';
 import '../../../../model/sales_target_group_model.dart';
 
-class BuildListView extends StatelessWidget {
-  const BuildListView({
+class SalesTargetListView extends StatelessWidget {
+  const SalesTargetListView({
     super.key, required this.list,
   });
   final List<SalesTargetGroupModel> list;

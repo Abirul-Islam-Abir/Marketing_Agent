@@ -1,8 +1,3 @@
-
-
-
-
-
 import '../../../../data/const/export.dart';
 
 class MapScreenView extends StatefulWidget {
@@ -16,15 +11,15 @@ class MapScreenViewState extends State<MapScreenView> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
-  List<Marker> markers = [const Marker(
-    markerId: MarkerId('m'),
-    position:
-    LatLng(23.80535022486723, 90.41394229978323),
-    infoWindow: InfoWindow(
-        title: 'My Current Location!',
-        snippet:
-        'Lat:23.80535022486723,Lng: 90.41394229978323'),
-  )];
+  List<Marker> markers = [
+    const Marker(
+      markerId: MarkerId('m'),
+      position: LatLng(23.80535022486723, 90.41394229978323),
+      infoWindow: InfoWindow(
+          title: 'My Current Location!',
+          snippet: 'Lat:23.80535022486723,Lng: 90.41394229978323'),
+    )
+  ];
   final List<LatLng> polylinePoints = [
     const LatLng(23.804039775855614, 90.4152699932456),
     const LatLng(23.80530206487308, 90.41533570736647),
@@ -43,7 +38,7 @@ class MapScreenViewState extends State<MapScreenView> {
       final PermissionStatus permissionStatus =
           await location.requestPermission();
       if (permissionStatus == PermissionStatus.granted) {
-       // onLocationChanged();
+        // onLocationChanged();
         updateLocation();
         setState(() {});
       }
@@ -58,6 +53,8 @@ class MapScreenViewState extends State<MapScreenView> {
     final GoogleMapController controller = await _controller.future;
     if (userLocation != null) {
       setState(() {
+        polylinePoints
+            .add(LatLng(userLocation!.latitude, userLocation!.longitude));
         // polylinePoints.clear();
       });
       addMarkerPosition();
@@ -105,6 +102,23 @@ class MapScreenViewState extends State<MapScreenView> {
     });
   }
 
+  MapType currentMapType = MapType.normal;
+  List<MapType> availableMapTypes = [
+    MapType.normal,
+    MapType.satellite,
+    MapType.hybrid,
+    MapType.terrain,
+  ];
+  @override
+  void initState() {
+    getCurrentLocation();
+    polylinePoints.addAll([
+      const LatLng(24.762189564828716, 88.13209619755345),
+      const LatLng(24.813744055051384, 88.14567206678025),
+    ]);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,8 +126,7 @@ class MapScreenViewState extends State<MapScreenView> {
         alignment: Alignment.bottomCenter,
         children: [
           GoogleMap(
-            onTap: (v) {
-            },
+            onTap: (v) {},
             mapType: currentMapType,
             polylines: {
               Polyline(
@@ -174,50 +187,5 @@ class MapScreenViewState extends State<MapScreenView> {
         ],
       ),
     );
-  }
-
-  MapType currentMapType = MapType.normal;
-  List<MapType> availableMapTypes = [
-    MapType.normal,
-    MapType.satellite,
-    MapType.hybrid,
-    MapType.terrain,
-  ];
-}
-
-class CustomSearchDelegate extends SearchDelegate<String> {
-  @override
-  List<Widget> buildActions(BuildContext context) {
-    return [
-      IconButton(
-        icon: const Icon(Icons.clear),
-        onPressed: () {
-          query = '';
-        },
-      )
-    ];
-  }
-
-  @override
-  Widget buildLeading(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.arrow_back),
-      onPressed: () {
-        close(context, '');
-      },
-    );
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return Center(
-      child: Text('Searching for $query...'),
-    );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    // You can add suggestions here if needed
-    return const SizedBox.shrink();
   }
 }

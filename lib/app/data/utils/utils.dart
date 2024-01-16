@@ -10,6 +10,7 @@ Future primaryDialog(context, {img, title, body, yesTap}) async {
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return AlertDialog(
+        backgroundColor: AppColor.kWhiteColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -30,12 +31,12 @@ Future primaryDialog(context, {img, title, body, yesTap}) async {
               Text(
                 title,
                 style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 25,color: AppColor.kBlackColor),
               ),
               Text(
                 body,
                 style: const TextStyle(
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w500,color: AppColor.kBlackColor
                 ),
               ),
             ],

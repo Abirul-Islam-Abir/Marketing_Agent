@@ -5,18 +5,17 @@ import '../../../../data/const/export.dart';
 class LoginScreenView extends GetView<LoginScreenController> {
   LoginScreenView({super.key});
 
-  @override
-  final controller = Get.put(LoginScreenController());
+  final LoginScreenController _controller = Get.put(LoginScreenController());
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: LoginBackgroundView(
-          image: AppImages.loginScreenBackground,
+        body: PrimaryBackgroundView(
+
           child: SingleChildScrollView(
             child: Form(
-              key: controller.formKey,
+              key: _controller.formKey,
               child: Column(
                 children: [
                   SizedBox(height: 15.h),
@@ -24,33 +23,35 @@ class LoginScreenView extends GetView<LoginScreenController> {
                   LoginToContinueText(AppString.loginToContinue),
                   SizedBox(height: 5.h),
                   CustomTextField(
+                    onEditingComplete:  (){
+                      FocusScope.of(context).requestFocus(controller.passFocus);
 
+                    },
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
-                    focusNode: controller.numberFocus,
+                    focusNode: _controller.numberFocus,
                     validator: validateMobile,
-                    controller: controller.number,
+                    controller: _controller.number,
                     hintText: AppString.phone,
                     img: AppImages.textFieldPhone,
                   ),
                   Obx(
                     () => CustomTextField(
                       keyboardType: TextInputType.number,
-                      onFieldSubmitted: (v) {
-
-                        controller.validateMethod(context);
+                      onEditingComplete: () {
+                        _controller.validateMethod(context);
                       },
                       textInputAction: TextInputAction.done,
-                      focusNode: controller.passFocus,
-                      obscureText: controller.isSecure,
+                      focusNode: _controller.passFocus,
+                      obscureText: _controller.isSecure,
                       validator: validatePassword,
-                      controller: controller.password,
+                      controller: _controller.password,
                       hintText: AppString.password,
                       img: AppImages.textFieldPass,
                       icon: IconButton(
-                        onPressed: controller.isSecureChange,
+                        onPressed: _controller.isSecureChange,
                         icon: Icon(
-                          controller.isSecure
+                          _controller.isSecure
                               ? Icons.remove_red_eye_sharp
                               : Icons.remove_red_eye_outlined,
                           color: AppColor.kWhiteColor,
@@ -60,17 +61,18 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     ),
                   ),
                   ForgetButton(
-                      text: AppString.forgetPassword,
-                      onPressed: () {
-                        Get.toNamed(RouteName.forgetPasswordScreen);
-                      }),
+                    text: AppString.forgetPassword,
+                    onPressed: () {
+                      Get.toNamed(RouteName.forgetPasswordScreen);
+                    },
+                  ),
                   SizedBox(height: 10.h),
                   GetBuilder<LoginScreenController>(
                     builder: (_) => LoginButton(
-                      isProgress: controller.isProgress,
+                      isProgress: _controller.isProgress,
                       text: AppString.login,
                       onTap: () async {
-                        controller.validateMethod(context);
+                        _controller.validateMethod(context);
                       },
                     ),
                   ),

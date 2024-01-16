@@ -10,6 +10,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.kWhiteColor,
       body: Stack(
         children: [
           SingleChildScrollView(

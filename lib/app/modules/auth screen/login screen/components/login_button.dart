@@ -4,7 +4,7 @@ import '../../../../theme/app_color.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton(
-      {super.key, required this.text, this.onTap, required this.isProgress,   this.color = AppColor.kWhiteColor});
+      {super.key, required this.text, this.onTap, required this.isProgress,   this.color = AppColor.kPrimaryColor});
 
   final Function()? onTap;
   final String text;
@@ -30,7 +30,7 @@ class LoginButton extends StatelessWidget {
                 style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
-                    color: AppColor.kGreyColor,),
+                    color: AppColor.kWhiteColor,),
               ),
             ),
           );

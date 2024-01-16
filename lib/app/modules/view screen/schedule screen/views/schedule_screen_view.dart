@@ -3,6 +3,7 @@
 import 'package:amin_agent/app/modules/view%20screen/schedule%20screen/components/shedule_listview.dart';
 
 import '../../../../data/const/export.dart';
+import '../../../widgets/appbar.dart';
 
 class ScheduleScreenView extends GetView<ScheduleScreenController> {
   ScheduleScreenView({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class ScheduleScreenView extends GetView<ScheduleScreenController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.kWhiteColor,
-      appBar: secondaryAppbar('Schedule'),
+      appBar: buildSecondaryAppbar('Schedule'),
       body: Center(
         child: SizedBox(
           width: Get.width / 0.6,

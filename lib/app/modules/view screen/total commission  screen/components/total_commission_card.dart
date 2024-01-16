@@ -1,3 +1,4 @@
+import 'package:flutter_svg/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../data/const/export.dart';
@@ -18,7 +19,7 @@ class TotalCommissionCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
       child: Container(
-        height: 110,
+        height: 120,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         width: Get.width / 0.9,
         decoration: BoxDecoration(
@@ -61,8 +62,8 @@ class TotalCommissionCard extends StatelessWidget {
                   child: CircleAvatar(
                       radius: 25,
                       backgroundColor: AppColor.kWhiteColor,
-                      child: Image.asset(
-                        'assets/icons/right_arrow.png',
+                      child: SvgPicture.asset(
+                        'assets/svg/Vector.svg',
                         color: AppColor.kPrimaryColor,height: 30,width: 30,
                       ),),
                 ),

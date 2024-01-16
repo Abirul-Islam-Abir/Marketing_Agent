@@ -14,7 +14,7 @@ class CustomTextField extends StatelessWidget {
     required this.focusNode,
     required this.keyboardType,
     required this.textInputAction,
-    this.onFieldSubmitted,
+    this.onEditingComplete,
   });
 
   final String hintText, img;
@@ -26,14 +26,15 @@ class CustomTextField extends StatelessWidget {
   final FocusNode focusNode;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
-  final void Function(String)? onFieldSubmitted;
+  final void Function()? onEditingComplete;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
       child: TextFormField(
+
         style: TextStyle(color: AppColor.kWhiteColor, fontSize: 18.sp),
-        onFieldSubmitted: onFieldSubmitted,
+        onEditingComplete: onEditingComplete,
         focusNode: focusNode,
         validator: validator,
         controller: controller,

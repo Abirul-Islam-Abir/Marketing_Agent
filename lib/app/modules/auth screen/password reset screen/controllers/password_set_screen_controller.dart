@@ -56,7 +56,7 @@ class PasswordSetScreenController extends GetxController {
   }
 
   void validateMethod(context) {
-    passwordFocus.unfocus();
+    cPasswordFocus.unfocus();
     if (formKey.currentState!.validate()) {
       if (cPassword.text == password.text) {
         resetPasswordInitializeMethod(context);

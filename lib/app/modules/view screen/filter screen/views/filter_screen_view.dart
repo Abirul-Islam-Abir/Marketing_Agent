@@ -11,6 +11,7 @@ import '../../profile screen/components/picture_and_target_button.dart';
 import '../components/grid_builder.dart';
 import '../controllers/filter_screen_controller.dart';
 
+
 class FilterScreenView extends StatelessWidget {
   FilterScreenView({Key? key}) : super(key: key);
 
@@ -34,44 +35,44 @@ class FilterScreenView extends StatelessWidget {
                   children: [
                     const FilterText('Filter'),
                     Obx(() => FittedBox(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              PictureAndTargetButton(
-                                tap: controller.selectDateFilter,
-                                text: 'Date',
-                                backColor: controller.selectedIndex.value == 0
-                                    ? AppColor.kSecondaryColor
-                                    : AppColor.kWhiteColor,
-                                textColor: controller.selectedIndex.value == 0
-                                    ? AppColor.kWhiteColor
-                                    : AppColor.kPrimaryColor,
-                              ),
-                              const SizedBox(width: 10),
-                              PictureAndTargetButton(
-                                tap: controller.selectCategoryFilter,
-                                text: 'Category',
-                                backColor: controller.selectedIndex.value == 1
-                                    ? AppColor.kSecondaryColor
-                                    : AppColor.kWhiteColor,
-                                textColor: controller.selectedIndex.value == 1
-                                    ? AppColor.kWhiteColor
-                                    : AppColor.kPrimaryColor,
-                              ),
-                            ],
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          PictureAndTargetButton(
+                            tap: controller.selectDateFilter,
+                            text: 'Date',
+                            backColor: controller.selectedIndex.value == 0
+                                ? AppColor.kSecondaryColor
+                                : AppColor.kWhiteColor,
+                            textColor: controller.selectedIndex.value == 0
+                                ? AppColor.kWhiteColor
+                                : AppColor.kPrimaryColor,
                           ),
-                        )),
+                          const SizedBox(width: 10),
+                          PictureAndTargetButton(
+                            tap: controller.selectCategoryFilter,
+                            text: 'Category',
+                            backColor: controller.selectedIndex.value == 1
+                                ? AppColor.kSecondaryColor
+                                : AppColor.kWhiteColor,
+                            textColor: controller.selectedIndex.value == 1
+                                ? AppColor.kWhiteColor
+                                : AppColor.kPrimaryColor,
+                          ),
+                        ],
+                      ),
+                    )),
                     Obx(
-                      () => controller.selectedIndex.value == 0
+                          () => controller.selectedIndex.value == 0
                           ? CalendarDatePicker2(
-                              config: CalendarDatePicker2Config(
-                                calendarType: CalendarDatePicker2Type.multi,
-                              ),
-                              value: controller.selectedDates,
-                              onValueChanged: controller.onDateChange,
-                            )
+                        config: CalendarDatePicker2Config(
+                          calendarType: CalendarDatePicker2Type.multi,
+                        ),
+                        value: controller.selectedDates,
+                        onValueChanged: controller.onDateChange,
+                      )
                           : GetBuilder<FilterScreenController>(
-                              builder: (_) => GridBuilder()),
+                          builder: (_) => GridBuilder()),
                     ),
                     PrimaryButton(
                         text: 'Filter',

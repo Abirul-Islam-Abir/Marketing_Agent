@@ -1,22 +1,19 @@
-import '../../../../data/const/export.dart';
-import '../../../../model/sales_target_group_model.dart';
+import 'package:amin_agent/app/model/notification_model.dart';
 
-class SalesTargetListView extends StatelessWidget {
-  const SalesTargetListView({
+import '../../../../data/const/export.dart';
+
+class NotificationListView extends StatelessWidget {
+  const NotificationListView({
     super.key, required this.list,
   });
-  final List<SalesTargetGroupModel> list;
+  final List<NotificationModel> list;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: list.length,
       shrinkWrap: true,
-      itemBuilder: (context, index) => SalesTargetCard(
-          dayLeft: '15 days left',
-          target: list[index].target,
-          name: list[index].name,
-          progress: list[index].progress,
-          completed: list[index].completed),
+      itemBuilder: (context, index) => NotificationCard(time:list[index].time ,day: list[index].day,
+           data: list[index].data,),
     );
   }
 }

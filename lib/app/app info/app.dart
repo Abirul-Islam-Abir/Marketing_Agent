@@ -10,6 +10,7 @@ class AminAgent extends StatelessWidget {
     return ResponsiveSizer(
         builder: (context, orientation, screenType) {
           return GetMaterialApp(
+            themeMode: ThemeMode.light,
             useInheritedMediaQuery: true,
             locale: DevicePreview.locale(context),
             builder: DevicePreview.appBuilder,

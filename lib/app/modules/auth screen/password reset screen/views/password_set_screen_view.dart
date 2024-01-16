@@ -12,9 +12,8 @@ class PasswordSetScreenView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: LoginBackgroundView(
-          image: AppImages.loginScreenBackground,
-          child: Padding(
+        body: PrimaryBackgroundView(
+           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Form(
               key: controller.formKey,
@@ -26,7 +25,11 @@ class PasswordSetScreenView extends StatelessWidget {
                     BigText(text: AppString.changePassword),
                     SizedBox(height: 5.h),
                     Obx(() => CustomTextField(
-                      keyboardType: TextInputType.number,
+                        onEditingComplete: () {
+                          FocusScope.of(context)
+                              .requestFocus(controller.cPasswordFocus);
+                        },
+                        keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.next,
                         obscureText: controller.isSecurePass,
                         icon: IconButton(
@@ -44,7 +47,7 @@ class PasswordSetScreenView extends StatelessWidget {
                         hintText: 'New Password',
                         img: AppImages.textFieldPass)),
                     Obx(() => CustomTextField(
-                        onFieldSubmitted: (v) {
+                        onEditingComplete: () {
                           controller.validateMethod(context);
                         },
                         obscureText: controller.isSecureCPass,

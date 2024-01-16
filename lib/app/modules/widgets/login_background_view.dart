@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class LoginBackgroundView extends StatelessWidget {
-  const LoginBackgroundView({
+import '../../data/utils/app_images.dart';
+
+class PrimaryBackgroundView extends StatelessWidget {
+  const PrimaryBackgroundView({
     super.key,
     required this.child,
-    required this.image,
   });
 
   final Widget child;
-  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class LoginBackgroundView extends StatelessWidget {
           right: 0,
           left: 0,
           child: Image.asset(
-            image,
+            AppImages.loginScreenBackground,
             fit: BoxFit.cover,
           ),
         ),

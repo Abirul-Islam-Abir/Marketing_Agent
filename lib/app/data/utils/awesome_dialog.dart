@@ -3,7 +3,7 @@ import 'package:panara_dialogs/panara_dialogs.dart';
 import '../const/export.dart';
 
 class AwesomeDialogs {
-  static void showSuccessDialog(context,{desc, okPress}) {
+  static void showSuccessDialog(context, {desc, okPress}) {
     PanaraInfoDialog.show(
       context,
       title: "Joss!",
@@ -15,13 +15,14 @@ class AwesomeDialogs {
       panaraDialogType: PanaraDialogType.normal,
       barrierDismissible: false, // optional parameter (default is true)
     );
-
   }
 
-  static void showErrorDialog(context,{desc}) {
+  static void showErrorDialog(context, {desc}) {
     PanaraInfoDialog.show(
       context,
+      textColor: AppColor.kBlackColor,
       title: "Ohh!",
+
       message: desc,
       buttonText: "Okay",
       onTapDismiss: () {
@@ -30,6 +31,5 @@ class AwesomeDialogs {
       panaraDialogType: PanaraDialogType.error,
       barrierDismissible: false, // optional parameter (default is true)
     );
-
   }
 }

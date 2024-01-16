@@ -1,3 +1,4 @@
+import 'package:amin_agent/app/data/const/export.dart';
 import 'package:get/get.dart';
 
 import '../../../../api services/auth/user_profile.dart';
@@ -8,6 +9,12 @@ class ProfileScreenController extends GetxController {
   int selectedIndex = 0;
   Map _userProfileList = {};
   Map get userProfileList => _userProfileList;
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController numberController= TextEditingController();
+  final TextEditingController designationController= TextEditingController();
+  final TextEditingController companyController= TextEditingController();
+  final TextEditingController nidController= TextEditingController();
+  final TextEditingController addressController= TextEditingController();
   void increment() {
     selectedIndex = 1;
     update();
@@ -51,6 +58,12 @@ class ProfileScreenController extends GetxController {
   @override
   void onInit() {
     userProfileInitializeMethod();
+    nameController.text = '${userProfileList['name']}';
+    numberController.text = '${userProfileList['number']}';
+    designationController.text = '${userProfileList['designation']}';
+    companyController.text = '${userProfileList['company']}';
+    companyController.text = '${userProfileList['nid']}';
+    print('${userProfileList['name']}');
     super.onInit();
   }
 }

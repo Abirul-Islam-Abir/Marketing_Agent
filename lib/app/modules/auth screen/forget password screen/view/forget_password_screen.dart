@@ -7,9 +7,8 @@ class ForgetPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: LoginBackgroundView(
-          image: AppImages.loginScreenBackground,
-          child: Form(
+        body: PrimaryBackgroundView(
+           child: Form(
               key: controller.formKey,
               child: SingleChildScrollView(
                 child: Column(
@@ -19,7 +18,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                     BigText(text: AppString.forgetPasswords),
                     SizedBox(height: 5.h),
                     CustomTextField(
-                      onFieldSubmitted: (v){
+                        onEditingComplete: (){
                         controller.validateMethod(context);
                       },
 

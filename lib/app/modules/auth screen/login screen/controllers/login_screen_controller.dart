@@ -1,24 +1,27 @@
 import 'package:amin_agent/app/api%20services/auth/login.dart';
 import 'package:amin_agent/app/data/const/export.dart';
 
+
 class LoginScreenController extends GetxController {
-  final number = TextEditingController( );
-  final password = TextEditingController( );
+  final number = TextEditingController();
+  final password = TextEditingController();
   final otp = TextEditingController();
   final numberFocus = FocusNode();
   final passFocus = FocusNode();
   final RxBool _isSecure = true.obs;
   bool _isProgress = false;
   final formKey = GlobalKey<FormState>();
+
   bool get isSecure => _isSecure.value;
   bool get isProgress => _isProgress;
+
   void isSecureChange() {
     _isSecure.value = !_isSecure.value;
   }
 
   Future login(context) async {
     final response =
-        await loginRequest(number: number.text, password: password.text);
+    await loginRequest(number: number.text, password: password.text);
     if (response['success'] == true) {
       Get.toNamed(RouteName.otpVerifyScreen,
           arguments: {'id': '${response['data']['user_id']}'});
@@ -55,6 +58,10 @@ class LoginScreenController extends GetxController {
     if (formKey.currentState!.validate()) {
       loginInitializeMethod(context);
     }
+  }
+
+  void submitNumber(v) {
+    numberFocus.requestFocus(passFocus);
   }
 
   @override

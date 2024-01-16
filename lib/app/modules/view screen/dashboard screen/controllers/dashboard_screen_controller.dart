@@ -19,8 +19,7 @@ class DashboardScreenController extends GetxController {
        box.erase();
       Get.offAllNamed(RouteName.loginScreen);
     } else {
-      box.remove(UserDataKey.tokenKey);
-      box.remove(UserDataKey.idKey);
+      box.erase();
       Get.offAllNamed(RouteName.loginScreen);
     }
   }

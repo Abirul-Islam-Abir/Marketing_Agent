@@ -12,13 +12,16 @@ class CustomBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.topLeft,
-      child: IconButton(
-        onPressed: () {
-          Get.back();
-        },
-        icon: const Icon(
-          Icons.arrow_back_ios_new,
-          color: AppColor.kWhiteColor,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: AppColor.kWhiteColor,
+          ),
         ),
       ),
     );

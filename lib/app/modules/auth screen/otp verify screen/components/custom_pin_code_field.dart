@@ -10,6 +10,7 @@ class CustomPinCodeField extends StatelessWidget {
   final TextEditingController? otp;
   final void Function(String)? onCompleted;
   final controller = Get.put(OtpVerifyScreenController());
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,8 +19,8 @@ class CustomPinCodeField extends StatelessWidget {
           focusNode: controller.otpFocus,
           appContext: context,
           autoFocus: true,
-          pastedTextStyle:
-              const TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+          pastedTextStyle: const TextStyle(
+              color: AppColor.kWhiteColor, fontWeight: FontWeight.bold),
           length: 4,
           obscureText: false,
           obscuringCharacter: '*',
@@ -39,7 +40,13 @@ class CustomPinCodeField extends StatelessWidget {
               borderRadius: BorderRadius.circular(5),
               fieldHeight: 50,
               fieldWidth: 50,
-              activeFillColor: AppColor.kWhiteColor),
+              activeFillColor: AppColor.kWhiteColor,
+              selectedColor: AppColor.kWhiteColor,
+              selectedFillColor: AppColor.kWhiteColor,
+              inactiveFillColor: AppColor.kWhiteColor,
+              disabledColor: AppColor.kWhiteColor,
+              errorBorderColor: AppColor.kWhiteColor),
+          textStyle: const TextStyle(color: AppColor.kWhiteColor,fontWeight: FontWeight.bold),
           cursorColor: AppColor.kWhiteColor,
           animationDuration: const Duration(milliseconds: 300),
           enableActiveFill: false,

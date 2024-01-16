@@ -3,12 +3,11 @@ import '../../../../data/const/export.dart';
 class DrawerUpdateCard extends StatelessWidget {
   const DrawerUpdateCard({
     super.key,
-    required this.hint,
-    required this.label,
+    required this.label,   this.controller,
   });
 
-  final String hint, label;
-
+  final String label;
+final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,12 +16,12 @@ class DrawerUpdateCard extends StatelessWidget {
         height: 50,
         width: double.infinity,
         child: TextFormField(
+          controller: controller,
           decoration: InputDecoration(
-            hintText: hint,
             labelText: label,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             hintStyle:
-            const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             border: const OutlineInputBorder(),
           ),
         ),

@@ -80,7 +80,7 @@ class TotalSalesCard extends StatelessWidget {
                   location,
                   style: const TextStyle(
                       color: AppColor.kWhiteColor,
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.w500),
                 ),
                 InkWell(
