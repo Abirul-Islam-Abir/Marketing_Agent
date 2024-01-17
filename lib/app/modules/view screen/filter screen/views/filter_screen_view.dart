@@ -61,19 +61,17 @@ class FilterScreenView extends StatelessWidget {
                             ],
                           ),
                         )),
-                    Obx(
-                      () => controller.selectedIndex.value == 0
-                          ? CalendarDatePicker2(
-                              config: CalendarDatePicker2Config(
-                                calendarType: CalendarDatePicker2Type.multi,
-                              ),
-                              value: controller.selectedDates,
-                              onValueChanged: controller.onDateChange,
-                            )
-                          : GetBuilder<FilterScreenController>(
-                              builder: (_) => GridBuilder()),
-                    ),
-                    PrimaryButton(
+                    Obx(() => controller.selectedIndex.value == 0
+                        ? CalendarDatePicker2(
+                            config: CalendarDatePicker2Config(
+                              calendarType: CalendarDatePicker2Type.range,
+                            ),
+                            value: controller.selectedDates,
+                            onValueChanged: controller.onDateChange,
+                          )
+                        : GetBuilder<FilterScreenController>(
+                            builder: (_) => GridBuilder())),
+                    SecondaryButton(
                         text: 'Filter',
                         onTap: () {
                           controller.setCategory();

@@ -4,15 +4,13 @@ import '../../../../data/const/export.dart';
 
 class OtpVerifyScreen extends StatelessWidget {
   OtpVerifyScreen({super.key});
-
   final controller = Get.put(OtpVerifyScreenController());
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: PrimaryBackgroundView(
-           child: Padding(
+          child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: SingleChildScrollView(
               child: Column(
@@ -37,15 +35,6 @@ class OtpVerifyScreen extends StatelessWidget {
                               txt:
                                   '  ${controller.countdown ~/ 60}:${(controller.countdown % 60).toString().padLeft(2, '0')}s',
                             )),
-                        const SizedBox(height: 30),
-                        Obx(() => LoginButton(
-                              text: 'Continue ',
-                              onTap: () {
-                                controller.validateSubmit(context);
-                              },
-                              isProgress: controller.isProgress,
-                            )),
-                        const SizedBox(height: 20),
                         Obx(() => ReceivedCodeTextButton(
                               text: AppString.didNotReceivedTheCode,
                               txt: controller.isTimeOut.value
@@ -56,6 +45,17 @@ class OtpVerifyScreen extends StatelessWidget {
                                 controller.startCountdown();
                               },
                             )),
+                        const SizedBox(height: 30),
+                        Obx(() => controller.isCompleted
+                            ? Container()
+                            : LoginButton(
+                                text: 'Continue ',
+                                onTap: () {
+                                  controller.validateSubmit(context);
+                                },
+                                isProgress: controller.isProgress,
+                              )),
+                        const SizedBox(height: 20),
                       ],
                     ),
                   )

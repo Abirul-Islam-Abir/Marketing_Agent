@@ -7,12 +7,13 @@ class TotalCommissionCard extends StatelessWidget {
   const TotalCommissionCard({
     super.key,
     required this.location,
-    required this.target, required this.date, this.sendTap,
+    required this.target,
+    required this.date,
+    this.sendTap,
   });
 
-  final String location, target,date;
+  final String location, target, date;
   final Function()? sendTap;
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +39,12 @@ class TotalCommissionCard extends StatelessWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: AppColor.kWhiteColor,
-                      fontSize: 17.sp),
+                      fontSize: 20),
                 ),
                 Text(
                   date,
                   style:
-                      TextStyle(color: AppColor.kWhiteColor, fontSize: 14.sp),
+                      TextStyle(color: AppColor.kWhiteColor, fontSize: 16),
                 ),
               ],
             ),
@@ -55,17 +56,22 @@ class TotalCommissionCard extends StatelessWidget {
                 Text(
                   '\$$target',
                   style: const TextStyle(
-                      color: AppColor.kWhiteColor, fontSize: 18,fontWeight: FontWeight.bold),
+                      color: AppColor.kWhiteColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
                 ),
                 InkWell(
-                  onTap:sendTap,
+                  onTap: sendTap,
                   child: CircleAvatar(
-                      radius: 25,
-                      backgroundColor: AppColor.kWhiteColor,
-                      child: SvgPicture.asset(
-                        'assets/svg/Vector.svg',
-                        color: AppColor.kPrimaryColor,height: 30,width: 30,
-                      ),),
+                    radius: 25,
+                    backgroundColor: AppColor.kWhiteColor,
+                    child: SvgPicture.asset(
+                      'assets/svg/Vector.svg',
+                      color: AppColor.kPrimaryColor,
+                      height: 30,
+                      width: 30,
+                    ),
+                  ),
                 ),
               ],
             ),

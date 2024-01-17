@@ -16,52 +16,87 @@ class CustomDrawer extends StatelessWidget {
     return Drawer(
       child: Container(
         color: AppColor.kSecondaryColor,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 20),
-              DrawerUserHeader(
-                  image: '${profileController.userProfileList['avatar']}',
-                  name: '${profileController.userProfileList['name']}',
-                  subtitle:
-                      '${profileController.userProfileList['designation']}'),
-              const SizedBox(height: 40),
-              const Divider(height: 3, color: AppColor.kGreyColor),
-              CustomListTile(
-                  icon: Icons.dashboard,
-                  name: 'Dashboard',
-                  onTap: () {
-                    scaffoldKey.currentState?.closeDrawer();
-                  }),
-              CustomListTile(
-                  icon: Icons.departure_board,
-                  name: 'Doctor onboard',
-                  onTap: () => Get.toNamed(RouteName.doctorOnboardScreen)),
-              CustomListTile(
-                  icon: Icons.money,
-                  name: 'Doctor Total sales',
-                  onTap: () => Get.toNamed(RouteName.totalSalesScreen)),
-              CustomListTile(
-                  icon: Icons.money_sharp,
-                  name: 'Total commission',
-                  onTap: () => Get.toNamed(RouteName.totalCommissionScreen)),
-              CustomListTile(
-                  icon: Icons.pending_actions_sharp,
-                  name: 'Doctor visited',
-                  onTap: () => Get.toNamed(RouteName.doctorVisitedScreen)),
-              CustomListTile(
-                icon: Icons.money_sharp,
-                name: 'Sales targets',
-                onTap: () => Get.toNamed(RouteName.salesTargetScreen),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(onPressed: dashboardController.logout, icon: Icon(Icons.logout,size: 30,color: AppColor.kWhiteColor,)),
+                  IconButton(onPressed: (){scaffoldKey.currentState?.closeDrawer();}, icon: Icon(Icons.cancel,color: AppColor.kWhiteColor,))
+                ],
               ),
-              const CustomListTile(icon: Icons.settings, name: 'Settings'),
-              const CustomListTile(
-                  icon: Icons.arrow_circle_down_sharp, name: 'About'),
-              PrimaryButton(text: 'Log Out', onTap: dashboardController.logout),
-              const SizedBox(height: 100),
-            ],
-          ),
+            ),
+            DrawerUserHeader(
+
+                image: '${profileController.userProfileList['avatar']}',
+                name: '${profileController.userProfileList['name']}',
+                subtitle:
+                    '${profileController.userProfileList['designation']}'),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+
+                  children: [
+                    CustomListTile(
+                        color: AppColor.kScaffoldBlue.withOpacity(0.9),
+                        icon: Icons.dashboard,
+                        name: 'Dashboard',
+                        onTap: () {}),
+                    CustomListTile(   color: AppColor.kSecondaryColor,
+                        icon: Icons.departure_board,
+                        name: 'Doctor onboard',
+                        onTap: () => Get.toNamed(RouteName.doctorOnboardScreen)),
+                    CustomListTile(   color: AppColor.kSecondaryColor,
+                        icon: Icons.money,
+                        name: 'Doctor Total sales',
+                        onTap: () => Get.toNamed(RouteName.totalSalesScreen)),
+                    CustomListTile(   color: AppColor.kSecondaryColor,
+                        icon: Icons.money_sharp,
+                        name: 'Total commission',
+                        onTap: () =>
+                            Get.toNamed(RouteName.totalCommissionScreen)),
+                    CustomListTile(   color: AppColor.kSecondaryColor,
+                        icon: Icons.dashboard,
+                        name: 'Dashboard',
+                        onTap: () {
+                          scaffoldKey.currentState?.closeDrawer();
+                        }),
+                    CustomListTile(   color: AppColor.kSecondaryColor,
+                        icon: Icons.departure_board,
+                        name: 'Doctor onboard',
+                        onTap: () => Get.toNamed(RouteName.doctorOnboardScreen)),
+                    CustomListTile(   color: AppColor.kSecondaryColor,
+                        icon: Icons.money,
+                        name: 'Doctor Total sales',
+                        onTap: () => Get.toNamed(RouteName.totalSalesScreen)),
+                    CustomListTile(   color: AppColor.kSecondaryColor,
+                        icon: Icons.money_sharp,
+                        name: 'Total commission',
+                        onTap: () =>
+                            Get.toNamed(RouteName.totalCommissionScreen)),
+                    CustomListTile(   color: AppColor.kSecondaryColor,
+                        icon: Icons.pending_actions_sharp,
+                        name: 'Doctor visited',
+                        onTap: () => Get.toNamed(RouteName.doctorVisitedScreen)),
+                    CustomListTile(   color: AppColor.kSecondaryColor,
+                      icon: Icons.money_sharp,
+                      name: 'Sales targets',
+                      onTap: () => Get.toNamed(RouteName.salesTargetScreen),
+                    ),
+                    const CustomListTile(   color: AppColor.kSecondaryColor,icon: Icons.settings, name: 'Settings'),
+                    const CustomListTile(   color: AppColor.kSecondaryColor,
+                        icon: Icons.arrow_circle_down_sharp, name: 'About'),
+                  ],
+                ),
+              ),
+            ),
+
+
+            const SizedBox(height: 70),
+          ],
         ),
       ),
     );

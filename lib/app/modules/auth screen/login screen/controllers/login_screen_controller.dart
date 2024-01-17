@@ -32,7 +32,11 @@ class LoginScreenController extends GetxController {
       AwesomeDialogs.showErrorDialog(context, desc: response['message']);
     } else if (response['message'] == 'Invalid password.') {
       AwesomeDialogs.showErrorDialog(context, desc: response['message']);
-    } else {
+    } else if (response['message'] == 'The password field must not be greater than 32 characters.') {
+      AwesomeDialogs.showErrorDialog(context, desc: response['message']);
+    }else if (response['message'] == 'The password field must be at least 6 characters.') {
+      AwesomeDialogs.showErrorDialog(context, desc: response['message']);
+    }else {
       AwesomeDialogs.showErrorDialog(context,
           desc: response['data']['password'][0]);
     }

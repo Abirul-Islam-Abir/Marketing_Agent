@@ -16,9 +16,12 @@ final TextEditingController? controller;
         height: 50,
         width: double.infinity,
         child: TextFormField(
+          maxLines: 5,
+          minLines: 1,
           controller: controller,
           decoration: InputDecoration(
             labelText: label,
+
             floatingLabelBehavior: FloatingLabelBehavior.always,
             hintStyle:
                 const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),

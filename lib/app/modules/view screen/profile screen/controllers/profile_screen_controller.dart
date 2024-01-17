@@ -46,11 +46,11 @@ class ProfileScreenController extends GetxController {
       if (response['success'] == true) {
         _userProfileList = response['data']['user'];
         nameController.text = '${userProfileList['name']}';
-        numberController.text = '${userProfileList['number']}';
+        numberController.text = '${userProfileList['phone']}';
         designationController.text = '${userProfileList['designation']}';
-        companyController.text = '${userProfileList['company']}';
+        companyController.text = 'Amin Diagnostic';
         nidController.text = '${userProfileList['nid']}';
-        addressController.text = '${userProfileList['address']}';
+        addressController.text = ' ${userProfileList['address']}';
 
       }
     }

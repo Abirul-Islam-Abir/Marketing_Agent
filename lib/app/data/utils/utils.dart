@@ -257,7 +257,7 @@ void completedLocationTaskDialog() {
                           right: 50,
                           left: 50,
                           child: Image.asset(
-                            'assets/images/medal_1498838 1.png',
+                            'assets/images/medal.png',
                             height: 120,
                             width: 120,
                           ),

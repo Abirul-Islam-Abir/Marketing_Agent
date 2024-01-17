@@ -39,7 +39,7 @@ class SalesTargetCard extends StatelessWidget {
                     style: TextStyle(
                         color: AppColor.kWhiteColor,
                         fontWeight: FontWeight.bold,
-                        fontSize: 16.sp),
+                        fontSize: 20),
                   ),
                   const SizedBox()
                 ],
@@ -49,7 +49,7 @@ class SalesTargetCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const SizedBox(),
+                const SizedBox(width: 20,),
                 Text(
                   '\$$completed/\$$target',
                   style: const TextStyle(

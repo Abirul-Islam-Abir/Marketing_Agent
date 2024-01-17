@@ -2,10 +2,10 @@ import '../../../../data/const/export.dart';
 
 class CustomPinCodeField extends StatelessWidget {
   CustomPinCodeField({
-    super.key,
+    Key? key,
     required this.otp,
     this.onCompleted,
-  });
+  }) : super(key: key);
 
   final TextEditingController? otp;
   final void Function(String)? onCompleted;
@@ -15,7 +15,7 @@ class CustomPinCodeField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
-      child: PinCodeTextField(
+      child: Obx(() => PinCodeTextField(
           focusNode: controller.otpFocus,
           appContext: context,
           autoFocus: true,
@@ -26,27 +26,37 @@ class CustomPinCodeField extends StatelessWidget {
           obscuringCharacter: '*',
           blinkWhenObscuring: true,
           animationType: AnimationType.fade,
+          errorAnimationController: controller.errorController,
           validator: (v) {
-            if (v!.length < 3) {
-              return "Type your pin code";
+            if (v!.length < 4) {
+              controller.errorController!.add(ErrorAnimationType.shake);
+              return "Blank OTP field!";
+            } else if (controller.errorText == 'Invalid OTP.') {
+              controller.errorController!.add(ErrorAnimationType.shake);
+              controller.hasError.value = true;
+              return "OTP did not match!";
             } else {
               return null;
             }
           },
+          errorTextSpace: 30,
           pinTheme: PinTheme(
+              activeFillColor:
+                  controller.hasError.value ? Colors.red : AppColor.kWhiteColor,
               shape: PinCodeFieldShape.box,
               activeColor: AppColor.kWhiteColor,
               inactiveColor: AppColor.kWhiteColor,
               borderRadius: BorderRadius.circular(5),
               fieldHeight: 50,
               fieldWidth: 50,
-              activeFillColor: AppColor.kWhiteColor,
               selectedColor: AppColor.kWhiteColor,
               selectedFillColor: AppColor.kWhiteColor,
               inactiveFillColor: AppColor.kWhiteColor,
               disabledColor: AppColor.kWhiteColor,
-              errorBorderColor: AppColor.kWhiteColor),
-          textStyle: const TextStyle(color: AppColor.kWhiteColor,fontWeight: FontWeight.bold),
+              errorBorderColor: AppColor.kRedColor),
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+          textStyle: const TextStyle(
+              color: AppColor.kWhiteColor, fontWeight: FontWeight.bold),
           cursorColor: AppColor.kWhiteColor,
           animationDuration: const Duration(milliseconds: 300),
           enableActiveFill: false,
@@ -59,11 +69,13 @@ class CustomPinCodeField extends StatelessWidget {
                 blurRadius: 10)
           ],
           onCompleted: onCompleted,
-          onChanged: (value) {},
+          onChanged: (value) {
+            controller.otpRemovedValidate();
+          },
           beforeTextPaste: (text) {
             debugPrint("Allowing to paste $text");
             return true;
-          }),
+          })),
     );
   }
 }

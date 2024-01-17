@@ -31,9 +31,9 @@ export 'package:amin_agent/app/modules/widgets/login_background_view.dart';
 
 export '../../data/utils/app_images.dart';
 export '../../data/utils/app_string.dart';
-  export '../../modules/widgets/custom_text_field.dart';
+export '../../modules/widgets/custom_text_field.dart';
 export '../../modules/widgets/big_text.dart';
- export 'package:amin_agent/app/modules/auth%20screen/login%20screen/components/forget_button.dart';
+export 'package:amin_agent/app/modules/auth%20screen/login%20screen/components/forget_button.dart';
 
 export 'package:amin_agent/app/modules/auth%20screen/login%20screen/components/login_to_continue_text.dart';
 export 'package:amin_agent/app/modules/auth%20screen/otp%20verify%20screen/controller/otp_verify_controller.dart';
@@ -41,12 +41,12 @@ export 'package:amin_agent/app/modules/auth%20screen/otp%20verify%20screen/contr
 export 'package:amin_agent/app/modules/auth%20screen/otp%20verify%20screen/components/custom_pin_code_field.dart';
 export 'package:amin_agent/app/modules/widgets/long_line_subtitle.dart';
 export 'package:amin_agent/app/modules/widgets/received_code_text.dart';
- export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/custom_chart.dart';
+export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/custom_chart.dart';
 export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/custom_drawer.dart';
 export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/dashboard_text.dart';
 export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/sales_targeted_dashboard_progress_card.dart';
 export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/small_details_card_board.dart';
- export 'package:amin_agent/app/modules/view%20screen/greetings%20screen/components/animate_congratulate.dart';
+export 'package:amin_agent/app/modules/view%20screen/greetings%20screen/components/animate_congratulate.dart';
 export 'package:amin_agent/app/modules/view%20screen/greetings%20screen/components/completed_target_text.dart';
 export 'package:amin_agent/app/modules/view%20screen/greetings%20screen/components/continue_button.dart';
 export 'package:amin_agent/app/modules/view%20screen/greetings%20screen/controllers/greetings_screen_controller.dart';
@@ -54,7 +54,7 @@ export 'dart:async';
 export 'package:amin_agent/app/data/dummy%20data/notification_dummy_data.dart';
 export 'package:amin_agent/app/modules/view%20screen/notification%20screen/components/notification_card.dart';
 export 'package:amin_agent/app/modules/view%20screen/notification%20screen/controllers/notification_screen_controller.dart';
- export 'package:amin_agent/app/data/dummy%20data/sales_target_group_list.dart';
+export 'package:amin_agent/app/data/dummy%20data/sales_target_group_list.dart';
 export 'package:amin_agent/app/modules/view%20screen/sales%20target%20%20screen/components/sales_target_card.dart';
 export 'package:amin_agent/app/modules/view%20screen/sales%20target%20%20screen/controllers/sales_target%20_screen_controller.dart';
 export 'package:amin_agent/app/modules/widgets/filter_btn.dart';
@@ -67,7 +67,7 @@ export 'package:amin_agent/app/modules/view%20screen/profile%20screen/components
 export 'package:amin_agent/app/modules/view%20screen/profile%20screen/components/visit_target_card.dart';
 export 'package:amin_agent/app/modules/view%20screen/user%20profile%20edit%20screen/view/user_profile_edit_screen.dart';
 export 'package:amin_agent/app/modules/widgets/profile_background_view.dart';
- export 'package:amin_agent/app/data/dummy%20data/schedule_dummy_data.dart';
+export 'package:amin_agent/app/data/dummy%20data/schedule_dummy_data.dart';
 export 'package:amin_agent/app/data/utils/utils.dart';
 export 'package:amin_agent/app/modules/view%20screen/map%20screen/components/user_card_location.dart';
 export 'package:flutter/services.dart';
@@ -78,10 +78,8 @@ export 'package:amin_agent/app/modules/view%20screen/doctor%20onboard%20screen/c
 export 'package:amin_agent/app/modules/view%20screen/doctor%20onboard%20screen/controllers/doctor_onboard_screen_controller.dart';
 export 'package:amin_agent/app/modules/widgets/secondary_appbar.dart';
 export 'package:amin_agent/app/data/dummy%20data/commission_dummy_data.dart';
-export 'package:amin_agent/app/modules/view%20screen/total%20commission%20%20screen/components/build_listview_builder.dart';
 export 'package:amin_agent/app/modules/view%20screen/total%20commission%20%20screen/controllers/commission_report_screen_controller.dart';
 export 'package:amin_agent/app/data/dummy%20data/sales_report_dummy_data.dart';
-export 'package:amin_agent/app/modules/view%20screen/total%20sales%20screen/components/list_builder.dart';
 export 'package:amin_agent/app/modules/view%20screen/total%20sales%20screen/controllers/total_sales_screen_controller.dart';
 export 'package:amin_agent/app/modules/widgets/user_avatar.dart';
 export 'package:amin_agent/app/api%20services/auth/resend_otp.dart';
@@ -112,4 +110,4 @@ export 'package:amin_agent/app/modules/view%20screen/total%20commission%20%20scr
 export 'package:amin_agent/app/modules/view%20screen/total%20commission%20%20screen/views/total_commission_screen.dart';
 export 'package:amin_agent/app/modules/view%20screen/total%20sales%20screen/bindings/total_sales_screen_binding.dart';
 export 'package:amin_agent/app/modules/view%20screen/total%20sales%20screen/views/total_sales_screen.dart';
- export 'package:amin_agent/app/modules/view%20screen/doctor%20visited%20screen/views/doctor_visited_screen_view.dart';
+export 'package:amin_agent/app/modules/view%20screen/doctor%20visited%20screen/views/doctor_visited_screen_view.dart';

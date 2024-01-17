@@ -23,7 +23,7 @@ class CustomFloatingButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(50),
           ),
           onPressed: onTap,
-          backgroundColor: AppColor.kPrimaryColor,
+          backgroundColor: AppColor.kWhiteColor,
           child: Padding(
             padding: const EdgeInsets.all(12),
             child: SvgPicture.asset(

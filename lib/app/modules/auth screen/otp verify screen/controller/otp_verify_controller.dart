@@ -4,11 +4,14 @@ class OtpVerifyScreenController extends GetxController {
   final TextEditingController otp = TextEditingController();
   StreamController<ErrorAnimationType>? errorController;
   FocusNode otpFocus = FocusNode();
-  bool hasError = false;
+  RxBool hasError = false.obs;
   String currentText = "";
+  RxBool _isCompleted = true.obs;
+ String errorText = '';
   final formKey = GlobalKey<FormState>();
   final RxBool _isProgress = false.obs;
   bool get isProgress => _isProgress.value;
+  bool get isCompleted => _isCompleted.value;
   final id = Get.arguments;
   var countdown = 60.obs;
   late Timer _timer;
@@ -41,7 +44,8 @@ class OtpVerifyScreenController extends GetxController {
           'otp': response['data']['reset_otp'].toString()
         });
       } else {
-        AwesomeDialogs.showErrorDialog(context, desc: response['message']);
+        errorText = response['message'];
+        // AwesomeDialogs.showErrorDialog(context, desc: response['message']);
       }
     } else {
       final response = await verifyOtpRequest(id: id['id'], otp: otp.text);
@@ -50,12 +54,15 @@ class OtpVerifyScreenController extends GetxController {
         StoreData.saveId(response['data']['user_id'].toString());
         Get.offAllNamed(RouteName.bottomNav);
       } else {
-        otp.clear();
-        AwesomeDialogs.showErrorDialog(context, desc: response['message']);
+        errorText = response['message'];
+        /*otp.clear();*/
+      //  AwesomeDialogs.showErrorDialog(context, desc: response['message']);
       }
     }
   }
-
+otpRemovedValidate(){
+    _isCompleted.value = true;
+}
   Future resendOtp(context) async {
     final response = await resendOtpRequest(id: id['id']);
     if (response['success'] == true) {
@@ -63,6 +70,7 @@ class OtpVerifyScreenController extends GetxController {
     } else {
       AwesomeDialogs.showErrorDialog(context,
           desc: response['data']['phone'][0]);
+      return '';
     }
   }
 
@@ -81,6 +89,7 @@ class OtpVerifyScreenController extends GetxController {
 
   void validateSubmit(context) {
     otpFocus.unfocus();
+    _isCompleted.value = false;
     if (formKey.currentState!.validate()) {
       otpVerifyInitializeMethod(context);
     }

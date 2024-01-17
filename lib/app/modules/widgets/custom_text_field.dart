@@ -1,5 +1,4 @@
 import 'package:amin_agent/app/data/const/export.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -33,7 +32,7 @@ class CustomTextField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
       child: TextFormField(
 
-        style: TextStyle(color: AppColor.kWhiteColor, fontSize: 18.sp),
+        style: const TextStyle(color: AppColor.kWhiteColor, fontSize: 20),
         onEditingComplete: onEditingComplete,
         focusNode: focusNode,
         validator: validator,

@@ -14,42 +14,45 @@ class ProfileDetailsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.kScaffoldWhite,
       appBar: buildNavigateAppbar('Profile'),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            UserAvatar('${controller.userProfileList['avatar']}'),
-            ProfileDetailsCard(
-              label: 'Name',
-              name: '${controller.userProfileList['name']}',
-            ),
-            ProfileDetailsCard(
-              label: 'Phone Number',
-              name: '${controller.userProfileList['number']}',
-            ),
-            ProfileDetailsCard(
-              label: 'Designation',
-              name: '${controller.userProfileList['designation']}',
-            ),
-            ProfileDetailsCard(
-              label: 'Company',
-              name: '${controller.userProfileList['company']}',
-            ),
-            ProfileDetailsCardWithUpload(
-              showTap: () {},
-              uploadTap: () {},
-              label: 'NID Card',
-              name: '${controller.userProfileList['nid']}',
-            ),
-            ProfileDetailsCard(
-              label: 'Passport Card',
-              name: '${controller.userProfileList['passport']}',
-            ),
-            ProfileDetailsCard(
-              label: 'Address',
-              name: '${controller.userProfileList['address']}',
-            ),
-            const SizedBox(height: 30)
-          ],
+      body: SizedBox(width: double.infinity,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              UserAvatar('${controller.userProfileList['avatar']}'),
+              ProfileDetailsCard(
+                label: 'Name',
+                name: '${controller.userProfileList['name']}',
+              ),
+              ProfileDetailsCard(
+                label: 'Phone Number',
+                name: '${controller.userProfileList['number']}',
+              ),
+              ProfileDetailsCard(
+                label: 'Designation',
+                name: '${controller.userProfileList['designation']}',
+              ),
+              ProfileDetailsCard(
+                label: 'Company',
+                name: '${controller.userProfileList['company']}',
+              ),
+              ProfileDetailsCardWithUpload(
+                showTap: () {},
+                uploadTap: () {},
+                label: 'NID Card',
+                name: '${controller.userProfileList['nid']}',
+              ),
+              ProfileDetailsCard(
+                label: 'Passport Card',
+                name: '${controller.userProfileList['passport']}',
+              ),
+              ProfileDetailsCard(
+                label: 'Address',
+                name: '${controller.userProfileList['address']}',
+              ),
+              const SizedBox(height: 30)
+            ],
+          ),
         ),
       ),
     );

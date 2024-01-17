@@ -25,7 +25,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.done,
                         focusNode: controller.numberFocus,
-                        validator: validateMobile,
+
                         controller: controller.number,
                         hintText: AppString.phone,
                         img: AppImages.textFieldPhone),

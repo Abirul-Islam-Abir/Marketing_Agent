@@ -176,7 +176,7 @@ class MapScreenViewState extends State<MapScreenView> {
                   title: scheduleList[0].title,
                 ),
                 UserCardLocation(
-                  sendTap: completedLocationTaskDialog,
+                  sendTap: (){},
                   image: scheduleList[0].imageUrl,
                   subtitle: scheduleList[0].subtitle,
                   title: scheduleList[0].title,

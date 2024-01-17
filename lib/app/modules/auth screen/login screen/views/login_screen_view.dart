@@ -12,8 +12,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
     return SafeArea(
       child: Scaffold(
         body: PrimaryBackgroundView(
-
-          child: SingleChildScrollView(
+          child:  SingleChildScrollView(
             child: Form(
               key: _controller.formKey,
               child: Column(
@@ -23,9 +22,8 @@ class LoginScreenView extends GetView<LoginScreenController> {
                   LoginToContinueText(AppString.loginToContinue),
                   SizedBox(height: 5.h),
                   CustomTextField(
-                    onEditingComplete:  (){
+                    onEditingComplete: () {
                       FocusScope.of(context).requestFocus(controller.passFocus);
-
                     },
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
@@ -79,7 +77,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                 ],
               ),
             ),
-          ),
+          )
         ),
       ),
     );

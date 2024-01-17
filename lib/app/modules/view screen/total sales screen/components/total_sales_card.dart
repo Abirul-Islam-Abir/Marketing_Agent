@@ -60,13 +60,13 @@ class TotalSalesCard extends StatelessWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: AppColor.kWhiteColor,
-                      fontSize: 17.sp),
+                      fontSize: 20),
                 ),
                 Text(
                   '\$$price',
                   style: TextStyle(
                       color: AppColor.kWhiteColor,
-                      fontSize: 16.sp,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold),
                 ),
               ],
