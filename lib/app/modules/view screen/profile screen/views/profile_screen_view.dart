@@ -1,6 +1,8 @@
+import 'package:amin_agent/app/modules/view%20screen/profile%20details%20screen/view/profile_details_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../data/const/export.dart';
+import '../../../../data/dummy data/profile_picture_dummy_data.dart';
 
 class ProfileScreenView extends GetView<ProfileScreenController> {
   ProfileScreenView({Key? key}) : super(key: key);
@@ -34,8 +36,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                     target: AppString.targetComplete,
                     targetCount: AppString.visitCount,
                   ),
-                  const SizedBox(height: 20),
-                  const ProfilePictureGridBuilder()
+                    ProfilePictureGridBuilder(list: pictureDummyData,)
                 ],
               ),
             ),
@@ -58,14 +59,10 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
           ),
         ],
       ),
-      floatingActionButton: GetBuilder<ProfileScreenController>(
-        builder: (controller) => controller.selectedIndex == 0
-            ? CustomFloatingButton(
-                image: AppImages.uploadSvg,
-                onTap: addPhotoDialog,
-              )
-            : const Text(''),
-      ),
+      floatingActionButton:CustomFloatingButton(
+        image: AppImages.cameraSvg,
+        onTap:  (){Get.to(ProfileDetailsScreen());},
+      )
     );
   }
 }

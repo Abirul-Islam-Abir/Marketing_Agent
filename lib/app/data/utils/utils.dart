@@ -4,7 +4,7 @@ import 'package:amin_agent/app/data/const/export.dart';
 import 'package:flutter_svg/svg.dart';
 
 
-Future primaryDialog(context, {img, title, body, yesTap}) async {
+Future finisScheduleDialog(context, {img, title, body, yesTap}) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must tap button!
@@ -74,7 +74,69 @@ Future primaryDialog(context, {img, title, body, yesTap}) async {
     },
   );
 }
-
+Future takePhotoDialog(context, {img, title,  yesTap}) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: AppColor.kWhiteColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        title: CircleAvatar(
+            radius: 50,
+            backgroundColor: AppColor.kPrimaryColor.withOpacity(0.20),
+            child: SvgPicture.asset(
+              img,
+              color: AppColor.kPrimaryColor,
+              height: 50,
+              width: 50,
+            )),
+        content: SingleChildScrollView(
+          child: Column(   mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style:
+                const TextStyle(fontWeight: FontWeight.bold, fontSize: 25,color: AppColor.kBlackColor),
+              ),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.kPrimaryColor),
+                onPressed: yesTap,
+                child: const Text('Yes',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: AppColor.kWhiteColor)),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.kPrimaryColor),
+                child: const Text(
+                  'No',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: AppColor.kWhiteColor),
+                ),
+                onPressed: () {
+                  Get.back();
+                },
+              ),
+            ],
+          ),
+        ],
+      );
+    },
+  );
+}
 
 
 

@@ -1,9 +1,6 @@
-
-
-import 'package:amin_agent/app/modules/view%20screen/schedule%20screen/components/shedule_listview.dart';
-
 import '../../../../data/const/export.dart';
 import '../../../widgets/appbar.dart';
+import '../components/schedule_card.dart';
 
 class ScheduleScreenView extends GetView<ScheduleScreenController> {
   ScheduleScreenView({Key? key}) : super(key: key);
@@ -15,14 +12,29 @@ class ScheduleScreenView extends GetView<ScheduleScreenController> {
     return Scaffold(
       backgroundColor: AppColor.kWhiteColor,
       appBar: buildSecondaryAppbar('Schedule'),
-      body: Center(
-        child: SizedBox(
-          width: Get.width / 0.6,
-          child: SheduleListView(list: scheduleList),
+      body: ListView.builder(
+        itemCount: scheduleList.length,
+        itemBuilder: (context, index) => ScheduleCard(
+          sendTap: () {
+            Get.toNamed(RouteName.mapScreen);
+          },
+          doneTap: () {
+            finisScheduleDialog(context,
+                img: AppImages.doneIcon,
+                title: 'Are you sure?',
+                body: 'This visit is done!', yesTap: () {
+              Get.back();
+              takePhotoDialog(context,
+                  img: AppImages.cameraSvg,
+                  title: 'Like to take a picture?',
+                  yesTap: completedLocationTaskDialog);
+            });
+          },
+          image: scheduleList[index].imageUrl,
+          subtitle: scheduleList[index].subtitle,
+          title: scheduleList[index].title,
         ),
       ),
     );
   }
 }
-
-

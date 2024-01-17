@@ -1,20 +1,22 @@
 import 'package:amin_agent/app/data/const/export.dart';
-import 'package:get/get.dart';
 
 import '../../../../api services/auth/user_profile.dart';
-import '../../../../data/utils/store_data.dart';
 import '../../../../data/utils/user_data_key.dart';
 
 class ProfileScreenController extends GetxController {
   int selectedIndex = 0;
-  Map _userProfileList = {};
-  Map get userProfileList => _userProfileList;
+  final RxBool _isProgress = false.obs;
+  bool get isProgress => _isProgress.value;
+  Map<String, dynamic> _userProfileList = {}; // Specify the type of the map
+  Map<String, dynamic> get userProfileList => _userProfileList;
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController numberController= TextEditingController();
-  final TextEditingController designationController= TextEditingController();
-  final TextEditingController companyController= TextEditingController();
-  final TextEditingController nidController= TextEditingController();
-  final TextEditingController addressController= TextEditingController();
+  final TextEditingController numberController = TextEditingController();
+  final TextEditingController designationController = TextEditingController();
+  final TextEditingController companyController = TextEditingController();
+  final TextEditingController nidController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+
+
   void increment() {
     selectedIndex = 1;
     update();
@@ -26,6 +28,7 @@ class ProfileScreenController extends GetxController {
   }
 
   double progress = 0.0;
+
   void updateValue(v) {
     progress = v;
     update();
@@ -35,12 +38,20 @@ class ProfileScreenController extends GetxController {
     final token = await box.read(UserDataKey.tokenKey);
     final headerWithToken = {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token', // Corrected header for Bearer token
+      'Authorization': 'Bearer $token',
     };
     if (token != null) {
       final response = await userProfileRequest(headerWithToken);
+      print(response);
       if (response['success'] == true) {
         _userProfileList = response['data']['user'];
+        nameController.text = '${userProfileList['name']}';
+        numberController.text = '${userProfileList['number']}';
+        designationController.text = '${userProfileList['designation']}';
+        companyController.text = '${userProfileList['company']}';
+        nidController.text = '${userProfileList['nid']}';
+        addressController.text = '${userProfileList['address']}';
+
       }
     }
   }
@@ -52,18 +63,14 @@ class ProfileScreenController extends GetxController {
       ]);
     } catch (e) {
       throw Exception('$e');
-    } finally {}
+    } finally {
+      _isProgress.value = false;
+    }
   }
 
   @override
   void onInit() {
     userProfileInitializeMethod();
-    nameController.text = '${userProfileList['name']}';
-    numberController.text = '${userProfileList['number']}';
-    designationController.text = '${userProfileList['designation']}';
-    companyController.text = '${userProfileList['company']}';
-    companyController.text = '${userProfileList['nid']}';
-    print('${userProfileList['name']}');
     super.onInit();
   }
 }

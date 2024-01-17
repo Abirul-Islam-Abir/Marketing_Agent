@@ -13,42 +13,42 @@ class UserProfileEditScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.kScaffoldWhite,
-     appBar: buildNavigateAppbar('Update'),
-      body: SingleChildScrollView(
-        child: Form(
+      appBar: buildNavigateAppbar('Profile Edit'),
+      body: Form(
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
               Align(
                   alignment: Alignment.centerLeft,
-                  child: UserAvatar('${profileController.userProfileList['avatar']}')),
+                  child: UserAvatar(
+                      '${profileController.userProfileList['avatar']}')),
               const SizedBox(height: 30),
               DrawerUpdateCard(
-                controller: profileController.nameController,
-
-                  label: 'Name'),
-                DrawerUpdateCard(
-                 controller: profileController.numberController,
-                    label: 'Phone Number'),
+                  controller: profileController.nameController, label: 'Name'),
               DrawerUpdateCard(
-                controller: profileController.designationController,
-
+                  controller: profileController.numberController,
+                  label: 'Phone Number'),
+              DrawerUpdateCard(
+                  controller: profileController.designationController,
                   label: 'Designation'),
-                DrawerUpdateCard(
+              DrawerUpdateCard(
                   controller: profileController.companyController,
-                    label: 'Company'),
-                DrawerUpdateCard(
+                  label: 'Company'),
+              DrawerUpdateCard(
                   controller: profileController.nidController,
-                   label: 'NID Number'),
-                DrawerUpdateCard( controller: profileController.addressController,label: 'Location'),
+                  label: 'NID Number'),
+              DrawerUpdateCard(
+                  controller: profileController.addressController,
+                  label: 'Location'),
               const SizedBox(height: 30),
               LoginButton(
                 text: 'Update',
                 onTap: () {},
                 isProgress: false,
                 color: AppColor.kPrimaryColor,
-              )
+              ),  const SizedBox(height: 50),
             ],
           ),
         ),

@@ -14,9 +14,9 @@ class GridBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 15),
-      child: Expanded(
+      child: SizedBox(
+        height: Get.height / 2.5,
         child: GridView.builder(
-          physics: const NeverScrollableScrollPhysics(),
           itemCount: controller.userList.length,
           shrinkWrap: true,
           gridDelegate:
@@ -31,7 +31,7 @@ class GridBuilder extends StatelessWidget {
             controller.isSelected =
                 controller.selectedUserIndex ==
                     index;
-        
+
             return GestureDetector(
               onTap: () {
                 controller

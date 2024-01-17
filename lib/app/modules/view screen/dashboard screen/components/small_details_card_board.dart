@@ -37,13 +37,13 @@ class SmallDetailsDashboardCard extends StatelessWidget {
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: AppColor.kWhiteColor),
-                      ),
+                      ), const SizedBox(height: 8,),
                       Text(
                         leftCount,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: AppColor.kWhiteColor,
-                            fontSize: 25),
+                            fontSize: 20),
                       ),
                     ],
                   ),
@@ -71,12 +71,13 @@ class SmallDetailsDashboardCard extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: AppColor.kWhiteColor),
                       ),
+                      const SizedBox(height: 8,),
                       Text(
                         rightCount,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: AppColor.kWhiteColor,
-                            fontSize: 25),
+                            fontSize: 20),
                       ),
                     ],
                   ),

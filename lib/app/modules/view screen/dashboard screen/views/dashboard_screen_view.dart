@@ -30,9 +30,9 @@ class DashboardScreenView extends StatelessWidget {
                   Get.toNamed(RouteName.totalSalesScreen);
                 },
                 leftTitle: controller.text,
-                rightCount: '10000',
+                rightCount: '10,000',
                 rightTitle: 'Total Sales',
-                leftCount: '3500'),
+                leftCount: '3,500'),
             SmallDetailsDashboardCard(
                 leftOnTap: () {
                   Get.toNamed(RouteName.doctorOnboardScreen);
@@ -52,8 +52,8 @@ class DashboardScreenView extends StatelessWidget {
                 text: 'Sales Target',
                 progress: 0.5,
                 collaborate: '5',
-                totalCompletedSales: '1000000',
-                totalSales: '500000')
+                totalCompletedSales: '10,00,000',
+                totalSales: '5,00,000')
           ],
         ),
       ),
