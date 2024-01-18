@@ -36,6 +36,7 @@ class ProfileScreenController extends GetxController {
 
   Future userProfile() async {
     final token = await box.read(UserDataKey.tokenKey);
+    print(token);
     final headerWithToken = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $token',

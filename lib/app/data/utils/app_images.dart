@@ -10,5 +10,6 @@ class AppImages{
   static String textFieldPass = 'assets/images/key-svgrepo-com.png';
   static String doneIcon = 'assets/svg/tick-svgrepo-com 1.svg';
   static String cameraSvg = 'assets/svg/camera svg.svg';
+  static String filterSvg = 'assets/svg/filter svg.svg';
   AppImages._();
 }

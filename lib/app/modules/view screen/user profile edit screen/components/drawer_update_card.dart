@@ -12,21 +12,17 @@ final TextEditingController? controller;
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        height: 50,
-        width: double.infinity,
-        child: TextFormField(
-          maxLines: 5,
-          minLines: 1,
-          controller: controller,
-          decoration: InputDecoration(
-            labelText: label,
-
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintStyle:
-                const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            border: const OutlineInputBorder(),
-          ),
+      child: TextFormField(
+        maxLines: 5,
+        minLines: 1,
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: label,
+          contentPadding: EdgeInsets.all(30),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          hintStyle:
+              const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          border: const OutlineInputBorder(),
         ),
       ),
     );

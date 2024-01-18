@@ -1,5 +1,6 @@
 import '../data/const/export.dart';
 import '../modules/view screen/doctor visited screen/bindings/doctor_visited_screen_binding.dart';
+import '../modules/view screen/profile screen/views/profile_details_screen.dart';
 
 part 'app_routes.dart';
 

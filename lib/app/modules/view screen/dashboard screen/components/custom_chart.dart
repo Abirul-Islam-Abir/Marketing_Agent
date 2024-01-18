@@ -73,7 +73,7 @@ class _CustomChartState extends State<CustomChart> {
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: 16,
+      fontSize: 16,color: AppColor.kWhiteColor
     );
     Widget text;
     switch (value.toInt()) {
@@ -100,7 +100,7 @@ class _CustomChartState extends State<CustomChart> {
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: 15,
+      fontSize: 15,color: AppColor.kWhiteColor
     );
     String text;
     switch (value.toInt()) {

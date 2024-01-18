@@ -20,5 +20,6 @@ abstract class RouteName {
   static const forgetPasswordScreen = '/forget-password-screen';
   static const passwordSetScreen = '/password-set-screen';
   static const doctorVisitedScreen = '/doctor-visited-screen';
+  static const profileDetailsScreen = '/profile-details-screen';
 }
 

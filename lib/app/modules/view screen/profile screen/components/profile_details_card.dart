@@ -1,4 +1,3 @@
-
 import '../../../../data/const/export.dart';
 
 class ProfileDetailsCard extends StatelessWidget {
@@ -32,13 +31,16 @@ class ProfileDetailsCard extends StatelessWidget {
             children: [
               Text(
                 label,
-                style: const TextStyle(fontWeight: FontWeight.w400),
+                style: const TextStyle(
+                    fontWeight: FontWeight.w400, color: AppColor.kWhiteColor),
               ),
               const SizedBox(height: 5),
               Text(
                 name,
                 style: const TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 20),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: AppColor.kWhiteColor),
               ),
             ],
           ),

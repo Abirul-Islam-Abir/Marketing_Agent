@@ -5,10 +5,10 @@ import '../../../../data/const/export.dart';
 class ProfileDetailsCardWithUpload extends StatelessWidget {
   const ProfileDetailsCardWithUpload(
       {super.key,
-        required this.name,
-        required this.label,
-        required this.showTap,
-        required this.uploadTap});
+      required this.name,
+      required this.label,
+      required this.showTap,
+      required this.uploadTap});
   final String name, label;
   final Function() showTap, uploadTap;
   @override
@@ -39,13 +39,17 @@ class ProfileDetailsCardWithUpload extends StatelessWidget {
                     children: [
                       Text(
                         label,
-                        style: const TextStyle(fontWeight: FontWeight.w400),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: AppColor.kWhiteColor),
                       ),
                       const SizedBox(height: 5),
                       Text(
                         name,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18.sp),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: AppColor.kWhiteColor),
                       ),
                     ],
                   ),

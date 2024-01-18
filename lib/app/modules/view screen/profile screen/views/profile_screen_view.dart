@@ -1,4 +1,4 @@
-import 'package:amin_agent/app/modules/view%20screen/profile%20details%20screen/view/profile_details_screen.dart';
+import 'package:amin_agent/app/modules/view%20screen/profile%20screen/views/profile_details_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../data/const/export.dart';
@@ -61,7 +61,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
           ],
         ),
         floatingActionButton: CustomFloatingButton(
-          image: AppImages.cameraSvg,
+          image: AppImages.filterSvg,
           onTap: () {
             Get.to(() => ProfileDetailsScreen());
           },
