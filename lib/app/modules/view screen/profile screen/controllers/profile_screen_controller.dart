@@ -56,7 +56,7 @@ class ProfileScreenController extends GetxController {
       }
     }
   }
-
+//
   Future<void> userProfileInitializeMethod() async {
     try {
       await Future.wait([
