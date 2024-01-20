@@ -15,33 +15,18 @@ class CustomFloatingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        FloatingActionButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50),
-          ),
-          onPressed: onTap,
-          backgroundColor: AppColor.kPrimaryColor,
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: SvgPicture.asset(
-              image,
-            ),
-          ),
+    return FloatingActionButton(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(50),
+      ),
+      onPressed: onTap,
+      backgroundColor: AppColor.kPrimaryColor,
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: SvgPicture.asset(
+          image,
         ),
-        FloatingActionButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50),
-          ),
-          onPressed: onTap,
-          backgroundColor: AppColor.kPrimaryColor,
-          child: const Padding(
-            padding: EdgeInsets.all(8),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

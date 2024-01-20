@@ -5,9 +5,9 @@ import '../components/profile_details_card.dart';
 import '../components/profile_details_with_upload_card.dart';
 
 class ProfileDetailsScreen extends StatelessWidget {
-  ProfileDetailsScreen({super.key});
+  ProfileDetailsScreen({super.key, required this.userList});
 
-  final controller = Get.find<ProfileScreenController>();
+ final Map userList;
 
   @override
   Widget build(BuildContext context) {
@@ -20,27 +20,27 @@ class ProfileDetailsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              UserAvatar('${controller.userProfileList['avatar']}'),
+              UserAvatar('${userList['avatar']}'),
               ProfileDetailsCard(
-                  label: 'Name', name: '${controller.userProfileList['name']}'),
+                  label: 'Name', name: '${userList['name']}'),
               ProfileDetailsCard(
                   label: 'Phone Number',
-                  name: '${controller.userProfileList['phone']}'),
+                  name: '${userList['phone']}'),
               ProfileDetailsCard(
                   label: 'Designation',
-                  name: '${controller.userProfileList['designation']}'),
+                  name: '${userList['designation']}'),
               const ProfileDetailsCard(label: 'Company', name: 'Amin Diagnostic'),
               ProfileDetailsCardWithUpload(
                   showTap: () {},
                   uploadTap: () {},
                   label: 'NID Card',
-                  name: '${controller.userProfileList['nid']}'),
+                  name: '${userList['nid']}'),
               ProfileDetailsCard(
                   label: 'Passport Card',
-                  name: '${controller.userProfileList['passport']}'),
+                  name: '${userList['passport']}'),
               ProfileDetailsCard(
                   label: 'Address',
-                  name: '${controller.userProfileList['address']}'),
+                  name: '${userList['address']}'),
               const SizedBox(height: 30)
             ],
           ),

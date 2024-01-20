@@ -22,15 +22,28 @@ class CustomDrawer extends StatelessWidget {
             const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(onPressed: dashboardController.logout, icon: Icon(Icons.logout,size: 30,color: AppColor.kWhiteColor,)),
-                  IconButton(onPressed: (){scaffoldKey.currentState?.closeDrawer();}, icon: Icon(Icons.cancel,color: AppColor.kWhiteColor,))
+                  IconButton(
+                      onPressed: dashboardController.logout,
+                      icon: const Icon(
+                        Icons.logout,
+                        size: 30,
+                        color: AppColor.kWhiteColor,
+                      )),
+                  IconButton(
+                      onPressed: () {
+                        scaffoldKey.currentState?.closeDrawer();
+                      },
+                      icon: const Icon(
+                        Icons.cancel,
+                        color: AppColor.kWhiteColor,
+                      ))
                 ],
               ),
             ),
             DrawerUserHeader(
-
                 image: '${profileController.userProfileList['avatar']}',
                 name: '${profileController.userProfileList['name']}',
                 subtitle:
@@ -38,63 +51,77 @@ class CustomDrawer extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
-
                   children: [
                     CustomListTile(
                         color: AppColor.kScaffoldBlue.withOpacity(0.9),
                         icon: Icons.dashboard,
                         name: 'Dashboard',
                         onTap: () {}),
-                    CustomListTile(   color: AppColor.kSecondaryColor,
+                    CustomListTile(
+                        color: AppColor.kSecondaryColor,
                         icon: Icons.departure_board,
                         name: 'Doctor onboard',
-                        onTap: () => Get.toNamed(RouteName.doctorOnboardScreen)),
-                    CustomListTile(   color: AppColor.kSecondaryColor,
+                        onTap: () =>
+                            Get.toNamed(RouteName.doctorOnboardScreen)),
+                    CustomListTile(
+                        color: AppColor.kSecondaryColor,
                         icon: Icons.money,
                         name: 'Doctor Total sales',
                         onTap: () => Get.toNamed(RouteName.totalSalesScreen)),
-                    CustomListTile(   color: AppColor.kSecondaryColor,
+                    CustomListTile(
+                        color: AppColor.kSecondaryColor,
                         icon: Icons.money_sharp,
                         name: 'Total commission',
                         onTap: () =>
                             Get.toNamed(RouteName.totalCommissionScreen)),
-                    CustomListTile(   color: AppColor.kSecondaryColor,
+                    CustomListTile(
+                        color: AppColor.kSecondaryColor,
                         icon: Icons.dashboard,
                         name: 'Dashboard',
                         onTap: () {
                           scaffoldKey.currentState?.closeDrawer();
                         }),
-                    CustomListTile(   color: AppColor.kSecondaryColor,
+                    CustomListTile(
+                        color: AppColor.kSecondaryColor,
                         icon: Icons.departure_board,
                         name: 'Doctor onboard',
-                        onTap: () => Get.toNamed(RouteName.doctorOnboardScreen)),
-                    CustomListTile(   color: AppColor.kSecondaryColor,
+                        onTap: () =>
+                            Get.toNamed(RouteName.doctorOnboardScreen)),
+                    CustomListTile(
+                        color: AppColor.kSecondaryColor,
                         icon: Icons.money,
                         name: 'Doctor Total sales',
                         onTap: () => Get.toNamed(RouteName.totalSalesScreen)),
-                    CustomListTile(   color: AppColor.kSecondaryColor,
+                    CustomListTile(
+                        color: AppColor.kSecondaryColor,
                         icon: Icons.money_sharp,
                         name: 'Total commission',
                         onTap: () =>
                             Get.toNamed(RouteName.totalCommissionScreen)),
-                    CustomListTile(   color: AppColor.kSecondaryColor,
+                    CustomListTile(
+                        color: AppColor.kSecondaryColor,
                         icon: Icons.pending_actions_sharp,
                         name: 'Doctor visited',
-                        onTap: () => Get.toNamed(RouteName.doctorVisitedScreen)),
-                    CustomListTile(   color: AppColor.kSecondaryColor,
+                        onTap: () =>
+                            Get.toNamed(RouteName.doctorVisitedScreen)),
+                    CustomListTile(
+                      color: AppColor.kSecondaryColor,
                       icon: Icons.money_sharp,
                       name: 'Sales targets',
                       onTap: () => Get.toNamed(RouteName.salesTargetScreen),
                     ),
-                    const CustomListTile(   color: AppColor.kSecondaryColor,icon: Icons.settings, name: 'Settings'),
-                    const CustomListTile(   color: AppColor.kSecondaryColor,
-                        icon: Icons.arrow_circle_down_sharp, name: 'About'),
+                    const CustomListTile(
+                        color: AppColor.kSecondaryColor,
+                        icon: Icons.settings,
+                        name: 'Settings'),
+                    const CustomListTile(
+                        color: AppColor.kSecondaryColor,
+                        icon: Icons.arrow_circle_down_sharp,
+                        name: 'About'),
                   ],
                 ),
               ),
             ),
-
-
             const SizedBox(height: 70),
           ],
         ),

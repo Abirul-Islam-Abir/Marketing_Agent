@@ -17,6 +17,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
           children: [
             SingleChildScrollView(
               scrollDirection: Axis.vertical,
+              physics: AlwaysScrollableScrollPhysics(),
               child: ProfileBackgroundView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -58,13 +59,18 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                 ),
               ),
             ),
+            Positioned(
+              bottom: 80,
+              right: 20,
+              child: CustomFloatingButton(
+                image: AppImages.filterSvg,
+                onTap: () {
+                  Get.to(() => ProfileDetailsScreen(userList: controller.userProfileList,));
+                },
+              )
+            ),
           ],
-        ),
-        floatingActionButton: CustomFloatingButton(
-          image: AppImages.filterSvg,
-          onTap: () {
-            Get.to(() => ProfileDetailsScreen());
-          },
         ));
+
   }
 }

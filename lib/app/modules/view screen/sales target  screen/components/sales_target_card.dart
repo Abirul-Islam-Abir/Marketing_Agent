@@ -36,7 +36,7 @@ class SalesTargetCard extends StatelessWidget {
                 children: [
                   Text(
                     name,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: AppColor.kWhiteColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 20),

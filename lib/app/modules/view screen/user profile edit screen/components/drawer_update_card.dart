@@ -13,12 +13,11 @@ final TextEditingController? controller;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
-        maxLines: 5,
+        maxLines: 3,
         minLines: 1,
         controller: controller,
         decoration: InputDecoration(
           labelText: label,
-          contentPadding: EdgeInsets.all(30),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           hintStyle:
               const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),

@@ -2,12 +2,14 @@ import 'package:amin_agent/app/modules/view%20screen/profile%20screen/components
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../model/profile_picture_model.dart';
+
 
 class ProfilePictureGridBuilder extends StatelessWidget {
   const ProfilePictureGridBuilder({
     super.key, required this.list,
   });
-final List list;
+final List<ProfilePictureDataModel> list;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

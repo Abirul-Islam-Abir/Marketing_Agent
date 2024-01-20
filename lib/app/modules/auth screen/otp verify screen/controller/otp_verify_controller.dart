@@ -6,7 +6,7 @@ class OtpVerifyScreenController extends GetxController {
   FocusNode otpFocus = FocusNode();
   RxBool hasError = false.obs;
   String currentText = "";
-  RxBool _isCompleted = true.obs;
+  final RxBool _isCompleted = true.obs;
  String errorText = '';
   final formKey = GlobalKey<FormState>();
   final RxBool _isProgress = false.obs;

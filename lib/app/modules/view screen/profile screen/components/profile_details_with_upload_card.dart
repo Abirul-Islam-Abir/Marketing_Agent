@@ -46,7 +46,7 @@ class ProfileDetailsCardWithUpload extends StatelessWidget {
                       const SizedBox(height: 5),
                       Text(
                         name,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
                             color: AppColor.kWhiteColor),

@@ -6,4 +6,5 @@ ElevatedButtonThemeData globalElevatedButtonStyle() => ElevatedButtonThemeData(
 
     style: ElevatedButton.styleFrom(
         shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))));
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)))
+);

@@ -8,7 +8,6 @@ class UserProfileEditScreen extends StatelessWidget {
   UserProfileEditScreen({super.key});
 
   final profileController = Get.put(ProfileScreenController());
-  final dashboardController = Get.put(DashboardScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +18,14 @@ class UserProfileEditScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          UserAvatar(
-              '${profileController.userProfileList['avatar']}'),
+          UserAvatar('${profileController.userProfileList['avatar']}'),
           Expanded(
             child: ListView(
               children: [
-
                 const SizedBox(height: 10),
                 DrawerUpdateCard(
-                    controller: profileController.nameController, label: 'Name'),
+                    controller: profileController.nameController,
+                    label: 'Name'),
                 DrawerUpdateCard(
                     controller: profileController.numberController,
                     label: 'Phone Number'),
@@ -62,7 +60,8 @@ class UserProfileEditScreen extends StatelessWidget {
           SecondaryButton(
             text: 'Update',
             onTap: () {},
-          ),  const SizedBox(height: 50),
+          ),
+          const SizedBox(height: 50),
         ],
       ),
     );

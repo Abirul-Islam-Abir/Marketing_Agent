@@ -1,14 +1,16 @@
 import '../../data/const/export.dart';
 import 'package:badges/badges.dart' as badges;
-AppBar buildPrimaryAppBar({text,badge,notificationTap}) {
-  return AppBar(    backgroundColor: AppColor.appBarColor,
+
+AppBar buildPrimaryAppBar({text, badge, notificationTap}) {
+  return AppBar(
+    backgroundColor: AppColor.appBarColor,
     title: Text(
       text,
       style: const TextStyle(fontWeight: FontWeight.bold),
     ),
     actions: [
       IconButton(
-        onPressed:notificationTap,
+        onPressed: notificationTap,
         icon: badges.Badge(
           badgeContent: Text(badge),
           child: const Icon(
@@ -40,7 +42,7 @@ AppBar buildSecondaryAppbar(title) {
 AppBar buildNavigateAppbar(title) {
   return AppBar(
     backgroundColor: AppColor.appBarColor,
-    leading:  IconButton(
+    leading: IconButton(
       onPressed: () {
         Get.back();
       },
@@ -56,7 +58,8 @@ AppBar buildNavigateAppbar(title) {
     ),
   );
 }
-AppBar buildFilterAppBar({text,filterTap}) {
+
+AppBar buildFilterAppBar({text, filterTap}) {
   return AppBar(
     leading: const CustomBackButton(),
     title: Text(
