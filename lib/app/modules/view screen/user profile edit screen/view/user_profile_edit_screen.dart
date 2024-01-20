@@ -2,7 +2,10 @@ import 'package:amin_agent/app/modules/widgets/appbar.dart';
 import 'package:amin_agent/app/modules/view%20screen/user%20profile%20edit%20screen/components/drawer_update_card.dart';
 import 'package:amin_agent/app/modules/widgets/primary_button.dart';
 
+import '../../../../api services/auth/update_profile.dart';
 import '../../../../data/const/export.dart';
+import '../../../../data/utils/user_data_key.dart';
+import '../controller/user_profile_edit_screen_controller.dart';
 
 class UserProfileEditScreen extends StatelessWidget {
   UserProfileEditScreen({super.key});
@@ -27,26 +30,15 @@ class UserProfileEditScreen extends StatelessWidget {
                     controller: profileController.nameController,
                     label: 'Name'),
                 DrawerUpdateCard(
+                    readOnly: true,
                     controller: profileController.numberController,
                     label: 'Phone Number'),
                 DrawerUpdateCard(
                     controller: profileController.designationController,
                     label: 'Designation'),
                 DrawerUpdateCard(
-                    controller: profileController.companyController,
-                    label: 'Company'),
-                DrawerUpdateCard(
-                    controller: profileController.nidController,
-                    label: 'NID Number'),
-                DrawerUpdateCard(
-                    controller: profileController.numberController,
-                    label: 'Phone Number'),
-                DrawerUpdateCard(
-                    controller: profileController.designationController,
-                    label: 'Designation'),
-                DrawerUpdateCard(
-                    controller: profileController.companyController,
-                    label: 'Company'),
+                    controller: profileController.passportController,
+                    label: 'Passport Number'),
                 DrawerUpdateCard(
                     controller: profileController.nidController,
                     label: 'NID Number'),
@@ -57,10 +49,11 @@ class UserProfileEditScreen extends StatelessWidget {
               ],
             ),
           ),
-          SecondaryButton(
-            text: 'Update',
-            onTap: () {},
-          ),
+          Obx(() => SecondaryButton(
+                isProgress: profileController.isProgress,
+                text: 'Update',
+                onTap: profileController.userProfileEdit,
+              )),
           const SizedBox(height: 50),
         ],
       ),

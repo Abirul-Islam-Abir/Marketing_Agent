@@ -26,9 +26,13 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                     ProfileText(AppString.profile),
                     const SizedBox(height: 10),
                     AvatarUpload(),
-                    UserName('${controller.userProfileList['name']}'),
-                    SalesExecutiveText(
-                        '${controller.userProfileList['designation']}'),
+                    GetBuilder<ProfileScreenController>(
+                        builder: (controller) =>
+                            UserName('${controller.userProfileList['name']}')),
+                    GetBuilder<ProfileScreenController>(
+                      builder: (controller) => SalesExecutiveText(
+                          '${controller.userProfileList['designation']}'),
+                    ),
                     const SizedBox(height: 10),
                     VisitAndTargetCard(
                       visit: AppString.visitDone,
@@ -60,17 +64,15 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
               ),
             ),
             Positioned(
-              bottom: 80,
-              right: 20,
-              child: CustomFloatingButton(
-                image: AppImages.filterSvg,
-                onTap: () {
-                  Get.to(() => ProfileDetailsScreen(userList: controller.userProfileList,));
-                },
-              )
-            ),
+                bottom: 80,
+                right: 20,
+                child: CustomFloatingButton(
+                  image: AppImages.filterSvg,
+                  onTap: () {
+                    Get.to(() => ProfileDetailsScreen());
+                  },
+                )),
           ],
         ));
-
   }
 }

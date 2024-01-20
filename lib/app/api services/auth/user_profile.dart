@@ -3,9 +3,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../api_services.dart';
-Future userProfileRequest(headerWithToken) async {
+Future userProfileRequest(token) async {
   final uri = ApiServices.userProfileUrl;
   final url = Uri.parse(uri);
+  final headerWithToken = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer $token',
+  };
   final response = await http.get(url,headers: headerWithToken);
   final decodedResponse = jsonDecode(response.body);
   print(decodedResponse);

@@ -10,19 +10,16 @@ class DashboardScreenController extends GetxController {
 
   Future logout() async {
     final token = await box.read(UserDataKey.tokenKey);
-    final headerWithToken = {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token', // Corrected header for Bearer token
-    };
-    final response = await logOutRequest(headerWithToken);
-    if (response['success'] == true) {
-       box.erase();
-      Get.offAllNamed(RouteName.loginScreen);
-    } else {
-      box.erase();
-      Get.offAllNamed(RouteName.loginScreen);
+    if (token != null) {
+      final response = await logOutRequest(token);
+
+      if (response['success'] == true) {
+        box.erase();
+        Get.offAllNamed(RouteName.loginScreen);
+      } else {
+        box.erase();
+        Get.offAllNamed(RouteName.loginScreen);
+      }
     }
   }
-
-
 }

@@ -5,9 +5,9 @@ import '../components/profile_details_card.dart';
 import '../components/profile_details_with_upload_card.dart';
 
 class ProfileDetailsScreen extends StatelessWidget {
-  ProfileDetailsScreen({super.key, required this.userList});
 
- final Map userList;
+
+ final controller = Get.put(ProfileScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -20,27 +20,26 @@ class ProfileDetailsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              UserAvatar('${userList['avatar']}'),
+              UserAvatar('${controller.userProfileList['avatar']}'),
               ProfileDetailsCard(
-                  label: 'Name', name: '${userList['name']}'),
+                  label: 'Name', name: '${controller.userProfileList['name']}'),
               ProfileDetailsCard(
                   label: 'Phone Number',
-                  name: '${userList['phone']}'),
+                  name: '${controller.userProfileList['phone']}'),
               ProfileDetailsCard(
                   label: 'Designation',
-                  name: '${userList['designation']}'),
-              const ProfileDetailsCard(label: 'Company', name: 'Amin Diagnostic'),
+                  name: '${controller.userProfileList['designation']}'),
               ProfileDetailsCardWithUpload(
                   showTap: () {},
                   uploadTap: () {},
                   label: 'NID Card',
-                  name: '${userList['nid']}'),
+                  name: '${controller.userProfileList['nid']}'),
               ProfileDetailsCard(
                   label: 'Passport Card',
-                  name: '${userList['passport']}'),
+                  name: '${controller.userProfileList['passport']}'),
               ProfileDetailsCard(
                   label: 'Address',
-                  name: '${userList['address']}'),
+                  name: '${controller.userProfileList['address']}'),
               const SizedBox(height: 30)
             ],
           ),

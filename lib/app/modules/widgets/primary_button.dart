@@ -41,31 +41,30 @@ class SecondaryButton extends StatelessWidget {
   const SecondaryButton({
     super.key,
     required this.text,
-    this.onTap,
+    this.onTap, required this.isProgress,
   });
-
+final bool isProgress;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Container(
-        height: 50,
-        width: 250,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5)),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom( backgroundColor: AppColor.kPrimaryColor,),
-          onPressed: onTap,
-          child: Text(
-            text,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: AppColor.kWhiteColor,
+    return isProgress
+        ? const CircularProgressIndicator(color: AppColor.kPrimaryColor)
+        :  Container(
+          height: 50,
+          width: 250,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5)),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom( backgroundColor: AppColor.kPrimaryColor,),
+            onPressed: onTap,
+            child: Text(
+              text,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: AppColor.kWhiteColor,
 
+              ),
             ),
           ),
-        ),
-      ),
-    );
+        );
   }
 }

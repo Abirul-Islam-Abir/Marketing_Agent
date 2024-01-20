@@ -72,6 +72,7 @@ class FilterScreenView extends StatelessWidget {
                         : GetBuilder<FilterScreenController>(
                             builder: (_) => GridBuilder())),
                     SecondaryButton(
+                      isProgress: false,
                         text: 'Filter',
                         onTap: () {
                           controller.setCategory();

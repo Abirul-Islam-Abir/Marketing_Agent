@@ -13,7 +13,7 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isProgress
-        ? const CircularProgressIndicator(color: AppColor.kWhiteColor)
+        ? const CircularProgressIndicator(color: AppColor.kPrimaryColor)
         : SizedBox(
             height: 50,
             width: 300,
