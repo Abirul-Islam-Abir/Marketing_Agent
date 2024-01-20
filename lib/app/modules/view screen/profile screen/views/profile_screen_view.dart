@@ -1,4 +1,4 @@
-import 'package:amin_agent/app/modules/view%20screen/profile%20screen/views/profile_details_screen.dart';
+import 'package:amin_agent/app/modules/view%20screen/profile%20details%20screen/view/profile_details_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 

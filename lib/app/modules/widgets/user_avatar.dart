@@ -20,7 +20,7 @@ class UserAvatar extends StatelessWidget {
         borderWidth: 5,
         elevation: 2,
         radius: 60,
-        child: Image.network(img!),
+        child: Image.network(img!,fit: BoxFit.cover,),
       ),
     );
   }

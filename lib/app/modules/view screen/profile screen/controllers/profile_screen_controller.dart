@@ -5,7 +5,7 @@ import '../../../../api services/auth/update_profile.dart';
 import '../../../../api services/auth/upload_avatar.dart';
 import '../../../../api services/auth/user_profile.dart';
 import '../../../../data/utils/user_data_key.dart';
-import '../views/profile_details_screen.dart';
+import '../../profile details screen/view/profile_details_screen.dart';
 
 class ProfileScreenController extends GetxController {
   //Select index
@@ -39,6 +39,7 @@ class ProfileScreenController extends GetxController {
  * */
   Future userProfile() async {
     final token = await box.read(UserDataKey.tokenKey);
+    print(token);
 
     if (token != null) {
       final response = await userProfileRequest(token);

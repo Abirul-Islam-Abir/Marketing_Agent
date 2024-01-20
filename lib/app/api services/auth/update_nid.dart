@@ -4,12 +4,13 @@ import 'package:http/http.dart' as http;
 
 import '../api_services.dart';
 
-Future<Map<String, dynamic>> uploadImageRequest({path, token}) async {
-  var uri = Uri.parse(ApiServices.updateAvatarUrl);
+Future<Map<String, dynamic>> uploadNIDFileRequest({filePath, token}) async {
+  var uri = Uri.parse(ApiServices.updateNIDUrl);
   var request = http.MultipartRequest("POST", uri);
   request.headers['Authorization'] = 'Bearer $token';
-  var imageUpload = await http.MultipartFile.fromPath('avatar', path);
-  request.files.add(imageUpload);
+  // Add the PDF file
+  var file = await http.MultipartFile.fromPath('nid_pdf', filePath.path);
+  request.files.add(file);
   var response = await request.send();
   if (response.statusCode == 200) {
     final decodedResponse = jsonDecode(await response.stream.bytesToString());
