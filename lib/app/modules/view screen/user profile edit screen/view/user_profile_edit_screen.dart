@@ -5,7 +5,6 @@ import 'package:amin_agent/app/modules/widgets/primary_button.dart';
 import '../../../../api services/auth/update_profile.dart';
 import '../../../../data/const/export.dart';
 import '../../../../data/utils/user_data_key.dart';
-import '../controller/user_profile_edit_screen_controller.dart';
 
 class UserProfileEditScreen extends StatelessWidget {
   UserProfileEditScreen({super.key});
