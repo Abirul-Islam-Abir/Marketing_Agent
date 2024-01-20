@@ -140,7 +140,7 @@ Future takePhotoDialog(context, {img, title,  yesTap}) async {
 
 
 
-void addPhotoDialog() {
+void addPhotoDialog({cameraTap,galleryTap}) {
   Get.bottomSheet(
     Container(
       height: 250,
@@ -174,7 +174,7 @@ void addPhotoDialog() {
           ),
           const SizedBox(height: 20),
           InkWell(
-            onTap: () {},
+            onTap:cameraTap ,
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 8.0),
               child: Row(
@@ -197,7 +197,7 @@ void addPhotoDialog() {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: galleryTap,
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 8.0),
               child: Row(

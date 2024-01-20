@@ -1,4 +1,5 @@
 import 'package:amin_agent/app/modules/view%20screen/profile%20screen/views/profile_details_screen.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../data/const/export.dart';
@@ -17,7 +18,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
           children: [
             SingleChildScrollView(
               scrollDirection: Axis.vertical,
-              physics: AlwaysScrollableScrollPhysics(),
+              physics: const AlwaysScrollableScrollPhysics(),
               child: ProfileBackgroundView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -25,7 +26,17 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                     SizedBox(height: 10.h),
                     ProfileText(AppString.profile),
                     const SizedBox(height: 10),
-                    AvatarUpload(),
+                    GetBuilder<ProfileScreenController>(
+                        builder: (_) => AvatarUpload(onTap: () {
+                              addPhotoDialog(
+                                cameraTap: () {
+                                  controller.getImage(ImageSource.camera);
+                                },
+                                galleryTap: () {
+                                  controller.getImage(ImageSource.gallery);
+                                },
+                              );
+                            })),
                     GetBuilder<ProfileScreenController>(
                         builder: (controller) =>
                             UserName('${controller.userProfileList['name']}')),

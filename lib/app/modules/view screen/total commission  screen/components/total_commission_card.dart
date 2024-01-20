@@ -1,5 +1,4 @@
 import 'package:flutter_svg/svg.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../data/const/export.dart';
 
@@ -36,7 +35,7 @@ class TotalCommissionCard extends StatelessWidget {
               children: [
                 Text(
                   location,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: AppColor.kWhiteColor,
                       fontSize: 20),
@@ -44,7 +43,7 @@ class TotalCommissionCard extends StatelessWidget {
                 Text(
                   date,
                   style:
-                      TextStyle(color: AppColor.kWhiteColor, fontSize: 16),
+                      const TextStyle(color: AppColor.kWhiteColor, fontSize: 16),
                 ),
               ],
             ),
@@ -68,6 +67,7 @@ class TotalCommissionCard extends StatelessWidget {
                     child: SvgPicture.asset(
                       'assets/svg/Vector.svg',
                       color: AppColor.kPrimaryColor,
+
                       height: 30,
                       width: 30,
                     ),

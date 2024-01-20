@@ -57,14 +57,14 @@ class TotalSalesCard extends StatelessWidget {
               children: [
                 Text(
                   name,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: AppColor.kWhiteColor,
                       fontSize: 20),
                 ),
                 Text(
                   '\$$price',
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: AppColor.kWhiteColor,
                       fontSize: 16,
                       fontWeight: FontWeight.bold),

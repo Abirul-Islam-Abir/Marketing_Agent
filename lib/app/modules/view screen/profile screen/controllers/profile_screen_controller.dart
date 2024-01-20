@@ -1,6 +1,8 @@
 import 'package:amin_agent/app/data/const/export.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../api services/auth/update_profile.dart';
+import '../../../../api services/auth/upload_avatar.dart';
 import '../../../../api services/auth/user_profile.dart';
 import '../../../../data/utils/user_data_key.dart';
 import '../views/profile_details_screen.dart';
@@ -8,12 +10,17 @@ import '../views/profile_details_screen.dart';
 class ProfileScreenController extends GetxController {
   //Select index
   int selectedIndex = 0;
+
   //isLoading update button
   final RxBool _isProgress = false.obs;
+
   bool get isProgress => _isProgress.value;
+
   //Store my user profile data here
   Map<String, dynamic> _userProfileList = {};
+
   Map<String, dynamic> get userProfileList => _userProfileList;
+
   /*
   * TextEditingController all
   * using profile edit screen
@@ -26,29 +33,13 @@ class ProfileScreenController extends GetxController {
   final TextEditingController certificationController = TextEditingController();
   final TextEditingController passportController = TextEditingController();
 
-  void increment() {
-    selectedIndex = 1;
-    update();
-  }
-
-  void decrement() {
-    selectedIndex = 0;
-    update();
-  }
-
-  double progress = 0.0;
-
-  void updateValue(v) {
-    progress = v;
-    update();
-  }
-
   /*
  * User Data get method
  * user edit screen form field all set data in field
  * */
   Future userProfile() async {
     final token = await box.read(UserDataKey.tokenKey);
+
     if (token != null) {
       final response = await userProfileRequest(token);
       if (response['success'] == true) {
@@ -62,6 +53,7 @@ class ProfileScreenController extends GetxController {
       }
     }
   }
+
 /*
 * When user come dashboard after calling userProfileInitializeMethod() method automatically
 * */
@@ -96,11 +88,36 @@ class ProfileScreenController extends GetxController {
           certification: certificationController.text,
           passport: passportController.text);
       if (response['success'] == true) {
-        await Get.find<ProfileScreenController>().userProfileInitializeMethod();
+        await userProfileInitializeMethod();
         Get.to(() => ProfileDetailsScreen());
       } else {
         _isProgress.value = false;
       }
+    }
+  }
+
+/*
+* Get images from camera or gallery and set image and image path
+* working profile image edit
+* */
+
+  Future<void> getImage(imageSource) async {
+    try {
+      final pickedFile = await ImagePicker().pickImage(source: imageSource);
+
+      if (pickedFile != null) {
+        final token = await box.read(UserDataKey.tokenKey);
+        if (token != null) {
+          final response =
+              await uploadImageRequest(path: pickedFile.path, token: token);
+          await userProfileInitializeMethod();
+          if (response['success'] == true) {
+            Get.back();
+          }
+        }
+      }
+    } on PlatformException {
+      return;
     }
   }
 

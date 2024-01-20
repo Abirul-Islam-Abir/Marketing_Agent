@@ -6,8 +6,10 @@ import '../components/profile_details_with_upload_card.dart';
 
 class ProfileDetailsScreen extends StatelessWidget {
 
-
+    ProfileDetailsScreen({super.key});
  final controller = Get.put(ProfileScreenController());
+
+
 
   @override
   Widget build(BuildContext context) {

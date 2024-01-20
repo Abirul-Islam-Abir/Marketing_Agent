@@ -12,7 +12,6 @@ Future userProfileRequest(token) async {
   };
   final response = await http.get(url,headers: headerWithToken);
   final decodedResponse = jsonDecode(response.body);
-  print(decodedResponse);
   if (response.statusCode == 200 && decodedResponse['success'] == true) {
     return decodedResponse;
   }

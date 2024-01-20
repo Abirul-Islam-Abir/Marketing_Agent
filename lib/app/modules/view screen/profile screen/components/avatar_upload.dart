@@ -6,7 +6,7 @@ class AvatarUpload extends StatelessWidget {
   });
 
   final   controller = Get.put(ProfileScreenController());
-  final Function()? onTap;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -17,16 +17,16 @@ class AvatarUpload extends StatelessWidget {
           right: -0,
           child: InkWell(
             onTap: onTap,
-            child: const CircleAvatar(
+            child:   CircleAvatar(
               backgroundColor: AppColor.kSecondaryColor,
               radius: 20,
               child: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.camera_alt,
                   color: AppColor.kWhiteColor,
                   size: 25,
                 ),
-                onPressed: addPhotoDialog,
+                onPressed: onTap,
               ),
             ),
           ),

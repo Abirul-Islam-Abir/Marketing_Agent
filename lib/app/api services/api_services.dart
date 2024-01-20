@@ -11,6 +11,7 @@ class ApiServices {
   static String userProfileUrl = '$_baseUrl$_route/me';
   static String resetPassOtpManageUrl = '$_baseUrl$_route/reset-password-otp-match';
   static String updateProfileUrl = '$_baseUrl$_route/update-profile';
+  static String updateAvatarUrl = '$_baseUrl$_route/update-avatar';
 
   ApiServices._();
 }

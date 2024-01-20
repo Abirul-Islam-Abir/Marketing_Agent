@@ -2,9 +2,7 @@ import 'package:amin_agent/app/modules/widgets/appbar.dart';
 import 'package:amin_agent/app/modules/view%20screen/user%20profile%20edit%20screen/components/drawer_update_card.dart';
 import 'package:amin_agent/app/modules/widgets/primary_button.dart';
 
-import '../../../../api services/auth/update_profile.dart';
 import '../../../../data/const/export.dart';
-import '../../../../data/utils/user_data_key.dart';
 
 class UserProfileEditScreen extends StatelessWidget {
   UserProfileEditScreen({super.key});
