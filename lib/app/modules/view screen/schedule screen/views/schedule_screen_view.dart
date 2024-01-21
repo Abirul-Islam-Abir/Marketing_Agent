@@ -3,9 +3,8 @@ import '../../../widgets/appbar.dart';
 import '../components/schedule_card.dart';
 
 class ScheduleScreenView extends GetView<ScheduleScreenController> {
-  ScheduleScreenView({Key? key}) : super(key: key);
-  @override
-  final controller = Get.put(ScheduleScreenController());
+  const ScheduleScreenView({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {

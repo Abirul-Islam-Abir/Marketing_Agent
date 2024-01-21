@@ -17,7 +17,8 @@ class PictureGridCard extends StatelessWidget {
         height: 100,
         width: 100,
         decoration: BoxDecoration(
-            image: DecorationImage(fit: BoxFit.cover,
+            image: DecorationImage(
+              fit: BoxFit.fitHeight,
               image: NetworkImage(
                 image!,
               ),

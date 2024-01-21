@@ -6,9 +6,8 @@ import '../../filter screen/views/filter_screen_view.dart';
 import '../components/total_commission_card.dart';
 
 class TotalCommissionScreen extends StatelessWidget {
-  TotalCommissionScreen({Key? key}) : super(key: key);
+  const TotalCommissionScreen({Key? key}) : super(key: key);
 
-  final controller = Get.put(TotalCommissionScreenController());
 
   @override
   Widget build(BuildContext context) => Scaffold(

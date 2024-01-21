@@ -4,7 +4,7 @@ import '../../../widgets/appbar.dart';
 class DashboardScreenView extends StatelessWidget {
   DashboardScreenView({Key? key}) : super(key: key);
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  final controller = Get.put(DashboardScreenController());
+  final _controller = Get.put(DashboardScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class DashboardScreenView extends StatelessWidget {
                 rightOnTap: () {
                   Get.toNamed(RouteName.totalSalesScreen);
                 },
-                leftTitle: controller.text,
+                leftTitle: _controller.text,
                 rightCount: '10,000',
                 rightTitle: 'Total Sales',
                 leftCount: '3,500'),

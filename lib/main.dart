@@ -2,16 +2,19 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'app/app info/app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   runApp(
-     DevicePreview(
-    enabled: !kReleaseMode,
-    builder: (context) => const AminAgent(), // Wrap your app
-  ),
-  //const AminAgent(),
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => const MPO(), // Wrap your app
+    ),
+    //const AminAgent(),
   );
 }
+
+

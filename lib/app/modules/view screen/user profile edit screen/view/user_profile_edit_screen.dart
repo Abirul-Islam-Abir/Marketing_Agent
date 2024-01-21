@@ -4,56 +4,66 @@ import 'package:amin_agent/app/modules/widgets/primary_button.dart';
 
 import '../../../../data/const/export.dart';
 
+// UserProfileEditScreen is a StatelessWidget for editing user profile information.
 class UserProfileEditScreen extends StatelessWidget {
   UserProfileEditScreen({super.key});
 
-  final profileController = Get.put(ProfileScreenController());
+  // Create an instance of ProfileScreenController using GetX and put it into the GetX dependency injection system
+  final _controller = Get.put(ProfileScreenController());
 
   @override
   Widget build(BuildContext context) {
+    // Get the user profile data from the controller
+    final data = _controller.userProfileList;
+
     return Scaffold(
       backgroundColor: AppColor.kScaffoldWhite,
+      // Build the app bar with a title
       appBar: buildNavigateAppbar('Profile Edit'),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          UserAvatar('${profileController.userProfileList['avatar']}'),
+          // Display the user avatar using the UserAvatar widget
+          UserAvatar('${data['avatar']}'),
           Expanded(
             child: ListView(
               children: [
                 const SizedBox(height: 10),
+                // DrawerUpdateCard is a custom widget for updating profile information with a text field
                 DrawerUpdateCard(
-                    controller: profileController.nameController,
+                    controller: _controller.nameController,
                     label: 'Name'),
                 DrawerUpdateCard(
                     readOnly: true,
-                    controller: profileController.numberController,
+                    controller: _controller.numberController,
                     label: 'Phone Number'),
                 DrawerUpdateCard(
-                    controller: profileController.designationController,
+                    controller: _controller.designationController,
                     label: 'Designation'),
                 DrawerUpdateCard(
-                    controller: profileController.passportController,
+                    controller: _controller.passportController,
                     label: 'Passport Number'),
                 DrawerUpdateCard(
-                    controller: profileController.nidController,
+                    controller: _controller.nidController,
                     label: 'NID Number'),
                 DrawerUpdateCard(
-                    controller: profileController.addressController,
+                    controller: _controller.addressController,
                     label: 'Location'),
                 const SizedBox(height: 30),
               ],
             ),
           ),
+          // Obx is a GetX widget that rebuilds when the observable value changes
           Obx(() => SecondaryButton(
-                isProgress: profileController.isProgress,
-                text: 'Update',
-                onTap: profileController.userProfileEdit,
-              )),
+            isProgress: _controller.isProgress,
+            text: 'Update',
+            onTap: _controller.userProfileEdit,
+          )),
           const SizedBox(height: 50),
         ],
       ),
     );
   }
 }
+

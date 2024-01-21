@@ -12,14 +12,12 @@ class DashboardScreenController extends GetxController {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
       final response = await logOutRequest(token);
-
       if (response['success'] == true) {
-        box.erase();
-        Get.offAllNamed(RouteName.loginScreen);
-      } else {
         box.erase();
         Get.offAllNamed(RouteName.loginScreen);
       }
     }
+    box.erase();
+    Get.offAllNamed(RouteName.loginScreen);
   }
 }

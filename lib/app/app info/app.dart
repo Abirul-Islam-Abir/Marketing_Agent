@@ -1,9 +1,10 @@
-import 'package:device_preview/device_preview.dart';
+ import 'package:device_preview/device_preview.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../main.dart';
 import '../data/const/export.dart';
 
-class AminAgent extends StatelessWidget {
-  const AminAgent({super.key});
+class MPO extends StatelessWidget {
+  const MPO({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +18,11 @@ class AminAgent extends StatelessWidget {
             darkTheme: ThemeData.light(),
             debugShowCheckedModeBanner: false,
             title: AppInfo.appName,
-            initialRoute: RouteName.initial,
+             initialRoute: RouteName.initial,
             getPages: AppPages.routes,
             initialBinding: StateHolderBinding(),
             theme: mainTheme(),
+
           );
         },
         maxTabletWidth: 900);

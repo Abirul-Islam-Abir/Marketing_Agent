@@ -3,9 +3,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../data/const/export.dart';
 
 class GreetingsScreenView extends GetView<GreetingsScreenController> {
-  GreetingsScreenView({Key? key}) : super(key: key);
-  @override
-  final controller = Get.put(GreetingsScreenController());
+  const GreetingsScreenView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

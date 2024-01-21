@@ -3,9 +3,9 @@ import '../../../../data/const/export.dart';
 import '../../../widgets/appbar.dart';
 
 class NotificationScreenView extends GetView<NotificationScreenController> {
-  NotificationScreenView({Key? key}) : super(key: key);
+  const NotificationScreenView({Key? key}) : super(key: key);
   @override
-  final controller = Get.put(NotificationScreenController());
+
 
   @override
   Widget build(BuildContext context) {

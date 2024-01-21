@@ -14,7 +14,7 @@ import '../controllers/filter_screen_controller.dart';
 class FilterScreenView extends StatelessWidget {
   FilterScreenView({Key? key}) : super(key: key);
 
-  final controller = Get.put(FilterScreenController());
+  final _controller = Get.put(FilterScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -38,36 +38,36 @@ class FilterScreenView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               PictureAndTargetButton(
-                                tap: controller.selectDateFilter,
+                                tap: _controller.selectDateFilter,
                                 text: 'Date',
-                                backColor: controller.selectedIndex.value == 0
+                                backColor: _controller.selectedIndex.value == 0
                                     ? AppColor.kSecondaryColor
                                     : AppColor.kWhiteColor,
-                                textColor: controller.selectedIndex.value == 0
+                                textColor: _controller.selectedIndex.value == 0
                                     ? AppColor.kWhiteColor
                                     : AppColor.kPrimaryColor,
                               ),
                               const SizedBox(width: 10),
                               PictureAndTargetButton(
-                                tap: controller.selectCategoryFilter,
+                                tap: _controller.selectCategoryFilter,
                                 text: 'Category',
-                                backColor: controller.selectedIndex.value == 1
+                                backColor: _controller.selectedIndex.value == 1
                                     ? AppColor.kSecondaryColor
                                     : AppColor.kWhiteColor,
-                                textColor: controller.selectedIndex.value == 1
+                                textColor: _controller.selectedIndex.value == 1
                                     ? AppColor.kWhiteColor
                                     : AppColor.kPrimaryColor,
                               ),
                             ],
                           ),
                         )),
-                    Obx(() => controller.selectedIndex.value == 0
+                    Obx(() => _controller.selectedIndex.value == 0
                         ? CalendarDatePicker2(
                             config: CalendarDatePicker2Config(
                               calendarType: CalendarDatePicker2Type.range,
                             ),
-                            value: controller.selectedDates,
-                            onValueChanged: controller.onDateChange,
+                            value: _controller.selectedDates,
+                            onValueChanged: _controller.onDateChange,
                           )
                         : GetBuilder<FilterScreenController>(
                             builder: (_) => GridBuilder())),
@@ -75,7 +75,7 @@ class FilterScreenView extends StatelessWidget {
                       isProgress: false,
                         text: 'Filter',
                         onTap: () {
-                          controller.setCategory();
+                          _controller.setCategory();
                           Get.back();
                         }),
                   ],

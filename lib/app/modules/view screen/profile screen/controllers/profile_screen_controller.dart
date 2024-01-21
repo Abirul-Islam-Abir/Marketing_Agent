@@ -13,8 +13,10 @@ class ProfileScreenController extends GetxController {
 
   //isLoading update button
   final RxBool _isProgress = false.obs;
+  bool _isUploadedAvatar = false;
 
   bool get isProgress => _isProgress.value;
+  bool get isUploadedAvatar => _isUploadedAvatar;
 
   //Store my user profile data here
   Map<String, dynamic> _userProfileList = {};
@@ -59,7 +61,8 @@ class ProfileScreenController extends GetxController {
 * When user come dashboard after calling userProfileInitializeMethod() method automatically
 * */
   Future<void> userProfileInitializeMethod() async {
-    _userProfileList.clear();
+    _isProgress.value = true;
+    update();
     try {
       await Future.wait([
         userProfile(),
@@ -105,20 +108,24 @@ class ProfileScreenController extends GetxController {
   Future<void> getImage(imageSource) async {
     try {
       final pickedFile = await ImagePicker().pickImage(source: imageSource);
-
       if (pickedFile != null) {
+        _isUploadedAvatar = true;
+        Get.back();
         final token = await box.read(UserDataKey.tokenKey);
         if (token != null) {
           final response =
               await uploadImageRequest(path: pickedFile.path, token: token);
-          await userProfileInitializeMethod();
+
           if (response['success'] == true) {
-            Get.back();
+            await userProfileInitializeMethod();
           }
         }
       }
     } on PlatformException {
       return;
+    } finally {
+      _isUploadedAvatar = false;
+      update();
     }
   }
 

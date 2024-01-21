@@ -20,17 +20,17 @@ class AppPages {
     ),
     GetPage(
       name: RouteName.scheduleScreen,
-      page: () => ScheduleScreenView(),
+      page: () => const ScheduleScreenView(),
       binding: ScheduleScreenBinding(),
     ),
     GetPage(
       name: RouteName.notificationScreen,
-      page: () => NotificationScreenView(),
+      page: () => const NotificationScreenView(),
       binding: NotificationScreenBinding(),
     ),
     GetPage(
       name: RouteName.greetingsScreen,
-      page: () => GreetingsScreenView(),
+      page: () => const GreetingsScreenView(),
       binding: GreetingsScreenBinding(),
     ),
     GetPage(
@@ -51,7 +51,7 @@ class AppPages {
     ),
     GetPage(
       name: RouteName.totalCommissionScreen,
-      page: () => TotalCommissionScreen(),
+      page: () => const TotalCommissionScreen(),
       binding: TotalCommissionScreenBinding(),
     ),
     GetPage(

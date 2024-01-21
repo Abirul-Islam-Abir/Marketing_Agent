@@ -1,20 +1,37 @@
+ /*Developer Information:
+    Name: Abirul Islam Abir
+    Email: abir80503@gmail.com
+    Phone Number: 01722734871
+    App Development Notes:
+    - This code is part of the development of MPO.
+    - Additional notes or information about the development process*/
 
+// This class manages API-related URLs for the application.
 class ApiServices {
+  // Base URL for the API
   static const String _baseUrl = 'https://mpotrack.com';
-  static const String _route = '/public/api/v1/app';
-  static String loginUrl = '$_baseUrl$_route/login';
-  static String verifyOtpUrl = '$_baseUrl$_route/verify-otp';
-  static String logOutUrl = '$_baseUrl$_route/logout';
-  static String resendOtpUrl = '$_baseUrl$_route/resend-otp';
-  static String forgotPasswordUrl = '$_baseUrl$_route/forgot-password';
-  static String resetPasswordUrl = '$_baseUrl$_route/reset-password';
-  static String userProfileUrl = '$_baseUrl$_route/me';
-  static String resetPassOtpManageUrl = '$_baseUrl$_route/reset-password-otp-match';
-  static String updateProfileUrl = '$_baseUrl$_route/update-profile';
-  static String updateAvatarUrl = '$_baseUrl$_route/update-avatar';
-  static String updateNIDUrl = '$_baseUrl$_route/update-nid';
 
+  // Common route for API endpoints
+  static const String _endPoint = '/public/api/v1/app';
+
+  // URLs for various API endpoints
+  static String loginUrl = '$_baseUrl$_endPoint/login';
+  static String verifyOtpUrl = '$_baseUrl$_endPoint/verify-otp';
+  static String logOutUrl = '$_baseUrl$_endPoint/logout';
+  static String resendOtpUrl = '$_baseUrl$_endPoint/resend-otp';
+  static String forgotPasswordUrl = '$_baseUrl$_endPoint/forgot-password';
+  static String resetPasswordUrl = '$_baseUrl$_endPoint/reset-password';
+  static String userProfileUrl = '$_baseUrl$_endPoint/me';
+  static String resetPassOtpManageUrl =
+      '$_baseUrl$_endPoint/reset-password-otp-match';
+  static String updateProfileUrl = '$_baseUrl$_endPoint/update-profile';
+  static String updateAvatarUrl = '$_baseUrl$_endPoint/update-avatar';
+  static String updateNIDUrl = '$_baseUrl$_endPoint/update-nid';
+  static String updatePassportUrl = '$_baseUrl$_endPoint/update-passport';
+
+  // Private constructor to prevent instantiation
   ApiServices._();
 }
 
+// Common headers for API requests
 final headers = {'Content-Type': 'application/json'};

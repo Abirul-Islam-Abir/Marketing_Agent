@@ -2,11 +2,9 @@ import 'package:flutter/cupertino.dart';
 
 import '../../data/utils/app_images.dart';
 
-
 class ProfileBackgroundView extends StatelessWidget {
   const ProfileBackgroundView({
     super.key,
-
     this.child,
   });
   final Widget? child;

@@ -14,8 +14,8 @@ class ProfileDetailsCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
       child: Container(
-        width: Get.width / 1.2,
-        height: 80,
+        width: double.infinity,
+         height: 80,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           gradient: const LinearGradient(colors: [

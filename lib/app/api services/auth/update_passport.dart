@@ -3,12 +3,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../api_services.dart';
-
-// This function initiates a request to upload an NID (National ID) file by sending a multipart POST request to the specified API endpoint.
-// It expects 'filePath' representing the path to the NID file and 'token' representing the user's authentication token.
-Future<Map<String, dynamic>> uploadNIDFileRequest({filePath, token}) async {
-  // Parse the API URL for updating NID from the ApiServices class
-  var uri = Uri.parse(ApiServices.updateNIDUrl);
+// This function initiates a request to update a passport file by sending a multipart POST request to the specified API endpoint.
+// It expects 'path' representing the path to the passport file and 'token' representing the user's authentication token.
+Future<Map<String, dynamic>> updatePassportRequest({filePath, token}) async {
+  // Parse the API URL for updating the passport file from the ApiServices class
+  var uri = Uri.parse(ApiServices.updatePassportUrl);
 
   // Create a multipart POST request
   var request = http.MultipartRequest("POST", uri);
@@ -16,10 +15,10 @@ Future<Map<String, dynamic>> uploadNIDFileRequest({filePath, token}) async {
   // Set the Authorization header with the user's authentication token
   request.headers['Authorization'] = 'Bearer $token';
 
-  // Add the NID file to the request
-  var nidFileUpload =
-  await http.MultipartFile.fromPath('nid_pdf', filePath.path);
-  request.files.add(nidFileUpload);
+  // Add the passport file to the request
+  var passportFileUpload =
+  await http.MultipartFile.fromPath('passport_pdf', filePath.path);
+  request.files.add(passportFileUpload);
 
   // Send the multipart request and retrieve the response
   var response = await request.send();

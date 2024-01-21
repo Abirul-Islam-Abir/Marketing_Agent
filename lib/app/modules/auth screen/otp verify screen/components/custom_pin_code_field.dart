@@ -31,11 +31,7 @@ class CustomPinCodeField extends StatelessWidget {
             if (v!.length < 4) {
               controller.errorController!.add(ErrorAnimationType.shake);
               return "Blank OTP field!";
-            } else if (controller.errorText == 'Invalid OTP.') {
-              controller.errorController!.add(ErrorAnimationType.shake);
-              controller.hasError.value = true;
-              return "OTP did not match!";
-            } else {
+             } else {
               return null;
             }
           },
@@ -52,7 +48,7 @@ class CustomPinCodeField extends StatelessWidget {
               selectedColor: AppColor.kWhiteColor,
               selectedFillColor: AppColor.kWhiteColor,
               inactiveFillColor: AppColor.kWhiteColor,
-              disabledColor: AppColor.kWhiteColor,
+              disabledColor: AppColor.kRedColor,
               errorBorderColor: AppColor.kRedColor),
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           textStyle: const TextStyle(
@@ -70,8 +66,7 @@ class CustomPinCodeField extends StatelessWidget {
           ],
           onCompleted: onCompleted,
           onChanged: (value) {
-            controller.otpRemovedValidate();
-          },
+           },
           beforeTextPaste: (text) {
             debugPrint("Allowing to paste $text");
             return true;
