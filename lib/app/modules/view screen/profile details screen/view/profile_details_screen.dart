@@ -2,12 +2,13 @@ import 'package:amin_agent/app/data/const/export.dart';
 import 'package:amin_agent/app/modules/widgets/pdf_view.dart';
 
 import '../../../widgets/appbar.dart';
- import '../components/profile_details_card.dart';
+import '../components/profile_details_card.dart';
 import '../components/profile_details_with_upload_card.dart';
 import '../controller/profile_details_screen_controller.dart';
 
 class ProfileDetailsScreen extends StatelessWidget {
   ProfileDetailsScreen({super.key});
+
   final _profileController = Get.put(ProfileScreenController());
   final _controller = Get.put(ProfileDetailsScreenController());
 
@@ -16,7 +17,11 @@ class ProfileDetailsScreen extends StatelessWidget {
     final data = _profileController.userProfileList;
     return Scaffold(
       backgroundColor: AppColor.kScaffoldWhite,
-      appBar: buildNavigateAppbar('Profile'),
+      appBar: updateScreenAppbar(
+          title: 'Profile',
+          editTap: () {
+            Get.to(() => UserProfileEditScreen());
+          }),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,

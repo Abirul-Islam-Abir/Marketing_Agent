@@ -56,9 +56,59 @@ AppBar buildNavigateAppbar(title) {
       style: const TextStyle(
           fontWeight: FontWeight.bold, color: AppColor.kWhiteColor),
     ),
+
   );
 }
-
+AppBar updateScreenAppbar({title,editTap}) {
+  return AppBar(
+      backgroundColor: AppColor.appBarColor,
+      leading: IconButton(
+        onPressed: () {
+          Get.back();
+        },
+        icon: const Icon(
+          Icons.arrow_back_ios_new,
+          color: AppColor.kWhiteColor,
+        ),
+      ),
+      title: Text(
+        title,
+        style: const TextStyle(
+            fontWeight: FontWeight.bold, color: AppColor.kWhiteColor),
+      ),
+      actions: [CircleAvatar(
+        backgroundColor: AppColor.kWhiteColor,
+        child: IconButton(
+          onPressed: editTap,
+          icon: const Icon(
+            Icons.mode_edit_outline,
+            color: AppColor.kPrimaryColor,
+          ),
+        ),
+      ),SizedBox(width: 15),],
+  );
+}
+AppBar pdfViewScreenAppbar({title,editTap}) {
+  return AppBar(
+    backgroundColor: AppColor.appBarColor,
+    leading:  SizedBox(width: 10,),
+    title: Text(
+      title,
+      style: const TextStyle(
+          fontWeight: FontWeight.bold, color: AppColor.kWhiteColor),
+    ),
+    actions: [CircleAvatar(
+      backgroundColor: AppColor.kWhiteColor,
+      child: IconButton(
+        onPressed: editTap,
+        icon: const Icon(
+          Icons.clear_rounded,
+          color: AppColor.kPrimaryColor,
+        ),
+      ),
+    ),SizedBox(width: 15),],
+  );
+}
 AppBar buildFilterAppBar({text, filterTap}) {
   return AppBar(
     leading: const CustomBackButton(),

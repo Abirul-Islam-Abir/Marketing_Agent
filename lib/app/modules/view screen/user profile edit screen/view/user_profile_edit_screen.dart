@@ -20,47 +20,43 @@ class UserProfileEditScreen extends StatelessWidget {
       backgroundColor: AppColor.kScaffoldWhite,
       // Build the app bar with a title
       appBar: buildNavigateAppbar('Profile Edit'),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          // Display the user avatar using the UserAvatar widget
-          UserAvatar('${data['avatar']}'),
-          Expanded(
-            child: ListView(
-              children: [
-                const SizedBox(height: 10),
-                // DrawerUpdateCard is a custom widget for updating profile information with a text field
-                DrawerUpdateCard(
-                    controller: _controller.nameController,
-                    label: 'Name'),
-                DrawerUpdateCard(
-                    readOnly: true,
-                    controller: _controller.numberController,
-                    label: 'Phone Number'),
-                DrawerUpdateCard(
-                    controller: _controller.designationController,
-                    label: 'Designation'),
-                DrawerUpdateCard(
-                    controller: _controller.passportController,
-                    label: 'Passport Number'),
-                DrawerUpdateCard(
-                    controller: _controller.nidController,
-                    label: 'NID Number'),
-                DrawerUpdateCard(
-                    controller: _controller.addressController,
-                    label: 'Location'),
-                const SizedBox(height: 30),
-              ],
-            ),
-          ),
-          // Obx is a GetX widget that rebuilds when the observable value changes
-          Obx(() => SecondaryButton(
-            isProgress: _controller.isProgress,
-            text: 'Update',
-            onTap: _controller.userProfileEdit,
-          )),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            // Display the user avatar using the UserAvatar widget
+            UserAvatar('${data['avatar']}'),
+            const SizedBox(height: 10),
+            // DrawerUpdateCard is a custom widget for updating profile information with a text field
+            DrawerUpdateCard(
+                controller: _controller.nameController,
+                label: 'Name'),
+            DrawerUpdateCard(
+                readOnly: true,
+                controller: _controller.numberController,
+                label: 'Phone Number'),
+            DrawerUpdateCard(
+                controller: _controller.designationController,
+                label: 'Designation'),
+            DrawerUpdateCard(
+                controller: _controller.passportController,
+                label: 'Passport Number'),
+            DrawerUpdateCard(
+                controller: _controller.nidController,
+                label: 'NID Number'),
+            DrawerUpdateCard(
+                controller: _controller.addressController,
+                label: 'Location'),
+            const SizedBox(height: 30),
+            // Obx is a GetX widget that rebuilds when the observable value changes
+            Obx(() => SecondaryButton(
+              isProgress: _controller.isProgress,
+              text: 'Update',
+              onTap: _controller.userProfileEdit,
+            )),
+          ],
+        ),
       ),
     );
   }

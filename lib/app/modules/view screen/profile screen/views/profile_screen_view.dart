@@ -70,10 +70,11 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                   backgroundColor: AppColor.kWhiteColor,
                   child: IconButton(
                     onPressed: () {
-                      Get.to(() => UserProfileEditScreen());
+                      Get.to(() => ProfileDetailsScreen());
+                    //  Get.to(() => UserProfileEditScreen());
                     },
                     icon: const Icon(
-                      Icons.mode_edit_outline,
+                      Icons.account_circle,
                       color: AppColor.kPrimaryColor,
                     ),
                   ),

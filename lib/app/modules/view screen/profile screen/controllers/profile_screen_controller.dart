@@ -93,7 +93,7 @@ class ProfileScreenController extends GetxController {
           passport: passportController.text);
       if (response['success'] == true) {
         await userProfileInitializeMethod();
-        Get.to(() => ProfileDetailsScreen());
+       Get.back();
       } else {
         _isProgress.value = false;
       }

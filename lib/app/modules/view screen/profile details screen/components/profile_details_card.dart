@@ -16,6 +16,7 @@ class ProfileDetailsCard extends StatelessWidget {
       child: Container(
         width: double.infinity,
          height: 80,
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           gradient: const LinearGradient(colors: [

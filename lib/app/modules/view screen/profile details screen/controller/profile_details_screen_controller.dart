@@ -24,7 +24,7 @@ class ProfileDetailsScreenController extends GetxController {
         final response =
             await uploadNIDFileRequest(filePath: file, token: token);
         if (response['success'] == true) {
-          Get.snackbar('Joss!', response['message']);
+          Get.snackbar('Good Job!', response['message']);
           Get.find<ProfileScreenController>().userProfileInitializeMethod();
         }
       }
@@ -42,7 +42,7 @@ class ProfileDetailsScreenController extends GetxController {
       if (token != null) {
         final response = await updatePassportRequest(filePath: file, token: token);
         if (response['success'] == true) {
-          Get.snackbar('Joss!', response['message']);
+          Get.snackbar('Good Job!', response['message']);
           Get.find<ProfileScreenController>().userProfileInitializeMethod();
         }
       }
