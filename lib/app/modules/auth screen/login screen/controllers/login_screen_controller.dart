@@ -12,10 +12,10 @@ import 'package:amin_agent/app/data/const/export.dart';
 // LoginScreenController is a GetX controller class for the login screen.
 class LoginScreenController extends GetxController {
   // TextEditingController for the phone number input field
-  final number = TextEditingController(text: '01722734871');
+  final number = TextEditingController( );
 
   // TextEditingController for the password input field
-  final password = TextEditingController(text: '12345678');
+  final password = TextEditingController( );
 
   // TextEditingController for the OTP (One-Time Password) input field
   final otp = TextEditingController();

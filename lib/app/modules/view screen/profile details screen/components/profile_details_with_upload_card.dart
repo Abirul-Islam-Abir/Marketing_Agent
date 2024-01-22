@@ -15,7 +15,7 @@ class ProfileDetailsCardWithUpload extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
       child: Container(
-        width: Get.width / 1.2,
+        width: double.infinity,
         height: 80,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),

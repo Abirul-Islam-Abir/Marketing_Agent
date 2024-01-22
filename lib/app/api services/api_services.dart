@@ -1,4 +1,4 @@
- /*Developer Information:
+/*Developer Information:
     Name: Abirul Islam Abir
     Email: abir80503@gmail.com
     Phone Number: 01722734871
@@ -13,7 +13,8 @@ class ApiServices {
 
   // Common route for API endpoints
   static const String _endPoint = '/public/api/v1/app';
-
+//Test api working or not
+  static const testApi = '$_baseUrl/public/api/test';
   // URLs for various API endpoints
   static String loginUrl = '$_baseUrl$_endPoint/login';
   static String verifyOtpUrl = '$_baseUrl$_endPoint/verify-otp';

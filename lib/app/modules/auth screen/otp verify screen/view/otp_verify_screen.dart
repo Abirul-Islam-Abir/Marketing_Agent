@@ -3,9 +3,11 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../data/const/export.dart';
 
 // OtpVerifyScreen is a stateless widget for OTP verification screen.
-class OtpVerifyScreen extends StatelessWidget {
+class OtpVerifyScreen extends StatelessWidget {    OtpVerifyScreen({super.key});
   // GetX controller for managing the state and logic of the OTP verification screen
   final _controller = Get.put(OtpVerifyScreenController());
+
+
 
   @override
   Widget build(BuildContext context) {
