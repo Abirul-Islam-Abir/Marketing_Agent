@@ -5,8 +5,8 @@ String? validatePassword(String? value) {
   var passNonNullValue = value ?? "";
   if (passNonNullValue.isEmpty) {
     return ("Password is required");
-  } else if (passNonNullValue.isEmpty) {
-    return ("Password Must be more than 1 characters");
+  } else if (value!.length < 6) {
+    return ("Password Must be more than 6 characters");
     // } else if (!regex.hasMatch(passNonNullValue)) {
     //   return ("Password should contain upper,lower,digit and Special character ");
   }

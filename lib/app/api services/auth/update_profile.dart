@@ -6,15 +6,8 @@ import '../api_services.dart';
 
 // This function initiates a request to update user profile information by sending a POST request to the specified API endpoint.
 // It expects parameters such as 'name', 'designation', 'nid', 'passport', 'certification', 'address', and 'token'.
-Future updateProfileRequest({
-  name,
-  designation,
-  nid,
-  passport,
-  certification,
-  address,
-  token,
-}) async {
+Future updateProfileRequest(
+    {name, designation, nid, passport, certification, address, token}) async {
   // Get the update profile API URL from the ApiServices class
   final url = ApiServices.updateProfileUrl;
 
@@ -24,7 +17,7 @@ Future updateProfileRequest({
   // Create headers with the specified content type and include the user's authentication token
   final headerWithToken = {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer $token',
+    'Authorization': 'Bearer $token'
   };
 
   // Create a Map representing the request body with the provided user profile information
@@ -34,7 +27,7 @@ Future updateProfileRequest({
     'nid': nid,
     'passport': passport,
     'certification': certification,
-    'address': address,
+    'address': address
   };
 
   // Send a POST request to the API endpoint with the encoded body and headers

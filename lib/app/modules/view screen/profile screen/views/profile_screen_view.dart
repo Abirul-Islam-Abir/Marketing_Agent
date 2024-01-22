@@ -1,6 +1,6 @@
 import 'package:amin_agent/app/modules/view%20screen/profile%20details%20screen/view/profile_details_screen.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:amin_agent/app/modules/view%20screen/profile%20screen/components/avatar_loading_spinkit.dart';
+ import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../data/const/export.dart';
 import '../../../../data/dummy data/profile_picture_dummy_data.dart';
@@ -94,16 +94,4 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
   }
 }
 
-class AvatarLoadingSpinKit extends StatelessWidget {
-  const AvatarLoadingSpinKit({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return const SpinKitFadingCircle(
-      color: Colors.white,
-      size: 70,
-    );
-  }
-}

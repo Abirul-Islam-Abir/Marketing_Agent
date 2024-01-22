@@ -12,10 +12,10 @@ import 'package:amin_agent/app/data/const/export.dart';
 // LoginScreenController is a GetX controller class for the login screen.
 class LoginScreenController extends GetxController {
   // TextEditingController for the phone number input field
-  final number = TextEditingController( );
+  final number = TextEditingController();
 
   // TextEditingController for the password input field
-  final password = TextEditingController( );
+  final password = TextEditingController();
 
   // TextEditingController for the OTP (One-Time Password) input field
   final otp = TextEditingController();
@@ -51,7 +51,7 @@ class LoginScreenController extends GetxController {
     // Send a login request to the server
     final response =
         await loginRequest(number: number.text, password: password.text);
-
+    print(response);
     // Check the response for success or failure and show appropriate dialogs
     if (response['success'] == true) {
       // Navigate to the OTP verification screen with the user ID
@@ -61,9 +61,18 @@ class LoginScreenController extends GetxController {
       // Show an error dialog for phone number validation error
       AwesomeDialogs.showErrorDialog(context,
           desc: response['data']['phone'][0]);
-    } else if (response['success'] == false) {
+    } else if (response['message'] == 'Validation error.') {
+      // Show an error dialog for phone number validation error
+      AwesomeDialogs.showErrorDialog(context,
+          desc: response['data']['phone'][0]);
+    } /*else if (number.text=='01722734871' && password.text =='805003') {
       // Show a general error dialog
-      AwesomeDialogs.showErrorDialog(context, desc: response['message']);
+      AwesomeDialogs.showErrorDialog(context, desc: 'response');
+    }*/
+    else if (response['message'] == 'Validation error.') {
+      // Show an error dialog for phone number validation error
+      AwesomeDialogs.showErrorDialog(context,
+          desc: response['data']['phone'][0]);
     } else if (response['message'] == 'Invalid password.') {
       // Show an error dialog for invalid password
       AwesomeDialogs.showErrorDialog(context, desc: response['message']);

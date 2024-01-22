@@ -9,6 +9,8 @@ class DashboardScreenController extends GetxController {
   String text = 'Total commission';
 
   Future logout() async {
+    box.erase();
+    Get.offAllNamed(RouteName.loginScreen);
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
       final response = await logOutRequest(token);
@@ -17,7 +19,5 @@ class DashboardScreenController extends GetxController {
         Get.offAllNamed(RouteName.loginScreen);
       }
     }
-    box.erase();
-    Get.offAllNamed(RouteName.loginScreen);
   }
 }

@@ -38,7 +38,7 @@ class OtpVerifyScreenController extends GetxController {
   Future verifyOtp(context) async {
     if (id['forgot'] == true) {
       final response =
-      await resetPassOtpManageRequest(id: id['id'], otp: otp.text);
+          await resetPassOtpManageRequest(id: id['id'], otp: otp.text);
       if (response['success'] == true) {
         await StoreData.saveId(response['data']['user_id'].toString());
         // Navigate to the password set screen with user ID and OTP
@@ -48,6 +48,7 @@ class OtpVerifyScreenController extends GetxController {
         });
       } else {
         errorText = response['message'];
+        Get.snackbar('Wrong!', response['message']);
         // Handle error (e.g., show error dialog)
       }
     } else {
@@ -59,6 +60,7 @@ class OtpVerifyScreenController extends GetxController {
         Get.offAllNamed(RouteName.bottomNav);
       } else {
         errorText = response['message'];
+        Get.snackbar('Wrong!', response['message']);
         // Handle error (e.g., show error dialog)
       }
     }
@@ -121,4 +123,3 @@ class OtpVerifyScreenController extends GetxController {
     super.onClose();
   }
 }
-

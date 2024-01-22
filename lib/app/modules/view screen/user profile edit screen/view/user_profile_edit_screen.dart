@@ -60,7 +60,6 @@ class UserProfileEditScreen extends StatelessWidget {
             text: 'Update',
             onTap: _controller.userProfileEdit,
           )),
-          const SizedBox(height: 50),
         ],
       ),
     );

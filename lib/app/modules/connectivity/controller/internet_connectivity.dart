@@ -4,6 +4,10 @@ import '../../../data/const/export.dart';
 
 class NetworkController extends GetxController {
   void showNetworkSnackBar() {
+    Get.dialog(
+      Container(),
+      barrierDismissible: false,
+    );
     Get.showSnackbar(const GetSnackBar(
       title: 'No Internet!',
       message: 'Please check your internet connection!',
@@ -42,18 +46,19 @@ class NetworkController extends GetxController {
       case ConnectivityResult.wifi:
         if (Get.isSnackbarOpen) {
           Get.closeAllSnackbars();
+          Get.back(closeOverlays: true);
         }
 
         break;
       case ConnectivityResult.mobile:
         if (Get.isSnackbarOpen) {
           Get.closeAllSnackbars();
+          Get.back(closeOverlays: true);
         }
 
         break;
       case ConnectivityResult.none:
         showNetworkSnackBar();
-
         break;
       default:
         break;

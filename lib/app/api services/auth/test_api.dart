@@ -9,13 +9,10 @@ import '../api_services.dart';
 Future testApiRequest() async {
   // Get the user profile API URL from the ApiServices class
   const uri = ApiServices.testApi;
-
   // Parse the URL into a Uri object
   final url = Uri.parse(uri);
-
   // Send a GET request to the API endpoint with the headers
-  final response = await http.get(url,headers: headers);
-
+  final response = await http.get(url, headers: headers);
   // Decode the response body from JSON format
   final decodedResponse = jsonDecode(response.body);
   print(decodedResponse);
@@ -24,6 +21,4 @@ Future testApiRequest() async {
     // Return the decoded response if the request was successful
     return decodedResponse;
   }
-
-  // Return the decoded response in case of any other scenario (e.g., unsuccessful request)
 }

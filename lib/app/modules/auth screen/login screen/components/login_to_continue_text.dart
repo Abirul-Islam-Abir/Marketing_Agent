@@ -1,13 +1,12 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../../theme/app_color.dart';
 
 class LoginToContinueText extends StatelessWidget {
   const LoginToContinueText(
-      this.text, {
-        super.key,
-      });
+    this.text, {
+    super.key,
+  });
 
   final String? text;
 
@@ -19,7 +18,7 @@ class LoginToContinueText extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 0),
         child: Text(
           text!,
-          style:   const TextStyle(
+          style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.normal,
               color: AppColor.kWhiteColor),

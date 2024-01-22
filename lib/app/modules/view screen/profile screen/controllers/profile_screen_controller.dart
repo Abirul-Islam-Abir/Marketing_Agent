@@ -1,6 +1,7 @@
 import 'package:amin_agent/app/data/const/export.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'dart:io';
+import 'package:image/image.dart' as img;
 import '../../../../api services/auth/update_profile.dart';
 import '../../../../api services/auth/upload_avatar.dart';
 import '../../../../api services/auth/user_profile.dart';
@@ -42,7 +43,6 @@ class ProfileScreenController extends GetxController {
   Future userProfile() async {
     final token = await box.read(UserDataKey.tokenKey);
     print(token);
-
     if (token != null) {
       final response = await userProfileRequest(token);
       if (response['success'] == true) {
@@ -106,15 +106,23 @@ class ProfileScreenController extends GetxController {
 * */
 
   Future<void> getImage(imageSource) async {
+
+    Get.back();
+
     try {
       final pickedFile = await ImagePicker().pickImage(source: imageSource);
       if (pickedFile != null) {
         _isUploadedAvatar = true;
-        Get.back();
+        update();
         final token = await box.read(UserDataKey.tokenKey);
         if (token != null) {
-          final response =
-              await uploadImageRequest(path: pickedFile.path, token: token);
+          // Compress the image before uploading
+          final compressedImage = await compressImage(pickedFile.path);
+
+          final response = await uploadImageRequest(
+            path: compressedImage.path,
+            token: token,
+          );
 
           if (response['success'] == true) {
             await userProfileInitializeMethod();
@@ -127,6 +135,25 @@ class ProfileScreenController extends GetxController {
       _isUploadedAvatar = false;
       update();
     }
+  }
+
+  Future<PickedFile> compressImage(String imagePath) async {
+    final File imageFile = File(imagePath);
+    final img.Image? originalImage =
+        img.decodeImage(imageFile.readAsBytesSync());
+
+    // You can adjust the compression quality and dimensions as needed
+    final img.Image compressedImage = img.copyResize(originalImage!,
+        width: 800, height: 600, interpolation: img.Interpolation.linear);
+
+    final Uint8List compressedBytes =
+        img.encodeJpg(compressedImage, quality: 85);
+
+    final String compressedImagePath =
+        "${imageFile.parent.path}/compressed_${imageFile.uri.pathSegments.last}";
+    await File(compressedImagePath).writeAsBytes(compressedBytes);
+
+    return PickedFile(compressedImagePath);
   }
 
   @override

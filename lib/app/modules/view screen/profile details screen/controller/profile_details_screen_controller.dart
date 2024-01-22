@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:amin_agent/app/data/const/export.dart';
 import 'package:get/get.dart';
 
 import '../../../../api services/auth/update_nid.dart';
@@ -24,6 +25,7 @@ class ProfileDetailsScreenController extends GetxController {
             await uploadNIDFileRequest(filePath: file, token: token);
         if (response['success'] == true) {
           Get.snackbar('Joss!', response['message']);
+          Get.find<ProfileScreenController>().userProfileInitializeMethod();
         }
       }
     } else {
@@ -41,6 +43,7 @@ class ProfileDetailsScreenController extends GetxController {
         final response = await updatePassportRequest(filePath: file, token: token);
         if (response['success'] == true) {
           Get.snackbar('Joss!', response['message']);
+          Get.find<ProfileScreenController>().userProfileInitializeMethod();
         }
       }
     } else {

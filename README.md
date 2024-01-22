@@ -1,8 +1,7 @@
-# amin_agent
-
-A new Flutter project.
-
+# MPO
 ## Getting Started
+## MVC Architecture pattern applied
+## Structure below
 
 this project path
 app/
