@@ -1,11 +1,9 @@
 import 'dart:io';
 
 import 'package:amin_agent/app/data/const/export.dart';
-import 'package:get/get.dart';
 
 import '../../../../api services/auth/update_nid.dart';
 import '../../../../api services/auth/update_passport.dart';
-import '../../../../data/utils/store_data.dart';
 import '../../../../data/utils/user_data_key.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -24,8 +22,8 @@ class ProfileDetailsScreenController extends GetxController {
         final response =
             await uploadNIDFileRequest(filePath: file, token: token);
         if (response['success'] == true) {
+          await Get.find<ProfileScreenController>().userProfile();
           Get.snackbar('Good Job!', response['message']);
-          Get.find<ProfileScreenController>().userProfileInitializeMethod();
         }
       }
     } else {
@@ -40,10 +38,11 @@ class ProfileDetailsScreenController extends GetxController {
       File file = File(result.files.single.path!);
       final token = await box.read(UserDataKey.tokenKey);
       if (token != null) {
-        final response = await updatePassportRequest(filePath: file, token: token);
+        final response =
+            await updatePassportRequest(filePath: file, token: token);
         if (response['success'] == true) {
+          await Get.find<ProfileScreenController>().userProfile();
           Get.snackbar('Good Job!', response['message']);
-          Get.find<ProfileScreenController>().userProfileInitializeMethod();
         }
       }
     } else {

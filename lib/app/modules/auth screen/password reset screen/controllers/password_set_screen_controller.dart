@@ -1,7 +1,6 @@
 import 'package:amin_agent/app/api%20services/auth/reset_password.dart';
 import 'package:amin_agent/app/data/const/export.dart';
 
-import '../../../../data/utils/awesome_dialog.dart';
 
 // PasswordSetScreenController is a GetX controller for managing the password setting/resetting screen.
 class PasswordSetScreenController extends GetxController {

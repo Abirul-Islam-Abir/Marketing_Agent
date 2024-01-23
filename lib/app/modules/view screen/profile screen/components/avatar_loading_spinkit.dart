@@ -9,12 +9,12 @@ class AvatarLoadingSpinKit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
       child: CircleAvatar(
         radius: 60,
         backgroundColor: AppColor.kTransparentColor,
-        child: const SpinKitFadingCircle(
+        child: SpinKitFadingCircle(
           color: Colors.white,
           size: 100,
         ),

@@ -12,18 +12,9 @@ class MapScreenViewState extends State<MapScreenView> {
       Completer<GoogleMapController>();
 
   List<Marker> markers = [
-    const Marker(
-      markerId: MarkerId('m'),
-      position: LatLng(23.80535022486723, 90.41394229978323),
-      infoWindow: InfoWindow(
-          title: 'My Current Location!',
-          snippet: 'Lat:23.80535022486723,Lng: 90.41394229978323'),
-    )
+
   ];
   final List<LatLng> polylinePoints = [
-    const LatLng(23.804039775855614, 90.4152699932456),
-    const LatLng(23.80530206487308, 90.41533570736647),
-    const LatLng(23.80535022486723, 90.41394229978323),
   ];
   GoogleMapController? mapController;
   final Location location = Location();

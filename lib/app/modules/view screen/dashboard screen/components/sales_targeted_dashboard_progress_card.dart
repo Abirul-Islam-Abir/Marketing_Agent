@@ -67,7 +67,7 @@ final Function() onTap;
                     color: AppColor.kWhiteColor, fontWeight: FontWeight.bold),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 child: Container(
                   height: 15,
                   decoration: BoxDecoration(

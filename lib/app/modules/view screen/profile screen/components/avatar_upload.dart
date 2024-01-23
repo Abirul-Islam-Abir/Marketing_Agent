@@ -2,10 +2,11 @@ import '../../../../data/const/export.dart';
 
 class AvatarUpload extends StatelessWidget {
   AvatarUpload({
-    super.key, this.onTap,
+    super.key,
+    this.onTap,
   });
 
-  final   controller = Get.put(ProfileScreenController());
+  final controller = Get.put(ProfileScreenController());
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class AvatarUpload extends StatelessWidget {
           right: -0,
           child: InkWell(
             onTap: onTap,
-            child:   CircleAvatar(
+            child: CircleAvatar(
               backgroundColor: AppColor.kSecondaryColor,
               radius: 20,
               child: IconButton(

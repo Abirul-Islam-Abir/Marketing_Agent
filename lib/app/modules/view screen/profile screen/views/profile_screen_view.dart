@@ -1,6 +1,6 @@
 import 'package:amin_agent/app/modules/view%20screen/profile%20details%20screen/view/profile_details_screen.dart';
 import 'package:amin_agent/app/modules/view%20screen/profile%20screen/components/avatar_loading_spinkit.dart';
- import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../data/const/export.dart';
 import '../../../../data/dummy data/profile_picture_dummy_data.dart';
@@ -11,6 +11,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    final data = _controller.userProfileList;
     return Scaffold(
         backgroundColor: AppColor.kWhiteColor,
         body: SizedBox(
@@ -43,11 +44,10 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                                   },
                                 )),
                       GetBuilder<ProfileScreenController>(
-                          builder: (controller) => UserName(
-                              '${controller.userProfileList['name']}')),
+                          builder: (_) => UserName('${data['name']}')),
                       GetBuilder<ProfileScreenController>(
-                        builder: (controller) => SalesExecutiveText(
-                            '${controller.userProfileList['designation']}'),
+                        builder: (_) =>
+                            SalesExecutiveText('${data['designation']}'),
                       ),
                       const SizedBox(height: 10),
                       VisitAndTargetCard(
@@ -71,7 +71,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                   child: IconButton(
                     onPressed: () {
                       Get.to(() => ProfileDetailsScreen());
-                    //  Get.to(() => UserProfileEditScreen());
+                      //  Get.to(() => UserProfileEditScreen());
                     },
                     icon: const Icon(
                       Icons.account_circle,
@@ -80,19 +80,8 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                   ),
                 ),
               ),
-              Positioned(
-                  bottom: 80,
-                  right: 20,
-                  child: CustomFloatingButton(
-                    image: AppImages.filterSvg,
-                    onTap: () {
-                      Get.to(() => ProfileDetailsScreen());
-                    },
-                  )),
             ],
           ),
         ));
   }
 }
-
-

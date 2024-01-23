@@ -12,7 +12,11 @@ AppBar buildPrimaryAppBar({text, badge, notificationTap}) {
       IconButton(
         onPressed: notificationTap,
         icon: badges.Badge(
-          badgeContent: Text(badge),
+          badgeContent: Text(
+            badge,
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, color: AppColor.kWhiteColor),
+          ),
           child: const Icon(
             Icons.notifications_none_rounded,
             color: AppColor.kWhiteColor,
@@ -56,27 +60,28 @@ AppBar buildNavigateAppbar(title) {
       style: const TextStyle(
           fontWeight: FontWeight.bold, color: AppColor.kWhiteColor),
     ),
-
   );
 }
-AppBar updateScreenAppbar({title,editTap}) {
+
+AppBar updateScreenAppbar({title, editTap}) {
   return AppBar(
-      backgroundColor: AppColor.appBarColor,
-      leading: IconButton(
-        onPressed: () {
-          Get.back();
-        },
-        icon: const Icon(
-          Icons.arrow_back_ios_new,
-          color: AppColor.kWhiteColor,
-        ),
+    backgroundColor: AppColor.appBarColor,
+    leading: IconButton(
+      onPressed: () {
+        Get.back();
+      },
+      icon: const Icon(
+        Icons.arrow_back_ios_new,
+        color: AppColor.kWhiteColor,
       ),
-      title: Text(
-        title,
-        style: const TextStyle(
-            fontWeight: FontWeight.bold, color: AppColor.kWhiteColor),
-      ),
-      actions: [CircleAvatar(
+    ),
+    title: Text(
+      title,
+      style: const TextStyle(
+          fontWeight: FontWeight.bold, color: AppColor.kWhiteColor),
+    ),
+    actions: [
+      CircleAvatar(
         backgroundColor: AppColor.kWhiteColor,
         child: IconButton(
           onPressed: editTap,
@@ -85,30 +90,39 @@ AppBar updateScreenAppbar({title,editTap}) {
             color: AppColor.kPrimaryColor,
           ),
         ),
-      ),SizedBox(width: 15),],
+      ),
+      const SizedBox(width: 15),
+    ],
   );
 }
-AppBar pdfViewScreenAppbar({title,editTap}) {
+
+AppBar pdfViewScreenAppbar({title, editTap}) {
   return AppBar(
     backgroundColor: AppColor.appBarColor,
-    leading:  SizedBox(width: 10,),
+    leading: const SizedBox(
+      width: 10,
+    ),
     title: Text(
       title,
       style: const TextStyle(
           fontWeight: FontWeight.bold, color: AppColor.kWhiteColor),
     ),
-    actions: [CircleAvatar(
-      backgroundColor: AppColor.kWhiteColor,
-      child: IconButton(
-        onPressed: editTap,
-        icon: const Icon(
-          Icons.clear_rounded,
-          color: AppColor.kPrimaryColor,
+    actions: [
+      CircleAvatar(
+        backgroundColor: AppColor.kWhiteColor,
+        child: IconButton(
+          onPressed: editTap,
+          icon: const Icon(
+            Icons.clear_rounded,
+            color: AppColor.kPrimaryColor,
+          ),
         ),
       ),
-    ),SizedBox(width: 15),],
+      const SizedBox(width: 15),
+    ],
   );
 }
+
 AppBar buildFilterAppBar({text, filterTap}) {
   return AppBar(
     leading: const CustomBackButton(),

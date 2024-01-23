@@ -20,7 +20,6 @@ class SplashScreenController extends GetxController {
 
   Future checkServerWorkingOrDown() async {
     final response = await testApiRequest();
-    print(response);
     if (response != null) {
       await userAlreadyLogged();
     }else{

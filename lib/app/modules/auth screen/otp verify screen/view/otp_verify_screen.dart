@@ -3,11 +3,10 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../data/const/export.dart';
 
 // OtpVerifyScreen is a stateless widget for OTP verification screen.
-class OtpVerifyScreen extends StatelessWidget {    OtpVerifyScreen({super.key});
+class OtpVerifyScreen extends StatelessWidget {
+  OtpVerifyScreen({super.key});
   // GetX controller for managing the state and logic of the OTP verification screen
   final _controller = Get.put(OtpVerifyScreenController());
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -41,32 +40,32 @@ class OtpVerifyScreen extends StatelessWidget {    OtpVerifyScreen({super.key});
                         const SizedBox(height: 30),
                         // Subtitle displaying the countdown for OTP expiration
                         Obx(() => LongLineSubtitleText(
-                          text: AppString.thisCodeWillExpired,
-                          txt:
-                          '  ${_controller.countdown ~/ 60}:${(_controller.countdown % 60).toString().padLeft(2, '0')}s',
-                        )),
+                              text: AppString.thisCodeWillExpired,
+                              txt:
+                                  '  ${_controller.countdown ~/ 60}:${(_controller.countdown % 60).toString().padLeft(2, '0')}s',
+                            )),
                         // Button for resending OTP or indicating it has been resent
                         Obx(() => ReceivedCodeTextButton(
-                          text: AppString.didNotReceivedTheCode,
-                          txt: _controller.isTimeOut.value
-                              ? ''
-                              : '\n \nResend it',
-                          onTap: () {
-                            _controller.resendOtp(context);
-                            _controller.startCountdown();
-                          },
-                        )),
+                              text: AppString.didNotReceivedTheCode,
+                              txt: _controller.isTimeOut.value
+                                  ? ''
+                                  : '\n \nResend it',
+                              onTap: () {
+                                _controller.resendOtp(context);
+                                _controller.startCountdown();
+                              },
+                            )),
                         const SizedBox(height: 30),
                         // Continue button for submitting the OTP
                         Obx(() => _controller.isCompleted
                             ? Container()
                             : LoginButton(
-                          text: 'Continue ',
-                          onTap: () {
-                            _controller.validateSubmit(context);
-                          },
-                          isProgress: _controller.isProgress,
-                        )),
+                                text: 'Continue ',
+                                onTap: () {
+                                  _controller.validateSubmit(context);
+                                },
+                                isProgress: _controller.isProgress,
+                              )),
                         const SizedBox(height: 20),
                       ],
                     ),
@@ -80,4 +79,3 @@ class OtpVerifyScreen extends StatelessWidget {    OtpVerifyScreen({super.key});
     );
   }
 }
-

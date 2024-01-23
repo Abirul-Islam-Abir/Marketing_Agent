@@ -15,7 +15,7 @@ class ProfileDetailsCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Container(
         width: double.infinity,
-         height: 80,
+        height: 80,
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -40,8 +40,9 @@ class ProfileDetailsCard extends StatelessWidget {
                 name,
                 style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                    fontSize: 16,
                     color: AppColor.kWhiteColor),
+                maxLines: 1,
               ),
             ],
           ),

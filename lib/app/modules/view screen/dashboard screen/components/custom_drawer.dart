@@ -1,7 +1,7 @@
 import 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/drawer_user_header.dart';
 
 import '../../../../data/const/export.dart';
- import 'custom_listtile.dart';
+import '../../../widgets/custom_listtile.dart';
 
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({super.key, required this.scaffoldKey});
@@ -75,30 +75,6 @@ class CustomDrawer extends StatelessWidget {
                             Get.toNamed(RouteName.totalCommissionScreen)),
                     CustomListTile(
                         color: AppColor.kSecondaryColor,
-                        icon: Icons.dashboard,
-                        name: 'Dashboard',
-                        onTap: () {
-                          scaffoldKey.currentState?.closeDrawer();
-                        }),
-                    CustomListTile(
-                        color: AppColor.kSecondaryColor,
-                        icon: Icons.departure_board,
-                        name: 'Doctor onboard',
-                        onTap: () =>
-                            Get.toNamed(RouteName.doctorOnboardScreen)),
-                    CustomListTile(
-                        color: AppColor.kSecondaryColor,
-                        icon: Icons.money,
-                        name: 'Doctor Total sales',
-                        onTap: () => Get.toNamed(RouteName.totalSalesScreen)),
-                    CustomListTile(
-                        color: AppColor.kSecondaryColor,
-                        icon: Icons.money_sharp,
-                        name: 'Total commission',
-                        onTap: () =>
-                            Get.toNamed(RouteName.totalCommissionScreen)),
-                    CustomListTile(
-                        color: AppColor.kSecondaryColor,
                         icon: Icons.pending_actions_sharp,
                         name: 'Doctor visited',
                         onTap: () =>
@@ -106,8 +82,14 @@ class CustomDrawer extends StatelessWidget {
                     CustomListTile(
                       color: AppColor.kSecondaryColor,
                       icon: Icons.money_sharp,
-                      name: 'Sales targets',
+                      name: 'Current Target',
                       onTap: () => Get.toNamed(RouteName.salesTargetScreen),
+                    ),
+                    CustomListTile(
+                      color: AppColor.kSecondaryColor,
+                      icon: Icons.money_sharp,
+                      name: 'All Targets',
+                      onTap: () => Get.toNamed(RouteName.allTargetScreen),
                     ),
                     const CustomListTile(
                         color: AppColor.kSecondaryColor,

@@ -12,12 +12,12 @@ class ServerDownScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('Server Down',
+            const Text('Server Down',
                 style: TextStyle(
                     fontSize: 50,
                     color: AppColor.kRedColor,
                     fontWeight: FontWeight.bold)),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Image.asset('assets/gif/giphy.gif', fit: BoxFit.cover),
           ],
         ),

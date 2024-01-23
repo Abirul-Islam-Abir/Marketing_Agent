@@ -53,7 +53,7 @@ class DashboardScreenView extends StatelessWidget {
                 progress: 0.5,
                 collaborate: '5',
                 totalCompletedSales: '10,00,000',
-                totalSales: '5,00,000')
+                totalSales: '5,00,000'),
           ],
         ),
       ),

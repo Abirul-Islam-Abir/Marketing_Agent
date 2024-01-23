@@ -6,14 +6,15 @@ import '../../../../api services/auth/update_profile.dart';
 import '../../../../api services/auth/upload_avatar.dart';
 import '../../../../api services/auth/user_profile.dart';
 import '../../../../data/utils/user_data_key.dart';
-import '../../profile details screen/view/profile_details_screen.dart';
 
 class ProfileScreenController extends GetxController {
   //Select index
   int selectedIndex = 0;
 
   //isLoading update button
+  //Using update screen
   final RxBool _isProgress = false.obs;
+  //uploadedAvatar using profile screen
   bool _isUploadedAvatar = false;
 
   bool get isProgress => _isProgress.value;
@@ -42,7 +43,6 @@ class ProfileScreenController extends GetxController {
  * */
   Future userProfile() async {
     final token = await box.read(UserDataKey.tokenKey);
-    print(token);
     if (token != null) {
       final response = await userProfileRequest(token);
       if (response['success'] == true) {
@@ -53,6 +53,8 @@ class ProfileScreenController extends GetxController {
         nidController.text = '${userProfileList['nid']}';
         addressController.text = ' ${userProfileList['address']}';
         passportController.text = ' ${userProfileList['passport']}';
+        //When upload pdf in profile details screen after updating widget for view pdf
+        update();
       }
     }
   }
@@ -70,6 +72,9 @@ class ProfileScreenController extends GetxController {
     } catch (e) {
       throw Exception('$e');
     } finally {
+      if (userProfileList.isEmpty) {
+        Get.find<DashboardScreenController>().logout();
+      }
       _isProgress.value = false;
       update();
     }
@@ -92,8 +97,10 @@ class ProfileScreenController extends GetxController {
           certification: certificationController.text,
           passport: passportController.text);
       if (response['success'] == true) {
-        await userProfileInitializeMethod();
-       Get.back();
+        await userProfile();
+        update();
+        Get.back();
+        _isProgress.value = false;
       } else {
         _isProgress.value = false;
       }
@@ -106,28 +113,32 @@ class ProfileScreenController extends GetxController {
 * */
 
   Future<void> getImage(imageSource) async {
-
     Get.back();
-
+    Future.delayed(const Duration(seconds: 2)).then((value) {
+      _isUploadedAvatar = true;
+      update();
+    });
     try {
       final pickedFile = await ImagePicker().pickImage(source: imageSource);
       if (pickedFile != null) {
-        _isUploadedAvatar = true;
-        update();
         final token = await box.read(UserDataKey.tokenKey);
         if (token != null) {
           // Compress the image before uploading
           final compressedImage = await compressImage(pickedFile.path);
-
           final response = await uploadImageRequest(
             path: compressedImage.path,
             token: token,
           );
-
           if (response['success'] == true) {
-            await userProfileInitializeMethod();
+            await userProfile();
+          } else {
+            _isUploadedAvatar = false;
+            update();
           }
         }
+      } else {
+        _isUploadedAvatar = false;
+        update();
       }
     } on PlatformException {
       return;

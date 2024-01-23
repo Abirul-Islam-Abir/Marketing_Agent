@@ -1,37 +1,71 @@
 import 'package:amin_agent/app/modules/widgets/appbar.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-
+import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import '../../data/const/export.dart';
 
-class PdfView extends StatefulWidget {
-  const PdfView({super.key, required this.url});
+// Import your color file
 
+class PdfView extends StatefulWidget {
   final String url;
+
+  const PdfView({Key? key, required this.url}) : super(key: key);
 
   @override
   State<PdfView> createState() => _PdfViewState();
 }
 
 class _PdfViewState extends State<PdfView> {
-  bool isLoadedPdf = true;
+  late PDFDocument doc;
+  late Future<PDFDocument> pdfFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    pdfFuture = pdf(); // Call the pdf method to load the PDF document
+  }
+
+  Future<PDFDocument> pdf() async {
+    return await PDFDocument.fromURL(widget.url);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          appBar: pdfViewScreenAppbar(
-              title: '',
-              editTap: () {
-                Get.back();
-              }),
-          body: isLoadedPdf
-              ? CircularProgressIndicator()
-              : SfPdfViewer.network(onDocumentLoaded: (details) {
-                  print('========$details');
-
-                  setState(() {
-                    isLoadedPdf = false;
-                  });
-                }, scrollDirection: PdfScrollDirection.vertical, widget.url)),
+    return Scaffold(
+      backgroundColor: AppColor.kWhiteColor,
+      appBar: pdfViewScreenAppbar(
+        title: '',
+        editTap: () {
+          Get.back();
+        },
+      ),
+      body: Center(
+        child: FutureBuilder(
+          future: pdfFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              // Show a loading indicator while waiting for the PDF to load
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapshot.hasError) {
+              // Handle error if any
+              return const Center(
+                child: Text('Error loading PDF'),
+              );
+            } else {
+              // Show the PDF viewer once it is loaded
+              doc = snapshot.data as PDFDocument;
+              return PDFViewer(
+                document: doc,
+                backgroundColor: AppColor.kWhiteColor,
+                indicatorBackground: AppColor.kPrimaryColor,
+                indicatorText: AppColor.kWhiteColor,
+                showIndicator: true,
+                showPicker: true,
+              );
+            }
+          },
+        ),
+      ),
     );
   }
 }

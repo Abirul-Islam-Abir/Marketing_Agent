@@ -1,4 +1,6 @@
 import '../data/const/export.dart';
+import '../modules/view screen/all targets screen/bindings/all_targets_screen_binding.dart';
+import '../modules/view screen/all targets screen/views/all_targets_screen_view.dart';
 import '../modules/view screen/doctor visited screen/bindings/doctor_visited_screen_binding.dart';
 
 part 'app_routes.dart';
@@ -96,6 +98,11 @@ class AppPages {
       name: RouteName.doctorVisitedScreen,
       page: () => const DoctorVisitedScreenView(),
       binding: DoctorVisitedScreenBinding(),
+    ),
+    GetPage(
+      name: RouteName.allTargetScreen,
+      page: () =>   AllTargetsScreenView(),
+      binding: AllTargetsScreenBinding(),
     ),
   ];
 }

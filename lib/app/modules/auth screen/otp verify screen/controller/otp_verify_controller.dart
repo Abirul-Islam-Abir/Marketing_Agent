@@ -7,7 +7,7 @@ class OtpVerifyScreenController extends GetxController {
   RxBool hasError = false.obs;
   String currentText = "";
   final RxBool _isCompleted = true.obs;
-  String errorText = '';
+  RxString errorText = ''.obs;
   final formKey = GlobalKey<FormState>();
   final RxBool _isProgress = false.obs;
   bool get isProgress => _isProgress.value;
@@ -47,8 +47,8 @@ class OtpVerifyScreenController extends GetxController {
           'otp': response['data']['reset_otp'].toString()
         });
       } else {
-        errorText = response['message'];
-        Get.snackbar('Wrong!', response['message']);
+        errorText.value = response['message'];
+        hasError.value = true;
         // Handle error (e.g., show error dialog)
       }
     } else {
@@ -59,8 +59,8 @@ class OtpVerifyScreenController extends GetxController {
         StoreData.saveId(response['data']['user_id'].toString());
         Get.offAllNamed(RouteName.bottomNav);
       } else {
-        errorText = response['message'];
-        Get.snackbar('Wrong!', response['message']);
+        errorText.value = response['message'];
+        hasError.value = true;
         // Handle error (e.g., show error dialog)
       }
     }
