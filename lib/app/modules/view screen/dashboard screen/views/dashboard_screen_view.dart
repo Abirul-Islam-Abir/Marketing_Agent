@@ -45,15 +45,19 @@ class DashboardScreenView extends StatelessWidget {
                 rightTitle: 'Doctor visited',
                 leftCount: '20'),
             const CustomChart(),
-            SalesTargetedProgressCard(
-                onTap: () {
-                  Get.toNamed(RouteName.salesTargetScreen);
-                },
-                text: 'Sales Target',
-                progress: 0.5,
-                collaborate: '5',
-                totalCompletedSales: '10,00,000',
-                totalSales: '5,00,000'),
+            GetBuilder<DashboardScreenController>(
+              builder: (c) => c.isProgress
+                  ? CircularProgressIndicator()
+                  : SalesTargetedProgressCard(
+                      onTap: () {
+                        Get.toNamed(RouteName.salesTargetScreen);
+                      },
+                      text: c.dashboardDataList['title'],
+                      progress:c.dashboardDataList['progress'],
+                      collaborate: c.dashboardDataList['agents_count'],
+                      totalCompletedSales: c.dashboardDataList['target_amount'],
+                      totalSales: c.dashboardDataList['amount_collected']),
+            ),
           ],
         ),
       ),

@@ -2,9 +2,9 @@ import 'package:amin_agent/app/data/const/export.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:image/image.dart' as img;
-import '../../../../api services/auth/update_profile.dart';
-import '../../../../api services/auth/upload_avatar.dart';
-import '../../../../api services/auth/user_profile.dart';
+import '../../../../api services/profile/update_profile.dart';
+import '../../../../api services/profile/upload_avatar.dart';
+import '../../../../api services/profile/user_profile.dart';
 import '../../../../data/utils/user_data_key.dart';
 
 class ProfileScreenController extends GetxController {
@@ -43,6 +43,7 @@ class ProfileScreenController extends GetxController {
  * */
   Future userProfile() async {
     final token = await box.read(UserDataKey.tokenKey);
+    print(token);
     if (token != null) {
       final response = await userProfileRequest(token);
       if (response['success'] == true) {
@@ -122,6 +123,7 @@ class ProfileScreenController extends GetxController {
       final pickedFile = await ImagePicker().pickImage(source: imageSource);
       if (pickedFile != null) {
         final token = await box.read(UserDataKey.tokenKey);
+
         if (token != null) {
           // Compress the image before uploading
           final compressedImage = await compressImage(pickedFile.path);
@@ -140,8 +142,9 @@ class ProfileScreenController extends GetxController {
         _isUploadedAvatar = false;
         update();
       }
-    } on PlatformException {
-      return;
+    } catch (e) {
+      _isUploadedAvatar = false;
+      update();
     } finally {
       _isUploadedAvatar = false;
       update();

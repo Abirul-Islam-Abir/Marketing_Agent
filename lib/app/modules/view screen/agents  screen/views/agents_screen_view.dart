@@ -1,9 +1,11 @@
 import '../../../../data/const/export.dart';
 import '../../../widgets/appbar.dart';
 import '../../filter screen/views/filter_screen_view.dart';
+import '../components/sales_target_card.dart';
+import '../controllers/agents _screen_controller.dart';
 
-class SalesTargetScreenView extends GetView<SalesTargetScreenController> {
-  const SalesTargetScreenView({Key? key}) : super(key: key);
+class AgentsScreenView extends GetView<AgentsScreenController> {
+  const AgentsScreenView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(

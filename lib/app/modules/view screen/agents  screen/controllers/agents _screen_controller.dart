@@ -4,7 +4,7 @@
 
 import '../../../../data/const/export.dart';
 
-class SalesTargetScreenController extends GetxController {
+class AgentsScreenController extends GetxController {
 
 
 

@@ -49,6 +49,7 @@ class OtpVerifyScreenController extends GetxController {
       } else {
         errorText.value = response['message'];
         hasError.value = true;
+        errorController!.add(ErrorAnimationType.shake);
         // Handle error (e.g., show error dialog)
       }
     } else {
@@ -61,6 +62,7 @@ class OtpVerifyScreenController extends GetxController {
       } else {
         errorText.value = response['message'];
         hasError.value = true;
+        errorController!.add(ErrorAnimationType.shake);
         // Handle error (e.g., show error dialog)
       }
     }

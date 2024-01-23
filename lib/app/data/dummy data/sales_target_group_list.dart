@@ -4,7 +4,7 @@ List<SalesTargetGroupModel> salesTargetGroupList = [
   SalesTargetGroupModel(
     target: '20,000',
     name: 'Dr. Abir',
-    progress: 0.23,
+    progress: 0.50,
     completed: '5,000',
   ),
   SalesTargetGroupModel(

@@ -1,4 +1,8 @@
+import 'package:amin_agent/app/modules/view%20screen/agents%20%20screen/controllers/agents%20_screen_controller.dart';
+import 'package:amin_agent/app/modules/view%20screen/agents%20%20screen/views/agents_screen_view.dart';
+
 import '../data/const/export.dart';
+import '../modules/view screen/agents  screen/bindings/agents_screen_binding.dart';
 import '../modules/view screen/all targets screen/bindings/all_targets_screen_binding.dart';
 import '../modules/view screen/all targets screen/views/all_targets_screen_view.dart';
 import '../modules/view screen/doctor visited screen/bindings/doctor_visited_screen_binding.dart';
@@ -63,8 +67,8 @@ class AppPages {
     ),
     GetPage(
       name: RouteName.salesTargetScreen,
-      page: () => const SalesTargetScreenView(),
-      binding: SalesTargetScreenBinding(),
+      page: () => const AgentsScreenView(),
+      binding: AgentsScreenBinding(),
     ),
     GetPage(
       name: RouteName.doctorOnboardScreen,

@@ -12,8 +12,9 @@ class SalesTargetedProgressCard extends StatelessWidget {
     required this.progress, required this.onTap,
   });
 
-  final String text, collaborate, totalSales, totalCompletedSales;
-  final double progress;
+  final String text,  totalSales, totalCompletedSales;
+  final int collaborate;
+  final String progress;
 final Function() onTap;
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ final Function() onTap;
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -40,7 +41,7 @@ final Function() onTap;
                       text,
                       style: const TextStyle(
                           color: AppColor.kWhiteColor,
-                          fontWeight: FontWeight.normal),
+                          fontWeight: FontWeight.w400,fontSize: 18),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -51,7 +52,7 @@ final Function() onTap;
                           color: AppColor.kWhiteColor,
                         ),
                         Text(
-                          collaborate,
+                          '$collaborate',
                           style: const TextStyle(
                               color: AppColor.kWhiteColor,
                               fontWeight: FontWeight.bold),
@@ -80,7 +81,7 @@ final Function() onTap;
                     children: [
                       LayoutBuilder(
                         builder: (context, constraints) => Container(
-                          width: constraints.maxWidth * 0.2,
+                          width: constraints.maxWidth * double.parse(progress),
                           decoration: BoxDecoration(
                             color: AppColor.kPrimaryColor,
                             borderRadius: BorderRadius.circular(50),

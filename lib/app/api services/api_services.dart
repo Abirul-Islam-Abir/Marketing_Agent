@@ -29,6 +29,7 @@ class ApiServices {
   static String updateAvatarUrl = '$_baseUrl$_endPoint/update-avatar';
   static String updateNIDUrl = '$_baseUrl$_endPoint/update-nid';
   static String updatePassportUrl = '$_baseUrl$_endPoint/update-passport';
+  static String dashboardDataUrl = '$_baseUrl$_endPoint/dashboard-data';
 
   // Private constructor to prevent instantiation
   ApiServices._();

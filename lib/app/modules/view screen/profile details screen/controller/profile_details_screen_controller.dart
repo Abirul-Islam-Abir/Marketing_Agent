@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:amin_agent/app/data/const/export.dart';
 
-import '../../../../api services/auth/update_nid.dart';
-import '../../../../api services/auth/update_passport.dart';
+import '../../../../api services/profile/update_nid.dart';
+import '../../../../api services/profile/update_passport.dart';
 import '../../../../data/utils/user_data_key.dart';
 import 'package:file_picker/file_picker.dart';
 
