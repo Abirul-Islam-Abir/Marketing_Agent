@@ -1,8 +1,6 @@
 import 'package:amin_agent/app/modules/view%20screen/total%20commission%20%20screen/views/total_commission_details_screen.dart';
 
 import '../../../../data/const/export.dart';
-import '../../../widgets/appbar.dart';
-import '../../filter screen/views/filter_screen_view.dart';
 import '../components/total_commission_card.dart';
 
 class TotalCommissionScreen extends StatelessWidget {

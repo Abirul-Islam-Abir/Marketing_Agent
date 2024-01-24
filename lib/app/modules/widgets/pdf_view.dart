@@ -1,5 +1,5 @@
-import 'package:amin_agent/app/modules/widgets/appbar.dart';
 import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../../data/const/export.dart';
 
 // Import your color file
@@ -44,12 +44,15 @@ class _PdfViewState extends State<PdfView> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               // Show a loading indicator while waiting for the PDF to load
               return const Center(
-                child: CircularProgressIndicator(),
+                child: SpinKitThreeInOut(
+                  color: Colors.blue,  // Set the color of the spinner
+                  size: 50.0,           // Set the size of the spinner
+                ),
               );
             } else if (snapshot.hasError) {
               // Handle error if any
               return const Center(
-                child: Text('Error loading PDF'),
+                child: Text('There is no PDF'),
               );
             } else {
               // Show the PDF viewer once it is loaded

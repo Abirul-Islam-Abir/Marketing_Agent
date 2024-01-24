@@ -1,4 +1,3 @@
-import 'package:amin_agent/app/modules/view%20screen/agents%20%20screen/controllers/agents%20_screen_controller.dart';
 import 'package:amin_agent/app/modules/view%20screen/agents%20%20screen/views/agents_screen_view.dart';
 
 import '../data/const/export.dart';

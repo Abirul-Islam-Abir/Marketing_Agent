@@ -1,14 +1,13 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-
-import '../../api_services.dart';
+import '../api_services.dart';
 
 // This function initiates a request to retrieve the user profile information by sending a GET request to the specified API endpoint.
 // It expects a 'token' parameter representing the user's authentication token.
-Future dashboardDataRequest(token) async {
+Future allTargetDataRequest(token) async {
   // Get the user profile API URL from the ApiServices class
-  final uri = ApiServices.dashboardDataUrl;
+  final uri = ApiServices.allTargetUrl;
 
   // Parse the URL into a Uri object
   final url = Uri.parse(uri);

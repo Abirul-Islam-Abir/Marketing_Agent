@@ -1,15 +1,10 @@
-import 'package:amin_agent/app/modules/view%20screen/filter%20screen/components/filter_text.dart';
+
+
+
+
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
-import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
-
-import '../../../../data/utils/app decoration.dart';
-import '../../../../theme/app_color.dart';
-import '../../../widgets/primary_button.dart';
-import '../../profile screen/components/picture_and_target_button.dart';
-import '../components/grid_builder.dart';
-import '../controllers/filter_screen_controller.dart';
+import '../../../../data/const/export.dart';
 
 class FilterScreenView extends StatelessWidget {
   FilterScreenView({Key? key}) : super(key: key);

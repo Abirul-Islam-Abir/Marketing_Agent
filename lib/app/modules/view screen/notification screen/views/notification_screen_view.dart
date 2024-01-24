@@ -1,6 +1,5 @@
 
 import '../../../../data/const/export.dart';
-import '../../../widgets/appbar.dart';
 
 class NotificationScreenView extends GetView<NotificationScreenController> {
   const NotificationScreenView({Key? key}) : super(key: key);

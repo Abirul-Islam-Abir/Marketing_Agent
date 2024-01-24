@@ -6,14 +6,14 @@ class SalesTargetedProgressCard extends StatelessWidget {
   const SalesTargetedProgressCard({
     super.key,
     required this.text,
-    required this.collaborate,
-    required this.totalSales,
-    required this.totalCompletedSales,
+    required this.agentsCount,
+    required this.targetAmount,
+    required this.amountCollected,
     required this.progress, required this.onTap,
   });
 
-  final String text,  totalSales, totalCompletedSales;
-  final int collaborate;
+  final String text,  targetAmount, amountCollected;
+  final int agentsCount;
   final String progress;
 final Function() onTap;
   @override
@@ -47,12 +47,15 @@ final Function() onTap;
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Icon(
-                          Icons.manage_accounts_rounded,
-                          color: AppColor.kWhiteColor,
+                        const Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: Icon(
+                            Icons.supervisor_account_sharp,
+                            color: AppColor.kWhiteColor,
+                          ),
                         ),
                         Text(
-                          '$collaborate',
+                          '$agentsCount',
                           style: const TextStyle(
                               color: AppColor.kWhiteColor,
                               fontWeight: FontWeight.bold),
@@ -63,7 +66,7 @@ final Function() onTap;
                 ),
               ),
               Text(
-                '$totalSales/$totalCompletedSales',
+                '$targetAmount / $amountCollected',
                 style: const TextStyle(
                     color: AppColor.kWhiteColor, fontWeight: FontWeight.bold),
               ),

@@ -8,27 +8,22 @@ import '../../../../api services/profile/user_profile.dart';
 import '../../../../data/utils/user_data_key.dart';
 
 class ProfileScreenController extends GetxController {
-  //Select index
+  // Track the selected index (Purpose not entirely clear from the provided snippet)
   int selectedIndex = 0;
 
-  //isLoading update button
-  //Using update screen
-  final RxBool _isProgress = false.obs;
-  //uploadedAvatar using profile screen
+  // Reactive boolean indicating whether a process is in progress
+  bool _isProgress = false;
   bool _isUploadedAvatar = false;
 
-  bool get isProgress => _isProgress.value;
+  bool get isProgress => _isProgress;
   bool get isUploadedAvatar => _isUploadedAvatar;
 
-  //Store my user profile data here
+  // User profile data fetched from the server
   Map<String, dynamic> _userProfileList = {};
 
   Map<String, dynamic> get userProfileList => _userProfileList;
 
-  /*
-  * TextEditingController all
-  * using profile edit screen
-  * */
+  // Text editing controllers for various user profile details
   final TextEditingController nameController = TextEditingController();
   final TextEditingController numberController = TextEditingController();
   final TextEditingController designationController = TextEditingController();
@@ -37,16 +32,13 @@ class ProfileScreenController extends GetxController {
   final TextEditingController certificationController = TextEditingController();
   final TextEditingController passportController = TextEditingController();
 
-  /*
- * User Data get method
- * user edit screen form field all set data in field
- * */
+  // Fetch user profile from the server
   Future userProfile() async {
     final token = await box.read(UserDataKey.tokenKey);
-    print(token);
     if (token != null) {
       final response = await userProfileRequest(token);
       if (response['success'] == true) {
+        // Populate user profile data and update corresponding text controllers
         _userProfileList = response['data']['user'];
         nameController.text = '${userProfileList['name']}';
         numberController.text = '${userProfileList['phone']}';
@@ -54,115 +46,113 @@ class ProfileScreenController extends GetxController {
         nidController.text = '${userProfileList['nid']}';
         addressController.text = ' ${userProfileList['address']}';
         passportController.text = ' ${userProfileList['passport']}';
-        //When upload pdf in profile details screen after updating widget for view pdf
+        // When upload pdf in profile details screen after updating widget for view pdf
         update();
+      }else{
+         Get.find<DashboardScreenController>().logout();
       }
     }
   }
 
-/*
-* When user come dashboard after calling userProfileInitializeMethod() method automatically
-* */
-  Future<void> userProfileInitializeMethod() async {
-    _isProgress.value = true;
+  // Initialize the controller
+  Future<void> initializeMethod() async {
+    _isProgress = true; // Set progress state to true
     update();
     try {
+      // Fetch user profile and other asynchronous operations
       await Future.wait([
         userProfile(),
       ]);
     } catch (e) {
       throw Exception('$e');
     } finally {
-      if (userProfileList.isEmpty) {
-        Get.find<DashboardScreenController>().logout();
-      }
-      _isProgress.value = false;
+      _isProgress = false; // Update progress state to false
       update();
     }
   }
 
-/*
-* User profile edit post method
-* if data is updated after going  ProfileDetailsScreen()
-* */
+  // Update user profile on the server
   Future<void> userProfileEdit() async {
-    _isProgress.value = true;
+    _isProgress = true; // Set progress state to true
+    update();
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
       final response = await updateProfileRequest(
-          token: token,
-          name: nameController.text,
-          designation: designationController.text,
-          nid: nidController.text,
-          address: addressController.text,
-          certification: certificationController.text,
-          passport: passportController.text);
+        token: token,
+        name: nameController.text,
+        designation: designationController.text,
+        nid: nidController.text,
+        address: addressController.text,
+        certification: certificationController.text,
+        passport: passportController.text,
+      );
       if (response['success'] == true) {
-        await userProfile();
+        await userProfile(); // Refresh user profile after successful update
+        Get.back(); // Close the current screen
+        _isProgress = false; // Update progress state to false
         update();
-        Get.back();
-        _isProgress.value = false;
       } else {
-        _isProgress.value = false;
+        _isProgress =
+            false; // Update progress state to false on unsuccessful update
+        update();
       }
     }
   }
 
-/*
-* Get images from camera or gallery and set image and image path
-* working profile image edit
-* */
-
+  // Handle the process of selecting an image
   Future<void> getImage(imageSource) async {
-    Get.back();
-    Future.delayed(const Duration(seconds: 2)).then((value) {
-      _isUploadedAvatar = true;
-      update();
-    });
+    Get.back(); // Close any existing screen
+    _isUploadedAvatar = true; // Set flag to true for UI indication
+    update();
+
     try {
       final pickedFile = await ImagePicker().pickImage(source: imageSource);
       if (pickedFile != null) {
         final token = await box.read(UserDataKey.tokenKey);
 
         if (token != null) {
-          // Compress the image before uploading
+          // Compress and upload the selected image
           final compressedImage = await compressImage(pickedFile.path);
           final response = await uploadImageRequest(
             path: compressedImage.path,
             token: token,
           );
           if (response['success'] == true) {
-            await userProfile();
+            await userProfile(); // Refresh user profile after successful image upload
           } else {
-            _isUploadedAvatar = false;
+            _isUploadedAvatar =
+                false; // Update flag to false on unsuccessful image upload
             update();
           }
         }
       } else {
-        _isUploadedAvatar = false;
+        _isUploadedAvatar =
+            false; // Update flag to false if user didn't select an image
         update();
       }
     } catch (e) {
-      _isUploadedAvatar = false;
+      _isUploadedAvatar = false; // Update flag to false on error
       update();
     } finally {
-      _isUploadedAvatar = false;
+      _isUploadedAvatar = false; // Reset flag to false after the entire process
       update();
     }
   }
 
+  // Compress the selected image
   Future<PickedFile> compressImage(String imagePath) async {
     final File imageFile = File(imagePath);
     final img.Image? originalImage =
         img.decodeImage(imageFile.readAsBytesSync());
 
-    // You can adjust the compression quality and dimensions as needed
+    // Resize and encode the image
     final img.Image compressedImage = img.copyResize(originalImage!,
         width: 800, height: 600, interpolation: img.Interpolation.linear);
 
     final Uint8List compressedBytes =
         img.encodeJpg(compressedImage, quality: 85);
 
+    // Save the compressed image to a new file
     final String compressedImagePath =
         "${imageFile.parent.path}/compressed_${imageFile.uri.pathSegments.last}";
     await File(compressedImagePath).writeAsBytes(compressedBytes);
@@ -170,9 +160,10 @@ class ProfileScreenController extends GetxController {
     return PickedFile(compressedImagePath);
   }
 
+  // Called when the controller is initialized
   @override
   void onInit() {
-    userProfileInitializeMethod();
+    initializeMethod();
     super.onInit();
   }
 }

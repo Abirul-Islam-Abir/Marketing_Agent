@@ -1,5 +1,4 @@
 import '../../../../data/const/export.dart';
-import '../../../widgets/appbar.dart';
 import '../components/schedule_card.dart';
 
 class ScheduleScreenView extends GetView<ScheduleScreenController> {

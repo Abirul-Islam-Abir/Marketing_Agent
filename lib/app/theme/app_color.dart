@@ -16,6 +16,8 @@ class AppColor {
   static const kGreyColor = Colors.grey;
   static const kTransparentColor = Colors.transparent;
   static const kGreenColor = Colors.lightGreen;
-  static const kScaffoldWhite = AppColor.kWhiteColor;
+  static const kScaffoldWhite = Colors.white;
+  static const kShimmerGrey = Colors.black45 ;
+  static const kShimmerWhite = AppColor.kWhiteColor;
   AppColor._();
 }

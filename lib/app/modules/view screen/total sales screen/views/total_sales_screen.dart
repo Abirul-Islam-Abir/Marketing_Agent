@@ -1,7 +1,5 @@
-import 'package:amin_agent/app/modules/widgets/appbar.dart';
 
 import '../../../../data/const/export.dart';
-import '../../filter screen/views/filter_screen_view.dart';
 import '../components/total_sales_card.dart';
 
 class TotalSalesScreen extends GetView<TotalSalesScreeenController> {

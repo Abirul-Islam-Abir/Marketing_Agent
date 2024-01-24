@@ -50,11 +50,11 @@ class UserProfileEditScreen extends StatelessWidget {
                 label: 'Location'),
             const SizedBox(height: 30),
             // Obx is a GetX widget that rebuilds when the observable value changes
-            Obx(() => SecondaryButton(
-              isProgress: _controller.isProgress,
-              text: 'Update',
-              onTap: _controller.userProfileEdit,
-            )),
+            GetBuilder<ProfileScreenController>(builder: (controller) => SecondaryButton(
+                isProgress: controller.isProgress,
+                text: 'Update',
+                onTap: _controller.userProfileEdit,
+              )),
           ],
         ),
       ),

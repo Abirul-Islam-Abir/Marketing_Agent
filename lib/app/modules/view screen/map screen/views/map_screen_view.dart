@@ -1,4 +1,6 @@
 import '../../../../data/const/export.dart';
+import 'package:location/location.dart' as location;
+import 'package:geocoding/geocoding.dart' as geocoding;
 
 class MapScreenView extends StatefulWidget {
   const MapScreenView({Key? key}) : super(key: key);
@@ -11,14 +13,13 @@ class MapScreenViewState extends State<MapScreenView> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
-  List<Marker> markers = [
-
-  ];
-  final List<LatLng> polylinePoints = [
-  ];
+  List<Marker> markers = [];
+  final List<LatLng> polylinePoints = [];
   GoogleMapController? mapController;
   final Location location = Location();
   LatLng? userLocation;
+  String currentLocationName =
+      'Loading...'; // Updated variable for location name
   static const CameraPosition cameraPosition = CameraPosition(
     target: LatLng(23.8041, 90.4152),
     zoom: 17.4746,
@@ -26,12 +27,16 @@ class MapScreenViewState extends State<MapScreenView> {
 
   Future<void> getCurrentLocation() async {
     try {
-      final PermissionStatus permissionStatus =
-          await location.requestPermission();
+      final permissionStatus = await location.requestPermission();
       if (permissionStatus == PermissionStatus.granted) {
-        // onLocationChanged();
-        updateLocation();
-        setState(() {});
+        await location.onLocationChanged.listen((LocationData currentLocation) {
+          setState(() {
+            userLocation =
+                LatLng(currentLocation.latitude!, currentLocation.longitude!);
+          });
+          updateLocation();
+          updateCurrentLocationName();
+        });
       }
     } on PlatformException catch (e) {
       if (e.code == 'PERMISSION_DENIED') {
@@ -46,7 +51,6 @@ class MapScreenViewState extends State<MapScreenView> {
       setState(() {
         polylinePoints
             .add(LatLng(userLocation!.latitude, userLocation!.longitude));
-        // polylinePoints.clear();
       });
       addMarkerPosition();
       await controller.animateCamera(CameraUpdate.newCameraPosition(
@@ -60,53 +64,49 @@ class MapScreenViewState extends State<MapScreenView> {
     }
   }
 
-  // Function to add markers
+  Future<void> updateCurrentLocationName() async {
+    try {
+      if (userLocation != null) {
+        List<geocoding.Placemark> placemarks =
+            await geocoding.placemarkFromCoordinates(
+          userLocation!.latitude,
+          userLocation!.longitude,
+        );
+
+        if (placemarks.isNotEmpty) {
+          geocoding.Placemark placemark = placemarks[0];
+          String name = placemark.name ?? '';
+          String thoroughfare = placemark.thoroughfare ?? '';
+          String locality = placemark.locality ?? '';
+
+          setState(() {
+            currentLocationName = '$name $thoroughfare, $locality';
+          });
+        }
+      }
+    } catch (e) {
+      print('Error fetching current location name: $e');
+    }
+  }
+
   void addMarkerPosition() {
-    //markers.clear();
     const MarkerId markerId = MarkerId('markerId');
     Marker marker = Marker(
       markerId: markerId,
       position:
           LatLng(userLocation?.latitude ?? 0, userLocation?.longitude ?? 0),
       infoWindow: InfoWindow(
-          title: 'My Current Location!',
-          snippet:
-              'Lat:${userLocation!.latitude},Lng:${userLocation!.longitude}'),
+        title: 'My Current Location!',
+        snippet: 'Lat:${userLocation!.latitude},Lng:${userLocation!.longitude}',
+      ),
     );
     markers.add(marker);
     setState(() {});
   }
 
-  // Function to change the map type
-  void onMapTypeChanged(MapType newMapType) {
-    setState(() {
-      currentMapType = newMapType;
-    });
-  }
-
-  void onLocationChanged() {
-    location.onLocationChanged.listen((position) {
-      userLocation = LatLng(position.latitude!, position.longitude!);
-      polylinePoints.add(userLocation!);
-      addMarkerPosition();
-      setState(() {});
-    });
-  }
-
-  MapType currentMapType = MapType.normal;
-  List<MapType> availableMapTypes = [
-    MapType.normal,
-    MapType.satellite,
-    MapType.hybrid,
-    MapType.terrain,
-  ];
   @override
   void initState() {
     getCurrentLocation();
-    polylinePoints.addAll([
-      const LatLng(24.762189564828716, 88.13209619755345),
-      const LatLng(24.813744055051384, 88.14567206678025),
-    ]);
     super.initState();
   }
 
@@ -118,7 +118,7 @@ class MapScreenViewState extends State<MapScreenView> {
         children: [
           GoogleMap(
             onTap: (v) {},
-            mapType: currentMapType,
+            mapType: MapType.normal,
             polylines: {
               Polyline(
                 polylineId: const PolylineId("tracking"),
@@ -133,7 +133,7 @@ class MapScreenViewState extends State<MapScreenView> {
               _controller.complete(controller);
             },
           ),
-          const Positioned(
+          Positioned(
             top: 10,
             right: 50,
             left: 50,
@@ -142,11 +142,12 @@ class MapScreenViewState extends State<MapScreenView> {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 25),
                 child: Text(
-                  '47 Streat, Florida',
+                  currentLocationName,
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                      color: AppColor.kBlackColor),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),
@@ -158,20 +159,7 @@ class MapScreenViewState extends State<MapScreenView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                UserCardLocation(
-                  sendTap: () {
-                    getCurrentLocation();
-                  },
-                  image: scheduleList[0].imageUrl,
-                  subtitle: scheduleList[0].subtitle,
-                  title: scheduleList[0].title,
-                ),
-                UserCardLocation(
-                  sendTap: (){},
-                  image: scheduleList[0].imageUrl,
-                  subtitle: scheduleList[0].subtitle,
-                  title: scheduleList[0].title,
-                ),
+                // Your other widgets here
               ],
             ),
           ),

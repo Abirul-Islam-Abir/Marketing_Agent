@@ -1,7 +1,6 @@
-import 'package:amin_agent/app/api%20services/auth/dashboard/dashboard_data.dart';
 import 'package:get/get.dart';
-
 import '../../../../api services/auth/log_out.dart';
+import '../../../../api services/dashboard/dashboard_data.dart';
 import '../../../../data/utils/store_data.dart';
 import '../../../../data/utils/user_data_key.dart';
 import '../../../../routes/app_pages.dart';
@@ -32,12 +31,11 @@ class DashboardScreenController extends GetxController {
       final response = await dashboardDataRequest(token);
       if (response['success'] == true) {
         _dashboardDataList = response['data']['current_target'];
-        print('${response['data']['current_target']}');
       }
     }
   }
 
-  Future<void> userProfileInitializeMethod() async {
+  Future<void> initializeMethod() async {
     _isProgress = true;
     update();
     try {
@@ -54,19 +52,7 @@ class DashboardScreenController extends GetxController {
 
   @override
   void onInit() {
-    userProfileInitializeMethod();
+    initializeMethod();
     super.onInit();
   }
-}
-
-class SalesTargetModel {
-  final String title;
-  final int agentsCount;
-  final String targetAmount;
-  final String amountCollected;
-  final int doctorVisited;
-  final int doctorOnboard;
-
-  SalesTargetModel(this.title, this.agentsCount, this.targetAmount,
-      this.amountCollected, this.doctorVisited, this.doctorOnboard);
 }

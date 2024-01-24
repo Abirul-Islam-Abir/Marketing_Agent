@@ -1,4 +1,3 @@
-import 'package:amin_agent/app/modules/auth%20screen/password%20reset%20screen/controllers/password_set_screen_controller.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../data/const/export.dart';
