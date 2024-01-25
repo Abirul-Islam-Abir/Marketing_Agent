@@ -7,6 +7,7 @@
     - Additional notes or information about the development process*/
 import '../../../../api services/auth/forgot_password.dart';
 import '../../../../data/const/export.dart';
+
 // ForgetPasswordScreenController is a GetX controller class for the forget password screen.
 class ForgetPasswordScreenController extends GetxController {
   // TextEditingController for the phone number input field
@@ -41,7 +42,8 @@ class ForgetPasswordScreenController extends GetxController {
       AwesomeDialogs.showErrorDialog(context, desc: response['message']);
     } else {
       // Show an error dialog if there is an issue with the password field in the response data
-      AwesomeDialogs.showErrorDialog(context, desc: response['data']['password'][0]);
+      AwesomeDialogs.showErrorDialog(context,
+          desc: response['data']['password'][0]);
     }
   }
 
@@ -76,4 +78,3 @@ class ForgetPasswordScreenController extends GetxController {
     super.dispose();
   }
 }
-

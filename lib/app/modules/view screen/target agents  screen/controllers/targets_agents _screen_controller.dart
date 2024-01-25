@@ -1,23 +1,21 @@
-import 'package:amin_agent/app/api%20services/shedules/all_shedules.dart';
+// ignore_for_file: file_names
 
+import '../../../../api services/agents/all_agents.dart';
 import '../../../../data/const/export.dart';
 import '../../../../data/utils/user_data_key.dart';
 
-class ScheduleScreenController extends GetxController {
-  bool _isProgress = true;
+class AgentsScreenController extends GetxController {
+  bool _isProgress = false;
   bool get isProgress => _isProgress;
-  List _allScheduleList = [];
-  List get allScheduleList =>_allScheduleList;
-  Future<void> allSchedules()async{
+  Map<String, dynamic> _allTargetsAgentsList = {};
+  Map<String, dynamic> get allTargetsAgentsList => _allTargetsAgentsList;
 
-  }
-
-  Future<void> allTargetData() async {
+  Future<void> allTargetsAgents() async {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
-      final response = await allSheduleDataRequest(token);
+      final response = await allAgentsDataRequest(token);
       if (response['success'] == true) {
-        _allScheduleList = response['data'];
+        _allTargetsAgentsList = response['data'];
       }
     }
   }
@@ -27,7 +25,7 @@ class ScheduleScreenController extends GetxController {
     update();
     try {
       await Future.wait([
-        allTargetData(),
+        allTargetsAgents(),
       ]);
     } catch (e) {
       throw Exception('$e');
@@ -36,7 +34,6 @@ class ScheduleScreenController extends GetxController {
       update();
     }
   }
-
 
   @override
   void onInit() {

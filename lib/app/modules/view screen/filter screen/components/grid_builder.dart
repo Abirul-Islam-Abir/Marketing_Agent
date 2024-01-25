@@ -1,6 +1,5 @@
 import '../../../../data/const/export.dart';
 import '../../../../model/category_model.dart';
-import '../controllers/filter_screen_controller.dart';
 
 class GridBuilder extends StatelessWidget {
   GridBuilder({

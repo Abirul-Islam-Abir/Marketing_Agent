@@ -22,8 +22,7 @@ class ProfileDetailsScreen extends StatelessWidget {
       body: GetBuilder<ProfileScreenController>(builder: (controller) {
         final data = controller.userProfileList;
         return SingleChildScrollView(
-          child: controller.isProgress
-              ? Column(
+          child:   Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     UserAvatar('${data['avatar']}'),
@@ -50,7 +49,6 @@ class ProfileDetailsScreen extends StatelessWidget {
                         label: 'Address', name: '${data['address']}'),
                   ],
                 )
-              : CircularProgressIndicator(),
         );
       }),
     );

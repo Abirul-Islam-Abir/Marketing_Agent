@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
-import '../controllers/agents _screen_controller.dart';
+import '../controllers/targets_agents _screen_controller.dart';
 
-class AgentsScreenBinding extends Bindings {
+class TargetAgentsScreenBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<AgentsScreenController>(

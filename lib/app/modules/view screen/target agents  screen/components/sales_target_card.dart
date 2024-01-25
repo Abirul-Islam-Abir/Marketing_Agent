@@ -12,7 +12,7 @@ class SalesTargetCard extends StatelessWidget {
   });
 
   final String name, target, completed, dayLeft;
-  final double progress;
+  final String progress;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,7 @@ class SalesTargetCard extends StatelessWidget {
                   children: [
                     LayoutBuilder(
                       builder: (context, constraints) => Container(
-                        width: constraints.maxWidth * progress,
+                        width: constraints.maxWidth * double.parse(progress),
                         decoration: BoxDecoration(
                           color: AppColor.kPrimaryColor,
                           borderRadius: BorderRadius.circular(50),

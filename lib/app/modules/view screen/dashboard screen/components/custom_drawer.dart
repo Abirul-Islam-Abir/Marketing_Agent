@@ -83,7 +83,7 @@ class CustomDrawer extends StatelessWidget {
                       color: AppColor.kSecondaryColor,
                       icon: Icons.money_sharp,
                       name: 'Current Target',
-                      onTap: () => Get.toNamed(RouteName.salesTargetScreen),
+                      onTap: () => Get.toNamed(RouteName.agentScreen),
                     ),
                     CustomListTile(
                       color: AppColor.kSecondaryColor,

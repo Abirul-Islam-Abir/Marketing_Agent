@@ -1,4 +1,4 @@
-import 'package:amin_agent/app/api%20services/dashboard/all_targets.dart';
+import 'package:amin_agent/app/api%20services/targets/all_targets.dart';
 import 'package:get/get.dart';
 
 import '../../../../data/utils/store_data.dart';

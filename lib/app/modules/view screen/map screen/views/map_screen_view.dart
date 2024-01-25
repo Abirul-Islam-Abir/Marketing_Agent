@@ -1,10 +1,13 @@
 import '../../../../data/const/export.dart';
-import 'package:location/location.dart' as location;
 import 'package:geocoding/geocoding.dart' as geocoding;
 
 class MapScreenView extends StatefulWidget {
-  const MapScreenView({Key? key}) : super(key: key);
-
+  const MapScreenView(
+      {Key? key, required this.lat, required this.long, required this.isLatLng})
+      : super(key: key);
+  final String lat;
+  final String long;
+  final bool isLatLng;
   @override
   State<MapScreenView> createState() => MapScreenViewState();
 }
@@ -12,28 +15,27 @@ class MapScreenView extends StatefulWidget {
 class MapScreenViewState extends State<MapScreenView> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
+  List<Marker> markers = [
 
-  List<Marker> markers = [];
+  ];
   final List<LatLng> polylinePoints = [];
   GoogleMapController? mapController;
   final Location location = Location();
   LatLng? userLocation;
   String currentLocationName =
       'Loading...'; // Updated variable for location name
-  static const CameraPosition cameraPosition = CameraPosition(
-    target: LatLng(23.8041, 90.4152),
-    zoom: 17.4746,
-  );
+
 
   Future<void> getCurrentLocation() async {
     try {
       final permissionStatus = await location.requestPermission();
       if (permissionStatus == PermissionStatus.granted) {
-        await location.onLocationChanged.listen((LocationData currentLocation) {
+        location.onLocationChanged.listen((LocationData currentLocation) {
           setState(() {
             userLocation =
                 LatLng(currentLocation.latitude!, currentLocation.longitude!);
           });
+          userAddMarker();
           updateLocation();
           updateCurrentLocationName();
         });
@@ -66,11 +68,11 @@ class MapScreenViewState extends State<MapScreenView> {
 
   Future<void> updateCurrentLocationName() async {
     try {
-      if (userLocation != null) {
+      if (widget.isLatLng == true) {
         List<geocoding.Placemark> placemarks =
             await geocoding.placemarkFromCoordinates(
-          userLocation!.latitude,
-          userLocation!.longitude,
+          double.parse(widget.lat),
+          double.parse(widget.long),
         );
 
         if (placemarks.isNotEmpty) {
@@ -78,14 +80,13 @@ class MapScreenViewState extends State<MapScreenView> {
           String name = placemark.name ?? '';
           String thoroughfare = placemark.thoroughfare ?? '';
           String locality = placemark.locality ?? '';
-
           setState(() {
             currentLocationName = '$name $thoroughfare, $locality';
           });
         }
       }
     } catch (e) {
-      print('Error fetching current location name: $e');
+      throw Exception('$e');
     }
   }
 
@@ -93,17 +94,28 @@ class MapScreenViewState extends State<MapScreenView> {
     const MarkerId markerId = MarkerId('markerId');
     Marker marker = Marker(
       markerId: markerId,
-      position:
-          LatLng(userLocation?.latitude ?? 0, userLocation?.longitude ?? 0),
+      position: LatLng(userLocation!.latitude, userLocation!.longitude),
       infoWindow: InfoWindow(
         title: 'My Current Location!',
-        snippet: 'Lat:${userLocation!.latitude},Lng:${userLocation!.longitude}',
+        snippet: 'Lat:${widget.lat},Lng:${widget.long}',
       ),
     );
     markers.add(marker);
     setState(() {});
   }
-
+  void userAddMarker() {
+    const MarkerId markerId = MarkerId('markerId');
+    Marker marker = Marker(
+      markerId: markerId,
+      position: LatLng(double.parse(widget.lat), double.parse(widget.long)),
+      infoWindow: InfoWindow(
+        title: 'My Current Location!',
+        snippet: 'Lat:${widget.lat},Lng:${widget.long}',
+      ),
+    );
+    markers.add(marker);
+    setState(() {});
+  }
   @override
   void initState() {
     getCurrentLocation();
@@ -128,11 +140,15 @@ class MapScreenViewState extends State<MapScreenView> {
               )
             },
             markers: Set<Marker>.of(markers),
-            initialCameraPosition: cameraPosition,
+            initialCameraPosition:  CameraPosition(
+              target: LatLng(double.parse(widget.lat),double.parse(widget.long)),
+              zoom: 17.4746,
+            ),
             onMapCreated: (GoogleMapController controller) {
               _controller.complete(controller);
             },
           ),
+
           Positioned(
             top: 10,
             right: 50,
@@ -140,10 +156,11 @@ class MapScreenViewState extends State<MapScreenView> {
             child: Align(
               alignment: Alignment.center,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 25),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 25),
                 child: Text(
                   currentLocationName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                     color: Colors.black,
@@ -152,7 +169,7 @@ class MapScreenViewState extends State<MapScreenView> {
               ),
             ),
           ),
-          Positioned(
+          const Positioned(
             bottom: 100,
             right: 10,
             left: 10,

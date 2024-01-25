@@ -19,8 +19,8 @@ class _BottomNavState extends State<BottomNav> {
   ];
   final List<Widget> bottomBarPages = [
     DashboardScreenView(),
-    const ScheduleScreenView(),
-    const MapScreenView(),
+      ScheduleScreenView(),
+      MapScreenView(lat: '',long: '',isLatLng: false),
     ProfileScreenView(),
   ];
 

@@ -2,8 +2,8 @@
 import '../../../../data/const/export.dart';
 
 
-class SalesTargetedProgressCard extends StatelessWidget {
-  const SalesTargetedProgressCard({
+class AgentsTargetedProgressCard extends StatelessWidget {
+  const AgentsTargetedProgressCard({
     super.key,
     required this.text,
     required this.agentsCount,

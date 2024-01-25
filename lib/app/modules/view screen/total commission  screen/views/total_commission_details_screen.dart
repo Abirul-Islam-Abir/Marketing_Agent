@@ -1,10 +1,9 @@
 import 'package:amin_agent/app/model/commission_model.dart';
 
 import '../../../../data/const/export.dart';
-import '../../agents  screen/components/sales_target_card.dart';
-import '../../agents  screen/controllers/agents _screen_controller.dart';
+import '../../target agents  screen/components/sales_target_card.dart';
 
-class TotalCommissionDetailsScreen extends GetView<AgentsScreenController> {
+class TotalCommissionDetailsScreen extends StatelessWidget {
   const TotalCommissionDetailsScreen(this.list, {Key? key}) : super(key: key);
   final List<CommissionModel> list;
   @override
@@ -18,7 +17,7 @@ class TotalCommissionDetailsScreen extends GetView<AgentsScreenController> {
           dayLeft: '15 days left',
           target: list[index].target,
           name: list[index].name,
-          progress: list[index].progress,
+          progress:  '0.05',
           completed: list[index].completed),
     ),
   );

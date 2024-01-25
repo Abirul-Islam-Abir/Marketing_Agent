@@ -20,9 +20,9 @@ class AllTargetsScreenView extends StatelessWidget {
               : ListView.builder(
                   itemCount: controller.allTargetDataList.length,
                   shrinkWrap: true,
-                  itemBuilder: (context, index) => SalesTargetedProgressCard(
+                  itemBuilder: (context, index) => AgentsTargetedProgressCard(
                       onTap: () {
-                        Get.toNamed(RouteName.salesTargetScreen);
+                        Get.toNamed(RouteName.agentScreen);
                       },
                       text: controller.allTargetDataList[index]['title'],
                       progress: '0.5',

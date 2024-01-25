@@ -26,7 +26,6 @@ class DashboardScreenController extends GetxController {
 
   Future<void> dashboardData() async {
     final token = await box.read(UserDataKey.tokenKey);
-    print(token);
     if (token != null) {
       final response = await dashboardDataRequest(token);
       if (response['success'] == true) {

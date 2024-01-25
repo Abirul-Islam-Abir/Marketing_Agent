@@ -45,19 +45,28 @@ class _PdfViewState extends State<PdfView> {
               // Show a loading indicator while waiting for the PDF to load
               return const Center(
                 child: SpinKitThreeInOut(
-                  color: Colors.blue,  // Set the color of the spinner
-                  size: 50.0,           // Set the size of the spinner
+                  color: Colors.blue, // Set the color of the spinner
+                  size: 50.0, // Set the size of the spinner
                 ),
               );
             } else if (snapshot.hasError) {
               // Handle error if any
               return const Center(
-                child: Text('There is no PDF'),
+                child: SpinKitThreeInOut(
+                  color: Colors.blue, // Set the color of the spinner
+                  size: 50.0, // Set the size of the spinner
+                ),
               );
             } else {
               // Show the PDF viewer once it is loaded
               doc = snapshot.data as PDFDocument;
               return PDFViewer(
+                progressIndicator: const Center(
+                  child: SpinKitThreeInOut(
+                    color: Colors.blue, // Set the color of the spinner
+                    size: 50.0, // Set the size of the spinner
+                  ),
+                ),
                 document: doc,
                 backgroundColor: AppColor.kWhiteColor,
                 indicatorBackground: AppColor.kPrimaryColor,

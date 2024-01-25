@@ -50,21 +50,24 @@ class DashboardScreenView extends StatelessWidget {
                   leftCount: '20'),
               const CustomChart(),
               GetBuilder<DashboardScreenController>(
-                builder: (c) => c.isProgress
+                builder: (controller) {
+                  final data = controller.dashboardDataList;
+                  return controller.isProgress
                     ? const TargetsCardShimmer()
-                    : c.dashboardDataList.isEmpty
-                        ? Text('')
-                        : SalesTargetedProgressCard(
+                    : data.isEmpty
+                        ? const Text('')
+                        : AgentsTargetedProgressCard(
                             onTap: () {
-                              Get.toNamed(RouteName.salesTargetScreen);
+                              Get.toNamed(RouteName.agentScreen);
                             },
-                            text: c.dashboardDataList['title'],
-                            progress: c.dashboardDataList['progress'],
-                            agentsCount: c.dashboardDataList['agents_count'],
+                            text: data['title'],
+                            progress: data['progress'],
+                            agentsCount: data['agents_count'],
                             amountCollected:
-                                c.dashboardDataList['target_amount'],
+                            data['target_amount'],
                             targetAmount:
-                                c.dashboardDataList['amount_collected']),
+                            data['amount_collected']);
+                },
               ),
             ],
           ),

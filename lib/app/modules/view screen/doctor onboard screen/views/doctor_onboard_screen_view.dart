@@ -1,6 +1,5 @@
 
 import '../../../../data/const/export.dart';
-import '../components/doctor_onboard_card.dart';
 
 class DoctorOnboardScreenView extends GetView<DoctorOnboardScreenController> {
   const DoctorOnboardScreenView({Key? key}) : super(key: key);

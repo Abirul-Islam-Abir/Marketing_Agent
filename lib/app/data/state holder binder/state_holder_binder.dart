@@ -1,6 +1,5 @@
 
 
-import 'package:amin_agent/app/modules/auth%20screen/password%20reset%20screen/controllers/password_set_screen_controller.dart';
 import 'package:amin_agent/app/modules/connectivity/controller/internet_connectivity.dart';
 
 import '../const/export.dart';

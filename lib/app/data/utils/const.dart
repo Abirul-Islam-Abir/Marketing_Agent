@@ -5,16 +5,21 @@ String? validatePassword(String? value) {
   var passNonNullValue = value ?? "";
   if (passNonNullValue.isEmpty) {
     return ("Password is required");
-  } else if (value!.length < 6) {
-    return ("Password Must be more than 6 characters");
+  } else if (passNonNullValue.length < 6) {
+    return ("Password Must be more than 5 characters");
+    // } else if (!regex.hasMatch(passNonNullValue)) {
+    //   return ("Password should contain upper,lower,digit and Special character ");
+  } else if (passNonNullValue.length > 15) {
+    return ("Password max 15  characters");
     // } else if (!regex.hasMatch(passNonNullValue)) {
     //   return ("Password should contain upper,lower,digit and Special character ");
   }
   return null;
 }
+
 String? validateMobile(String? value) {
-  String pattern = r'';
-  RegExp regExp = RegExp(pattern);
+  String patttern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+  RegExp regExp = RegExp(patttern);
   if (value!.isEmpty) {
     return 'Please enter mobile number';
   } else if (!regExp.hasMatch(value)) {

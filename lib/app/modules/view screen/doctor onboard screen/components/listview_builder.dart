@@ -1,6 +1,5 @@
 import '../../../../data/const/export.dart';
 import '../../../../model/doctor_onboard_model.dart';
-import 'doctor_onboard_card.dart';
 
 class OnboardListView extends StatelessWidget {
   const OnboardListView({

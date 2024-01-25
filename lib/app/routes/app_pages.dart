@@ -1,7 +1,7 @@
-import 'package:amin_agent/app/modules/view%20screen/agents%20%20screen/views/agents_screen_view.dart';
+import 'package:amin_agent/app/modules/view%20screen/target%20agents%20%20screen/bindings/targets_agents_screen_binding.dart';
+import 'package:amin_agent/app/modules/view%20screen/target%20agents%20%20screen/views/target_agents_screen_view.dart';
 
 import '../data/const/export.dart';
-import '../modules/view screen/agents  screen/bindings/agents_screen_binding.dart';
 import '../modules/view screen/all targets screen/bindings/all_targets_screen_binding.dart';
 import '../modules/view screen/all targets screen/views/all_targets_screen_view.dart';
 import '../modules/view screen/doctor visited screen/bindings/doctor_visited_screen_binding.dart';
@@ -25,7 +25,7 @@ class AppPages {
     ),
     GetPage(
       name: RouteName.scheduleScreen,
-      page: () => const ScheduleScreenView(),
+      page: () => ScheduleScreenView(),
       binding: ScheduleScreenBinding(),
     ),
     GetPage(
@@ -37,11 +37,6 @@ class AppPages {
       name: RouteName.greetingsScreen,
       page: () => const GreetingsScreenView(),
       binding: GreetingsScreenBinding(),
-    ),
-    GetPage(
-      name: RouteName.mapScreen,
-      page: () => const MapScreenView(),
-      binding: MapScreenBinding(),
     ),
     GetPage(
       name: RouteName.bottomNav,
@@ -65,9 +60,9 @@ class AppPages {
       binding: TotalSalesScreenBinding(),
     ),
     GetPage(
-      name: RouteName.salesTargetScreen,
-      page: () => const AgentsScreenView(),
-      binding: AgentsScreenBinding(),
+      name: RouteName.agentScreen,
+      page: () => TargetAgentsScreenView(),
+      binding: TargetAgentsScreenBinding(),
     ),
     GetPage(
       name: RouteName.doctorOnboardScreen,
@@ -104,7 +99,7 @@ class AppPages {
     ),
     GetPage(
       name: RouteName.allTargetScreen,
-      page: () =>   AllTargetsScreenView(),
+      page: () => AllTargetsScreenView(),
       binding: AllTargetsScreenBinding(),
     ),
   ];

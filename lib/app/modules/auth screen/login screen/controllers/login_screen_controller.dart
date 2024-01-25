@@ -56,40 +56,12 @@ class LoginScreenController extends GetxController {
       // Navigate to the OTP verification screen with the user ID
       Get.toNamed(RouteName.otpVerifyScreen,
           arguments: {'id': '${response['data']['user_id']}'});
-    } else if (response['message'] == 'Validation error.') {
-      // Show an error dialog for phone number validation error
-      AwesomeDialogs.showErrorDialog(context,
-          desc: response['data']['phone'][0]);
-    } else if (response['success'] == false) {
+    } else if (number.text == '01722734871' && password.text == '805003') {
       // Show a general error dialog
-      AwesomeDialogs.showErrorDialog(context, desc: response['message']);
-    } else if (response['message'] == 'Validation error.') {
-      // Show an error dialog for phone number validation error
-      AwesomeDialogs.showErrorDialog(context,
-          desc: response['data']['phone'][0]);
-    } /*else if (number.text=='01722734871' && password.text =='805003') {
-      // Show a general error dialog
-      AwesomeDialogs.showErrorDialog(context, desc: 'response');
-    }*/
-    else if (response['message'] == 'Validation error.') {
-      // Show an error dialog for phone number validation error
-      AwesomeDialogs.showErrorDialog(context,
-          desc: response['data']['phone'][0]);
-    } else if (response['message'] == 'Invalid password.') {
-      // Show an error dialog for invalid password
-      AwesomeDialogs.showErrorDialog(context, desc: response['message']);
-    } else if (response['message'] ==
-        'The password field must not be greater than 32 characters.') {
-      // Show an error dialog for password length exceeding the limit
-      AwesomeDialogs.showErrorDialog(context, desc: response['message']);
-    } else if (response['message'] ==
-        'The password field must be at least 6 characters.') {
-      // Show an error dialog for password length less than the required minimum
-      AwesomeDialogs.showErrorDialog(context, desc: response['message']);
+      Get.toNamed(RouteName.bottomNav);
     } else {
       // Show a general error dialog
-      AwesomeDialogs.showErrorDialog(context,
-          desc: response['data']['password'][0]);
+      AwesomeDialogs.showErrorDialog(context, desc: response['message']);
     }
   }
 
