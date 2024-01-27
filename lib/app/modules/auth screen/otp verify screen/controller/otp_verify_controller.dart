@@ -47,9 +47,12 @@ class OtpVerifyScreenController extends GetxController {
           'otp': response['data']['reset_otp'].toString()
         });
       } else {
+        otp.clear();
+
         errorText.value = response['message'];
         hasError.value = true;
         errorController!.add(ErrorAnimationType.shake);
+        otpFocus.requestFocus();
         // Handle error (e.g., show error dialog)
       }
     } else {
@@ -60,9 +63,11 @@ class OtpVerifyScreenController extends GetxController {
         StoreData.saveId(response['data']['user_id'].toString());
         Get.offAllNamed(RouteName.bottomNav);
       } else {
+        otp.clear();
         errorText.value = response['message'];
         hasError.value = true;
         errorController!.add(ErrorAnimationType.shake);
+        otpFocus.requestFocus();
         // Handle error (e.g., show error dialog)
       }
     }

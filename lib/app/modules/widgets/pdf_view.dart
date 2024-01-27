@@ -38,45 +38,47 @@ class _PdfViewState extends State<PdfView> {
         },
       ),
       body: Center(
-        child: FutureBuilder(
-          future: pdfFuture,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              // Show a loading indicator while waiting for the PDF to load
-              return const Center(
-                child: SpinKitThreeInOut(
-                  color: Colors.blue, // Set the color of the spinner
-                  size: 50.0, // Set the size of the spinner
-                ),
-              );
-            } else if (snapshot.hasError) {
-              // Handle error if any
-              return const Center(
-                child: SpinKitThreeInOut(
-                  color: Colors.blue, // Set the color of the spinner
-                  size: 50.0, // Set the size of the spinner
-                ),
-              );
-            } else {
-              // Show the PDF viewer once it is loaded
-              doc = snapshot.data as PDFDocument;
-              return PDFViewer(
-                progressIndicator: const Center(
-                  child: SpinKitThreeInOut(
-                    color: Colors.blue, // Set the color of the spinner
-                    size: 50.0, // Set the size of the spinner
-                  ),
-                ),
-                document: doc,
-                backgroundColor: AppColor.kWhiteColor,
-                indicatorBackground: AppColor.kPrimaryColor,
-                indicatorText: AppColor.kWhiteColor,
-                showIndicator: true,
-                showPicker: true,
-              );
-            }
-          },
-        ),
+        child: widget.url.isEmpty
+            ? Text('Please upload pdf first.')
+            : FutureBuilder(
+                future: pdfFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    // Show a loading indicator while waiting for the PDF to load
+                    return const Center(
+                      child: SpinKitThreeInOut(
+                        color: Colors.blue, // Set the color of the spinner
+                        size: 50.0, // Set the size of the spinner
+                      ),
+                    );
+                  } else if (snapshot.hasError) {
+                    // Handle error if any
+                    return const Center(
+                      child: SpinKitThreeInOut(
+                        color: Colors.blue, // Set the color of the spinner
+                        size: 50.0, // Set the size of the spinner
+                      ),
+                    );
+                  } else {
+                    // Show the PDF viewer once it is loaded
+                    doc = snapshot.data as PDFDocument;
+                    return PDFViewer(
+                      progressIndicator: const Center(
+                        child: SpinKitThreeInOut(
+                          color: Colors.blue, // Set the color of the spinner
+                          size: 50.0, // Set the size of the spinner
+                        ),
+                      ),
+                      document: doc,
+                      backgroundColor: AppColor.kWhiteColor,
+                      indicatorBackground: AppColor.kPrimaryColor,
+                      indicatorText: AppColor.kWhiteColor,
+                      showIndicator: true,
+                      showPicker: true,
+                    );
+                  }
+                },
+              ),
       ),
     );
   }

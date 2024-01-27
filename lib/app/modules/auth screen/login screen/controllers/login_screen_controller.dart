@@ -73,7 +73,9 @@ class LoginScreenController extends GetxController {
     update();
     try {
       // Execute the login method within a Future.wait to handle asynchronous operations
-      await Future.wait([login(context)]);
+      await Future.wait([
+        login(context),
+      ]);
     } catch (e) {
       // Handle exceptions by throwing an error message
       throw Exception('$e');

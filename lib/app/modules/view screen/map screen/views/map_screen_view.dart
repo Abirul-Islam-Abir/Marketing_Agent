@@ -1,3 +1,5 @@
+import 'package:amin_agent/app/modules/view%20screen/schedule%20screen/components/schedule_card.dart';
+
 import '../../../../data/const/export.dart';
 import 'package:geocoding/geocoding.dart' as geocoding;
 
@@ -163,7 +165,7 @@ class MapScreenViewState extends State<MapScreenView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                // Your other widgets here
+
               ],
             ),
           ),

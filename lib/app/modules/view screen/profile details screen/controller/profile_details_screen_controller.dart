@@ -24,10 +24,12 @@ class ProfileDetailsScreenController extends GetxController {
         if (response['success'] == true) {
           await Get.find<ProfileScreenController>().userProfile();
           Get.snackbar('Good Job!', response['message']);
+        } else {
+          Get.snackbar(
+              'Wrong!', 'The passport pdf field must be a file of type: pdf.',
+              backgroundColor: AppColor.kRedColor);
         }
       }
-    } else {
-      // User canceled the picker
     }
   }
 
@@ -43,10 +45,12 @@ class ProfileDetailsScreenController extends GetxController {
         if (response['success'] == true) {
           await Get.find<ProfileScreenController>().userProfile();
           Get.snackbar('Good Job!', response['message']);
+        } else {
+          Get.snackbar(
+              'Wrong!', 'The passport pdf field must be a file of type: pdf.',
+              backgroundColor: AppColor.kRedColor);
         }
       }
-    } else {
-      // User canceled the picker
     }
   }
 }
