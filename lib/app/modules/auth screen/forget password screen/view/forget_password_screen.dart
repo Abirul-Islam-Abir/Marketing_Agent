@@ -26,6 +26,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                   SizedBox(height: 5.h),
                   // CustomTextField is a widget for user input with an image (textFieldPhone) as a prefix
                   CustomTextField(
+                    validator: validateMobile,
                     onEditingComplete: () {
                       // Call the validateMethod when editing is complete
                       controller.validateMethod(context);

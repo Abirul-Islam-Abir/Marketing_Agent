@@ -1,3 +1,4 @@
+import 'package:amin_agent/app/modules/view%20screen/map%20screen/views/map_screen_navigate.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../data/const/export.dart';
@@ -30,7 +31,7 @@ class ScheduleScreenView extends StatelessWidget {
                   return ScheduleCard(
                     sendTap: () {
                       Get.to(
-                        () => MapScreenView(
+                        () => MapScreenNavigate(
                           lat: controller.allScheduleList[index]['chamber_lat'],
                           long: controller.allScheduleList[index]
                               ['chamber_long'],

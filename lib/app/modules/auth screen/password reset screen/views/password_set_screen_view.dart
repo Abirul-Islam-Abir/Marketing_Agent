@@ -29,6 +29,7 @@ class PasswordSetScreenView extends StatelessWidget {
                     SizedBox(height: 5.h),
                     // Obx is a GetX widget that rebuilds when the observable value changes
                     Obx(() => CustomTextField(
+
                         onEditingComplete: () {
                           // Move focus to the confirm password field
                           FocusScope.of(context)
