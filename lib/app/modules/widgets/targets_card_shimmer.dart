@@ -30,7 +30,7 @@ class TargetsCardShimmer extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Target Agent Card',
+                        '                ',
                         style: TextStyle(
                             color: AppColor.kWhiteColor,
                             fontWeight: FontWeight.w400,fontSize: 18),
@@ -39,12 +39,9 @@ class TargetsCardShimmer extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.supervisor_account_sharp,
-                            color: AppColor.kWhiteColor,
-                          ),
+
                           Text(
-                            'price here     ',
+                            '                ',
                             style: TextStyle(
                                 color: AppColor.kWhiteColor,
                                 fontWeight: FontWeight.bold),
@@ -55,7 +52,7 @@ class TargetsCardShimmer extends StatelessWidget {
                   ),
                 ),
                 const Text(
-                  '',
+                   '                       ',
                   style: TextStyle(
                       color: AppColor.kWhiteColor, fontWeight: FontWeight.bold),
                 ),

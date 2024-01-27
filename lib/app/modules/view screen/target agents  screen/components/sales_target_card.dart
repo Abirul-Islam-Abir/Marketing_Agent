@@ -8,12 +8,12 @@ class SalesTargetCard extends StatelessWidget {
     required this.target,
     required this.completed,
     required this.progress,
-    required this.dayLeft,
+    required this.dayLeft, required this.isMe,
   });
 
   final String name, target, completed, dayLeft;
   final String progress;
-
+ final bool isMe;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,7 +22,7 @@ class SalesTargetCard extends StatelessWidget {
         height: 120,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: AppColor.kWhiteColor.withOpacity(0.20),
+          color:isMe?AppColor.kGreenColor: AppColor.kWhiteColor.withOpacity(0.20),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(

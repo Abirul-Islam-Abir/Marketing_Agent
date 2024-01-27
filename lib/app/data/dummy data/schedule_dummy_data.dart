@@ -21,4 +21,14 @@ List<Pharmacy> scheduleList = [
     subtitle: '11AM - 3AM',
     title: 'Downtown Drugstore',
   ),
+  Pharmacy(
+    imageUrl: 'https://avatars.githubusercontent.com/u/89778681?v=4',
+    subtitle: '10AM - 2AM',
+    title: 'City Pharmacy',
+  ),
+  Pharmacy(
+    imageUrl: 'https://avatars.githubusercontent.com/u/89778681?v=4',
+    subtitle: '11AM - 3AM',
+    title: 'Downtown Drugstore',
+  ),
 ];

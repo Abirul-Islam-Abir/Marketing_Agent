@@ -38,6 +38,8 @@ class MapScreenViewState extends State<MapScreenView> {
           updateLocation();
           updateCurrentLocationName();
         });
+      }else{
+        getCurrentLocation();
       }
     } on PlatformException catch (e) {
       if (e.code == 'PERMISSION_DENIED') {

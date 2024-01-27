@@ -287,7 +287,7 @@ void completedLocationTaskDialog() {
                     width: 150,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.offAllNamed(RouteName.bottomNav);
+                        Get.back();
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: AppColor.kPrimaryColor),

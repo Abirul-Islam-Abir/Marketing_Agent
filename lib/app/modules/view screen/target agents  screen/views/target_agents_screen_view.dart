@@ -13,7 +13,7 @@ class TargetAgentsScreenView extends StatelessWidget {
         return const Scaffold(body: ShimmerTargetList());
       }
       final data = controller.allTargetsAgentsList;
-      List agentsList = data['agents'];
+
       return Scaffold(
         backgroundColor: AppColor.kSecondaryColor,
         appBar: buildFilterAppBar(
@@ -25,13 +25,17 @@ class TargetAgentsScreenView extends StatelessWidget {
         body: ListView.builder(
           itemCount: data['agents'].length,
           shrinkWrap: true,
-          itemBuilder: (context, index) => SalesTargetCard(
+          itemBuilder: (context, index) {
+            List agentsList = data['agents'];
+            return SalesTargetCard(
+              isMe: agentsList[index]['is_me'] ,
             dayLeft: data['days_left'],
             target: data['target_amount'],
             name: agentsList[index]['agent_name'],
             progress: agentsList[index]['progress'],
             completed: agentsList[index]['sell_amount'],
-          ),
+          );
+          },
         ),
       );
     });

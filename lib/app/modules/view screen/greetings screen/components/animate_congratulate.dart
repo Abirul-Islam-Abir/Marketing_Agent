@@ -4,19 +4,46 @@ import 'dart:math';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 
+import 'dart:async';
+import 'dart:math';
+import 'package:confetti/confetti.dart';
+import 'package:flutter/material.dart';
 
 class AnimateCongratulate extends StatefulWidget {
-    const AnimateCongratulate({super.key});
+  const AnimateCongratulate({Key? key}) : super(key: key);
 
   @override
   State<AnimateCongratulate> createState() => _AnimateCongratulateState();
 }
 
 class _AnimateCongratulateState extends State<AnimateCongratulate> {
-  bool isPlaying = false;
-  final controller = ConfettiController();
+  late bool isPlaying;
+  late final controller;
 
-  Path drawStar( size) {
+  @override
+  void initState() {
+    super.initState();
+    isPlaying = false;
+    controller = ConfettiController();
+
+    // Delay the play call by a short duration
+    Future.delayed(Duration(milliseconds: 100), () {
+      controller.play();
+
+      // Stop the confetti after one second
+      Timer(Duration(seconds: 1), () {
+        controller.stop();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  Path drawStar(Size size) {
     // Method to convert degree to radians
     double degToRad(double deg) => deg * (pi / 180.0);
 
@@ -52,20 +79,6 @@ class _AnimateCongratulateState extends State<AnimateCongratulate> {
 
     return path;
   }
-  @override
-  void initState() {
-    controller.play();
-    Timer.periodic(const Duration(seconds: 1), (timer) {
-      controller.stop();
-    });
-    super.initState();
-  }
-  @override
-  void dispose() {
-
-    controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +94,7 @@ class _AnimateCongratulateState extends State<AnimateCongratulate> {
       // manually specify the colors to be used
       createParticlePath: drawStar,
       shouldLoop: true,
-      confettiController:  controller,
+      confettiController: controller,
       blastDirectionality: BlastDirectionality.explosive,
       numberOfParticles: 20,
       minBlastForce: 1,

@@ -1,9 +1,11 @@
+import 'package:amin_agent/app/data/const/export.dart';
 import 'package:get/get.dart';
 import '../../../../api services/auth/log_out.dart';
 import '../../../../api services/dashboard/dashboard_data.dart';
 import '../../../../data/utils/store_data.dart';
 import '../../../../data/utils/user_data_key.dart';
 import '../../../../routes/app_pages.dart';
+import '../../target agents  screen/controllers/targets_agents _screen_controller.dart';
 
 class DashboardScreenController extends GetxController {
   String text = 'Total commission';
@@ -30,7 +32,10 @@ class DashboardScreenController extends GetxController {
     if (token != null) {
       final response = await dashboardDataRequest(token);
       if (response['success'] == true) {
+        _dashboardDataList.clear();
         _dashboardDataList = response['data']['current_target'];
+        Get.put(ScheduleScreenController()).initializeMethod(_dashboardDataList['target_id']);
+        Get.put(AgentsScreenController()).initializeMethod(_dashboardDataList['target_id']);
       }
     }
   }

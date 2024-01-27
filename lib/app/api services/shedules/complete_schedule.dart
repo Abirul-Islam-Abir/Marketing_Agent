@@ -6,7 +6,8 @@ import '../api_services.dart';
 
 // This function initiates a request to upload an image (avatar) by sending a multipart POST request to the specified API endpoint.
 // It expects 'path' representing the path to the image file and 'token' representing the user's authentication token.
-Future<Map<String, dynamic>> completeScheduleRequest({path, token}) async {
+Future<Map<String, dynamic>> completeScheduleRequest(
+    {path, token, uid, completionLat, completionLang}) async {
   // Parse the API URL for updating the avatar from the ApiServices class
   var uri = Uri.parse(ApiServices.updateAvatarUrl);
 
@@ -17,8 +18,12 @@ Future<Map<String, dynamic>> completeScheduleRequest({path, token}) async {
   request.headers['Authorization'] = 'Bearer $token';
 
   // Add the image file to the request
-  var imageUpload = await http.MultipartFile.fromPath('avatar', path);
+  var imageUpload = await http.MultipartFile.fromPath('picture', path);
   request.files.add(imageUpload);
+  // Add additional fields
+  request.fields['uid'] = uid;
+  request.fields['completion_lat'] = completionLat;
+  request.fields['completion_lang'] = completionLang;
 
   // Send the multipart request and retrieve the response
   var response = await request.send();

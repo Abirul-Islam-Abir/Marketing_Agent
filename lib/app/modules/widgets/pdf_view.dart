@@ -38,9 +38,7 @@ class _PdfViewState extends State<PdfView> {
         },
       ),
       body: Center(
-        child: widget.url.isEmpty
-            ? Text('Please upload pdf first.')
-            : FutureBuilder(
+        child: FutureBuilder(
                 future: pdfFuture,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {

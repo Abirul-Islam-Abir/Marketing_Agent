@@ -5,9 +5,9 @@ import '../api_services.dart';
 
 // This function initiates a request to retrieve the user profile information by sending a GET request to the specified API endpoint.
 // It expects a 'token' parameter representing the user's authentication token.
-Future allAgentsDataRequest(token) async {
+Future allAgentsDataRequest({token,id}) async {
   // Get the user profile API URL from the ApiServices class
-  final uri = ApiServices.allAgentsUrl;
+  final uri = '${ApiServices.allAgentsUrl}/$id/agents';
 
   // Parse the URL into a Uri object
   final url = Uri.parse(uri);

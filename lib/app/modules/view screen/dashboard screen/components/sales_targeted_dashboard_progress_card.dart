@@ -1,6 +1,4 @@
-
 import '../../../../data/const/export.dart';
-
 
 class AgentsTargetedProgressCard extends StatelessWidget {
   const AgentsTargetedProgressCard({
@@ -9,13 +7,16 @@ class AgentsTargetedProgressCard extends StatelessWidget {
     required this.agentsCount,
     required this.targetAmount,
     required this.amountCollected,
-    required this.progress, required this.onTap,
+    required this.progress,
+    required this.onTap,
+    required this.isCurrent,
   });
 
-  final String text,  targetAmount, amountCollected;
+  final String text, targetAmount, amountCollected;
   final int agentsCount;
   final String progress;
-final Function() onTap;
+  final Function() onTap;
+  final bool isCurrent;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -26,14 +27,17 @@ final Function() onTap;
           height: 120,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: AppColor.kWhiteColor.withOpacity(0.20),
+            color: isCurrent
+                ? AppColor.kGreenColor
+                : AppColor.kWhiteColor.withOpacity(0.20),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -41,7 +45,8 @@ final Function() onTap;
                       text,
                       style: const TextStyle(
                           color: AppColor.kWhiteColor,
-                          fontWeight: FontWeight.w400,fontSize: 18),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 18),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -71,7 +76,8 @@ final Function() onTap;
                     color: AppColor.kWhiteColor, fontWeight: FontWeight.bold),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 child: Container(
                   height: 15,
                   decoration: BoxDecoration(

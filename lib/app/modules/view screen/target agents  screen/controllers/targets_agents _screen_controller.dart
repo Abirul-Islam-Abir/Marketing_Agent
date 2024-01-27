@@ -10,22 +10,25 @@ class AgentsScreenController extends GetxController {
   Map<String, dynamic> _allTargetsAgentsList = {};
   Map<String, dynamic> get allTargetsAgentsList => _allTargetsAgentsList;
 
-  Future<void> allTargetsAgents() async {
+  Future<void> allTargetsAgents(id) async {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
-      final response = await allAgentsDataRequest(token);
+      final response = await allAgentsDataRequest(token:token,id: id);
+      print(response);
       if (response['success'] == true) {
+        print(response);
+        _allTargetsAgentsList.clear();
         _allTargetsAgentsList = response['data'];
       }
     }
   }
 
-  Future<void> initializeMethod() async {
+  Future<void> initializeMethod(id) async {
     _isProgress = true;
     update();
     try {
       await Future.wait([
-        allTargetsAgents(),
+        allTargetsAgents(id),
       ]);
     } catch (e) {
       throw Exception('$e');
@@ -33,11 +36,5 @@ class AgentsScreenController extends GetxController {
       _isProgress = false;
       update();
     }
-  }
-
-  @override
-  void onInit() {
-    initializeMethod();
-    super.onInit();
   }
 }
