@@ -1,18 +1,19 @@
 import '../../../../data/const/export.dart';
 
 class AvatarUpload extends StatelessWidget {
-  AvatarUpload({
+  const AvatarUpload({
     super.key,
-    this.onTap,
+    this.onTap, required this.img, required this.selectedImagePath,
   });
 
-  final controller = Get.put(ProfileScreenController());
   final void Function()? onTap;
+  final String img;
+  final String selectedImagePath;
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        UserAvatar('${controller.userProfileList['avatar']}'),
+        UserAvatar(img,selectedImagePath:selectedImagePath ),
         Positioned(
           bottom: 30,
           right: -0,

@@ -1,17 +1,5 @@
 import '../../../../data/const/export.dart';
 import 'package:geocoding/geocoding.dart' as geocoding;
-import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
-import 'dart:async';
-import 'package:geocoding/geocoding.dart' as geocoding;
-import 'package:flutter/services.dart';
-import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
-import 'dart:async';
-import 'package:geocoding/geocoding.dart' as geocoding;
-import 'package:flutter/services.dart';
 
 class MapScreenNavigate extends StatefulWidget {
   const MapScreenNavigate(
@@ -133,7 +121,7 @@ class MapScreenNavigateState extends State<MapScreenNavigate> {
 
   Future<void> userAddMarker() async {
     final GoogleMapController controller = await _controller.future;
-    const MarkerId markerId = MarkerId('markerId');
+    const MarkerId markerId = MarkerId('userAddMarker');
     Marker marker = Marker(
       markerId: markerId,
       position: LatLng(double.parse(widget.lat), double.parse(widget.long)),

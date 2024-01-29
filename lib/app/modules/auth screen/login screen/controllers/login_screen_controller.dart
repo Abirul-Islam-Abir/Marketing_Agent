@@ -40,7 +40,10 @@ class LoginScreenController extends GetxController {
 
   // Getter for accessing the value of isProgress
   bool get isProgress => _isProgress;
-
+  void progress(v) {
+    _isProgress  = v;
+    update();
+  }
   // Method to toggle the visibility of the password
   void isSecureChange() {
     _isSecure.value = !_isSecure.value;
@@ -68,9 +71,7 @@ class LoginScreenController extends GetxController {
   // Method to handle the initialization of the login process
   Future<void> loginInitializeMethod(context) async {
     // Set isProgress to true to indicate that the login operation is in progress
-    _isProgress = true;
-    // Trigger a UI update to reflect the change in isProgress
-    update();
+    progress(true);
     try {
       // Execute the login method within a Future.wait to handle asynchronous operations
       await Future.wait([
@@ -81,9 +82,7 @@ class LoginScreenController extends GetxController {
       throw Exception('$e');
     } finally {
       // Set isProgress to false when the login operation is completed (either success or failure)
-      _isProgress = false;
-      // Trigger a UI update to reflect the change in isProgress
-      update();
+      progress(false);
     }
   }
 

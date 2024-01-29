@@ -4,13 +4,13 @@ import '../../../../data/const/export.dart';
 class SmallDetailsDashboardCard extends StatelessWidget {
   const SmallDetailsDashboardCard({
     super.key,
-    required this.leftTitle,
-    required this.rightTitle,
-    required this.leftCount,
-    required this.rightCount, this.leftOnTap, this.rightOnTap,
+    required this.totalCommissionTitle,
+    required this.totalSalesTitle,
+    required this.totalSalesCount,
+    required this.totalCommissionCount, this.totalCommissionTap, this.totalSalesTap,
   });
-  final String leftTitle, rightTitle, leftCount, rightCount;
-  final Function()? leftOnTap,rightOnTap;
+  final String totalCommissionTitle, totalSalesTitle, totalSalesCount, totalCommissionCount;
+  final Function()? totalCommissionTap,totalSalesTap;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -22,7 +22,7 @@ class SmallDetailsDashboardCard extends StatelessWidget {
           children: [
             Expanded(
               child: InkWell(
-                onTap: leftOnTap,
+                onTap: totalCommissionTap,
                 child: Container(
                   decoration: BoxDecoration(
                     color: AppColor.kWhiteColor.withOpacity(0.20),
@@ -33,13 +33,13 @@ class SmallDetailsDashboardCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        leftTitle,
+                        totalCommissionTitle,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: AppColor.kWhiteColor),
                       ), const SizedBox(height: 8,),
                       Text(
-                        leftCount,
+                        totalSalesCount,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: AppColor.kWhiteColor,
@@ -55,7 +55,7 @@ class SmallDetailsDashboardCard extends StatelessWidget {
             ),
             Expanded(
               child: InkWell(
-                onTap: rightOnTap,
+                onTap: totalSalesTap,
                 child: Container(
                   decoration: BoxDecoration(
                     color: AppColor.kWhiteColor.withOpacity(0.20),
@@ -66,14 +66,14 @@ class SmallDetailsDashboardCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        rightTitle,
+                        totalSalesTitle,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: AppColor.kWhiteColor),
                       ),
                       const SizedBox(height: 8,),
                       Text(
-                        rightCount,
+                        totalCommissionCount,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: AppColor.kWhiteColor,

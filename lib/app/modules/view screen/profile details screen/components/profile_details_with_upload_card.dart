@@ -1,4 +1,3 @@
-
 import '../../../../data/const/export.dart';
 
 class ProfileDetailsCardWithUpload extends StatelessWidget {
@@ -7,9 +6,13 @@ class ProfileDetailsCardWithUpload extends StatelessWidget {
       required this.name,
       required this.label,
       required this.showTap,
-      required this.uploadTap});
+      required this.uploadTap,
+      required this.isUpload});
+
   final String name, label;
   final Function() showTap, uploadTap;
+  final bool isUpload;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -54,7 +57,7 @@ class ProfileDetailsCardWithUpload extends StatelessWidget {
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       IconButton(
                           onPressed: showTap,
@@ -63,12 +66,17 @@ class ProfileDetailsCardWithUpload extends StatelessWidget {
                             color: AppColor.kWhiteColor,
                           )),
                       const SizedBox(width: 5),
-                      IconButton(
-                          onPressed: uploadTap,
-                          icon: const Icon(
-                            Icons.cloud_upload,
-                            color: AppColor.kWhiteColor,
-                          ))
+                      isUpload
+                          ? Center(
+                              child: CircularProgressIndicator(
+                              color: AppColor.kWhiteColor,
+                            ))
+                          : IconButton(
+                              onPressed: uploadTap,
+                              icon: const Icon(
+                                Icons.cloud_upload,
+                                color: AppColor.kWhiteColor,
+                              ))
                     ],
                   )
                 ],

@@ -1,4 +1,5 @@
 import 'package:amin_agent/app/modules/view%20screen/user%20profile%20edit%20screen/components/drawer_update_card.dart';
+import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 
 import '../../../../data/const/export.dart';
 
@@ -24,7 +25,7 @@ class UserProfileEditScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             // Display the user avatar using the UserAvatar widget
-            UserAvatar('${data['avatar']}'),
+            UserAvatar('${data['avatar']}', ),
             const SizedBox(height: 10),
             // DrawerUpdateCard is a custom widget for updating profile information with a text field
             DrawerUpdateCard(
@@ -46,13 +47,14 @@ class UserProfileEditScreen extends StatelessWidget {
             DrawerUpdateCard(
                 controller: _controller.addressController,
                 label: 'Location'),
-            const SizedBox(height: 30),
+            const SizedBox(height: 5),
             // Obx is a GetX widget that rebuilds when the observable value changes
-            GetBuilder<ProfileScreenController>(builder: (controller) => SecondaryButton(
-                isProgress: controller.isProgress,
-                text: 'Update',
-                onTap: _controller.userProfileEdit,
-              )),
+            GetBuilder<ProfileScreenController>(builder: (controller) =>
+                SecondaryButton(
+                  isProgress: controller.isProgress,
+                  text: 'Update',
+                  onTap: _controller.userProfileEdit,
+                )),
           ],
         ),
       ),

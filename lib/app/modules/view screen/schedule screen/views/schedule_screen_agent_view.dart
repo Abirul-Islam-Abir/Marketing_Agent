@@ -6,8 +6,8 @@ import '../../../../data/const/export.dart';
 import '../../../widgets/shimmer_schedule_card_list.dart';
 import '../components/schedule_card.dart';
 
-class ScheduleScreenView extends StatelessWidget {
-  ScheduleScreenView({Key? key}) : super(key: key);
+class ScheduleScreenAgentView extends StatelessWidget {
+  ScheduleScreenAgentView({Key? key}) : super(key: key);
   final controller = Get.put(ScheduleScreenController());
   final _dashboardController = Get.put(DashboardScreenController());
   final _bottomNavController = Get.put(BottomNavController());
@@ -21,12 +21,10 @@ class ScheduleScreenView extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: AppColor.kWhiteColor,
-        appBar: buildSecondaryAppbar('Schedule'),
+        appBar: buildNavigateAppbar('Schedule'),
         body: GetBuilder<ScheduleScreenController>(builder: (controller) {
           return controller.isProgress
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
+              ? const SimmerScheduleCardList()
               : controller.allScheduleList.isEmpty
                   ? const Center(child: Text('There is no schedules'))
                   : RefreshIndicator(
@@ -65,19 +63,17 @@ class ScheduleScreenView extends StatelessWidget {
                                   img: AppImages.doneIcon,
                                   title: 'Are you sure?',
                                   body: 'This visit is done!', yesTap: () {
-
-                                    print(index);
                                 Get.back();
-                              addPhotoDialog(
+                                addPhotoDialog(
                                   cameraTap: () {
-                                  controller.getImage(
+                                    controller.getImage(
                                         imageSource: ImageSource.camera,
                                         completionLat: data[index]
                                             ['chamber_lat'],
                                         completionLang: data[index]
                                             ['chamber_long'],
-                                        uid: data[index]['uid'],index: index);
-
+                                        uid: data[index]['uid'],
+                                        index: index);
                                   },
                                   galleryTap: () {
                                     controller.getImage(
@@ -86,8 +82,8 @@ class ScheduleScreenView extends StatelessWidget {
                                             ['chamber_lat'],
                                         completionLang: data[index]
                                             ['chamber_long'],
-                                        uid: data[index]['uid'],index: index);
-
+                                        uid: data[index]['uid'],
+                                        index: index);
                                   },
                                 );
                               });

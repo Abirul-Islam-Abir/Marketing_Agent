@@ -16,19 +16,21 @@ class OtpVerifyScreenController extends GetxController {
   var countdown = 120.obs;
   late Timer _timer;
   RxBool isTimeOut = true.obs;
-
+  void timeOut(v){
+    isTimeOut.value = v;
+  }
   // Start the countdown timer for OTP expiration
   void startCountdown() {
     countdown.value = 120;
-    isTimeOut.value = true;
+    timeOut(true);
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (countdown.value > 0) {
         countdown.value--;
         if (countdown.value == 0) {
-          isTimeOut.value = true;
+          timeOut(true);
         }
       } else {
-        isTimeOut.value = false;
+        timeOut(false);
         _timer.cancel();
       }
     });
@@ -48,7 +50,6 @@ class OtpVerifyScreenController extends GetxController {
         });
       } else {
         otp.clear();
-
         errorText.value = response['message'];
         hasError.value = true;
         errorController!.add(ErrorAnimationType.shake);
@@ -66,7 +67,6 @@ class OtpVerifyScreenController extends GetxController {
         otp.clear();
         errorText.value = response['message'];
         hasError.value = true;
-        errorController!.add(ErrorAnimationType.shake);
         otpFocus.requestFocus();
         // Handle error (e.g., show error dialog)
       }
@@ -85,10 +85,12 @@ class OtpVerifyScreenController extends GetxController {
       return '';
     }
   }
-
+void progress(v){
+  _isProgress.value = v;
+}
   // Initialize the OTP verification process
   Future<void> otpVerifyInitializeMethod(context) async {
-    _isProgress.value = true;
+    progress(true);
     try {
       await Future.wait([
         verifyOtp(context),
@@ -96,7 +98,7 @@ class OtpVerifyScreenController extends GetxController {
     } catch (e) {
       throw Exception('$e');
     } finally {
-      _isProgress.value = false;
+      progress(false);
     }
   }
 

@@ -54,10 +54,13 @@ class PasswordSetScreenController extends GetxController {
           desc: response['data']['password'][0]);
     }
   }
-
+void progress(v){
+  _isProgress.value = v;
+}
   // Method to initiate the password reset process with progress indication
   Future<void> resetPasswordInitializeMethod(context) async {
-    _isProgress.value = true;
+     progress(true);
+
     try {
       // Wait for the password reset process to complete
       await Future.wait([
@@ -68,7 +71,7 @@ class PasswordSetScreenController extends GetxController {
       throw Exception('$e');
     } finally {
       // Set progress to false once the process is complete
-      _isProgress.value = false;
+      progress(false);
     }
   }
 

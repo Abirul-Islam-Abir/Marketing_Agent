@@ -14,9 +14,7 @@ class AgentsScreenController extends GetxController {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
       final response = await allAgentsDataRequest(token:token,id: id);
-      print(response);
       if (response['success'] == true) {
-        print(response);
         _allTargetsAgentsList.clear();
         _allTargetsAgentsList = response['data'];
       }

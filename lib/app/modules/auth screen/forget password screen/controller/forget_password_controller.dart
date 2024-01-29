@@ -1,4 +1,4 @@
-/*Developer Information:
+/***Developer Information:
     Name: Abirul Islam Abir
     Email: abir80503@gmail.com
     Phone Number: 01722734871
@@ -47,10 +47,14 @@ class ForgetPasswordScreenController extends GetxController {
     }
   }
 
+  void progress(v) {
+    _isProgress.value = v;
+  }
+
   // Method to handle the initialization of the forgot password process
   Future<void> forgotPasswordInitializeMethod(context) async {
     // Set isProgress to true to indicate that the operation is in progress
-    _isProgress.value = true;
+    progress(true);
     try {
       // Execute the forgotPassword method within a Future.wait to handle asynchronous operations
       await Future.wait([forgotPassword(context)]);
@@ -59,7 +63,8 @@ class ForgetPasswordScreenController extends GetxController {
       throw Exception('$e');
     } finally {
       // Set isProgress to false when the operation is completed (either success or failure)
-      _isProgress.value = false;
+
+      progress(false);
     }
   }
 

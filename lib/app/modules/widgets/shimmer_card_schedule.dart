@@ -31,11 +31,11 @@ class ScheduleShimmerCard extends StatelessWidget {
             ],
           ),
           child: ListTile(
-            title: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
+            title: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 5),
               child: Text(
                 ' ',
-                style: const TextStyle(
+                style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: AppColor.kBlackColor,
                     fontSize: 15),
@@ -43,11 +43,11 @@ class ScheduleShimmerCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            subtitle: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
+            subtitle: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 5),
               child: Text(
                 ' ',
-                style: const TextStyle(
+                style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: AppColor.kGreyColor,
                     fontSize: 13),

@@ -1,6 +1,7 @@
 import 'package:amin_agent/app/data/const/export.dart';
 import 'package:amin_agent/app/modules/widgets/pdf_view.dart';
 
+import '../../../../data/utils/app_snackbar.dart';
 import '../components/profile_details_card.dart';
 import '../components/profile_details_with_upload_card.dart';
 import '../controller/profile_details_screen_controller.dart';
@@ -19,43 +20,55 @@ class ProfileDetailsScreen extends StatelessWidget {
           editTap: () {
             Get.to(() => UserProfileEditScreen());
           }),
-      body: GetBuilder<ProfileScreenController>(builder: (controller) {
-        final data = controller.userProfileList;
-        return SingleChildScrollView(
+      body: GetBuilder<ProfileScreenController>(
+        builder: (controller) {
+          final data = controller.userProfileList;
+          return SingleChildScrollView(
             child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            UserAvatar('${data['avatar']}'),
-            ProfileDetailsCard(label: 'Name', name: '${data['name']}'),
-            ProfileDetailsCard(label: 'Phone Number', name: '${data['phone']}'),
-            ProfileDetailsCard(
-                label: 'Designation', name: '${data['designation']}'),
-            ProfileDetailsCardWithUpload(
-                showTap: () {
-                  if (data['nid_pdf'] != '') {
-                    Get.to(() => PdfView(url: data['nid_pdf']));
-                  } else {
-                    Get.snackbar('Ohh!', 'Please upload pdf first');
-                  }
-                },
-                uploadTap: _controller.uploadNidFile,
-                label: 'NID Card',
-                name: '${data['nid']}'),
-            ProfileDetailsCardWithUpload(
-                showTap: () {
-                  if (data['passport_pdf'] != '') {
-                    Get.to(() => PdfView(url: data['passport_pdf']));
-                  } else {
-                    Get.snackbar('Ohh!', 'Please upload pdf first');
-                  }
-                },
-                uploadTap: _controller.uploadPassportFile,
-                label: 'Passport Card',
-                name: '${data['passport']}'),
-            ProfileDetailsCard(label: 'Address', name: '${data['address']}'),
-          ],
-        ));
-      }),
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  UserAvatar(
+                    '${data['avatar']}',
+                  ),
+                  ProfileDetailsCard(label: 'Name', name: '${data['name']}'),
+                  ProfileDetailsCard(
+                      label: 'Phone Number', name: '${data['phone']}'),
+                  ProfileDetailsCard(
+                      label: 'Designation', name: '${data['designation']}'),
+                  GetBuilder<ProfileDetailsScreenController>(
+                      builder: (controller) => ProfileDetailsCardWithUpload(
+                          isUpload: controller.isNid,
+                          showTap: () {
+                            if (data['nid_pdf'] != '') {
+                              Get.to(() => PdfView(url: data['nid_pdf']));
+                            } else {
+                              AppSnackbar.pdfNotUploaded();
+                            }
+                          },
+                          uploadTap: _controller.uploadNidFile,
+                          label: 'NID Card',
+                          name: '${data['nid']}')),
+                  GetBuilder<ProfileDetailsScreenController>(
+                      builder: (controller) {
+                    return ProfileDetailsCardWithUpload(
+                        isUpload: controller.isPassport,
+                        showTap: () {
+                          if (data['passport_pdf'] != '') {
+                            Get.to(() => PdfView(url: data['passport_pdf']));
+                          } else {
+                            AppSnackbar.pdfNotUploaded();
+                          }
+                        },
+                        uploadTap: _controller.uploadPassportFile,
+                        label: 'Passport Card',
+                        name: '${data['passport']}');
+                  }),
+                  ProfileDetailsCard(
+                      label: 'Address', name: '${data['address']}'),
+                ]),
+          );
+        },
+      ),
     );
   }
 }

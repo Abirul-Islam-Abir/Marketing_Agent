@@ -4,10 +4,6 @@ import 'dart:math';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 
-import 'dart:async';
-import 'dart:math';
-import 'package:confetti/confetti.dart';
-import 'package:flutter/material.dart';
 
 class AnimateCongratulate extends StatefulWidget {
   const AnimateCongratulate({Key? key}) : super(key: key);
@@ -18,28 +14,28 @@ class AnimateCongratulate extends StatefulWidget {
 
 class _AnimateCongratulateState extends State<AnimateCongratulate> {
   late bool isPlaying;
-  late final controller;
+  late final _controller;
 
   @override
   void initState() {
     super.initState();
     isPlaying = false;
-    controller = ConfettiController();
+    _controller = ConfettiController();
 
     // Delay the play call by a short duration
-    Future.delayed(Duration(milliseconds: 100), () {
-      controller.play();
+    Future.delayed(const Duration(milliseconds: 100), () {
+      _controller.play();
 
       // Stop the confetti after one second
-      Timer(Duration(seconds: 1), () {
-        controller.stop();
+      Timer(const Duration(seconds: 1), () {
+        _controller.stop();
       });
     });
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -94,7 +90,7 @@ class _AnimateCongratulateState extends State<AnimateCongratulate> {
       // manually specify the colors to be used
       createParticlePath: drawStar,
       shouldLoop: true,
-      confettiController: controller,
+      confettiController: _controller,
       blastDirectionality: BlastDirectionality.explosive,
       numberOfParticles: 20,
       minBlastForce: 1,

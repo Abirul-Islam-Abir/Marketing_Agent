@@ -9,7 +9,7 @@ import '../api_services.dart';
 Future<Map<String, dynamic>> completeScheduleRequest(
     {path, token, uid, completionLat, completionLang}) async {
   // Parse the API URL for updating the avatar from the ApiServices class
-  var uri = Uri.parse(ApiServices.updateAvatarUrl);
+  var uri = Uri.parse(ApiServices.completeScheduleUrl);
 
   // Create a multipart POST request
   var request = http.MultipartRequest("POST", uri);
@@ -27,16 +27,15 @@ Future<Map<String, dynamic>> completeScheduleRequest(
 
   // Send the multipart request and retrieve the response
   var response = await request.send();
-
+  print(response.headers);
   // Check if the request was successful (status code 200)
   if (response.statusCode == 200) {
     // Decode the response body from JSON format
     final decodedResponse = jsonDecode(await response.stream.bytesToString());
     // Return the decoded response if the request was successful
     return decodedResponse;
-  } else {
-    // If the request was not successful, still decode the response and return it
-    final decodedResponse = jsonDecode(await response.stream.bytesToString());
-    return decodedResponse;
   }
+  final decodedResponse = jsonDecode(await response.stream.bytesToString());
+  // Return the decoded response if the request was successful
+  return decodedResponse;
 }

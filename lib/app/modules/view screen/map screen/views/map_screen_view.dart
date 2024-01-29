@@ -1,5 +1,3 @@
-import 'package:amin_agent/app/modules/view%20screen/schedule%20screen/components/schedule_card.dart';
-
 import '../../../../data/const/export.dart';
 import 'package:geocoding/geocoding.dart' as geocoding;
 
@@ -30,7 +28,7 @@ class MapScreenViewState extends State<MapScreenView> {
     try {
       final permissionStatus = await location.requestPermission();
       if (permissionStatus == PermissionStatus.granted) {
-        await location.onLocationChanged.listen((LocationData currentLocation) {
+        location.onLocationChanged.listen((LocationData currentLocation) {
           setState(() {
             userLocation =
                 LatLng(currentLocation.latitude!, currentLocation.longitude!);
@@ -38,7 +36,7 @@ class MapScreenViewState extends State<MapScreenView> {
           updateLocation();
           updateCurrentLocationName();
         });
-      }else{
+      } else {
         getCurrentLocation();
       }
     } on PlatformException catch (e) {
@@ -88,7 +86,7 @@ class MapScreenViewState extends State<MapScreenView> {
         }
       }
     } catch (e) {
-      print('Error fetching current location name: $e');
+      throw Exception('$e');
     }
   }
 
@@ -112,66 +110,68 @@ class MapScreenViewState extends State<MapScreenView> {
     getCurrentLocation();
     super.initState();
   }
-  @override
-  void dispose() {
-    // Dispose of the location subscription to avoid memory leaks
 
-    super.dispose();
-  }
+  final _bottomNavController = Get.put(BottomNavController());
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          GoogleMap(
-            onTap: (v) {},
-            mapType: MapType.normal,
-            polylines: {
-              Polyline(
-                polylineId: const PolylineId("tracking"),
-                color: Colors.blue,
-                points: polylinePoints,
-                width: 5,
-              )
-            },
-            markers: Set<Marker>.of(markers),
-            initialCameraPosition: cameraPosition,
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
-          ),
-          Positioned(
-            top: 10,
-            right: 50,
-            left: 50,
-            child: Align(
-              alignment: Alignment.center,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 25),
-                child: Text(
-                  currentLocationName,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: Colors.black,
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) {
+        _bottomNavController.selectIndex(0);
+      },
+      child: Scaffold(
+        body: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            GoogleMap(
+              onTap: (v) {},
+              mapType: MapType.normal,
+              polylines: {
+                Polyline(
+                  polylineId: const PolylineId("tracking"),
+                  color: Colors.blue,
+                  points: polylinePoints,
+                  width: 5,
+                )
+              },
+              markers: Set<Marker>.of(markers),
+              initialCameraPosition: cameraPosition,
+              onMapCreated: (GoogleMapController controller) {
+                _controller.complete(controller);
+              },
+            ),
+            Positioned(
+              top: 10,
+              right: 50,
+              left: 50,
+              child: Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 25),
+                  child: Text(
+                    currentLocationName,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Positioned(
-            bottom: 100,
-            right: 10,
-            left: 10,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-
-              ],
+            const Positioned(
+              bottom: 100,
+              right: 10,
+              left: 10,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

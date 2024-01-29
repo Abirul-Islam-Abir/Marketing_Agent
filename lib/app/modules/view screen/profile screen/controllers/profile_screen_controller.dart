@@ -13,16 +13,14 @@ class ProfileScreenController extends GetxController {
 
   // Reactive boolean indicating whether a process is in progress
   bool _isProgress = false;
-  bool _isUploadedAvatar = false;
 
   bool get isProgress => _isProgress;
-  bool get isUploadedAvatar => _isUploadedAvatar;
 
   // User profile data fetched from the server
   Map<String, dynamic> _userProfileList = {};
 
   Map<String, dynamic> get userProfileList => _userProfileList;
-
+  var selectedImagePath = '';
   // Text editing controllers for various user profile details
   final TextEditingController nameController = TextEditingController();
   final TextEditingController numberController = TextEditingController();
@@ -47,9 +45,10 @@ class ProfileScreenController extends GetxController {
         addressController.text = ' ${userProfileList['address']}';
         passportController.text = ' ${userProfileList['passport']}';
         // When upload pdf in profile details screen after updating widget for view pdf
+        selectedImagePath = '';
         update();
-      }else{
-         Get.find<DashboardScreenController>().logout();
+      } else {
+        Get.find<DashboardScreenController>().logout();
       }
     }
   }
@@ -87,7 +86,7 @@ class ProfileScreenController extends GetxController {
         passport: passportController.text,
       );
       if (response['success'] == true) {
-        await userProfile(); // Refresh user profile after successful update
+        await initializeMethod(); // Refresh initializeMethod after successful update
         Get.back(); // Close the current screen
         _isProgress = false; // Update progress state to false
         update();
@@ -102,40 +101,26 @@ class ProfileScreenController extends GetxController {
   // Handle the process of selecting an image
   Future<void> getImage(imageSource) async {
     Get.back(); // Close any existing screen
-    _isUploadedAvatar = true; // Set flag to true for UI indication
-    update();
-
-    try {
-      final pickedFile = await ImagePicker().pickImage(source: imageSource);
-      if (pickedFile != null) {
-        final token = await box.read(UserDataKey.tokenKey);
-
-        if (token != null) {
-          // Compress and upload the selected image
-          final compressedImage = await compressImage(pickedFile.path);
-          final response = await uploadImageRequest(
-            path: compressedImage.path,
-            token: token,
-          );
-          if (response['success'] == true) {
-            await userProfile(); // Refresh user profile after successful image upload
-          } else {
-            _isUploadedAvatar =
-                false; // Update flag to false on unsuccessful image upload
-            update();
-          }
+    final pickedFile = await ImagePicker().pickImage(source: imageSource);
+    if (pickedFile != null) {
+      selectedImagePath = pickedFile.path;
+      update();
+      final token = await box.read(UserDataKey.tokenKey);
+      if (token != null) {
+        // Compress and upload the selected image
+        final compressedImage = await compressImage(pickedFile.path);
+        final response = await uploadImageRequest(
+          path: compressedImage.path,
+          token: token,
+        );
+        if (response['success'] == true) {
+          await initializeMethod(); // Refresh user profile after successful image upload
+        } else {
+          Get.snackbar('Ohh..', 'Something went wrong!');
         }
-      } else {
-        _isUploadedAvatar =
-            false; // Update flag to false if user didn't select an image
-        update();
       }
-    } catch (e) {
-      _isUploadedAvatar = false; // Update flag to false on error
-      update();
-    } finally {
-      _isUploadedAvatar = false; // Reset flag to false after the entire process
-      update();
+    } else {
+      Get.snackbar('Ohh..', 'Something went wrong!');
     }
   }
 

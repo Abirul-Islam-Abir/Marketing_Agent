@@ -1,4 +1,5 @@
 import '../../../../data/const/export.dart';
+import '../../schedule screen/views/schedule_screen_agent_view.dart';
 
 class AllTargetsScreenView extends StatelessWidget {
   AllTargetsScreenView({Key? key}) : super(key: key);
@@ -14,7 +15,8 @@ class AllTargetsScreenView extends StatelessWidget {
             Get.dialog(FilterScreenView());
           }),
       body: GetBuilder<AllTargetsScreenController>(
-        builder: (c) {
+        builder: (controller) {
+          final data = controller.allTargetDataList;
           return controller.isProgress
               ? const ShimmerTargetList()
               : RefreshIndicator(
@@ -22,27 +24,21 @@ class AllTargetsScreenView extends StatelessWidget {
                     controller.initializeMethod();
                   },
                   child: ListView.builder(
-                    itemCount: controller.allTargetDataList.length,
+                    itemCount: data.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) => AgentsTargetedProgressCard(
-                        isCurrent: controller.allTargetDataList[index]
-                            ['is_current'],
+                        isCurrent: data[index]['is_current'],
                         onTap: () {
-                          if (controller.allTargetDataList[index]
-                                  ['is_current'] ==
-                              true) {
-                            //is active back button
-                            Get.toNamed(RouteName.scheduleScreen);
+                          //Only navigate current target
+                          if (data[index]['is_current'] == true) {
+                            Get.to(() => ScheduleScreenAgentView());
                           }
                         },
-                        text: controller.allTargetDataList[index]['title'],
+                        text: data[index]['title'],
                         progress: '0.5',
-                        agentsCount: controller.allTargetDataList[index]
-                            ['agents_count'],
-                        amountCollected: controller.allTargetDataList[index]
-                            ['target_amount'],
-                        targetAmount: controller.allTargetDataList[index]
-                            ['amount_collected']),
+                        agentsCount: data[index]['agents_count'],
+                        amountCollected: data[index]['target_amount'],
+                        targetAmount: data[index]['amount_collected']),
                   ),
                 );
         },

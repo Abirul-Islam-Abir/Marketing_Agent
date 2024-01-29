@@ -5,7 +5,7 @@ import '../../../data/const/export.dart';
 class NetworkController extends GetxController {
   void showNetworkSnackBar() {
     Get.dialog(
-      Container(),
+      PopScope(canPop: false, onPopInvoked: (didPop) {}, child: Container()),
       barrierDismissible: false,
     );
     Get.showSnackbar(const GetSnackBar(

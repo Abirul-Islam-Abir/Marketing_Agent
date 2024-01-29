@@ -14,9 +14,9 @@ ThemeData mainTheme() => ThemeData(
       appBarTheme: globalAppBarTheme(),
       elevatedButtonTheme: globalElevatedButtonStyle(),
       inputDecorationTheme: const InputDecorationTheme(),
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
           backgroundColor: AppColor.kPrimaryColor),
-      iconButtonTheme: IconButtonThemeData(
+      iconButtonTheme: const IconButtonThemeData(
 
       ),
     );

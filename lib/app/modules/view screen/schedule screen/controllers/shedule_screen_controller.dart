@@ -3,13 +3,8 @@ import 'dart:io';
 import 'package:amin_agent/app/api%20services/shedules/all_shedules.dart';
 import 'package:amin_agent/app/api%20services/shedules/complete_schedule.dart';
 import 'package:amin_agent/app/data/const/export.dart';
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 import 'package:image/image.dart' as img;
-import '../../../../api services/profile/upload_avatar.dart';
-import '../../../../data/const/export.dart';
-import '../../../../data/const/export.dart';
 import '../../../../data/utils/user_data_key.dart';
 
 class ScheduleScreenController extends GetxController {
@@ -21,9 +16,9 @@ class ScheduleScreenController extends GetxController {
   bool isActiveBackButton = Get.arguments ?? false;
   Future<void> allScheduleData(id) async {
     final token = await box.read(UserDataKey.tokenKey);
+    print(token);
     if (token != null) {
       final response = await allSheduleDataRequest(token: token, id: id);
-      print(response);
       if (response['success'] == true) {
         _allScheduleList = response['data'];
       }
@@ -33,8 +28,11 @@ class ScheduleScreenController extends GetxController {
   // Handle the process of selecting an image
   //Complete Schedule here
   Future<void> getImage(
-      {imageSource, completionLang, completionLat, uid}) async {
+      {imageSource, completionLang, completionLat, uid,index}) async {
     Get.back(); // Close any existing screen
+    _isProgress = true;
+    allScheduleList.removeAt(index);
+    update();
     try {
       final pickedFile = await ImagePicker().pickImage(source: imageSource);
       if (pickedFile != null) {
@@ -51,16 +49,25 @@ class ScheduleScreenController extends GetxController {
               completionLat: completionLat,
               path: compressedImage.path,
               uid: uid);
+          print(response);
           if (response['success'] = true) {
             completedLocationTaskDialog();
             Get.find<DashboardScreenController>().initializeMethod();
           } else {
+            _isProgress = false;
+            update();
             Get.snackbar('Failed!', 'Unsuccessfully operation ');
           }
         }
+      } else {
+        _isProgress = false;
+        update();
       }
     } catch (e) {
       throw Exception('$e');
+    } finally {
+      _isProgress = false;
+      update();
     }
   }
 

@@ -1,10 +1,13 @@
 import '../../../../data/const/export.dart';
+import '../../../widgets/dashboard_count_shimmer.dart';
 import '../../../widgets/targets_card_shimmer.dart';
+import '../components/dashboard_count.dart';
 
 class DashboardScreenView extends StatelessWidget {
   DashboardScreenView({Key? key}) : super(key: key);
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  final _dashboardController = Get.put(DashboardScreenController());
+  final _controller = Get.put(DashboardScreenController());
+  final _profileController = Get.put(ProfileScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -21,58 +24,61 @@ class DashboardScreenView extends StatelessWidget {
         drawer: CustomDrawer(scaffoldKey: _scaffoldKey),
         key: _scaffoldKey,
         backgroundColor: AppColor.kSecondaryColor,
-        body: SafeArea(
-          child: RefreshIndicator(
-            onRefresh: () async {
-              _dashboardController.initializeMethod();
-            },
-            child: ListView(
-              children: [
-                const SizedBox(height: 20),
-                SmallDetailsDashboardCard(
-                    leftOnTap: () {
-                      Get.toNamed(RouteName.totalCommissionScreen);
-                    },
-                    rightOnTap: () {
-                      Get.toNamed(RouteName.totalSalesScreen);
-                    },
-                    leftTitle: _dashboardController.text,
-                    rightCount: '10,000',
-                    rightTitle: 'Total Sales',
-                    leftCount: '3,500'),
-                SmallDetailsDashboardCard(
-                    leftOnTap: () {
-                      Get.toNamed(RouteName.doctorOnboardScreen);
-                    },
-                    rightOnTap: () {
-                      Get.toNamed(RouteName.doctorVisitedScreen);
-                    },
-                    leftTitle: 'Doctor onboard',
-                    rightCount: '300',
-                    rightTitle: 'Doctor visited',
-                    leftCount: '20'),
-                const CustomChart(),
-                GetBuilder<DashboardScreenController>(
-                  builder: (controller) {
-                    final data = controller.dashboardDataList;
-                    return controller.isProgress
-                        ? const TargetsCardShimmer()
-                        : data.isEmpty
-                            ? const Text('')
-                            : AgentsTargetedProgressCard(
-                                isCurrent: false,
-                                onTap: () {
-                                  Get.toNamed(RouteName.agentScreen);
-                                },
-                                text: data['title'],
-                                progress: data['progress'],
-                                agentsCount: data['agents_count'],
-                                amountCollected: data['target_amount'],
-                                targetAmount: data['amount_collected']);
-                  },
-                ),
-              ],
-            ),
+        body: RefreshIndicator(
+          onRefresh: () async {
+            _controller.initializeMethod();
+            _profileController.initializeMethod();
+          },
+          child: ListView(
+            children: [
+              const SizedBox(height: 20),
+              GetBuilder<DashboardScreenController>(builder: (controller) {
+                final data = controller.currentProgressList;
+                return controller.isProgress
+                    ? const DashboardCountShimmer()
+                    : DashboardCount(
+                        doctorOnboard: 'Doctor visited',
+                        doctorOnboardCounts: '${data['doctor_onboard']}',
+                        doctorVisited: 'Doctor onboard',
+                        doctorVisitedCounts: '${data['doctor_visited']}',
+                        totalCommission: 'Total Commission',
+                        totalSales: 'Total Sales',
+                        totalCommissionCount: '${data['total_commision']}',
+                        totalSalesCounts: '${data['total_sales']}',
+                        totalCommissionTap: () {
+                          Get.toNamed(RouteName.doctorVisitedScreen);
+                        },
+                        totalSalesTap: () {
+                          Get.toNamed(RouteName.doctorOnboardScreen);
+                        },
+                        totalCommissionOnTap: () {
+                          Get.toNamed(RouteName.totalCommissionScreen);
+                        },
+                        doctorVisitedTap: () {
+                          Get.toNamed(RouteName.totalSalesScreen);
+                        },
+                      );
+              }),
+              GetBuilder<DashboardScreenController>(
+                builder: (controller) {
+                  final data = controller.currentProgressList['current_target'];
+                  return controller.isProgress
+                      ? const TargetsCardShimmer()
+                      : data.isEmpty
+                          ? const Text('')
+                          : AgentsTargetedProgressCard(
+                              isCurrent: false,
+                              onTap: () {
+                                Get.toNamed(RouteName.agentScreen);
+                              },
+                              text: data['title'],
+                              progress: data['progress'],
+                              agentsCount: data['agents_count'],
+                              amountCollected: data['target_amount'],
+                              targetAmount: data['amount_collected']);
+                },
+              ),
+            ],
           ),
         ),
       ),
