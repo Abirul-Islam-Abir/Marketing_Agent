@@ -15,16 +15,18 @@ class TotalCommissionScreen extends StatelessWidget {
           filterTap: () {
             Get.dialog(FilterScreenView());
           }),
-      body: ListView.builder(
-        itemCount: commissionDataList.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) => TotalCommissionCard(
-          location: commissionDataList[index].location,
-          target: commissionDataList[index].target,
-          date: '01/12/2024',
-          sendTap: () {
-            Get.to(TotalCommissionDetailsScreen(commissionDataList));
-          },
+      body: SizedBox( height: double.infinity,
+        child: ListView.builder(
+          itemCount: commissionDataList.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) => TotalCommissionCard(
+            location: commissionDataList[index].location,
+            target: commissionDataList[index].target,
+            date: '01/12/2024',
+            sendTap: () {
+              Get.to(TotalCommissionDetailsScreen(commissionDataList));
+            },
+          ),
         ),
       ));
 }

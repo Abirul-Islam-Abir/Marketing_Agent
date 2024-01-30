@@ -1,9 +1,8 @@
-
 import '../../../../data/const/export.dart';
 
 class DoctorVisitedScreenView extends StatelessWidget {
-  const DoctorVisitedScreenView({Key? key}) : super(key: key);
-
+  DoctorVisitedScreenView({Key? key}) : super(key: key);
+  final controler = Get.put(DoctorOnboardScreenController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,14 +12,26 @@ class DoctorVisitedScreenView extends StatelessWidget {
           filterTap: () {
             Get.dialog(FilterScreenView());
           }),
-      body:  ListView.builder(
-        itemCount: doctorOnboardDataList.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) => DoctorOnboardCard(
-          location: doctorOnboardDataList[index].name,
-          date: doctorOnboardDataList[index].date,
-        ),
-      )
+      body: GetBuilder<DoctorOnboardScreenController>(builder: (controller) {
+        final data = controller.doctorVisitedList;
+        return controller.isProgress
+            ? const ShimmerTargetList()
+            : RefreshIndicator(
+                onRefresh: () async {
+                  controller.initializeMethod();
+                },
+                child: SizedBox( height: double.infinity,
+                  child: ListView.builder(
+                    itemCount: data.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) => DoctorOnboardCard(
+                      location: data[index]['doctor_name'],
+                      date: '10/10/2024',
+                    ),
+                  ),
+                ),
+              );
+      }),
     );
   }
 }

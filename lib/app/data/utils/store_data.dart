@@ -12,6 +12,8 @@ class StoreData {
   static Future saveId(value) async{
     box.write(UserDataKey.idKey, value);
   }
-
+  static Future saveCurrentTargetId(value) async{
+    box.write(UserDataKey.currentTargetIdKey, value);
+  }
   StoreData._();
 }

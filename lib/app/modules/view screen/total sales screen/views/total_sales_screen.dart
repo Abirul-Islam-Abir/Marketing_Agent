@@ -12,15 +12,18 @@ class TotalSalesScreen extends GetView<TotalSalesScreeenController> {
           filterTap: () {
             Get.dialog(FilterScreenView());
           }),
-      body: ListView.builder(
-        itemCount: salesReportDataList.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) => TotalSalesCard(
-            sendTap: () {},
-            location: salesReportDataList[index].location,
-            name: salesReportDataList[index].name,
-            price: salesReportDataList[index].target,
-            date: salesReportDataList[index].date,
-            invoiceNb: salesReportDataList[index].invoiceNb),
+      body: SizedBox(
+        height: double.infinity,
+        child: ListView.builder(
+          itemCount: salesReportDataList.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) => TotalSalesCard(
+              sendTap: () {},
+              location: salesReportDataList[index].location,
+              name: salesReportDataList[index].name,
+              price: salesReportDataList[index].target,
+              date: salesReportDataList[index].date,
+              invoiceNb: salesReportDataList[index].invoiceNb),
+        ),
       ));
 }

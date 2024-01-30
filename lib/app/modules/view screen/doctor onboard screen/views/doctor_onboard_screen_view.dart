@@ -20,12 +20,14 @@ class DoctorOnboardScreenView extends StatelessWidget {
                   onRefresh: () async {
                     controller.initializeMethod();
                   },
-                  child: ListView.builder(
-                    itemCount: data.length,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) => DoctorOnboardCard(
-                      location: data[index]['doctor_name'],
-                      date: '10/10/2024',
+                  child: SizedBox( height: double.infinity,
+                    child: ListView.builder(
+                      itemCount: data.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) => DoctorOnboardCard(
+                        location: data[index]['doctor_name'],
+                        date: '10/10/2024',
+                      ),
                     ),
                   ),
                 );

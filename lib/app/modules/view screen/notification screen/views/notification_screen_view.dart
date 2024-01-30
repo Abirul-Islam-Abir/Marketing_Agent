@@ -11,13 +11,15 @@ class NotificationScreenView extends GetView<NotificationScreenController> {
     return Scaffold(
         backgroundColor: AppColor.kScaffoldWhite,
         appBar: buildNavigateAppbar(AppString.notification),
-        body: ListView.builder(
-          itemCount: notificationList.length,
-          shrinkWrap: true,
-          itemBuilder: (context, index) => NotificationCard(
-            time: notificationList[index].time,
-            day: notificationList[index].day,
-            data: notificationList[index].data,
+        body: SizedBox( height: double.infinity,
+          child: ListView.builder(
+            itemCount: notificationList.length,
+            shrinkWrap: true,
+            itemBuilder: (context, index) => NotificationCard(
+              time: notificationList[index].time,
+              day: notificationList[index].day,
+              data: notificationList[index].data,
+            ),
           ),
         ));
   }

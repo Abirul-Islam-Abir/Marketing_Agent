@@ -6,13 +6,11 @@ import '../../../../data/utils/user_data_key.dart';
 import '../../target agents  screen/controllers/targets_agents _screen_controller.dart';
 
 class DashboardScreenController extends GetxController {
-
   bool _isProgress = false;
   bool get isProgress => _isProgress;
   Map<String, dynamic> _currentProgressList = {};
 
-  Map<String, dynamic> get currentProgressList =>
-      _currentProgressList;
+  Map<String, dynamic> get currentProgressList => _currentProgressList;
 
   Future<void> logout() async {
     box.erase();
@@ -35,10 +33,10 @@ class DashboardScreenController extends GetxController {
       if (response['success'] == true) {
         _currentProgressList.clear();
         _currentProgressList = response['data'];
-        Get.put(ScheduleScreenController())
-            .initializeMethod(_currentProgressList['current_target']['target_id']);
-        Get.put(AgentsScreenController())
-            .initializeMethod(_currentProgressList['current_target']['target_id']);
+        print(response);
+        await StoreData.saveCurrentTargetId(
+            response['data']['current_target']['target_id']);
+
       }
     }
   }

@@ -94,7 +94,7 @@ class AppPages {
     ),
     GetPage(
       name: RouteName.doctorVisitedScreen,
-      page: () => const DoctorVisitedScreenView(),
+      page: () =>   DoctorVisitedScreenView(),
       binding: DoctorVisitedScreenBinding(),
     ),
     GetPage(

@@ -14,11 +14,12 @@ class ScheduleScreenController extends GetxController {
   List _allScheduleList = [];
   List get allScheduleList => _allScheduleList;
   bool isActiveBackButton = Get.arguments ?? false;
-  Future<void> allScheduleData(id) async {
+  Future<void> allScheduleData() async {
     final token = await box.read(UserDataKey.tokenKey);
     print(token);
-    if (token != null) {
-      final response = await allSheduleDataRequest(token: token, id: id);
+    final targetId = await box.read(UserDataKey.currentTargetIdKey);
+    if (token != null && targetId != null) {
+      final response = await allSheduleDataRequest(token: token, id: targetId);
       if (response['success'] == true) {
         _allScheduleList = response['data'];
       }
@@ -28,7 +29,7 @@ class ScheduleScreenController extends GetxController {
   // Handle the process of selecting an image
   //Complete Schedule here
   Future<void> getImage(
-      {imageSource, completionLang, completionLat, uid,index}) async {
+      {imageSource, completionLang, completionLat, uid, index}) async {
     Get.back(); // Close any existing screen
     _isProgress = true;
     allScheduleList.removeAt(index);
@@ -37,13 +38,14 @@ class ScheduleScreenController extends GetxController {
       final pickedFile = await ImagePicker().pickImage(source: imageSource);
       if (pickedFile != null) {
         final token = await box.read(UserDataKey.tokenKey);
-        if (token != null) {
+        final targetId = await box.read(UserDataKey.currentTargetIdKey);
+        print(targetId);
+        if (token != null && targetId != null) {
           // Compress and upload the selected image
           final compressedImage = await compressImage(pickedFile.path);
-
           /*** Send the complete data ***/
-
           final response = await completeScheduleRequest(
+              id: targetId,
               token: token,
               completionLang: completionLang,
               completionLat: completionLat,
@@ -92,12 +94,12 @@ class ScheduleScreenController extends GetxController {
     return PickedFile(compressedImagePath);
   }
 
-  Future<void> initializeMethod(id) async {
+  Future<void> initializeMethod() async {
     _isProgress = true;
     update();
     try {
       await Future.wait([
-        allScheduleData(id),
+        allScheduleData(),
       ]);
     } catch (e) {
       throw Exception('$e');
@@ -105,5 +107,10 @@ class ScheduleScreenController extends GetxController {
       _isProgress = false;
       update();
     }
+  }
+  @override
+  void onInit() {
+    initializeMethod();
+    super.onInit();
   }
 }

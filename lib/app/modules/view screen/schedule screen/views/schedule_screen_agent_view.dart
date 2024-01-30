@@ -31,65 +31,67 @@ class ScheduleScreenAgentView extends StatelessWidget {
                       onRefresh: () async {
                         _dashboardController.dashboardData();
                       },
-                      child: ListView.builder(
-                        itemCount: controller.allScheduleList.length,
-                        itemBuilder: (context, index) {
-                          final data = controller.allScheduleList;
-                          DateTime startTime = DateFormat("HH:mm:ss")
-                              .parse(data[index]['meeting_start_date']);
-                          DateTime endTime = DateFormat("HH:mm:ss")
-                              .parse(data[index]['meeting_end_time']);
-                          // Format the times in the desired format
-                          String formattedStartTime =
-                              DateFormat("h:mma").format(startTime);
-                          String formattedEndTime =
-                              DateFormat("h:mma").format(endTime);
+                      child: SizedBox( height: double.infinity,
+                        child: ListView.builder(
+                          itemCount: controller.allScheduleList.length,
+                          itemBuilder: (context, index) {
+                            final data = controller.allScheduleList;
+                            DateTime startTime = DateFormat("HH:mm:ss")
+                                .parse(data[index]['meeting_start_date']);
+                            DateTime endTime = DateFormat("HH:mm:ss")
+                                .parse(data[index]['meeting_end_time']);
+                            // Format the times in the desired format
+                            String formattedStartTime =
+                                DateFormat("h:mma").format(startTime);
+                            String formattedEndTime =
+                                DateFormat("h:mma").format(endTime);
 
-                          return ScheduleCard(
-                            sendTap: () {
-                              Get.to(
-                                () => MapScreenNavigate(
-                                  lat: data[index]['chamber_lat'],
-                                  long: data[index]['chamber_long'],
-                                  isLatLng: true,
-                                ),
-                              );
-                            },
-                            image: data[index]['doctor_avatar'],
-                            subtitle: '$formattedStartTime - $formattedEndTime',
-                            title: data[index]['doctor_name'],
-                            doneTap: () {
-                              finisScheduleDialog(context,
-                                  img: AppImages.doneIcon,
-                                  title: 'Are you sure?',
-                                  body: 'This visit is done!', yesTap: () {
-                                Get.back();
-                                addPhotoDialog(
-                                  cameraTap: () {
-                                    controller.getImage(
-                                        imageSource: ImageSource.camera,
-                                        completionLat: data[index]
-                                            ['chamber_lat'],
-                                        completionLang: data[index]
-                                            ['chamber_long'],
-                                        uid: data[index]['uid'],
-                                        index: index);
-                                  },
-                                  galleryTap: () {
-                                    controller.getImage(
-                                        imageSource: ImageSource.gallery,
-                                        completionLat: data[index]
-                                            ['chamber_lat'],
-                                        completionLang: data[index]
-                                            ['chamber_long'],
-                                        uid: data[index]['uid'],
-                                        index: index);
-                                  },
+                            return ScheduleCard(
+                              sendTap: () {
+                                Get.to(
+                                  () => MapScreenNavigate(
+                                    lat: data[index]['chamber_lat'],
+                                    long: data[index]['chamber_long'],
+                                    isLatLng: true,
+                                  ),
                                 );
-                              });
-                            },
-                          );
-                        },
+                              },
+                              image: data[index]['doctor_avatar'],
+                              subtitle: '$formattedStartTime - $formattedEndTime',
+                              title: data[index]['doctor_name'],
+                              doneTap: () {
+                                finisScheduleDialog(context,
+                                    img: AppImages.doneIcon,
+                                    title: 'Are you sure?',
+                                    body: 'This visit is done!', yesTap: () {
+                                  Get.back();
+                                  addPhotoDialog(
+                                    cameraTap: () {
+                                      controller.getImage(
+                                          imageSource: ImageSource.camera,
+                                          completionLat: data[index]
+                                              ['chamber_lat'],
+                                          completionLang: data[index]
+                                              ['chamber_long'],
+                                          uid: data[index]['uid'],
+                                          index: index);
+                                    },
+                                    galleryTap: () {
+                                      controller.getImage(
+                                          imageSource: ImageSource.gallery,
+                                          completionLat: data[index]
+                                              ['chamber_lat'],
+                                          completionLang: data[index]
+                                              ['chamber_long'],
+                                          uid: data[index]['uid'],
+                                          index: index);
+                                    },
+                                  );
+                                });
+                              },
+                            );
+                          },
+                        ),
                       ),
                     );
         }),
