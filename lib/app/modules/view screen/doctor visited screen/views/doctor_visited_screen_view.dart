@@ -7,11 +7,9 @@ class DoctorVisitedScreenView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
-      appBar: buildFilterAppBar(
-          text: 'Doctor Visited',
-          filterTap: () {
-            Get.dialog(FilterScreenView());
-          }),
+      appBar: buildNavigateAppbar(
+           'Doctor Visited'
+          ),
       body: GetBuilder<DoctorOnboardScreenController>(builder: (controller) {
         final data = controller.doctorVisitedList;
         return controller.isProgress

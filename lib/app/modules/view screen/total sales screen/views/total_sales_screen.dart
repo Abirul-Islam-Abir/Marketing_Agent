@@ -7,11 +7,7 @@ class TotalSalesScreen extends GetView<TotalSalesScreeenController> {
   @override
   Widget build(BuildContext context) => Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
-      appBar: buildFilterAppBar(
-          text: 'sales',
-          filterTap: () {
-            Get.dialog(FilterScreenView());
-          }),
+      appBar: buildNavigateAppbar('sales'),
       body: SizedBox(
         height: double.infinity,
         child: ListView.builder(

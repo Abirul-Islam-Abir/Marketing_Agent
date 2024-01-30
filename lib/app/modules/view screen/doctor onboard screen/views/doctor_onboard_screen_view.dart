@@ -7,11 +7,9 @@ class DoctorOnboardScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: AppColor.kSecondaryColor,
-        appBar: buildFilterAppBar(
-            text: 'Doctor Onboard',
-            filterTap: () {
-              Get.dialog(FilterScreenView());
-            }),
+        appBar: buildNavigateAppbar(
+            'Doctor Onboard'
+             ),
         body: GetBuilder<DoctorOnboardScreenController>(builder: (controller) {
           final data = controller.doctorOnboardList;
           return controller.isProgress

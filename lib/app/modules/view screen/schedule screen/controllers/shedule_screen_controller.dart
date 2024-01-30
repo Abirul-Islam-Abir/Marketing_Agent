@@ -19,7 +19,7 @@ class ScheduleScreenController extends GetxController {
     print(token);
     final targetId = await box.read(UserDataKey.currentTargetIdKey);
     if (token != null && targetId != null) {
-      final response = await allSheduleDataRequest(token: token, id: targetId);
+      final response = await allScheduleDataRequest(token: token, id: targetId);
       if (response['success'] == true) {
         _allScheduleList = response['data'];
       }

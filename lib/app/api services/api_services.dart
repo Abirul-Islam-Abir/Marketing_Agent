@@ -35,6 +35,7 @@ class ApiServices {
   static String schedulesUrl = '$_baseUrl$_endPoint';
   static String completeScheduleUrl = '$_baseUrl$_endPoint';
   static String doctorOnboardUrl = '$_baseUrl$_endPoint/doctor/onboard-visited';
+  static String allTestUrl = '$_baseUrl$_endPoint';
 
   // Private constructor to prevent instantiation
   ApiServices._();

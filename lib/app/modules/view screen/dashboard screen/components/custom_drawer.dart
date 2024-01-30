@@ -75,6 +75,16 @@ class CustomDrawer extends StatelessWidget {
                         onTap: () =>
                             Get.toNamed(RouteName.doctorVisitedScreen)),
                     CustomListTile(
+                        color: AppColor.kSecondaryColor,
+                        name: 'Completed Schedule',
+                        onTap: () =>
+                            Get.toNamed(RouteName.completedScheduleScreen)),
+                    CustomListTile(
+                      color: AppColor.kSecondaryColor,
+                      name: 'All Tests',
+                      onTap: () => Get.toNamed(RouteName.allTestScreen),
+                    ),
+                    CustomListTile(
                       color: AppColor.kSecondaryColor,
                       name: 'Current Target',
                       onTap: () => Get.toNamed(RouteName.agentScreen),

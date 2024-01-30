@@ -31,7 +31,8 @@ class ScheduleScreenAgentView extends StatelessWidget {
                       onRefresh: () async {
                         _dashboardController.dashboardData();
                       },
-                      child: SizedBox( height: double.infinity,
+                      child: SizedBox(
+                        height: double.infinity,
                         child: ListView.builder(
                           itemCount: controller.allScheduleList.length,
                           itemBuilder: (context, index) {
@@ -57,7 +58,8 @@ class ScheduleScreenAgentView extends StatelessWidget {
                                 );
                               },
                               image: data[index]['doctor_avatar'],
-                              subtitle: '$formattedStartTime - $formattedEndTime',
+                              subtitle:
+                                  '$formattedStartTime - $formattedEndTime',
                               title: data[index]['doctor_name'],
                               doneTap: () {
                                 finisScheduleDialog(context,

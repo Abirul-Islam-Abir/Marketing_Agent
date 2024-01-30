@@ -1,18 +1,18 @@
-import 'package:amin_agent/app/api%20services/doctor/doctor_onboard.dart';
 import 'package:amin_agent/app/data/const/export.dart';
 import '../../../../api services/auth/log_out.dart';
 import '../../../../api services/dashboard/dashboard_data.dart';
 import '../../../../data/utils/user_data_key.dart';
-import '../../target agents  screen/controllers/targets_agents _screen_controller.dart';
 
 class DashboardScreenController extends GetxController {
   bool _isProgress = false;
+
   bool get isProgress => _isProgress;
   Map<String, dynamic> _currentProgressList = {};
 
   Map<String, dynamic> get currentProgressList => _currentProgressList;
   String? userId;
   String? currentTargetId;
+
   Future<void> logout() async {
     box.erase();
     Get.offAllNamed(RouteName.loginScreen);
@@ -26,9 +26,9 @@ class DashboardScreenController extends GetxController {
     }
   }
 
-
   Future<void> dashboardData() async {
     final token = await box.read(UserDataKey.tokenKey);
+    print(token);
     if (token != null) {
       final response = await dashboardDataRequest(token);
       if (response['success'] == true) {
@@ -37,10 +37,11 @@ class DashboardScreenController extends GetxController {
         print(response);
         await StoreData.saveCurrentTargetId(
             response['data']['current_target']['target_id']);
-       final id = await box.read(UserDataKey.userIdKey);
-       userId = id.toString();
-        final  targetId = await box.read(UserDataKey.currentTargetIdKey);
-        currentTargetId  = targetId.toString();
+        final id = await box.read(UserDataKey.userIdKey);
+        userId = id.toString();
+        final targetId = await box.read(UserDataKey.currentTargetIdKey);
+        currentTargetId = targetId.toString();
+        //When dashboard data calling after calling this method because userId not set before called this mehtod and showing empty list
         Get.put(ScheduleScreenController()).initializeMethod();
       }
     }

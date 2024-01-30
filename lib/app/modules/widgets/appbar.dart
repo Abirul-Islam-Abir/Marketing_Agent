@@ -123,7 +123,7 @@ AppBar pdfViewScreenAppbar({title, editTap}) {
   );
 }
 
-AppBar buildFilterAppBar({text, filterTap}) {
+AppBar buildFilterAppBars({text, filterTap}) {
   return AppBar(
     leading: const CustomBackButton(),
     title: Text(

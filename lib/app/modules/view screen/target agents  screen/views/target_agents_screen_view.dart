@@ -16,11 +16,9 @@ class TargetAgentsScreenView extends StatelessWidget {
 
       return Scaffold(
         backgroundColor: AppColor.kSecondaryColor,
-        appBar: buildFilterAppBar(
-          text: '${controller.allTargetsAgentsList['title']}',
-          filterTap: () {
-            Get.dialog(FilterScreenView());
-          },
+        appBar: buildNavigateAppbar(
+         '${controller.allTargetsAgentsList['title']}',
+
         ),
         body: SizedBox( height: double.infinity,
           child: ListView.builder(

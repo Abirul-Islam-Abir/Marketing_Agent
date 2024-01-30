@@ -10,11 +10,9 @@ class TotalCommissionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
-      appBar: buildFilterAppBar(
-          text: 'Commissions',
-          filterTap: () {
-            Get.dialog(FilterScreenView());
-          }),
+      appBar: buildNavigateAppbar(
+     'Commissions',
+          ),
       body: SizedBox( height: double.infinity,
         child: ListView.builder(
           itemCount: commissionDataList.length,

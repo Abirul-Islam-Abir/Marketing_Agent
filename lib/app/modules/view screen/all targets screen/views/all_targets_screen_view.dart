@@ -9,11 +9,7 @@ class AllTargetsScreenView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
-      appBar: buildFilterAppBar(
-          text: 'All Targets',
-          filterTap: () {
-            Get.dialog(FilterScreenView());
-          }),
+      appBar: buildNavigateAppbar('All Targets'),
       body: GetBuilder<AllTargetsScreenController>(
         builder: (controller) {
           final data = controller.allTargetDataList;

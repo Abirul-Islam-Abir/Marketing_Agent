@@ -1,9 +1,13 @@
+import 'package:amin_agent/app/modules/view%20screen/all%20tests%20screen/bindings/all_test_screen_bindings.dart';
+import 'package:amin_agent/app/modules/view%20screen/all%20tests%20screen/view/all_test_screen.dart';
+import 'package:amin_agent/app/modules/view%20screen/completed_shedule_screen/view/complete_schedule_screen.dart';
 import 'package:amin_agent/app/modules/view%20screen/target%20agents%20%20screen/bindings/targets_agents_screen_binding.dart';
 import 'package:amin_agent/app/modules/view%20screen/target%20agents%20%20screen/views/target_agents_screen_view.dart';
 
 import '../data/const/export.dart';
 import '../modules/view screen/all targets screen/bindings/all_targets_screen_binding.dart';
 import '../modules/view screen/all targets screen/views/all_targets_screen_view.dart';
+import '../modules/view screen/completed_shedule_screen/bindings/complete_schedule_bindings.dart';
 import '../modules/view screen/doctor visited screen/bindings/doctor_visited_screen_binding.dart';
 
 part 'app_routes.dart';
@@ -101,6 +105,16 @@ class AppPages {
       name: RouteName.allTargetScreen,
       page: () => AllTargetsScreenView(),
       binding: AllTargetsScreenBinding(),
+    ),
+    GetPage(
+      name: RouteName.allTestScreen,
+      page: () => AllTestScreen(),
+      binding: AllTestScreenBinding(),
+    ),
+    GetPage(
+      name: RouteName.completedScheduleScreen,
+      page: () => CompletedScheduleScreen(),
+      binding: CompletedScheduleScreenBinding(),
     ),
   ];
 }
