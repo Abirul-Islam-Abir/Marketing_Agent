@@ -108,9 +108,4 @@ class ScheduleScreenController extends GetxController {
       update();
     }
   }
-  @override
-  void onInit() {
-    initializeMethod();
-    super.onInit();
-  }
 }

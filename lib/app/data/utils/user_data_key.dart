@@ -5,6 +5,7 @@ class UserDataKey{
   static String numberKey = 'numberKey';
   static String passwordKey = 'passwordKey';
   static String currentTargetIdKey = 'currentTargetIdKey';
+  static String userIdKey = 'userIdKey';
 
   UserDataKey._();
 }

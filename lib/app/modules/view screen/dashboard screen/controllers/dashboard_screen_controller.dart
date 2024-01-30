@@ -11,7 +11,8 @@ class DashboardScreenController extends GetxController {
   Map<String, dynamic> _currentProgressList = {};
 
   Map<String, dynamic> get currentProgressList => _currentProgressList;
-
+  String? userId;
+  String? currentTargetId;
   Future<void> logout() async {
     box.erase();
     Get.offAllNamed(RouteName.loginScreen);
@@ -25,9 +26,9 @@ class DashboardScreenController extends GetxController {
     }
   }
 
+
   Future<void> dashboardData() async {
     final token = await box.read(UserDataKey.tokenKey);
-
     if (token != null) {
       final response = await dashboardDataRequest(token);
       if (response['success'] == true) {
@@ -36,7 +37,11 @@ class DashboardScreenController extends GetxController {
         print(response);
         await StoreData.saveCurrentTargetId(
             response['data']['current_target']['target_id']);
-
+       final id = await box.read(UserDataKey.userIdKey);
+       userId = id.toString();
+        final  targetId = await box.read(UserDataKey.currentTargetIdKey);
+        currentTargetId  = targetId.toString();
+        Get.put(ScheduleScreenController()).initializeMethod();
       }
     }
   }

@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:shimmer/shimmer.dart';
+
 import '../../../../data/const/export.dart';
 import '../../../widgets/dashboard_count_shimmer.dart';
 import '../../../widgets/targets_card_shimmer.dart';
@@ -12,8 +16,13 @@ class DashboardScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: true,
-      onPopInvoked: (didPop) {},
+      canPop: false,
+      onPopInvoked: (didPop) {
+        _scaffoldKey.currentState?.closeDrawer();
+        takePhotoDialog(context, title: 'Are you want to exit?', yesTap: () {
+          exit(0);
+        }, img: 'assets/svg/cross-svgrepo-com.svg');
+      },
       child: Scaffold(
         appBar: buildPrimaryAppBar(
             text: 'Dashboard',
@@ -29,12 +38,19 @@ class DashboardScreenView extends StatelessWidget {
             _controller.initializeMethod();
             _profileController.initializeMethod();
           },
-          child: ListView(
-            children: [
-              const SizedBox(height: 20),
-              GetBuilder<DashboardScreenController>(builder: (controller) {
-                final data = controller.currentProgressList;
-                return controller.isProgress
+          child: GetBuilder<DashboardScreenController>(builder: (controller) {
+            final data = controller.currentProgressList;
+            final currentTarget =
+                controller.currentProgressList['current_target'];
+            return ListView(
+              children: [
+                const SizedBox(height: 20),
+                controller.isProgress
+                    ? const TicketShimmer()
+                    : Ticket(
+                        targetId: controller.currentTargetId! ?? '',
+                        userId: controller.userId! ?? ''),
+                controller.isProgress
                     ? const DashboardCountShimmer()
                     : DashboardCount(
                         doctorOnboard: 'Doctor visited',
@@ -57,28 +73,89 @@ class DashboardScreenView extends StatelessWidget {
                         doctorVisitedTap: () {
                           Get.toNamed(RouteName.totalSalesScreen);
                         },
-                      );
-              }),
-              GetBuilder<DashboardScreenController>(
-                builder: (controller) {
-                  final data = controller.currentProgressList['current_target'];
-                  return controller.isProgress
-                      ? const TargetsCardShimmer()
-                      : data.isEmpty
-                          ? const Text('')
-                          : AgentsTargetedProgressCard(
-                              isCurrent: false,
-                              onTap: () {
-                                Get.toNamed(RouteName.agentScreen);
-                              },
-                              text: data['title'],
-                              progress: data['progress'],
-                              agentsCount: data['agents_count'],
-                              amountCollected: data['target_amount'],
-                              targetAmount: data['amount_collected']);
-                },
-              ),
-            ],
+                      ),
+                controller.isProgress
+                    ? const TargetsCardShimmer()
+                    : currentTarget.isEmpty
+                        ? const Text('')
+                        : AgentsTargetedProgressCard(
+                            isCurrent: false,
+                            onTap: () {
+                              Get.toNamed(RouteName.agentScreen);
+                            },
+                            text: currentTarget['title'],
+                            progress: currentTarget['progress'],
+                            agentsCount: currentTarget['agents_count'],
+                            amountCollected: currentTarget['target_amount'],
+                            targetAmount: currentTarget['amount_collected']),
+              ],
+            );
+          }),
+        ),
+      ),
+    );
+  }
+}
+
+class Ticket extends StatelessWidget {
+  const Ticket({
+    super.key,
+    required this.targetId,
+    required this.userId,
+  });
+
+  final String targetId, userId;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: Container(
+        height: 60,
+        width: double.infinity,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: AppColor.kWhiteColor.withOpacity(0.10),
+            border: Border.all(width: 2, color: AppColor.kGreyColor)),
+        child: Center(
+          child: Text(
+            'Token: #T${targetId}A${userId}',
+            style: TextStyle(
+                color: AppColor.kWhiteColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 20),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TicketShimmer extends StatelessWidget {
+  const TicketShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: Shimmer.fromColors(
+        baseColor: AppColor.kGreyColor,
+        highlightColor: AppColor.kShimmerWhite,
+        child: Container(
+          height: 60,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: AppColor.kWhiteColor.withOpacity(0.10),
+              border: Border.all(width: 2, color: AppColor.kGreyColor)),
+          child: Center(
+            child: Text(
+              '',
+              style: TextStyle(
+                  color: AppColor.kWhiteColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20),
+            ),
           ),
         ),
       ),

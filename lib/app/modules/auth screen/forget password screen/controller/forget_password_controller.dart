@@ -33,6 +33,7 @@ class ForgetPasswordScreenController extends GetxController {
     // Check the response for success or failure
     if (response['success'] == true) {
       // Navigate to the OTP verification screen with user ID and flag indicating it's for forgot password
+      await StoreData.saveUserId('${response['data']['user_id']}');
       Get.toNamed(RouteName.otpVerifyScreen, arguments: {
         'id': '${response['data']['user_id']}',
         'forgot': true,

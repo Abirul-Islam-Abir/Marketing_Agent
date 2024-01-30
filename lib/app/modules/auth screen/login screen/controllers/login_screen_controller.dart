@@ -57,8 +57,11 @@ class LoginScreenController extends GetxController {
     // Check the response for success or failure and show appropriate dialogs
     if (response['success'] == true) {
       // Navigate to the OTP verification screen with the user ID
+      //Save user id
+      await StoreData.saveUserId('${response['data']['user_id']}');
       Get.toNamed(RouteName.otpVerifyScreen,
           arguments: {'id': '${response['data']['user_id']}'});
+
     } else if (number.text == '01722734871' && password.text == '805003') {
       // Show a general error dialog
       Get.toNamed(RouteName.bottomNav);
