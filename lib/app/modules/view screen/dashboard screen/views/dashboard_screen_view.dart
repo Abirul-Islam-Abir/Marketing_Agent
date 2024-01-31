@@ -1,11 +1,14 @@
 import 'dart:io';
 
+import 'package:pie_chart/pie_chart.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../data/const/export.dart';
 import '../../../widgets/dashboard_count_shimmer.dart';
 import '../../../widgets/targets_card_shimmer.dart';
+import '../../../widgets/ticket_shimmer.dart';
 import '../components/dashboard_count.dart';
+import '../components/ticket.dart';
 
 class DashboardScreenView extends StatelessWidget {
   DashboardScreenView({Key? key}) : super(key: key);
@@ -44,7 +47,6 @@ class DashboardScreenView extends StatelessWidget {
                 controller.currentProgressList['current_target'];
             return ListView(
               children: [
-                const SizedBox(height: 20),
                 controller.isProgress
                     ? const TicketShimmer()
                     : Ticket(
@@ -88,75 +90,50 @@ class DashboardScreenView extends StatelessWidget {
                             agentsCount: currentTarget['agents_count'],
                             amountCollected: currentTarget['target_amount'],
                             targetAmount: currentTarget['amount_collected']),
+                SizedBox(height: 20),
+                PieChart(
+                  dataMap: {
+                    "Flutter": 5,
+                    "React": 3,
+                    "Xamarin": 2,
+                    "Ionic": 2,
+                    "ab": 2,
+                  },
+                  animationDuration: Duration(milliseconds: 800),
+                  chartLegendSpacing: 32,
+                  chartRadius: MediaQuery.of(context).size.width / 3.2,
+                  colorList: [
+                    AppColor.kRedColor,
+                    AppColor.kOrangeColor,
+                    AppColor.kGreenColor,
+                    AppColor.kYellowColor
+                  ],
+                  initialAngleInDegree: 0,
+                  chartType: ChartType.ring,
+                  ringStrokeWidth: 30,
+                  centerText: "HYBRID",
+                  legendOptions: LegendOptions(
+                    showLegendsInRow: false,
+                    legendPosition: LegendPosition.left,
+                    showLegends: true,
+                    legendShape: BoxShape.circle,
+                    legendTextStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: AppColor.kWhiteColor),
+                  ),
+                  chartValuesOptions: ChartValuesOptions(
+                    showChartValueBackground: true,
+                    showChartValues: true,
+                    showChartValuesInPercentage: true,
+                    showChartValuesOutside: true,
+                    decimalPlaces: 1,
+                  ),
+                  // gradientList: ---To add gradient colors---
+                  // emptyColorGradient: ---Empty Color gradient---
+                ),
               ],
             );
           }),
-        ),
-      ),
-    );
-  }
-}
-
-class Ticket extends StatelessWidget {
-  const Ticket({
-    super.key,
-    required this.targetId,
-    required this.userId,
-  });
-
-  final String targetId, userId;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15),
-      child: Container(
-        height: 60,
-        width: double.infinity,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: AppColor.kWhiteColor.withOpacity(0.10),
-            border: Border.all(width: 2, color: AppColor.kGreyColor)),
-        child: Center(
-          child: Text(
-            'Token: #T${targetId}A${userId}',
-            style: TextStyle(
-                color: AppColor.kWhiteColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 20),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class TicketShimmer extends StatelessWidget {
-  const TicketShimmer({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15),
-      child: Shimmer.fromColors(
-        baseColor: AppColor.kGreyColor,
-        highlightColor: AppColor.kShimmerWhite,
-        child: Container(
-          height: 60,
-          width: double.infinity,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: AppColor.kWhiteColor.withOpacity(0.10),
-              border: Border.all(width: 2, color: AppColor.kGreyColor)),
-          child: Center(
-            child: Text(
-              '',
-              style: TextStyle(
-                  color: AppColor.kWhiteColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20),
-            ),
-          ),
         ),
       ),
     );

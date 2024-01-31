@@ -18,6 +18,7 @@ class AppColor {
   static const kGreenColor = Colors.lightGreen;
   static const kScaffoldWhite = Colors.white;
   static const kShimmerGrey = Colors.black45 ;
-  static const kShimmerWhite = AppColor.kWhiteColor;
+  static const kShimmerWhite = Colors.white;
+  static const kYellowColor = Colors.yellow;
   AppColor._();
 }
