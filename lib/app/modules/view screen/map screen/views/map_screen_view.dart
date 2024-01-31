@@ -33,7 +33,7 @@ class MapScreenViewState extends State<MapScreenView> {
             userLocation =
                 LatLng(currentLocation.latitude!, currentLocation.longitude!);
           });
-          
+
           updateCurrentLocationName();
         });
       } else {
@@ -124,22 +124,31 @@ class MapScreenViewState extends State<MapScreenView> {
         body: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            GoogleMap(
-              onTap: (v) {},
-              mapType: MapType.normal,
-              polylines: {
-                Polyline(
-                  polylineId: const PolylineId("tracking"),
-                  color: Colors.blue,
-                  points: polylinePoints,
-                  width: 5,
+            Column(
+              children: [
+                Expanded(
+                  child: GoogleMap(
+                    onTap: (v) {},
+                    mapType: MapType.normal,
+                    polylines: {
+                      Polyline(
+                        polylineId: const PolylineId("tracking"),
+                        color: Colors.blue,
+                        points: polylinePoints,
+                        width: 5,
+                      )
+                    },
+                    markers: Set<Marker>.of(markers),
+                    initialCameraPosition: cameraPosition,
+                    onMapCreated: (GoogleMapController controller) {
+                      _controller.complete(controller);
+                    },
+                  ),
+                ),
+                const SizedBox(
+                  height: 60,
                 )
-              },
-              markers: Set<Marker>.of(markers),
-              initialCameraPosition: cameraPosition,
-              onMapCreated: (GoogleMapController controller) {
-                _controller.complete(controller);
-              },
+              ],
             ),
             Positioned(
               top: 10,
