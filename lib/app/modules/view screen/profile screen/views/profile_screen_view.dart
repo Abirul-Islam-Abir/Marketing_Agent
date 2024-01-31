@@ -63,7 +63,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                           targetCount: AppString.visitCount,
                         ),
                         ProfilePictureGridBuilder(
-                          list: pictureDummyData,
+                          list: _controller.completedSchedulePictureList,
                         )
                       ],
                     ),

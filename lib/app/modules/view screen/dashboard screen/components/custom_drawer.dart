@@ -1,4 +1,5 @@
 import 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/drawer_user_header.dart';
+import 'package:amin_agent/app/modules/widgets/about_app_screen.dart';
 
 import '../../../../data/const/export.dart';
 import '../../../widgets/custom_listtile.dart';
@@ -71,33 +72,33 @@ class CustomDrawer extends StatelessWidget {
                             Get.toNamed(RouteName.totalCommissionScreen)),
                     CustomListTile(
                         color: AppColor.kSecondaryColor,
-                        name: 'Doctor visited',
-                        onTap: () =>
-                            Get.toNamed(RouteName.doctorVisitedScreen)),
-                    CustomListTile(
-                        color: AppColor.kSecondaryColor,
                         name: 'Completed Schedule',
                         onTap: () =>
                             Get.toNamed(RouteName.completedScheduleScreen)),
-                    CustomListTile(
-                      color: AppColor.kSecondaryColor,
-                      name: 'All Tests',
-                      onTap: () => Get.toNamed(RouteName.allTestScreen),
-                    ),
                     CustomListTile(
                       color: AppColor.kSecondaryColor,
                       name: 'Current Target',
                       onTap: () => Get.toNamed(RouteName.agentScreen),
                     ),
                     CustomListTile(
+                        color: AppColor.kSecondaryColor,
+                        name: 'Doctor visited',
+                        onTap: () =>
+                            Get.toNamed(RouteName.doctorVisitedScreen)),
+                    CustomListTile(
                       color: AppColor.kSecondaryColor,
                       name: 'All Targets',
                       onTap: () => Get.toNamed(RouteName.allTargetScreen),
                     ),
-                    const CustomListTile(
-                        color: AppColor.kSecondaryColor,
-                        name: 'Settings'),
-                    const CustomListTile(
+                    CustomListTile(
+                      color: AppColor.kSecondaryColor,
+                      name: 'All Tests',
+                      onTap: () => Get.toNamed(RouteName.allTestScreen),
+                    ),
+                    CustomListTile(
+                        onTap: () {
+                          Get.to(() => AboutScreen());
+                        },
                         color: AppColor.kSecondaryColor,
                         name: 'About'),
                   ],

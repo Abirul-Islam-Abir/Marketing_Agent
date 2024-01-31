@@ -1,3 +1,4 @@
+import 'package:amin_agent/app/api%20services/shedules/completed_schedules_picture.dart';
 import 'package:amin_agent/app/data/const/export.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -18,7 +19,8 @@ class ProfileScreenController extends GetxController {
 
   // User profile data fetched from the server
   Map<String, dynamic> _userProfileList = {};
-
+  List _completedSchedulePictureList = [];
+  List get completedSchedulePictureList => _completedSchedulePictureList;
   Map<String, dynamic> get userProfileList => _userProfileList;
   var selectedImagePath = '';
   // Text editing controllers for various user profile details
@@ -52,7 +54,18 @@ class ProfileScreenController extends GetxController {
       }
     }
   }
-
+  Future<void> completedSchedulePicture() async {
+    final token = await box.read(UserDataKey.tokenKey);
+    print(token);
+    final targetId = await box.read(UserDataKey.currentTargetIdKey);
+    if (token != null && targetId != null) {
+      final response = await completedSchedulePictureRequest(token: token, id: targetId);
+      print(response);
+      if (response['success'] == true) {
+        _completedSchedulePictureList = response['data'];
+      }
+    }
+  }
   // Initialize the controller
   Future<void> initializeMethod() async {
     _isProgress = true; // Set progress state to true
@@ -61,6 +74,7 @@ class ProfileScreenController extends GetxController {
       // Fetch user profile and other asynchronous operations
       await Future.wait([
         userProfile(),
+        completedSchedulePicture(),
       ]);
     } catch (e) {
       throw Exception('$e');

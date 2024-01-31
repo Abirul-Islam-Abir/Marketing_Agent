@@ -4,12 +4,14 @@ import 'package:get/get.dart';
 
 import '../../../../model/profile_picture_model.dart';
 
-
 class ProfilePictureGridBuilder extends StatelessWidget {
   const ProfilePictureGridBuilder({
-    super.key, required this.list,
+    super.key,
+    required this.list,
   });
-final List<ProfilePictureDataModel> list;
+
+  final List list;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -20,8 +22,7 @@ final List<ProfilePictureDataModel> list;
         itemCount: list.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3, mainAxisExtent: 140),
-        itemBuilder: (context, index) =>
-            PictureGridCard(image: list[index].image),
+        itemBuilder: (context, index) => PictureGridCard(image: list[index]['image']),
       ),
     );
   }

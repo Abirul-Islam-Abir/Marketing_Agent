@@ -16,7 +16,7 @@ class CompleteScheduleScreenController extends GetxController {
     final targetId = await box.read(UserDataKey.currentTargetIdKey);
     print(targetId);
     if (token != null && targetId != null) {
-      final response = await completedScheduleRequst(token:token,id: targetId);
+      final response = await completedScheduleRequest(token:token,id: targetId);
       if (response['success'] == true) {
         _completedScheduleList.clear();
         _completedScheduleList = response['data'];

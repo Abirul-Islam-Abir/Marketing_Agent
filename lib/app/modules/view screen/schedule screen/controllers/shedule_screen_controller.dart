@@ -13,7 +13,6 @@ class ScheduleScreenController extends GetxController {
   bool get isProgress => _isProgress;
   List _allScheduleList = [];
   List get allScheduleList => _allScheduleList;
-  bool isActiveBackButton = Get.arguments ?? false;
   Future<void> allScheduleData() async {
     final token = await box.read(UserDataKey.tokenKey);
     print(token);
@@ -55,6 +54,7 @@ class ScheduleScreenController extends GetxController {
           if (response['success'] = true) {
             completedLocationTaskDialog();
             Get.find<DashboardScreenController>().initializeMethod();
+            Get.find<ProfileScreenController>().completedSchedulePicture();
           } else {
             _isProgress = false;
             update();
