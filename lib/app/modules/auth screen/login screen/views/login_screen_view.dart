@@ -1,6 +1,7 @@
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../data/const/export.dart';
+import '../../../connectivity/controller/internet_connectivity.dart';
 
 // LoginScreenView is a GetX view class representing the UI for a login screen.
 class LoginScreenView extends GetView<LoginScreenController> {
@@ -11,6 +12,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(NetworkController());
     return SafeArea(
       child: Scaffold(
         body: PrimaryBackgroundView(

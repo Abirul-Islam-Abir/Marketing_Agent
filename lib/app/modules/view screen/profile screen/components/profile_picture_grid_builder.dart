@@ -15,11 +15,8 @@ class ProfilePictureGridBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: Get.width / 0.8,
-      height: list.length * 80,
-      child: GridView.builder(
-        physics: const NeverScrollableScrollPhysics(),
+    return Expanded(
+      child: GridView.builder( 
         itemCount: list.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3, mainAxisExtent: 140),

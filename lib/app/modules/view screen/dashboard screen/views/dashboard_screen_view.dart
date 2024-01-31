@@ -7,6 +7,7 @@ import '../../../../data/const/export.dart';
 import '../../../widgets/dashboard_count_shimmer.dart';
 import '../../../widgets/targets_card_shimmer.dart';
 import '../../../widgets/ticket_shimmer.dart';
+import '../components/custom_pi_chart.dart';
 import '../components/dashboard_count.dart';
 import '../components/ticket.dart';
 
@@ -92,44 +93,14 @@ class DashboardScreenView extends StatelessWidget {
               SizedBox(height: 20),
               controller.isProgress
                   ? Container()
-                  : PieChart(
-                      dataMap: {
-                        "Flutter": 5,
-                        "React": 3,
-                        "Xamarin": 2,
-                        "Ionic": 2,
-                        "ab": 2,
-                      },
-                      animationDuration: Duration(milliseconds: 800),
-                      chartLegendSpacing: 50,
-                      chartRadius: MediaQuery.of(context).size.width / 3.2,
-                      colorList: const [
-                        AppColor.kRedColor,
-                        AppColor.kOrangeColor,
-                        AppColor.kGreenColor,
-                        AppColor.kYellowColor
-                      ],
-                      initialAngleInDegree: 0,
-                      chartType: ChartType.ring,
-                      ringStrokeWidth: 30,
-                      centerText: "HYBRID",
-                      legendOptions: LegendOptions(
-                        showLegendsInRow: false,
-                        legendPosition: LegendPosition.left,
-                        showLegends: true,
-                        legendShape: BoxShape.circle,
-                        legendTextStyle: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: AppColor.kWhiteColor),
-                      ),
-                      chartValuesOptions: ChartValuesOptions(
-                        showChartValueBackground: true,
-                        showChartValues: true,
-                        showChartValuesInPercentage: true,
-                        showChartValuesOutside: true,
-                        decimalPlaces: 1,
-                      ),
-                    )
+                  : CustomPiChart(title: currentTarget['title'],dataMap:{
+                "Flutter": 5,
+                "React": 3,
+                "Xamarin": 2,
+                "Ionic": 2,
+                "ab": 2,
+              } ,),
+              SizedBox(height: 80),
             ]);
           }),
         ),

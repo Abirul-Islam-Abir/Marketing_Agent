@@ -11,7 +11,7 @@ class MPO extends StatelessWidget {
 
     return ResponsiveSizer(
         builder: (context, orientation, screenType) {
-          Get.put(NetworkController());
+
           return GetMaterialApp(
             themeMode: ThemeMode.light,
             useInheritedMediaQuery: true,
@@ -30,4 +30,3 @@ class MPO extends StatelessWidget {
         maxTabletWidth: 900);
   }
 }
-

@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../data/const/export.dart';
 import '../../../../data/dummy data/profile_picture_dummy_data.dart';
+import '../components/picture_grid_card.dart';
 
 class ProfileScreenView extends GetView<ProfileScreenController> {
   ProfileScreenView({Key? key}) : super(key: key);
@@ -22,77 +23,83 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
       },
       child: Scaffold(
           backgroundColor: AppColor.kWhiteColor,
-          body: SizedBox(
-            height: double.infinity,
-            child: Stack(
-              children: [
-                SingleChildScrollView(
-                  child: ProfileBackgroundView(
-                    child: Column(
+          body: Column(
+            children: [
+              Expanded(
+                child: Stack(
+                  children: [
+                    const ProfileBackgroundView(),
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(height: 10.h),
-                        ProfileText(AppString.profile),
-                        const SizedBox(height: 10),
-                        GetBuilder<ProfileScreenController>(
-                          builder: (_) => AvatarUpload(
-                            avatarTap: () {
-                              Get.to(() => ImageViewScreen(
-                                  img: controller.userProfileList['avatar']));
-                            },
-                            selectedImagePath: _controller.selectedImagePath,
-                            img: controller.userProfileList['avatar'],
-                            onTap: () {
-                              addPhotoDialog(
-                                cameraTap: () {
-                                  _controller.getImage(ImageSource.camera);
+                        Column(
+                          children: [
+                            SizedBox(height: 10.h),
+                            ProfileText(AppString.profile),
+                            const SizedBox(height: 10),
+                            GetBuilder<ProfileScreenController>(
+                              builder: (_) => AvatarUpload(
+                                avatarTap: () {
+                                  Get.to(() => ImageViewScreen(
+                                      img: controller
+                                          .userProfileList['avatar']));
                                 },
-                                galleryTap: () {
-                                  _controller.getImage(ImageSource.gallery);
+                                selectedImagePath:
+                                    _controller.selectedImagePath,
+                                img: controller.userProfileList['avatar'],
+                                onTap: () {
+                                  addPhotoDialog(
+                                    cameraTap: () {
+                                      _controller.getImage(ImageSource.camera);
+                                    },
+                                    galleryTap: () {
+                                      _controller.getImage(ImageSource.gallery);
+                                    },
+                                  );
                                 },
-                              );
-                            },
-                          ),
+                              ),
+                            ),
+                            GetBuilder<ProfileScreenController>(
+                                builder: (_) => UserName('${data['name']}')),
+                            GetBuilder<ProfileScreenController>(
+                              builder: (_) =>
+                                  SalesExecutiveText('${data['designation']}'),
+                            ),
+                            const SizedBox(height: 10),
+                            VisitAndTargetCard(
+                              visit: AppString.visitDone,
+                              visitCount: AppString.visitCount,
+                              target: AppString.targetComplete,
+                              targetCount: AppString.visitCount,
+                            ),
+                          ],
                         ),
-                        GetBuilder<ProfileScreenController>(
-                            builder: (_) => UserName('${data['name']}')),
-                        GetBuilder<ProfileScreenController>(
-                          builder: (_) =>
-                              SalesExecutiveText('${data['designation']}'),
-                        ),
-                        const SizedBox(height: 10),
-                        VisitAndTargetCard(
-                          visit: AppString.visitDone,
-                          visitCount: AppString.visitCount,
-                          target: AppString.targetComplete,
-                          targetCount: AppString.visitCount,
-                        ),
-                        ProfilePictureGridBuilder(
+                        ProfilePictureGridBuilder(list:  _controller
+                            .completedSchedulePictureList ),
 
-                          list: _controller.completedSchedulePictureList,
-                        )
                       ],
                     ),
-                  ),
-                ),
-                Positioned(
-                  top: 40,
-                  right: 20,
-                  child: CircleAvatar(
-                    backgroundColor: AppColor.kWhiteColor,
-                    child: IconButton(
-                      onPressed: () {
-                        Get.to(() => ProfileDetailsScreen());
-                      },
-                      icon: const Icon(
-                        Icons.account_circle,
-                        color: AppColor.kPrimaryColor,
+                    Positioned(
+                      top: 40,
+                      right: 20,
+                      child: CircleAvatar(
+                        backgroundColor: AppColor.kWhiteColor,
+                        child: IconButton(
+                          onPressed: () {
+                            Get.to(() => ProfileDetailsScreen());
+                          },
+                          icon: const Icon(
+                            Icons.account_circle,
+                            color: AppColor.kPrimaryColor,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              SizedBox(height: 60,)
+            ],
           )),
     );
   }

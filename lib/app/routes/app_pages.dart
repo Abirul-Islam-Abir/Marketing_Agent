@@ -45,7 +45,7 @@ class AppPages {
     GetPage(
       name: RouteName.bottomNav,
       transition: Transition.rightToLeftWithFade,
-      page: () => const BottomNav(),
+      page: () =>   BottomNav(),
       binding: BottomNavBinding(),
     ),
     GetPage(

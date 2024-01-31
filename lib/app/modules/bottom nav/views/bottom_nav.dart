@@ -1,14 +1,11 @@
 import '../../../data/const/export.dart';
 import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 
-class BottomNav extends StatefulWidget {
-  const BottomNav({Key? key}) : super(key: key);
+import '../../connectivity/controller/internet_connectivity.dart';
 
-  @override
-  State<BottomNav> createState() => _BottomNavState();
-}
+class BottomNav extends StatelessWidget {
+    BottomNav({Key? key}) : super(key: key);
 
-class _BottomNavState extends State<BottomNav> {
   final controller = Get.put(BottomNavController());
 
   List items = [
@@ -17,6 +14,7 @@ class _BottomNavState extends State<BottomNav> {
     BottomBarItem(iconData: Icons.location_on_rounded),
     BottomBarItem(iconData: Icons.account_circle),
   ];
+
   final List<Widget> bottomBarPages = [
     DashboardScreenView(),
       ScheduleScreenView(),
@@ -26,6 +24,7 @@ class _BottomNavState extends State<BottomNav> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(NetworkController());
     return Scaffold(
       body: GetBuilder<BottomNavController>(
           builder: (_) => bottomBarPages[controller.selectedIndex]),
