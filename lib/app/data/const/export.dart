@@ -41,8 +41,7 @@ export 'package:amin_agent/app/modules/auth%20screen/otp%20verify%20screen/contr
 export 'package:amin_agent/app/modules/auth%20screen/otp%20verify%20screen/components/custom_pin_code_field.dart';
 export 'package:amin_agent/app/modules/widgets/long_line_subtitle.dart';
 export 'package:amin_agent/app/modules/widgets/received_code_text.dart';
-export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/custom_chart.dart';
-export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/custom_drawer.dart';
+ export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/custom_drawer.dart';
 export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/dashboard_text.dart';
 export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/sales_targeted_dashboard_progress_card.dart';
 export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/small_details_card_board.dart';

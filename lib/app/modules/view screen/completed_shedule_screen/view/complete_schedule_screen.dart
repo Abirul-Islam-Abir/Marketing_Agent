@@ -18,7 +18,7 @@ class CompletedScheduleScreen extends StatelessWidget {
           filterTap: () {
             Get.dialog(FilterScreenView());
           },
-          text: 'Tests'),
+          text: 'Completed Schedule'),
       body: GetBuilder<CompleteScheduleScreenController>(builder: (controller) {
         final data = controller.completedScheduleList;
         return controller.isProgress
