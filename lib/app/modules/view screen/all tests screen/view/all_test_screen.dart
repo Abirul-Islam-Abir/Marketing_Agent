@@ -12,11 +12,8 @@ class AllTestScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
-      appBar: buildFilterAppBars(
-          filterTap: () {
-            Get.dialog(FilterScreenView());
-          },
-          text: 'Tests'),
+      appBar: buildNavigateAppbar(
+            'Tests'),
       body: GetBuilder<AllTestScreenController>(builder: (controller) {
         final data = controller.allTestList;
         return controller.isProgress

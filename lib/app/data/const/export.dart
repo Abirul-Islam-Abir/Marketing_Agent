@@ -43,7 +43,7 @@ export 'package:amin_agent/app/modules/widgets/long_line_subtitle.dart';
 export 'package:amin_agent/app/modules/widgets/received_code_text.dart';
  export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/custom_drawer.dart';
 export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/dashboard_text.dart';
-export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/sales_targeted_dashboard_progress_card.dart';
+export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/agents_targeted_progress_card.dart';
 export 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/small_details_card_board.dart';
 export 'package:amin_agent/app/modules/view%20screen/greetings%20screen/components/animate_congratulate.dart';
 export 'package:amin_agent/app/modules/view%20screen/greetings%20screen/components/completed_target_text.dart';
