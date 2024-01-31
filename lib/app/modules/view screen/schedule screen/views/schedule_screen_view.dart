@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../data/const/export.dart';
 import '../../../widgets/shimmer_schedule_card_list.dart';
+import '../../map screen/views/poly_map_screen.dart';
 import '../components/schedule_card.dart';
 
 class ScheduleScreenView extends StatelessWidget {
@@ -51,10 +52,7 @@ class ScheduleScreenView extends StatelessWidget {
                             return ScheduleCard(
                               sendTap: () {
                                 Get.to(
-                                  () => MapScreenNavigate(
-                                    lat: '23.8740427',
-                                    long: '90.3879851',
-                                    isLatLng: true,
+                                  () => MapScreen(
                                   ),
                                 );
                               },
