@@ -43,6 +43,7 @@ class DashboardScreenController extends GetxController {
         currentTargetId = targetId.toString();
         //When dashboard data calling after calling this method because userId not set before called this mehtod and showing empty list
         Get.put(ScheduleScreenController()).initializeMethod();
+        Get.put(ProfileScreenController()).completedSchedulePicture();
       }
     }
   }

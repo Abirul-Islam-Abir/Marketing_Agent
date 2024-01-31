@@ -100,9 +100,9 @@ class DashboardScreenView extends StatelessWidget {
                     "ab": 2,
                   },
                   animationDuration: Duration(milliseconds: 800),
-                  chartLegendSpacing: 32,
+                  chartLegendSpacing: 50,
                   chartRadius: MediaQuery.of(context).size.width / 3.2,
-                  colorList: [
+                  colorList: const [
                     AppColor.kRedColor,
                     AppColor.kOrangeColor,
                     AppColor.kGreenColor,

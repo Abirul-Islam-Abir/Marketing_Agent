@@ -54,7 +54,6 @@ class ScheduleScreenController extends GetxController {
           if (response['success'] = true) {
             completedLocationTaskDialog();
             Get.find<DashboardScreenController>().initializeMethod();
-            Get.find<ProfileScreenController>().completedSchedulePicture();
           } else {
             _isProgress = false;
             update();

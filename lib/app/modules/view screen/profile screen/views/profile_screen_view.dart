@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:amin_agent/app/modules/view%20screen/profile%20details%20screen/view/profile_details_screen.dart';
+import 'package:amin_agent/app/modules/widgets/image_view_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../data/const/export.dart';
@@ -35,6 +36,10 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                         const SizedBox(height: 10),
                         GetBuilder<ProfileScreenController>(
                           builder: (_) => AvatarUpload(
+                            avatarTap: () {
+                              Get.to(() => ImageViewScreen(
+                                  img: controller.userProfileList['avatar']));
+                            },
                             selectedImagePath: _controller.selectedImagePath,
                             img: controller.userProfileList['avatar'],
                             onTap: () {
@@ -63,6 +68,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                           targetCount: AppString.visitCount,
                         ),
                         ProfilePictureGridBuilder(
+
                           list: _controller.completedSchedulePictureList,
                         )
                       ],

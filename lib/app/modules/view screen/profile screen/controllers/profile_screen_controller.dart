@@ -74,7 +74,6 @@ class ProfileScreenController extends GetxController {
       // Fetch user profile and other asynchronous operations
       await Future.wait([
         userProfile(),
-        completedSchedulePicture(),
       ]);
     } catch (e) {
       throw Exception('$e');

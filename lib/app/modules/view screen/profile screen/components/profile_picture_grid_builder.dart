@@ -1,4 +1,5 @@
 import 'package:amin_agent/app/modules/view%20screen/profile%20screen/components/picture_grid_card.dart';
+import 'package:amin_agent/app/modules/widgets/image_view_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +23,14 @@ class ProfilePictureGridBuilder extends StatelessWidget {
         itemCount: list.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3, mainAxisExtent: 140),
-        itemBuilder: (context, index) => PictureGridCard(image: list[index]['image']),
+        itemBuilder: (context, index) => InkWell(
+          onTap: () {
+            Get.to(() => ImageViewScreen(img: list[index]['image']));
+          },
+          child: PictureGridCard(
+            image: list[index]['image'],
+          ),
+        ),
       ),
     );
   }
