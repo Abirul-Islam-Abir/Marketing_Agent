@@ -27,7 +27,7 @@ class DoctorOnboardCard extends StatelessWidget {
               style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: AppColor.kWhiteColor,
-                  fontSize: 20),
+                  fontSize: 17),
             ),
             Text(
               date,

@@ -26,9 +26,8 @@ class AllTargetsScreenView extends StatelessWidget {
                         isCurrent: data[index]['is_current'],
                         onTap: () {
                           //Only navigate current target
-                          if (data[index]['is_current'] == true) {
-                            Get.to(() => ScheduleScreenAgentView());
-                          }
+                          Get.toNamed(RouteName.agentScreen,
+                              arguments:  data[index]['target_id']);
                         },
                         text: data[index]['title'],
                         progress: '0.5',

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "829287823878",
+    "project_id": "mpo-flutter-514b5",
+    "storage_bucket": "mpo-flutter-514b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829287823878:android:9fd78db097185d49dca187",
+        "android_client_info": {
+          "package_name": "com.example.amin_agent"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt7_bddufmXCTch1u_6OZjfXAxFJUQyII"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

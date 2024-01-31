@@ -13,6 +13,7 @@ class AllTargetsScreenController extends GetxController {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
       final response = await allTargetDataRequest(token);
+      print(response);
       if (response['success'] == true) {
         _allTargetDataList = response['data'];
       }

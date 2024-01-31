@@ -9,11 +9,11 @@ class AgentsScreenController extends GetxController {
   bool get isProgress => _isProgress;
   Map<String, dynamic> _allTargetsAgentsList = {};
   Map<String, dynamic> get allTargetsAgentsList => _allTargetsAgentsList;
+  final targetId = Get.arguments;
 
   Future<void> allTargetsAgents() async {
     final token = await box.read(UserDataKey.tokenKey);
-    final targetId = await box.read(UserDataKey.currentTargetIdKey);
-    if (token != null && targetId != null) {
+    if (token != null ) {
       final response = await allAgentsDataRequest(token: token, id: targetId);
       if (response['success'] == true) {
         _allTargetsAgentsList.clear();

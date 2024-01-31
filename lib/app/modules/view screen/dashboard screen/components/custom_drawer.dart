@@ -2,6 +2,7 @@ import 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/componen
 import 'package:amin_agent/app/modules/widgets/about_app_screen.dart';
 
 import '../../../../data/const/export.dart';
+import '../../../../data/utils/user_data_key.dart';
 import '../../../widgets/custom_listtile.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -28,9 +29,7 @@ class CustomDrawer extends StatelessWidget {
                   IconButton(
                       onPressed: () {
                         scaffoldKey.currentState?.closeDrawer();
-                        takePhotoDialog(context, title: 'Are you want to Log Out?',
-                            yesTap: () {
-
+                        takePhotoDialog(context, title: 'Log Out?', yesTap: () {
                           dashboardController.logout();
                         }, img: 'assets/svg/logout-svgrepo-com.svg');
                       },
@@ -83,10 +82,16 @@ class CustomDrawer extends StatelessWidget {
                         onTap: () =>
                             Get.toNamed(RouteName.completedScheduleScreen)),
                     CustomListTile(
-                      color: AppColor.kSecondaryColor,
-                      name: 'Current Target',
-                      onTap: () => Get.toNamed(RouteName.agentScreen),
-                    ),
+                        color: AppColor.kSecondaryColor,
+                        name: 'Current Target',
+                        onTap: () async {
+                          final targetId =
+                              await box.read(UserDataKey.currentTargetIdKey);
+                          if (targetId != null) {
+                            Get.toNamed(RouteName.agentScreen,
+                                arguments: targetId);
+                          }
+                        }),
                     CustomListTile(
                         color: AppColor.kSecondaryColor,
                         name: 'Doctor visited',

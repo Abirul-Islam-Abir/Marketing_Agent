@@ -46,62 +46,67 @@ class DashboardScreenView extends StatelessWidget {
             final data = controller.currentProgressList;
             final currentTarget =
                 controller.currentProgressList['current_target'];
-            return ListView(children: [
-              controller.isProgress
-                  ? const TicketShimmer()
-                  : Ticket(
-                      targetId: controller.currentTargetId! ?? '',
-                      userId: controller.userId! ?? ''),
-              controller.isProgress
-                  ? const DashboardCountShimmer()
-                  : DashboardCount(
-                      doctorOnboard: 'Doctor visited',
-                      doctorOnboardCounts: '${data['doctor_onboard']}',
-                      doctorVisited: 'Doctor onboard',
-                      doctorVisitedCounts: '${data['doctor_visited']}',
-                      totalCommission: 'Total Commission',
-                      totalSales: 'Total Sales',
-                      totalCommissionCount: '${data['total_commision']}',
-                      totalSalesCounts: '${data['total_sales']}',
-                      totalCommissionTap: () {
-                        Get.toNamed(RouteName.doctorVisitedScreen);
-                      },
-                      totalSalesTap: () {
-                        Get.toNamed(RouteName.doctorOnboardScreen);
-                      },
-                      totalCommissionOnTap: () {
-                        Get.toNamed(RouteName.totalCommissionScreen);
-                      },
-                      doctorVisitedTap: () {
-                        Get.toNamed(RouteName.totalSalesScreen);
-                      },
-                    ),
-              controller.isProgress
-                  ? const TargetsCardShimmer()
-                  : currentTarget.isEmpty
-                      ? const Text('')
-                      : AgentsTargetedProgressCard(
-                          isCurrent: false,
-                          onTap: () {
-                            Get.toNamed(RouteName.agentScreen);
+            return ListView(
+                physics: AlwaysScrollableScrollPhysics(),
+                children: [
+                  controller.isProgress
+                      ? const TicketShimmer()
+                      : Ticket(
+                          targetId: controller.currentTargetId! ?? '',
+                          userId: controller.userId! ?? ''),
+                  controller.isProgress
+                      ? const DashboardCountShimmer()
+                      : DashboardCount(
+                          doctorOnboard: 'Doctor visited',
+                          doctorOnboardCounts: '${data['doctor_onboard']}',
+                          doctorVisited: 'Doctor onboard',
+                          doctorVisitedCounts: '${data['doctor_visited']}',
+                          totalCommission: 'Total Commission',
+                          totalSales: 'Total Sales',
+                          totalCommissionCount: '${data['total_commision']}',
+                          totalSalesCounts: '${data['total_sales']}',
+                          totalCommissionTap: () {
+                            Get.toNamed(RouteName.doctorVisitedScreen);
                           },
-                          text: currentTarget['title'],
-                          progress: currentTarget['progress'],
-                          agentsCount: currentTarget['agents_count'],
-                          amountCollected: currentTarget['target_amount'],
-                          targetAmount: currentTarget['amount_collected']),
-              SizedBox(height: 20),
-              controller.isProgress
-                  ? Container()
-                  : CustomPiChart(title: currentTarget['title'],dataMap:{
-                "Flutter": 5,
-                "React": 3,
-                "Xamarin": 2,
-                "Ionic": 2,
-                "ab": 2,
-              } ,),
-              SizedBox(height: 80),
-            ]);
+                          totalSalesTap: () {
+                            Get.toNamed(RouteName.doctorOnboardScreen);
+                          },
+                          totalCommissionOnTap: () {
+                            Get.toNamed(RouteName.totalCommissionScreen);
+                          },
+                          doctorVisitedTap: () {
+                            Get.toNamed(RouteName.totalSalesScreen);
+                          },
+                        ),
+                  controller.isProgress
+                      ? const TargetsCardShimmer()
+                      : currentTarget.isEmpty
+                          ? const Text('')
+                          : AgentsTargetedProgressCard(
+                              isCurrent: false,
+                              onTap: () {
+                                Get.toNamed(RouteName.agentScreen);
+                              },
+                              text: currentTarget['title'],
+                              progress: currentTarget['progress'],
+                              agentsCount: currentTarget['agents_count'],
+                              amountCollected: currentTarget['target_amount'],
+                              targetAmount: currentTarget['amount_collected']),
+                  SizedBox(height: 30),
+                  controller.isProgress
+                      ? Container()
+                      : CustomPiChart(
+                          title: currentTarget['title'],
+                          dataMap: {
+                            "Flutter": 5,
+                            "React": 3,
+                            "Xamarin": 2,
+                            "Ionic": 2,
+                            "ab": 2,
+                          },
+                        ),
+                  SizedBox(height: 80),
+                ]);
           }),
         ),
       ),
