@@ -26,7 +26,14 @@ class CustomDrawer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                      onPressed: dashboardController.logout,
+                      onPressed: () {
+                        scaffoldKey.currentState?.closeDrawer();
+                        takePhotoDialog(context, title: 'Are you want to Log Out?',
+                            yesTap: () {
+
+                          dashboardController.logout();
+                        }, img: 'assets/svg/logout-svgrepo-com.svg');
+                      },
                       icon: const Icon(
                         Icons.logout,
                         size: 30,

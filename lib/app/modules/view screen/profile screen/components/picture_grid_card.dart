@@ -13,17 +13,20 @@ class PictureGridCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: 100,
-        width: 100,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: NetworkImage(
-                image!,
+      child: Hero(
+        tag: '$image',
+        child: Container(
+          height: 100,
+          width: 100,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(
+                  image!,
+                ),
               ),
-            ),
-            borderRadius: BorderRadius.circular(20)),
+              borderRadius: BorderRadius.circular(20)),
+        ),
       ),
     );
   }
