@@ -33,7 +33,7 @@ class MapScreenViewState extends State<MapScreenView> {
             userLocation =
                 LatLng(currentLocation.latitude!, currentLocation.longitude!);
           });
-          updateLocation();
+          
           updateCurrentLocationName();
         });
       } else {
@@ -107,7 +107,7 @@ class MapScreenViewState extends State<MapScreenView> {
 
   @override
   void initState() {
-    getCurrentLocation();
+    getCurrentLocation().then((value) => updateLocation());
     super.initState();
   }
 
