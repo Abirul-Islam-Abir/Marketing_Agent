@@ -52,8 +52,8 @@ class ScheduleScreenView extends StatelessWidget {
                               sendTap: () {
                                 Get.to(
                                   () => MapScreenNavigate(
-                                    lat: data[index]['chamber_lat'],
-                                    long: data[index]['chamber_long'],
+                                    lat: '23.8740427',
+                                    long: '90.3879851',
                                     isLatLng: true,
                                   ),
                                 );
