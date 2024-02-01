@@ -46,8 +46,7 @@ class PasswordSetScreenController extends GetxController {
     if (response['success'] == true) {
       // Save the token and navigate to the bottom navigation screen
       await StoreData.saveToken(response['data']['token']);
-      AwesomeDialogs.showSuccessDialog(context, desc: 'Log in successfully');
-      Get.offAllNamed(RouteName.bottomNav);
+       Get.offAllNamed(RouteName.bottomNav);
     } else {
       // Show an error dialog if the password reset fails
       AwesomeDialogs.showErrorDialog(context,
@@ -104,4 +103,3 @@ void progress(v){
     super.dispose();
   }
 }
-

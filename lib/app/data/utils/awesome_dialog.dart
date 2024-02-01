@@ -6,7 +6,7 @@ class AwesomeDialogs {
   static void showSuccessDialog(context, {desc, okPress}) {
     PanaraInfoDialog.show(
       context,
-      title: "Joss!",
+      title: "Great!",
       message: desc,
       buttonText: "Okay",
       onTapDismiss: () {

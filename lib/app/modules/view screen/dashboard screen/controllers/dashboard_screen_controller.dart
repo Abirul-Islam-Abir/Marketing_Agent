@@ -8,13 +8,20 @@ import '../../../Fcm Notification/controller/fcm_notification_controller.dart';
 class DashboardScreenController extends GetxController {
   bool _isProgress = false;
 
-  bool get isProgress => _isProgress;
-  Map<String, dynamic> _currentProgressList = {};
 
-  Map<String, dynamic> get currentProgressList => _currentProgressList;
+   bool get isProgress => _isProgress;
+  Map<String, dynamic> _currentProgressList = {};
+     Map<String, dynamic> get currentProgressList => _currentProgressList;
 
   String? userId;
   String? currentTargetId;
+
+ int _selectedIndex = 0;
+ int get selectedIndex => _selectedIndex;
+  void selectItem(int index) {
+    _selectedIndex = index;
+     update();
+  }
 
   Future<void> logout() async {
     box.erase();

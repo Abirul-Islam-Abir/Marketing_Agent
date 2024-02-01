@@ -9,7 +9,7 @@ class CustomDrawer extends StatelessWidget {
   CustomDrawer({super.key, required this.scaffoldKey});
 
   final profileController = Get.put(ProfileScreenController());
-  final dashboardController = Get.put(DashboardScreenController());
+  final _controller = Get.put(DashboardScreenController());
   final GlobalKey<ScaffoldState> scaffoldKey;
 
   @override
@@ -30,7 +30,7 @@ class CustomDrawer extends StatelessWidget {
                       onPressed: () {
                         scaffoldKey.currentState?.closeDrawer();
                         takePhotoDialog(context, title: 'Log Out?', yesTap: () {
-                          dashboardController.logout();
+                          _controller.logout();
                         }, img: 'assets/svg/logout-svgrepo-com.svg');
                       },
                       icon: const Icon(
@@ -55,36 +55,64 @@ class CustomDrawer extends StatelessWidget {
                 subtitle:
                     '${profileController.userProfileList['designation']}'),
             Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
+              child:
+                  GetBuilder<DashboardScreenController>(builder: (controller) {
+                int index = controller.selectedIndex;
+                return SingleChildScrollView(
+                  child: Column(children: [
                     CustomListTile(
-                        color: AppColor.kScaffoldBlue.withOpacity(0.9),
+                        selected: index,
+                        index: 0,
                         name: 'Dashboard',
-                        onTap: () {}),
+                        onTap: () {
+                          _controller.selectItem(0);
+
+                          if (scaffoldKey.currentState!.isDrawerOpen) {
+                            scaffoldKey.currentState?.closeDrawer();
+                          }
+                        }),
                     CustomListTile(
-                        color: AppColor.kSecondaryColor,
+                        selected: index,
+                        index: 1,
                         name: 'Doctor onboard',
-                        onTap: () =>
-                            Get.toNamed(RouteName.doctorOnboardScreen)),
+                        onTap: () {
+                          _controller.selectItem(1);
+
+                          Get.toNamed(RouteName.doctorOnboardScreen);
+                        }),
                     CustomListTile(
-                        color: AppColor.kSecondaryColor,
+                        selected: index,
+                        index: 2,
                         name: 'Doctor Total sales',
-                        onTap: () => Get.toNamed(RouteName.totalSalesScreen)),
+                        onTap: () {
+                          _controller.selectItem(2);
+
+                          Get.toNamed(RouteName.totalSalesScreen);
+                        }),
                     CustomListTile(
-                        color: AppColor.kSecondaryColor,
+                        selected: index,
+                        index: 3,
                         name: 'Total commission',
-                        onTap: () =>
-                            Get.toNamed(RouteName.totalCommissionScreen)),
+                        onTap: () {
+                          _controller.selectItem(3);
+
+                          Get.toNamed(RouteName.totalCommissionScreen);
+                        }),
                     CustomListTile(
-                        color: AppColor.kSecondaryColor,
+                        selected: index,
+                        index: 4,
                         name: 'Completed Schedule',
-                        onTap: () =>
-                            Get.toNamed(RouteName.completedScheduleScreen)),
+                        onTap: () {
+                          _controller.selectItem(4);
+                          Get.toNamed(RouteName.completedScheduleScreen);
+                        }),
                     CustomListTile(
-                        color: AppColor.kSecondaryColor,
+                        selected: index,
+                        index: 5,
                         name: 'Current Target',
                         onTap: () async {
+                          _controller.selectItem(5);
+
                           final targetId =
                               await box.read(UserDataKey.currentTargetIdKey);
                           if (targetId != null) {
@@ -93,29 +121,46 @@ class CustomDrawer extends StatelessWidget {
                           }
                         }),
                     CustomListTile(
-                        color: AppColor.kSecondaryColor,
+                        selected: index,
+                        index: 6,
                         name: 'Doctor visited',
-                        onTap: () =>
-                            Get.toNamed(RouteName.doctorVisitedScreen)),
+                        onTap: () {
+                          _controller.selectItem(6);
+
+                          Get.toNamed(RouteName.doctorVisitedScreen);
+                        }),
                     CustomListTile(
-                      color: AppColor.kSecondaryColor,
+                      selected: index,
+                      index: 7,
                       name: 'All Targets',
-                      onTap: () => Get.toNamed(RouteName.allTargetScreen),
+                      onTap: () {
+                        _controller.selectItem(7);
+
+                        Get.toNamed(RouteName.allTargetScreen);
+                      },
                     ),
                     CustomListTile(
-                      color: AppColor.kSecondaryColor,
+                      selected: index,
+                      index: 8,
                       name: 'All Tests',
-                      onTap: () => Get.toNamed(RouteName.allTestScreen),
+                      onTap: () {
+                        _controller.selectItem(8);
+
+                        Get.toNamed(RouteName.allTestScreen);
+                      },
                     ),
                     CustomListTile(
                         onTap: () {
+                          _controller.selectItem(9);
+
                           Get.to(() => const AboutScreen());
                         },
-                        color: AppColor.kSecondaryColor,
-                        name: 'About'),
-                  ],
-                ),
-              ),
+                        selected: index,
+                        index: 9,
+                        name: 'About')
+                  ]),
+                );
+              }),
             ),
             const SizedBox(height: 70),
           ],
