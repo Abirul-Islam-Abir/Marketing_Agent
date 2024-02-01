@@ -19,7 +19,7 @@ class TicketShimmer extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               color: AppColor.kWhiteColor.withOpacity(0.10),
               border: Border.all(width: 2, color: AppColor.kGreyColor)),
-          child: Center(
+          child: const Center(
             child: Text(
               '',
               style: TextStyle(

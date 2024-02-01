@@ -22,8 +22,8 @@ class Ticket extends StatelessWidget {
             border: Border.all(width: 2, color: AppColor.kGreyColor)),
         child: Center(
           child: Text(
-            'Token: #T${targetId}A${userId}',
-            style: TextStyle(
+            'Token: #T${targetId}A$userId',
+            style: const TextStyle(
                 color: AppColor.kWhiteColor,
                 fontWeight: FontWeight.bold,
                 fontSize: 20),

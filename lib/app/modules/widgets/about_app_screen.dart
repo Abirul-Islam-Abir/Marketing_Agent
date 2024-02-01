@@ -1,7 +1,5 @@
 import 'package:amin_agent/app/data/const/export.dart';
-import 'package:flutter/material.dart';
 
-import 'appbar.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({Key? key});
@@ -11,8 +9,8 @@ class AboutScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.kScaffoldWhite,
       appBar: buildNavigateAppbar('About MPO'),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -62,15 +60,15 @@ class FeatureBulletPoint extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(
+        const Icon(
           Icons.check_circle,
           color: Colors.green,
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Flexible(
           child: Text(
             text,
-            style: TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 16),
           ),
         ),
       ],

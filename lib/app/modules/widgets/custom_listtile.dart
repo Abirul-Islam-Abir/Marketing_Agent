@@ -14,7 +14,7 @@ final Color color;
       child: ListTile(
         tileColor: color,
         onTap: onTap,
-        leading: SizedBox(),
+        leading: const SizedBox(),
         title: Text(name,
             style: const TextStyle(color: AppColor.kWhiteColor)),
       ),

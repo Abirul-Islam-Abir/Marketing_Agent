@@ -67,7 +67,7 @@ class ProfileDetailsCardWithUpload extends StatelessWidget {
                           )),
                       const SizedBox(width: 5),
                       isUpload
-                          ? Center(
+                          ? const Center(
                               child: CircularProgressIndicator(
                               color: AppColor.kWhiteColor,
                             ))

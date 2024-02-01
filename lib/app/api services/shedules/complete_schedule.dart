@@ -27,7 +27,6 @@ Future<Map<String, dynamic>> completeScheduleRequest(
 
   // Send the multipart request and retrieve the response
   var response = await request.send();
-  print(response.headers);
   // Check if the request was successful (status code 200)
   if (response.statusCode == 200) {
     // Decode the response body from JSON format

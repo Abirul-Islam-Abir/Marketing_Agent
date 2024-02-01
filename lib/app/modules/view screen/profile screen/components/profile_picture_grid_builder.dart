@@ -3,7 +3,6 @@ import 'package:amin_agent/app/modules/widgets/image_view_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../model/profile_picture_model.dart';
 
 class ProfilePictureGridBuilder extends StatelessWidget {
   const ProfilePictureGridBuilder({

@@ -56,7 +56,7 @@ class CompletedScheduleCard extends StatelessWidget {
           trailing: FittedBox(
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(height: 10,width: 10,),
+                const SizedBox(height: 10,width: 10,),
                 const SizedBox(width: 5),
                 InkWell(
                   onTap: sendTap,

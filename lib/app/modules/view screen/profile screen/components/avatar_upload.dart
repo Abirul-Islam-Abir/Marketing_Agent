@@ -16,7 +16,7 @@ class AvatarUpload extends StatelessWidget {
         InkWell(
             onTap: avatarTap,
             child: Hero(
-                tag: '$img',
+                tag: img,
                 child: UserAvatar(img,selectedImagePath:selectedImagePath ))),
         Positioned(
           bottom: 30,

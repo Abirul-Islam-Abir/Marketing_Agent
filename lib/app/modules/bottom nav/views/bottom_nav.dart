@@ -3,10 +3,11 @@ import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 
 import '../../connectivity/controller/internet_connectivity.dart';
 
+// ignore: must_be_immutable
 class BottomNav extends StatelessWidget {
     BottomNav({Key? key}) : super(key: key);
 
-  final controller = Get.put(BottomNavController());
+  final _controller = Get.put(BottomNavController());
 
   List items = [
     BottomBarItem(iconData: Icons.dashboard),
@@ -27,14 +28,14 @@ class BottomNav extends StatelessWidget {
     Get.put(NetworkController());
     return Scaffold(
       body: GetBuilder<BottomNavController>(
-          builder: (_) => bottomBarPages[controller.selectedIndex]),
+          builder: (_) => bottomBarPages[_controller.selectedIndex]),
       extendBody: true,
       bottomNavigationBar: GetBuilder<BottomNavController>(
         builder: (_) => BottomBarBubble(color: AppColor.kPrimaryColor,
           backgroundColor: AppColor.kWhiteColor,
-          selectedIndex: controller.selectedIndex,
+          selectedIndex: _controller.selectedIndex,
           items: List.generate(items.length, (index) => items[index]),
-          onSelect: controller.selectIndex,
+          onSelect: _controller.selectIndex,
         ),
       ),
     );

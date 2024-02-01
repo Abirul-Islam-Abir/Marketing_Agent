@@ -1,9 +1,7 @@
-import 'package:amin_agent/app/modules/view%20screen/map%20screen/views/map_screen_navigate.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../data/const/export.dart';
-import '../../../widgets/shimmer_schedule_card_list.dart';
 import '../../map screen/views/poly_map_screen.dart';
 import '../components/schedule_card.dart';
 

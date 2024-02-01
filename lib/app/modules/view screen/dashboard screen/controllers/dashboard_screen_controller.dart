@@ -34,7 +34,6 @@ class DashboardScreenController extends GetxController {
       if (response['success'] == true) {
         _currentProgressList.clear();
         _currentProgressList = response['data'];
-        print(response);
         await StoreData.saveCurrentTargetId(
             response['data']['current_target']['target_id']);
         final id = await box.read(UserDataKey.userIdKey);

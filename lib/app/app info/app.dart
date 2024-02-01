@@ -1,4 +1,3 @@
- import 'package:amin_agent/app/modules/connectivity/controller/internet_connectivity.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
  import '../data/const/export.dart';

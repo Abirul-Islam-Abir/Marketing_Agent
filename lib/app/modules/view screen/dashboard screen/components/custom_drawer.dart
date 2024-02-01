@@ -109,7 +109,7 @@ class CustomDrawer extends StatelessWidget {
                     ),
                     CustomListTile(
                         onTap: () {
-                          Get.to(() => AboutScreen());
+                          Get.to(() => const AboutScreen());
                         },
                         color: AppColor.kSecondaryColor,
                         name: 'About'),

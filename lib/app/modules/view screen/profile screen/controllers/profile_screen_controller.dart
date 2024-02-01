@@ -56,11 +56,9 @@ class ProfileScreenController extends GetxController {
   }
   Future<void> completedSchedulePicture() async {
     final token = await box.read(UserDataKey.tokenKey);
-    print(token);
     final targetId = await box.read(UserDataKey.currentTargetIdKey);
     if (token != null && targetId != null) {
       final response = await completedSchedulePictureRequest(token: token, id: targetId);
-      print(response);
       if (response['success'] == true) {
         _completedSchedulePictureList = response['data'];
       }

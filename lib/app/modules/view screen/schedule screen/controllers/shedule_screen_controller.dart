@@ -15,7 +15,6 @@ class ScheduleScreenController extends GetxController {
   List get allScheduleList => _allScheduleList;
   Future<void> allScheduleData() async {
     final token = await box.read(UserDataKey.tokenKey);
-    print(token);
     final targetId = await box.read(UserDataKey.currentTargetIdKey);
     if (token != null && targetId != null) {
       final response = await allScheduleDataRequest(token: token, id: targetId);
@@ -38,7 +37,6 @@ class ScheduleScreenController extends GetxController {
       if (pickedFile != null) {
         final token = await box.read(UserDataKey.tokenKey);
         final targetId = await box.read(UserDataKey.currentTargetIdKey);
-        print(targetId);
         if (token != null && targetId != null) {
           // Compress and upload the selected image
           final compressedImage = await compressImage(pickedFile.path);
@@ -50,7 +48,6 @@ class ScheduleScreenController extends GetxController {
               completionLat: completionLat,
               path: compressedImage.path,
               uid: uid);
-          print(response);
           if (response['success'] = true) {
             completedLocationTaskDialog();
             Get.find<DashboardScreenController>().initializeMethod();

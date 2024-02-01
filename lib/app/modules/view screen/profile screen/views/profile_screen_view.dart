@@ -1,12 +1,9 @@
-import 'dart:io';
 
 import 'package:amin_agent/app/modules/view%20screen/profile%20details%20screen/view/profile_details_screen.dart';
 import 'package:amin_agent/app/modules/widgets/image_view_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../data/const/export.dart';
-import '../../../../data/dummy data/profile_picture_dummy_data.dart';
-import '../components/picture_grid_card.dart';
 
 class ProfileScreenView extends GetView<ProfileScreenController> {
   ProfileScreenView({Key? key}) : super(key: key);
@@ -98,7 +95,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                   ],
                 ),
               ),
-              SizedBox(height: 60,)
+              const SizedBox(height: 60,)
             ],
           )),
     );

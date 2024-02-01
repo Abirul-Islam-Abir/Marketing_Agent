@@ -1,5 +1,4 @@
 import '../../../../data/const/export.dart';
-import '../../schedule screen/views/schedule_screen_agent_view.dart';
 
 class AllTargetsScreenView extends StatelessWidget {
   AllTargetsScreenView({Key? key}) : super(key: key);

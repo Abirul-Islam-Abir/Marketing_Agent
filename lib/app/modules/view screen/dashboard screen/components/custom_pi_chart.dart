@@ -2,7 +2,6 @@
 import 'package:pie_chart/pie_chart.dart';
 
 import '../../../../data/const/export.dart';
-import '../../../../theme/app_color.dart';
 
 class CustomPiChart extends StatelessWidget {
   const CustomPiChart({
@@ -14,7 +13,7 @@ class CustomPiChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return PieChart(
       dataMap: dataMap,
-      animationDuration: Duration(milliseconds: 800),
+      animationDuration: const Duration(milliseconds: 800),
       chartLegendSpacing: 70,
       chartRadius: MediaQuery.of(context).size.width / 3.2,
       colorList: const [
@@ -27,7 +26,7 @@ class CustomPiChart extends StatelessWidget {
       chartType: ChartType.ring,
       ringStrokeWidth: 50 ,
       centerText: title,
-      legendOptions: LegendOptions(
+      legendOptions: const LegendOptions(
         showLegendsInRow: false,
         legendPosition: LegendPosition.left,
         showLegends: true,
@@ -36,7 +35,7 @@ class CustomPiChart extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: AppColor.kWhiteColor),
       ),
-      chartValuesOptions: ChartValuesOptions(
+      chartValuesOptions: const ChartValuesOptions(
         showChartValueBackground: true,
         showChartValues: true,
         showChartValuesInPercentage: true,

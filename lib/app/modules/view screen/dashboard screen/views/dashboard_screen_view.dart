@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:pie_chart/pie_chart.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../../data/const/export.dart';
 import '../../../widgets/dashboard_count_shimmer.dart';
@@ -47,13 +45,13 @@ class DashboardScreenView extends StatelessWidget {
             final currentTarget =
                 controller.currentProgressList['current_target'];
             return ListView(
-                physics: AlwaysScrollableScrollPhysics(),
+                physics: const AlwaysScrollableScrollPhysics(),
                 children: [
                   controller.isProgress
                       ? const TicketShimmer()
                       : Ticket(
-                          targetId: controller.currentTargetId! ?? '',
-                          userId: controller.userId! ?? ''),
+                          targetId: controller.currentTargetId!,
+                          userId: controller.userId!),
                   controller.isProgress
                       ? const DashboardCountShimmer()
                       : DashboardCount(
@@ -92,7 +90,7 @@ class DashboardScreenView extends StatelessWidget {
                               agentsCount: currentTarget['agents_count'],
                               amountCollected: currentTarget['target_amount'],
                               targetAmount: currentTarget['amount_collected']),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   controller.isProgress
                       ? Container()
                       : CustomPiChart(
@@ -105,7 +103,7 @@ class DashboardScreenView extends StatelessWidget {
                             "ab": 2,
                           },
                         ),
-                  SizedBox(height: 80),
+                  const SizedBox(height: 80),
                 ]);
           }),
         ),

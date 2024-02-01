@@ -1,5 +1,4 @@
 import 'package:amin_agent/app/modules/view%20screen/user%20profile%20edit%20screen/components/drawer_update_card.dart';
-import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 
 import '../../../../data/const/export.dart';
 
@@ -61,4 +60,3 @@ class UserProfileEditScreen extends StatelessWidget {
     );
   }
 }
-
