@@ -14,7 +14,7 @@ class UserName extends StatelessWidget {
       child: Text(
         name!,
         style: const TextStyle(
-            fontSize: 30,
+            fontSize: 22,
             fontWeight: FontWeight.bold,
             color: AppColor.kBlackColor),
       ),

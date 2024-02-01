@@ -1,6 +1,6 @@
 import 'package:amin_agent/app/modules/view%20screen/all%20tests%20screen/bindings/all_test_screen_bindings.dart';
 import 'package:amin_agent/app/modules/view%20screen/all%20tests%20screen/view/all_test_screen.dart';
-import 'package:amin_agent/app/modules/view%20screen/completed_shedule_screen/view/complete_schedule_screen.dart';
+import 'package:amin_agent/app/modules/view%20screen/completed_shedule_screen/view/completed_schedule_screen.dart';
 import 'package:amin_agent/app/modules/view%20screen/target%20agents%20%20screen/bindings/targets_agents_screen_binding.dart';
 import 'package:amin_agent/app/modules/view%20screen/target%20agents%20%20screen/views/target_agents_screen_view.dart';
 
@@ -34,7 +34,7 @@ class AppPages {
     ),
     GetPage(
       name: RouteName.notificationScreen,
-      page: () => const NotificationScreenView(),
+      page: () =>   NotificationScreenView(),
       binding: NotificationScreenBinding(),
     ),
     GetPage(

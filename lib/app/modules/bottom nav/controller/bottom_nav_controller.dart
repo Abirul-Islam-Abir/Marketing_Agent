@@ -1,4 +1,3 @@
-
 import '../../../data/const/export.dart';
 
 class BottomNavController extends GetxController {

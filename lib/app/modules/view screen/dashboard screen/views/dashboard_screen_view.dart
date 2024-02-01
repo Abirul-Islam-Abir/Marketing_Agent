@@ -2,6 +2,7 @@ import 'dart:io';
 
 
 import '../../../../data/const/export.dart';
+import '../../../../data/utils/user_data_key.dart';
 import '../../../widgets/dashboard_count_shimmer.dart';
 import '../../../widgets/targets_card_shimmer.dart';
 import '../../../widgets/ticket_shimmer.dart';
@@ -82,8 +83,13 @@ class DashboardScreenView extends StatelessWidget {
                           ? const Text('')
                           : AgentsTargetedProgressCard(
                               isCurrent: false,
-                              onTap: () {
-                                Get.toNamed(RouteName.agentScreen);
+                              onTap: () async {
+                                final targetId =
+                                    await box.read(UserDataKey.currentTargetIdKey);
+                                if (targetId != null) {
+                                  Get.toNamed(RouteName.agentScreen,
+                                      arguments: targetId);
+                                }
                               },
                               text: currentTarget['title'],
                               progress: currentTarget['progress'],

@@ -1,13 +1,12 @@
 import 'dart:convert';
 
+import 'package:amin_agent/app/api%20services/api_services.dart';
 import 'package:http/http.dart' as http;
-import '../api_services.dart';
-
-// This function initiates a request to retrieve the user profile information by sending a GET request to the specified API endpoint.
-// It expects a 'token' parameter representing the user's authentication token.
-Future completedScheduleRequest({token,id}) async {
-  // Get the user profile API URL from the ApiServices class
-  final uri = '${ApiServices.schedulesUrl}/$id/completed-schedules';
+// This function initiates a login request by sending a POST request to the specified API endpoint.
+// It expects 'number' and 'password' parameters representing the user's phone number and password.
+Future storeOrUpdateFcmTokenRequest({fcmToken, token}) async {
+  // Get the login API URL from the ApiServices class
+  final uri = '${ApiServices.storeOrUpdateFcmTokenUrl}$fcmToken';
 
   // Parse the URL into a Uri object
   final url = Uri.parse(uri);
@@ -17,13 +16,12 @@ Future completedScheduleRequest({token,id}) async {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer $token',
   };
-
-  // Send a GET request to the API endpoint with the headers
-  final response = await http.get(url, headers: headerWithToken);
+  // Send a POST request to the API endpoint with the encoded body and headers
+  final response = await http.post(url, headers: headerWithToken);
 
   // Decode the response body from JSON format
   final decodedResponse = jsonDecode(response.body);
-print(decodedResponse);
+
   // Check if the request was successful (status code 200) and the API indicates success
   if (response.statusCode == 200 && decodedResponse['success'] == true) {
     // Return the decoded response if the request was successful

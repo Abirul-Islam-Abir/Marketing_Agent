@@ -3,6 +3,7 @@ import 'package:amin_agent/app/data/utils/user_data_key.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
+import '../../../data/const/export.dart';
 import '../../../data/utils/store_data.dart';
 import '../local notification/local_notification.dart';
 
@@ -38,40 +39,30 @@ class FcmMessagingController extends GetxController {
   }
 
   onForegroundApp() async {
-    //!Foreground message in fcm
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       if (message.notification != null) {
-        NotificationService().showNotification(
-            title: '${message.notification!.title}',
-            body: '${message.notification!.body}',
-            payload: 'Its an another payload');
-        print('onForegroundApp: ${message.notification!.title}');
-        print('onForegroundApp: ${message.notification!.body}');
+        NotificationService().showNotify(message: message, payload: '');
+       /* Get.find<NotificationScreenController>().initializeMethod();
+        Get.find<ScheduleScreenController>().initializeMethod();*/
+        print(message.data);
       }
     });
   }
 
-  onOpenedApp() async {
-    //!onAppOpend messager from fcm
+  Future<void> onOpenedApp() async {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       if (message.notification != null) {
-        NotificationService().showNotification(
-            title: '${message.notification!.title}',
-            body: '${message.notification!.body}',
-            payload: 'Its an another payload');
-        print('onOpenedApp: ${message.notification!.title}');
-        print('onOpenedApp: ${message.notification!.body}');
+        NotificationService().showNotify(message: message, payload: '');
+         Get.to(()=>message.data['click_action']);
       }
     });
   }
 
   Future<void> getFcmTokenAndStoreDB() async {
     final token = await box.read(UserDataKey.tokenKey);
-
     FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) async {
       // TODO: If necessary send token to application server.
-
-      if (token != null && fcmToken.isNotEmpty) {
+      if (token != null ) {
         final response = await storeOrUpdateFcmTokenRequest(
             fcmToken: fcmToken, token: token);
         print(response);
@@ -100,3 +91,6 @@ class FcmMessagingController extends GetxController {
     super.onInit();
   }
 }
+
+String image =
+    'https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.webp?b=1&s=170667a&w=0&k=20&c=YQ_j83pg9fB-HWOd1Qur3_kBmG_ot_hZty8pvoFkr6A=';

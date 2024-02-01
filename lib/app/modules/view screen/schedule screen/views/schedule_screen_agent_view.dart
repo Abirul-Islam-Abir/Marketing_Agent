@@ -53,7 +53,7 @@ class ScheduleScreenAgentView extends StatelessWidget {
                                   () => MapScreenNavigate(
                                     lat: data[index]['chamber_lat'],
                                     long: data[index]['chamber_long'],
-                                    isLatLng: true,
+
                                   ),
                                 );
                               },
@@ -67,7 +67,7 @@ class ScheduleScreenAgentView extends StatelessWidget {
                                     title: 'Are you sure?',
                                     body: 'This visit is done!', yesTap: () {
                                   Get.back();
-                                  addPhotoDialog(
+                                  addCameraPhotoDialog(
                                     cameraTap: () {
                                       controller.getImage(
                                           imageSource: ImageSource.camera,
@@ -78,16 +78,7 @@ class ScheduleScreenAgentView extends StatelessWidget {
                                           uid: data[index]['uid'],
                                           index: index);
                                     },
-                                    galleryTap: () {
-                                      controller.getImage(
-                                          imageSource: ImageSource.gallery,
-                                          completionLat: data[index]
-                                              ['chamber_lat'],
-                                          completionLang: data[index]
-                                              ['chamber_long'],
-                                          uid: data[index]['uid'],
-                                          index: index);
-                                    },
+
                                   );
                                 });
                               },

@@ -17,8 +17,8 @@ class Ticket extends StatelessWidget {
         height: 60,
         width: double.infinity,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: AppColor.kYellowColor.withOpacity(0.20),
+            borderRadius: BorderRadius.circular(10),
+            color: AppColor.kWhiteColor.withOpacity(0.20),
             border: Border.all(width: 2, color: AppColor.kGreyColor)),
         child: Center(
           child: Text(

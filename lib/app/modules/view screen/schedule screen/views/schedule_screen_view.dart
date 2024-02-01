@@ -1,3 +1,4 @@
+import 'package:amin_agent/app/modules/view%20screen/map%20screen/views/map_screen_navigate.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
@@ -50,7 +51,10 @@ class ScheduleScreenView extends StatelessWidget {
                             return ScheduleCard(
                               sendTap: () {
                                 Get.to(
-                                  () => MapScreen(
+                                  () => MapScreenNavigate(
+
+                                    lat: '23.8956812',
+                                    long: '90.3732179',
                                   ),
                                 );
                               },
@@ -65,7 +69,7 @@ class ScheduleScreenView extends StatelessWidget {
 
                                       print(index);
                                   Get.back();
-                                addPhotoDialog(
+                                      addCameraPhotoDialog(
                                     cameraTap: () {
                                     controller.getImage(
                                           imageSource: ImageSource.camera,
@@ -76,16 +80,7 @@ class ScheduleScreenView extends StatelessWidget {
                                           uid: data[index]['uid'],index: index);
 
                                     },
-                                    galleryTap: () {
-                                      controller.getImage(
-                                          imageSource: ImageSource.gallery,
-                                          completionLat: data[index]
-                                              ['chamber_lat'],
-                                          completionLang: data[index]
-                                              ['chamber_long'],
-                                          uid: data[index]['uid'],index: index);
 
-                                    },
                                   );
                                 });
                               },

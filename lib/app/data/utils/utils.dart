@@ -224,7 +224,68 @@ void addPhotoDialog({cameraTap,galleryTap}) {
     ),
   );
 }
+void addCameraPhotoDialog({cameraTap}) {
+  Get.bottomSheet(
+    Container(
+      height: 200,
+      decoration: const BoxDecoration(
+        color: AppColor.kWhiteColor,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+      ),
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: 20),
+          Container(
+            height: 5,
+            width: 100,
+            color: AppColor.kGreyColor,
+          ),
+          const SizedBox(height: 20),
+          const Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Add Photo',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: AppColor.kBlackColor),
+            ),
+          ),
+          const SizedBox(height: 20),
+          InkWell(
+            onTap:cameraTap ,
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 8.0),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.camera_alt,
+                    color: AppColor.kGreyColor,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    'Take a photo',
+                    style: TextStyle(
+                      color: AppColor.kGreyColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
 
+        ],
+      ),
+    ),
+  );
+}
 void completedLocationTaskDialog() {
   Get.dialog(
       barrierDismissible: true,

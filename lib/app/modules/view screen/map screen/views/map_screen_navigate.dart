@@ -3,11 +3,10 @@ import 'package:geocoding/geocoding.dart' as geocoding;
 
 class MapScreenNavigate extends StatefulWidget {
   const MapScreenNavigate(
-      {Key? key, required this.lat, required this.long, required this.isLatLng})
+      {Key? key, required this.lat, required this.long})
       : super(key: key);
   final String lat;
   final String long;
-  final bool isLatLng;
 
   @override
   State<MapScreenNavigate> createState() => MapScreenNavigateState();
@@ -36,7 +35,7 @@ class MapScreenNavigateState extends State<MapScreenNavigate> {
                 currentLocation.longitude!,
               );
             });
-            updateLocation();
+            
           },
         );
       }
@@ -82,22 +81,20 @@ class MapScreenNavigateState extends State<MapScreenNavigate> {
 
   Future<void> updateCurrentLocationName() async {
     try {
-      if (widget.isLatLng == true) {
-        List<geocoding.Placemark> placemarks =
-            await geocoding.placemarkFromCoordinates(
-          double.parse(widget.lat),
-          double.parse(widget.long),
-        );
+      List<geocoding.Placemark> placemarks =
+          await geocoding.placemarkFromCoordinates(
+        double.parse(widget.lat),
+        double.parse(widget.long),
+      );
 
-        if (placemarks.isNotEmpty) {
-          geocoding.Placemark placemark = placemarks[0];
-          String name = placemark.name ?? '';
-          String thoroughfare = placemark.thoroughfare ?? '';
-          String locality = placemark.locality ?? '';
-          setState(() {
-            currentLocationName = '$name $thoroughfare, $locality';
-          });
-        }
+      if (placemarks.isNotEmpty) {
+        geocoding.Placemark placemark = placemarks[0];
+        String name = placemark.name ?? '';
+        String thoroughfare = placemark.thoroughfare ?? '';
+        String locality = placemark.locality ?? '';
+        setState(() {
+          currentLocationName = '$name $thoroughfare, $locality';
+        });
       }
     } catch (e) {
       throw Exception('$e');
@@ -154,7 +151,7 @@ class MapScreenNavigateState extends State<MapScreenNavigate> {
   @override
   void initState() {
     userAddMarker();
-    getCurrentLocation();
+    getCurrentLocation().then((value) => updateLocation());
     super.initState();
   }
 

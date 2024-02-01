@@ -7,15 +7,15 @@ class NotificationCard extends StatelessWidget {
   const NotificationCard({
     super.key,
     required this.data,
-    required this.day,
     required this.time,
+    required this.title,
   });
 
-  final String data, day, time;
+  final String data,   time, title;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 30,right: 10,left: 10),
+      padding: const EdgeInsets.only(top: 30, right: 10, left: 10),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(12),
@@ -37,15 +37,15 @@ class NotificationCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Admin',
+                Text(title,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 16,
                         color: AppColor.kPrimaryColor)),
                 Row(
                   children: [
                     Text(
-                      day,
+                      '',
                       style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: AppColor.kGreyColor),
@@ -70,7 +70,6 @@ class NotificationCard extends StatelessWidget {
               trimMode: TrimMode.Line,
               trimCollapsedText: 'Read more',
               trimExpandedText: ' Less',
-
             ),
             const SizedBox(height: 10),
           ],
@@ -79,4 +78,3 @@ class NotificationCard extends StatelessWidget {
     );
   }
 }
-

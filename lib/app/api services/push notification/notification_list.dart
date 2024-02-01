@@ -5,9 +5,9 @@ import '../api_services.dart';
 
 // This function initiates a request to retrieve the user profile information by sending a GET request to the specified API endpoint.
 // It expects a 'token' parameter representing the user's authentication token.
-Future completedScheduleRequest({token,id}) async {
+Future notificationListRequest({token,id}) async {
   // Get the user profile API URL from the ApiServices class
-  final uri = '${ApiServices.schedulesUrl}/$id/completed-schedules';
+  final uri = '${ApiServices.notificationListUrl}$id';
 
   // Parse the URL into a Uri object
   final url = Uri.parse(uri);
@@ -23,7 +23,6 @@ Future completedScheduleRequest({token,id}) async {
 
   // Decode the response body from JSON format
   final decodedResponse = jsonDecode(response.body);
-print(decodedResponse);
   // Check if the request was successful (status code 200) and the API indicates success
   if (response.statusCode == 200 && decodedResponse['success'] == true) {
     // Return the decoded response if the request was successful

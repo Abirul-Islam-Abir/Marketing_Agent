@@ -39,6 +39,7 @@ class ApiServices {
   static String completedSchedulesPictureUrl = '$_baseUrl$_endPoint';
   static String targetWiseDoctorUrl = '$_baseUrl$_endPoint';
   static String storeOrUpdateFcmTokenUrl = '$_baseUrl$_endPoint/store/fcm-token/';
+  static String notificationListUrl = '$_baseUrl$_endPoint/notifications?page=';
 
   // Private constructor to prevent instantiation
   ApiServices._();

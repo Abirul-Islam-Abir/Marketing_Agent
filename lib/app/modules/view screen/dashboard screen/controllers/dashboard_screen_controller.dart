@@ -1,7 +1,9 @@
+import 'package:amin_agent/app/api%20services/push%20notification/notification_list.dart';
 import 'package:amin_agent/app/data/const/export.dart';
 import '../../../../api services/auth/log_out.dart';
 import '../../../../api services/dashboard/dashboard_data.dart';
 import '../../../../data/utils/user_data_key.dart';
+import '../../../Fcm Notification/controller/fcm_notification_controller.dart';
 
 class DashboardScreenController extends GetxController {
   bool _isProgress = false;
@@ -10,6 +12,7 @@ class DashboardScreenController extends GetxController {
   Map<String, dynamic> _currentProgressList = {};
 
   Map<String, dynamic> get currentProgressList => _currentProgressList;
+
   String? userId;
   String? currentTargetId;
 
@@ -43,9 +46,11 @@ class DashboardScreenController extends GetxController {
         //When dashboard data calling after calling this method because userId not set before called this mehtod and showing empty list
         Get.put(ScheduleScreenController()).initializeMethod();
         Get.put(ProfileScreenController()).completedSchedulePicture();
+        Get.put(FcmMessagingController()).getFcmTokenAndStoreDB();
       }
     }
   }
+
 
   Future<void> initializeMethod() async {
     _isProgress = true;

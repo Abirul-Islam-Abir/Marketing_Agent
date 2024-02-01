@@ -34,7 +34,7 @@ class CompletedScheduleCard extends StatelessWidget {
               title,
               style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: AppColor.kBlackColor,fontSize: 15
+                  color: AppColor.kWhiteColor,fontSize: 15
               ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -45,7 +45,7 @@ class CompletedScheduleCard extends StatelessWidget {
             child: Text(
               subtitle,
               style: const TextStyle(
-                  fontWeight: FontWeight.bold, color: AppColor.kBlackColor,fontSize: 13),
+                  fontWeight: FontWeight.bold, color: AppColor.kWhiteColor,fontSize: 13),
               maxLines: 1,
             ),
           ),
@@ -61,9 +61,9 @@ class CompletedScheduleCard extends StatelessWidget {
                 InkWell(
                   onTap: sendTap,
                   child: CircleAvatar(
-                      radius: 18,
-                      backgroundColor: AppColor.kPrimaryColor,
-                      child: SvgPicture.asset('assets/svg/Vector.svg')),
+                      radius: 20,
+                      backgroundColor: AppColor.kWhiteColor,
+                      child: SvgPicture.asset('assets/svg/Vector.svg',color: AppColor.kPrimaryColor,)),
                 ),
               ],
             ),
