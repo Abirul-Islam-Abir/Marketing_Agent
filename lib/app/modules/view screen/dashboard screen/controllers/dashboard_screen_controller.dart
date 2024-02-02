@@ -8,19 +8,21 @@ import '../../../Fcm Notification/controller/fcm_notification_controller.dart';
 class DashboardScreenController extends GetxController {
   bool _isProgress = false;
 
-
-   bool get isProgress => _isProgress;
+  bool get isProgress => _isProgress;
   Map<String, dynamic> _currentProgressList = {};
-     Map<String, dynamic> get currentProgressList => _currentProgressList;
+
+  Map<String, dynamic> get currentProgressList => _currentProgressList;
 
   String? userId;
   String? currentTargetId;
 
- int _selectedIndex = 0;
- int get selectedIndex => _selectedIndex;
+  int _selectedIndex = 0;
+
+  int get selectedIndex => _selectedIndex;
+
   void selectItem(int index) {
     _selectedIndex = index;
-     update();
+    update();
   }
 
   Future<void> logout() async {
@@ -47,17 +49,16 @@ class DashboardScreenController extends GetxController {
         await StoreData.saveCurrentTargetId(
             response['data']['current_target']['target_id']);
         final id = await box.read(UserDataKey.userIdKey);
-        userId = id.toString();
         final targetId = await box.read(UserDataKey.currentTargetIdKey);
-        currentTargetId = targetId.toString();
+        print('$id/' '${targetId}');
         //When dashboard data calling after calling this method because userId not set before called this mehtod and showing empty list
         Get.put(ScheduleScreenController()).initializeMethod();
         Get.put(ProfileScreenController()).completedSchedulePicture();
+        Get.put(ProfileScreenController()).readNotification();
         Get.put(FcmMessagingController()).getFcmTokenAndStoreDB();
       }
     }
   }
-
 
   Future<void> initializeMethod() async {
     _isProgress = true;

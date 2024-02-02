@@ -79,7 +79,7 @@ class ScheduleScreenController extends GetxController {
     final img.Image compressedImage = img.copyResize(originalImage!,
         width: 800, height: 600, interpolation: img.Interpolation.linear);
 
-    final Uint8List compressedBytes =
+    final List<int> compressedBytes =
         img.encodeJpg(compressedImage, quality: 85);
 
     // Save the compressed image to a new file

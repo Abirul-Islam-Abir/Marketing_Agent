@@ -50,13 +50,11 @@ class ScheduleScreenView extends StatelessWidget {
 
                             return ScheduleCard(
                               sendTap: () {
-                                Get.to(
-                                  () => MapScreenNavigate(
+                              /*  Get.to(
+                                  () => MapScreen(
 
-                                    lat: '23.8956812',
-                                    long: '90.3732179',
                                   ),
-                                );
+                                );*/
                               },
                               image: data[index]['doctor_avatar'],
                               subtitle: '$formattedStartTime - $formattedEndTime',

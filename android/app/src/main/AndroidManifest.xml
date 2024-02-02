@@ -58,7 +58,6 @@
             android:value="MPO-Marketing" />
         <!-- ... other configurations ... -->
         <!-- ... other configurations ... -->
-
     </application>
 
 </manifest>

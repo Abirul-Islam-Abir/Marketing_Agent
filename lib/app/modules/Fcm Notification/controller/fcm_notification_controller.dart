@@ -42,8 +42,9 @@ class FcmMessagingController extends GetxController {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       if (message.notification != null) {
         NotificationService().showNotify(message: message, payload: '');
-       /* Get.find<NotificationScreenController>().initializeMethod();
-        Get.find<ScheduleScreenController>().initializeMethod();*/
+        Get.find<NotificationScreenController>().initializeMethod();
+        Get.find<ScheduleScreenController>().initializeMethod();
+        Get.put(ProfileScreenController()).readNotification();
         print(message.data);
       }
     });

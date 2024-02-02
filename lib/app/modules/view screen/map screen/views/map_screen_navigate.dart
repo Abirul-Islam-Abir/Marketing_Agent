@@ -1,5 +1,6 @@
 import '../../../../data/const/export.dart';
 import 'package:geocoding/geocoding.dart' as geocoding;
+/*
 
 class MapScreenNavigate extends StatefulWidget {
   const MapScreenNavigate(
@@ -213,4 +214,4 @@ class MapScreenNavigateState extends State<MapScreenNavigate> {
       ),
     );
   }
-}
+}*/

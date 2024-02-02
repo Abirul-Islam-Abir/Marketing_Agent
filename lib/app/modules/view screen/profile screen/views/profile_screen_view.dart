@@ -1,4 +1,3 @@
-
 import 'package:amin_agent/app/modules/view%20screen/profile%20details%20screen/view/profile_details_screen.dart';
 import 'package:amin_agent/app/modules/widgets/image_view_screen.dart';
 import 'package:image_picker/image_picker.dart';
@@ -63,16 +62,44 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                                   SalesExecutiveText('${data['designation']}'),
                             ),
                             const SizedBox(height: 10),
-                            VisitAndTargetCard(
-                              visit: AppString.visitDone,
-                              visitCount: AppString.visitCount,
-                              target: AppString.targetComplete,
-                              targetCount: AppString.visitCount,
-                            ),
+                            GetBuilder<ProfileScreenController>(
+                                builder: (controller) {
+                              final data = controller.completedTargetVisitList;
+                              return VisitAndTargetCard(
+                                visit: AppString.visitDone,
+                                visitCount: '${data['visits'] ?? ''}',
+                                target: AppString.targetComplete,
+                                targetCount: '${data['targets'] ?? ''}',
+                              );
+                            }),
                           ],
                         ),
-                        ProfilePictureGridBuilder(list:  _controller
-                            .completedSchedulePictureList ),
+
+                      /*  Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.arrow_back_ios,
+                                  color: AppColor.kPrimaryColor,
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.arrow_forward_ios_sharp,
+                                  color: AppColor.kPrimaryColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),*/
+                        ProfilePictureGridBuilder(
+                            list: _controller.completedSchedulePictureList),
 
                       ],
                     ),
@@ -95,7 +122,9 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                   ],
                 ),
               ),
-              const SizedBox(height: 60,)
+              const SizedBox(
+                height: 60,
+              )
             ],
           )),
     );

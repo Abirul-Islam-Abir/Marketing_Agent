@@ -1,4 +1,6 @@
+import 'package:amin_agent/app/api%20services/push%20notification/read_%20notification.dart';
 import 'package:amin_agent/app/api%20services/shedules/completed_schedules_picture.dart';
+import 'package:amin_agent/app/api%20services/targets/completed_targets_visits.dart';
 import 'package:amin_agent/app/data/const/export.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -19,9 +21,13 @@ class ProfileScreenController extends GetxController {
 
   // User profile data fetched from the server
   Map<String, dynamic> _userProfileList = {};
+  Map<String, dynamic> _completedTargetVisitList = {};
   List _completedSchedulePictureList = [];
+  List _readNotificationList = [];
   List get completedSchedulePictureList => _completedSchedulePictureList;
+  List get readNotificationList => _readNotificationList;
   Map<String, dynamic> get userProfileList => _userProfileList;
+  Map<String, dynamic> get completedTargetVisitList => _completedTargetVisitList;
   var selectedImagePath = '';
   // Text editing controllers for various user profile details
   final TextEditingController nameController = TextEditingController();
@@ -64,6 +70,27 @@ class ProfileScreenController extends GetxController {
       }
     }
   }
+  Future<void> readNotification() async {
+    final token = await box.read(UserDataKey.tokenKey);
+    final targetId = await box.read(UserDataKey.currentTargetIdKey);
+    if (token != null && targetId != null) {
+      final response = await readNotificationRequest(token: token, id: targetId);
+      if (response['success'] == true) {
+        _readNotificationList = response['data'];
+        update();
+      }
+    }
+  }
+  Future<void> completedTargetsVisit() async {
+    final token = await box.read(UserDataKey.tokenKey);
+     if (token != null  ) {
+      final response = await completedTargetsVisitRequest(token);
+      print(response);
+      if (response['success'] == true) {
+        _completedTargetVisitList = response['data'];
+      }
+    }
+  }
   // Initialize the controller
   Future<void> initializeMethod() async {
     _isProgress = true; // Set progress state to true
@@ -72,6 +99,7 @@ class ProfileScreenController extends GetxController {
       // Fetch user profile and other asynchronous operations
       await Future.wait([
         userProfile(),
+        completedTargetsVisit(),
       ]);
     } catch (e) {
       throw Exception('$e');
@@ -145,7 +173,7 @@ class ProfileScreenController extends GetxController {
     final img.Image compressedImage = img.copyResize(originalImage!,
         width: 800, height: 600, interpolation: img.Interpolation.linear);
 
-    final Uint8List compressedBytes =
+    final List<int> compressedBytes =
         img.encodeJpg(compressedImage, quality: 85);
 
     // Save the compressed image to a new file

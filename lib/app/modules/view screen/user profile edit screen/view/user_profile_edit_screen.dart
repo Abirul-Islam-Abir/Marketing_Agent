@@ -24,36 +24,39 @@ class UserProfileEditScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             // Display the user avatar using the UserAvatar widget
-            UserAvatar('${data['avatar']}', ),
+            UserAvatar(
+              '${data['avatar']}',
+            ),
             const SizedBox(height: 10),
             // DrawerUpdateCard is a custom widget for updating profile information with a text field
             DrawerUpdateCard(
-                controller: _controller.nameController,
-                label: 'Name'),
+                controller: _controller.nameController, label: 'Name'),
             DrawerUpdateCard(
-                readOnly: true,
-                controller: _controller.numberController,
-                label: 'Phone Number'),
+              readOnly: true,
+              controller: _controller.numberController,
+              label: 'Phone Number',
+              filled: true,
+            ),
             DrawerUpdateCard(
                 controller: _controller.designationController,
                 label: 'Designation'),
             DrawerUpdateCard(
-                controller: _controller.passportController,
-                label: 'Passport Number'),
+              controller: _controller.passportController,
+              label: 'Passport Number',
+            ),
             DrawerUpdateCard(
-                controller: _controller.nidController,
-                label: 'NID Number'),
+                controller: _controller.nidController, label: 'NID Number'),
             DrawerUpdateCard(
-                controller: _controller.addressController,
-                label: 'Location'),
+              onEditingComplete: _controller.userProfileEdit,
+                controller: _controller.addressController, label: 'Location'),
             const SizedBox(height: 5),
             // Obx is a GetX widget that rebuilds when the observable value changes
-            GetBuilder<ProfileScreenController>(builder: (controller) =>
-                SecondaryButton(
-                  isProgress: controller.isProgress,
-                  text: 'Update',
-                  onTap: _controller.userProfileEdit,
-                )),
+            GetBuilder<ProfileScreenController>(
+                builder: (controller) => SecondaryButton(
+                      isProgress: controller.isProgress,
+                      text: 'Update',
+                      onTap: _controller.userProfileEdit,
+                    )),
           ],
         ),
       ),

@@ -2,6 +2,7 @@ import '../../../data/const/export.dart';
 import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 
 import '../../connectivity/controller/internet_connectivity.dart';
+import '../../view screen/map screen/views/poly_map_screen.dart';
 
 // ignore: must_be_immutable
 class BottomNav extends StatelessWidget {
@@ -19,7 +20,7 @@ class BottomNav extends StatelessWidget {
   final List<Widget> bottomBarPages = [
     DashboardScreenView(),
       ScheduleScreenView(),
-      const MapScreenView(),
+        //MapScreenView(),
     ProfileScreenView(),
   ];
 

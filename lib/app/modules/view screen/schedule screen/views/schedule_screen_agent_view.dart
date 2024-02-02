@@ -49,13 +49,13 @@ class ScheduleScreenAgentView extends StatelessWidget {
 
                             return ScheduleCard(
                               sendTap: () {
-                                Get.to(
+                             /*   Get.to(
                                   () => MapScreenNavigate(
                                     lat: data[index]['chamber_lat'],
                                     long: data[index]['chamber_long'],
 
                                   ),
-                                );
+                                );*/
                               },
                               image: data[index]['doctor_avatar'],
                               subtitle:

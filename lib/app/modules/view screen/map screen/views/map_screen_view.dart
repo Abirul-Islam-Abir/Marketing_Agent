@@ -1,6 +1,7 @@
+
 import '../../../../data/const/export.dart';
 import 'package:geocoding/geocoding.dart' as geocoding;
-
+/*
 class MapScreenView extends StatefulWidget {
   const MapScreenView({Key? key}) : super(key: key);
 
@@ -185,3 +186,4 @@ class MapScreenViewState extends State<MapScreenView> {
     );
   }
 }
+*/

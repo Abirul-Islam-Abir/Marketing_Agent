@@ -17,7 +17,7 @@ class PictureGridCard extends StatelessWidget {
         tag: '$image',
         child: Container(
           height: 100,
-          width: 100,
+          width: 100,alignment: Alignment.topLeft,
           decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,

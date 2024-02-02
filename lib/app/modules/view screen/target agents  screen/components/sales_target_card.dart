@@ -1,4 +1,3 @@
-
 import '../../../../data/const/export.dart';
 
 class SalesTargetCard extends StatelessWidget {
@@ -8,12 +7,14 @@ class SalesTargetCard extends StatelessWidget {
     required this.target,
     required this.completed,
     required this.progress,
-    required this.dayLeft, required this.isMe,
+    required this.dayLeft,
+    required this.isMe,
   });
 
   final String name, target, completed, dayLeft;
   final String progress;
- final bool isMe;
+  final bool isMe;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,7 +23,9 @@ class SalesTargetCard extends StatelessWidget {
         height: 120,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color:isMe?AppColor.kGreenColor: AppColor.kWhiteColor.withOpacity(0.20),
+          color: isMe
+              ? AppColor.kGreenColor
+              : AppColor.kWhiteColor.withOpacity(0.20),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
@@ -31,16 +34,30 @@ class SalesTargetCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    name,
-                    style: const TextStyle(
-                        color: AppColor.kWhiteColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 15,
+                      width: 15,
+                      decoration: BoxDecoration(
+                          color: isMe ? AppColor.kYellowColor : null,
+                          borderRadius: BorderRadius.circular(20)),
+                    ),
                   ),
-                  const SizedBox()
+                  Row(
+                    children: [
+                      Text(
+                        name,
+                        style: const TextStyle(
+                            color: AppColor.kWhiteColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
+                      const SizedBox(),
+                    ],
+                  )
                 ],
               ),
             ),
@@ -48,9 +65,11 @@ class SalesTargetCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const SizedBox(width: 20,),
+                const SizedBox(
+                  width: 20,
+                ),
                 Text(
-                  '\$$completed/\$$target',
+                  '$completed / $target',
                   style: const TextStyle(
                       color: AppColor.kWhiteColor, fontWeight: FontWeight.bold),
                 ),

@@ -9,27 +9,24 @@ class NotificationCard extends StatelessWidget {
     required this.data,
     required this.time,
     required this.title,
+    required this.isRead,
   });
 
-  final String data,   time, title;
+  final String data, time, title;
+  final String isRead;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 30, right: 10, left: 10),
+      padding: const EdgeInsets.only(top: 0),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: AppColor.kPrimaryColor.withOpacity(0.2),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: const Offset(0, 3), // changes position of shadow
-            ),
-          ],
+          color: isRead=='Unread'
+              ?AppColor.kWhiteColor.withOpacity(0.70): AppColor.kWhiteColor
+              ,
+          borderRadius: BorderRadius.circular(0),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -38,7 +35,7 @@ class NotificationCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(title,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                         color: AppColor.kPrimaryColor)),

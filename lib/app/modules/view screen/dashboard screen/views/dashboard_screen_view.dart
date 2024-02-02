@@ -1,9 +1,9 @@
 import 'dart:io';
 
-
 import '../../../../data/const/export.dart';
 import '../../../../data/utils/user_data_key.dart';
 import '../../../widgets/dashboard_count_shimmer.dart';
+import '../../../widgets/demo_target_progress_card.dart';
 import '../../../widgets/targets_card_shimmer.dart';
 import '../../../widgets/ticket_shimmer.dart';
 import '../components/custom_pi_chart.dart';
@@ -29,7 +29,7 @@ class DashboardScreenView extends StatelessWidget {
       child: Scaffold(
         appBar: buildPrimaryAppBar(
             text: 'Dashboard',
-            badge: '4',
+            badge: '${_profileController.readNotificationList.length}',
             notificationTap: () {
               Get.toNamed(RouteName.notificationScreen);
             }),
@@ -49,21 +49,19 @@ class DashboardScreenView extends StatelessWidget {
                 physics: const AlwaysScrollableScrollPhysics(),
                 children: [
                   controller.isProgress
-                      ? const TicketShimmer()
-                      : Ticket(
-                          targetId: controller.currentTargetId!,
-                          userId: controller.userId!),
-                  controller.isProgress
                       ? const DashboardCountShimmer()
                       : DashboardCount(
                           doctorOnboard: 'Doctor visited',
-                          doctorOnboardCounts: '${data['doctor_onboard']}',
+                          doctorOnboardCounts:
+                              '${data['doctor_onboard'] ?? ''}',
                           doctorVisited: 'Doctor onboard',
-                          doctorVisitedCounts: '${data['doctor_visited']}',
+                          doctorVisitedCounts:
+                              '${data['doctor_visited'] ?? ''}',
                           totalCommission: 'Total Commission',
                           totalSales: 'Total Sales',
-                          totalCommissionCount: '${data['total_commision']}',
-                          totalSalesCounts: '${data['total_sales']}',
+                          totalCommissionCount:
+                              '${data['total_commision'] ?? ''}',
+                          totalSalesCounts: '${data['total_sales'] ?? ''}',
                           totalCommissionTap: () {
                             Get.toNamed(RouteName.doctorVisitedScreen);
                           },
@@ -79,35 +77,41 @@ class DashboardScreenView extends StatelessWidget {
                         ),
                   controller.isProgress
                       ? const TargetsCardShimmer()
-                      : currentTarget.isEmpty
-                          ? const Text('')
-                          : AgentsTargetedProgressCard(
+                      : currentTarget != null
+                          ? AgentsTargetedProgressCard(
                               isCurrent: false,
                               onTap: () async {
-                                final targetId =
-                                    await box.read(UserDataKey.currentTargetIdKey);
+                                final targetId = await box
+                                    .read(UserDataKey.currentTargetIdKey);
                                 if (targetId != null) {
                                   Get.toNamed(RouteName.agentScreen,
                                       arguments: targetId);
                                 }
                               },
-                              text: currentTarget['title'],
-                              progress: currentTarget['progress'],
-                              agentsCount: currentTarget['agents_count'],
-                              amountCollected: currentTarget['target_amount'],
-                              targetAmount: currentTarget['amount_collected']),
+                              text: currentTarget['title'] ?? 'Default Title',
+                              progress: currentTarget['progress'] ?? '0.0',
+                              agentsCount: currentTarget['agents_count'] ?? 0,
+                              amountCollected:
+                                  currentTarget['target_amount'] ?? '0.0',
+                              targetAmount:
+                                  currentTarget['amount_collected'] ?? '0.0')
+                          : DemoTargetProgressCard(),
                   const SizedBox(height: 30),
                   controller.isProgress
                       ? Container()
                       : CustomPiChart(
-                          title: currentTarget['title'],
-                          dataMap: {
-                            "Flutter": 5,
-                            "React": 3,
-                            "Xamarin": 2,
-                            "Ionic": 2,
-                            "ab": 2,
-                          },
+                          title: currentTarget != null
+                              ? currentTarget['title'] ?? ""
+                              : '',
+                          dataMap: currentTarget != null
+                              ? {
+                                  "Flutter": 5,
+                                  "React": 3,
+                                  "Xamarin": 2,
+                                  "Ionic": 2,
+                                  "ab": 2,
+                                }
+                              : {"Empty": 0},
                         ),
                   const SizedBox(height: 80),
                 ]);

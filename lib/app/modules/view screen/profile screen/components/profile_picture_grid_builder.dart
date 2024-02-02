@@ -17,10 +17,10 @@ class ProfilePictureGridBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: GridView.builder( 
-        itemCount: list.length,
+      child: GridView.builder(
+         itemCount: list.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, mainAxisExtent: 140),
+            crossAxisCount: 4, mainAxisExtent: 120),
         itemBuilder: (context, index) => InkWell(
           onTap: () {
             Get.to(() => ScheduleImageViewScreen(img: list[index]['image']));

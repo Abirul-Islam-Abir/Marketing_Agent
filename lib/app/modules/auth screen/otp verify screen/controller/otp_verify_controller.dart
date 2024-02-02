@@ -13,7 +13,7 @@ class OtpVerifyScreenController extends GetxController {
   bool get isProgress => _isProgress.value;
   bool get isCompleted => _isCompleted.value;
   final id = Get.arguments;
-  var countdown = 120.obs;
+  var countdown = 60.obs;
   late Timer _timer;
   RxBool isTimeOut = true.obs;
   void timeOut(v){

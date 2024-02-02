@@ -9,21 +9,21 @@ AppBar buildPrimaryAppBar({text, badge, notificationTap}) {
       style: const TextStyle(fontWeight: FontWeight.bold),
     ),
     actions: [
-      IconButton(
-        onPressed: notificationTap,
-        icon: badges.Badge(
-          badgeContent: Text(
-            badge,
-            style: const TextStyle(
-                fontWeight: FontWeight.bold, color: AppColor.kWhiteColor),
+      GetBuilder<ProfileScreenController>(builder: (logic) => IconButton(
+          onPressed: notificationTap,
+          icon: badges.Badge(
+            badgeContent: Text(
+              badge,
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold, color: AppColor.kWhiteColor),
+            ),
+            child: const Icon(
+              Icons.notifications_none_rounded,
+              color: AppColor.kWhiteColor,
+              size: 30,
+            ),
           ),
-          child: const Icon(
-            Icons.notifications_none_rounded,
-            color: AppColor.kWhiteColor,
-            size: 30,
-          ),
-        ),
-      ),
+        )),
       const SizedBox(
         height: 20,
         width: 20,

@@ -39,7 +39,7 @@ class SmallDetailsDashboardCard extends StatelessWidget {
                             color: AppColor.kWhiteColor),
                       ), const SizedBox(height: 8,),
                       Text(
-                        totalSalesCount,
+                        totalSalesCount.length>=9? totalSalesCount:'0$totalSalesCount',
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: AppColor.kWhiteColor,
@@ -71,9 +71,9 @@ class SmallDetailsDashboardCard extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: AppColor.kWhiteColor),
                       ),
-                      const SizedBox(height: 8,),
+                      const SizedBox(height: 8),
                       Text(
-                        totalCommissionCount,
+                          totalCommissionCount.length >= 9 ?totalCommissionCount:'0$totalCommissionCount',
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: AppColor.kWhiteColor,

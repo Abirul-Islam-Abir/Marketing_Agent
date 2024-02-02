@@ -41,12 +41,24 @@ class AgentsTargetedProgressCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      text,
-                      style: const TextStyle(
-                          color: AppColor.kWhiteColor,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 18),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 15,
+                        width: 15,
+                        decoration: BoxDecoration(
+                            color: isCurrent ? AppColor.kYellowColor : null,
+                            borderRadius: BorderRadius.circular(20)),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        text,
+                        style: const TextStyle(
+                            color: AppColor.kWhiteColor,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 18),maxLines: 1,overflow: TextOverflow.visible,
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
