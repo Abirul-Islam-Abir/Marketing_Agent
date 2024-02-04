@@ -25,22 +25,32 @@ class AllTargetsScreenView extends StatelessWidget {
                       child: ListView.builder(
                         itemCount: data.length,
                         shrinkWrap: true,
-                        itemBuilder: (context, index) =>
-                            AllTargetsProgressCard(
+                        itemBuilder: (context, index) {
+                          final id = data[index]['target_id'];
+                          final isCurrent = data[index]['is_current'];
+                          final title = data[index]['title'];
+
+                          final agentCount = data[index]['agents_count'];
+                          final targetAmount = data[index]['target_amount'];
+                          final collectedAmount =
+                              data[index]['amount_collected'];
+                          return AllTargetsProgressCard(
                               sendTap: () {
                                 Get.toNamed(RouteName.agentScreen,
-                                    arguments: data[index]['target_id']);
+                                    arguments: id);
                               },
-                                doneTap: () {
-
-                                },
-                                isCurrent: data[index]['is_current'],
-
-                                text: data[index]['title'],
-                                progress: '0.5',
-                                agentsCount: data[index]['agents_count'],
-                                amountCollected: data[index]['target_amount'],
-                                targetAmount: data[index]['amount_collected']),
+                              doneTap: () {
+                                Get.toNamed(
+                                    RouteName.targetWiseDoctorVisitedScreen,
+                                    arguments: id);
+                              },
+                              isCurrent: isCurrent,
+                              text: title,
+                              progress: '0.5',
+                              agentsCount: agentCount,
+                              amountCollected: targetAmount,
+                              targetAmount: collectedAmount);
+                        },
                       ),
                     );
         },

@@ -6,7 +6,7 @@ class GreetingsScreenBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<GreetingsScreenController>(
-      () => GreetingsScreenController(),
+          () => GreetingsScreenController(),
     );
   }
 }

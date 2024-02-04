@@ -1,8 +1,9 @@
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../data/const/export.dart';
+import '../components/animate_congratulate.dart';
 
-class GreetingsScreenView extends GetView<GreetingsScreenController> {
+class GreetingsScreenView extends StatelessWidget {
   const GreetingsScreenView({Key? key}) : super(key: key);
 
   @override

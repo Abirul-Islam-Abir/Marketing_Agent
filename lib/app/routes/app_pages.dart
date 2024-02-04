@@ -9,6 +9,8 @@ import '../modules/view screen/all targets screen/bindings/all_targets_screen_bi
 import '../modules/view screen/all targets screen/views/all_targets_screen_view.dart';
 import '../modules/view screen/completed_shedule_screen/bindings/complete_schedule_bindings.dart';
 import '../modules/view screen/doctor visited screen/bindings/doctor_visited_screen_binding.dart';
+import '../modules/view screen/target wise doctor visited/bindings/target_wise_doctor_visited_bindings.dart';
+import '../modules/view screen/target wise doctor visited/view/target_wise_doctor_visited_screen.dart';
 
 part 'app_routes.dart';
 
@@ -115,6 +117,10 @@ class AppPages {
       name: RouteName.completedScheduleScreen,
       page: () => CompletedScheduleScreen(),
       binding: CompletedScheduleScreenBinding(),
+    ), GetPage(
+      name: RouteName.targetWiseDoctorVisitedScreen,
+      page: () => TargetWiseDoctorVisitedScreen(),
+      binding: TargetWiseDoctorVisitedBinding(),
     ),
   ];
 }

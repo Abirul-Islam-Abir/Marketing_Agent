@@ -7,7 +7,7 @@ import '../api_services.dart';
 // It expects a 'token' parameter representing the user's authentication token.
 Future targetWiseDoctorRequest({token,id}) async {
   // Get the user profile API URL from the ApiServices class
-  final uri = '${ApiServices.doctorOnboardUrl}/doctor/$id/visited';
+  final uri = '${ApiServices.targetWiseDoctorVisitedUrl}/doctor/$id/visited';
 
   // Parse the URL into a Uri object
   final url = Uri.parse(uri);

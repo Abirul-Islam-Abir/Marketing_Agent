@@ -18,9 +18,9 @@ class CompletedTargetText extends StatelessWidget {
       child: Text(
         text!,
         style: const TextStyle(
-            color: AppColor.kWhiteColor,
-            fontWeight: FontWeight.w500,
-            fontSize: 18,),textAlign: TextAlign.center,
+          color: AppColor.kWhiteColor,
+          fontWeight: FontWeight.w500,
+          fontSize: 18,),textAlign: TextAlign.center,
       ),
     );
   }
