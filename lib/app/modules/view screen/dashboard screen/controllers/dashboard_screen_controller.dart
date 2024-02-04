@@ -10,9 +10,11 @@ class DashboardScreenController extends GetxController {
 
   bool get isProgress => _isProgress;
   Map<String, dynamic> _currentProgressList = {};
+  Map _progressList = {};
   List _pieChart = [];
 
   Map<String, dynamic> get currentProgressList => _currentProgressList;
+  Map get progressList => _progressList;
   List get pieChart => _pieChart;
   Map<String, double> convertedDataMap = {};
 
@@ -36,6 +38,7 @@ class DashboardScreenController extends GetxController {
       if (response['success'] == true) {
         _currentProgressList.clear();
         _currentProgressList = response['data'];
+        _progressList = response['data']['current_target'];
         _pieChart = response['data']['pie_chart'];
         print(response['data']['pie_chart']);
         await StoreData.saveCurrentTargetId(

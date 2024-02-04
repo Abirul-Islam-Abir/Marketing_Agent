@@ -33,7 +33,8 @@ class ScheduleScreenView extends StatelessWidget {
                       onRefresh: () async {
                         _dashboardController.dashboardData();
                       },
-                      child: SizedBox( height: double.infinity,
+                      child: SizedBox(
+                        height: double.infinity,
                         child: ListView.builder(
                           itemCount: controller.allScheduleList.length,
                           itemBuilder: (context, index) {
@@ -47,36 +48,41 @@ class ScheduleScreenView extends StatelessWidget {
                                 DateFormat("h:mma").format(startTime);
                             String formattedEndTime =
                                 DateFormat("h:mma").format(endTime);
-
+                            final avatar = data[index]['doctor_avatar'];
+                            final name = data[index]['doctor_name'];
+                            final lat = data[index]['chamber_lat'];
+                            final lang = data[index]['chamber_long'];
+                            final id = data[index]['uid'];
+                            final date =
+                                '$formattedStartTime - $formattedEndTime';
                             return ScheduleCard(
                               sendTap: () {
-                                Get.to(
-                                      () => MapScreen()
-                                );
+                                Get.to(() => MapScreen(
+                                    time: date,
+                                    id: id,
+                                    lat: double.parse(lat),
+                                    avatar: avatar,
+                                    lang: double.parse(lang),
+                                    name: name));
                               },
-                              image: data[index]['doctor_avatar'],
-                              subtitle: '$formattedStartTime - $formattedEndTime',
-                              title: data[index]['doctor_name'],
+                              image: avatar,
+                              subtitle: date,
+                              title: name,
                               doneTap: () {
                                 finisScheduleDialog(context,
                                     img: AppImages.doneIcon,
                                     title: 'Are you sure?',
                                     body: 'This visit is done!', yesTap: () {
-
-                                      print(index);
                                   Get.back();
-                                      addCameraPhotoDialog(
+                                  addCameraPhotoDialog(
                                     cameraTap: () {
-                                    controller.getImage(
+                                      controller.getImage(
                                           imageSource: ImageSource.camera,
-                                          completionLat: data[index]
-                                              ['chamber_lat'],
-                                          completionLang: data[index]
-                                              ['chamber_long'],
-                                          uid: data[index]['uid'],index: index);
-
+                                          completionLat: lat,
+                                          completionLang: lang,
+                                          uid: id,
+                                          index: index);
                                     },
-
                                   );
                                 });
                               },

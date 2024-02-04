@@ -30,19 +30,23 @@ class CompletedScheduleScreen extends StatelessWidget {
                       height: double.infinity,
                       child: ListView.builder(
                         itemCount: data.length,
-                        itemBuilder: (context, index) => CompletedScheduleCard(
-                            sendTap: () {
-                              Get.to(
-                                () => MapScreenNavigate(
-                                  lat: '23.8956812',
-                                  long: '90.3732179',
-                                  uid: data[index]['uid'],
-                                ),
-                              );
-                            },
-                            title: data[index]['doctor_name'],
-                            subtitle: data[index]['meeting_start_date'],
-                            image: data[index]['doctor_avatar']),
+                        itemBuilder: (context, index) {
+                          final name = data[index]['doctor_name'];
+                          final startDate = data[index]['meeting_start_date'];
+                          final avatar = data[index]['doctor_avatar'];
+
+                          final lat = data[index]['chamber_lat'];
+                          final lang = data[index]['chamber_long'];
+                          final id = data[index]['uid'];
+                          return CompletedScheduleCard(
+                              sendTap: () {
+                                Get.to(() => MapScreenNavigate(
+                                    lat: lat, long: lang, uid: id));
+                              },
+                              title: name,
+                              subtitle: startDate,
+                              image: avatar);
+                        },
                       ),
                     ),
                   );

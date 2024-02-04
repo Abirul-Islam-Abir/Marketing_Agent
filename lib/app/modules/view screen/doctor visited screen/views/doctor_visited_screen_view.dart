@@ -3,7 +3,7 @@ import 'package:amin_agent/app/modules/widgets/empty_list_text.dart';
 import '../../../../data/const/export.dart';
 
 class DoctorVisitedScreenView extends StatelessWidget {
-  DoctorVisitedScreenView({Key? key}) : super(key: key);
+  DoctorVisitedScreenView({super.key});
   final controler = Get.put(DoctorOnboardScreenController());
 
   @override
@@ -16,7 +16,7 @@ class DoctorVisitedScreenView extends StatelessWidget {
         return controller.isProgress
             ? const ShimmerTargetList()
             : data.isEmpty
-                ? EmptyListText()
+                ? const EmptyListText()
                 : RefreshIndicator(
                     onRefresh: () async {
                       controller.initializeMethod();
@@ -26,11 +26,16 @@ class DoctorVisitedScreenView extends StatelessWidget {
                       child: ListView.builder(
                         itemCount: data.length,
                         shrinkWrap: true,
-                        itemBuilder: (context, index) => DoctorOnboardCard(
-                          time: '04:21 PM',
-                          location: data[index]['doctor_name'],
-                          date: data[index]['completed_date'],
-                        ),
+                        itemBuilder: (context, index) {
+                          final name = data[index]['doctor_name'];
+                          final date = data[index]['completed_date'];
+                          const time = '09:10 PM';
+                          return DoctorOnboardCard(
+                            time: time,
+                            location: name,
+                            date: date,
+                          );
+                        },
                       ),
                     ),
                   );

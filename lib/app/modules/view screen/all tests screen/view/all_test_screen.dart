@@ -4,6 +4,7 @@ import 'package:amin_agent/app/modules/widgets/empty_list_text.dart';
 
 import '../../../widgets/shimmer_schedule_card_list.dart';
 import '../../all targets screen/components/all_targets_progress_card.dart';
+import '../components/all_test_card.dart';
 
 class AllTestScreen extends StatelessWidget {
   AllTestScreen({super.key});
@@ -29,23 +30,18 @@ class AllTestScreen extends StatelessWidget {
                       height: double.infinity,
                       child: ListView.builder(
                         itemCount: data.length,
-                        itemBuilder: (context, index) =>
-                            AllTargetsProgressCard(
-                                sendTap: () {
-                                  Get.toNamed(RouteName.agentScreen,
-                                      arguments: data[index]['target_id']);
-                                },
-                                doneTap: () {
-
-                                },
-                                isCurrent: false,
-
-                                text: data[index]['test_name'],
-                                progress: data[index]['progress'],
-                                agentsCount: 2,
-                                amountCollected: data[index]
-                                    ['target_amount'],
-                                targetAmount: data[index]['amount_collected']),
+                        itemBuilder: (context, index) {
+                          final name = data[index]['test_name'];
+                          final progress = data[index]['progress'];
+                          final targetAmount = data[index]['target_amount'];
+                          final collectedAmount =
+                              data[index]['amount_collected'];
+                          return AllTestCard(
+                              text: name,
+                              progress: progress,
+                              amountCollected: targetAmount,
+                              targetAmount: collectedAmount);
+                        },
                       ),
                     ),
                   );

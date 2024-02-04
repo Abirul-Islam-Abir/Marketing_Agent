@@ -25,11 +25,16 @@ class DoctorOnboardScreenView extends StatelessWidget {
                         child: ListView.builder(
                           itemCount: data.length,
                           shrinkWrap: true,
-                          itemBuilder: (context, index) => DoctorOnboardCard(
-                            time: '09:10 PM',
-                            location: data[index]['doctor_name'],
-                            date: data[index]['completed_date'],
-                          ),
+                          itemBuilder: (context, index) {
+                            final name = data[index]['doctor_name'];
+                            final date = data[index]['completed_date'];
+                            const time = '09:10 PM';
+                            return DoctorOnboardCard(
+                              time: time,
+                              location: name,
+                              date: date,
+                            );
+                          },
                         ),
                       ),
                     );

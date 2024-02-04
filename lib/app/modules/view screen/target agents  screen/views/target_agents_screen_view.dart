@@ -5,6 +5,7 @@ import '../controllers/targets_agents _screen_controller.dart';
 class TargetAgentsScreenView extends StatelessWidget {
   TargetAgentsScreenView({Key? key}) : super(key: key);
   final controller = Get.put(AgentsScreenController());
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AgentsScreenController>(builder: (controller) {
@@ -17,23 +18,29 @@ class TargetAgentsScreenView extends StatelessWidget {
       return Scaffold(
         backgroundColor: AppColor.kSecondaryColor,
         appBar: buildNavigateAppbar(
-         '${controller.allTargetsAgentsList['title']}',
-
+          '${controller.allTargetsAgentsList['title']}',
         ),
-        body: SizedBox( height: double.infinity,
+        body: SizedBox(
+          height: double.infinity,
           child: ListView.builder(
             itemCount: data['agents'].length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
               List agentsList = data['agents'];
+              final isMe = agentsList[index]['is_me'];
+              final dayLeft = data['days_left'];
+              final targetAmount = data['target_amount'];
+              final name = agentsList[index]['agent_name'];
+              final progress = agentsList[index]['progress'];
+              final sellAmount = agentsList[index]['sell_amount'];
               return SalesTargetCard(
-                isMe: agentsList[index]['is_me'] ,
-              dayLeft: data['days_left'],
-              target: data['target_amount'],
-              name: agentsList[index]['agent_name'],
-              progress: agentsList[index]['progress'],
-              completed: agentsList[index]['sell_amount'],
-            );
+                isMe: isMe,
+                dayLeft: dayLeft,
+                target: targetAmount,
+                name: name,
+                progress: progress,
+                completed: sellAmount,
+              );
             },
           ),
         ),

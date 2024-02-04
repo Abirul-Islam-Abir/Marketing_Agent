@@ -21,6 +21,7 @@ Future storeLatAndLongRequest({token,id,uid,completionLat,completionLang}) async
 
   // Send the multipart request and retrieve the response
   var response = await request.send();
+  print('status here ${response.statusCode}');
   // Check if the request was successful (status code 200)
   if (response.statusCode == 200) {
     // Decode the response body from JSON format

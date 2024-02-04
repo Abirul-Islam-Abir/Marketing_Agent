@@ -5,6 +5,7 @@ import '../../../../data/utils/user_data_key.dart';
 import '../../../widgets/dashboard_count_shimmer.dart';
 import '../../../widgets/demo_target_progress_card.dart';
 import '../../../widgets/targets_card_shimmer.dart';
+import '../components/agents_progress_count.dart';
 import '../components/dashboard_count.dart';
 
 class DashboardScreenView extends StatelessWidget {
@@ -21,7 +22,7 @@ class DashboardScreenView extends StatelessWidget {
       canPop: false,
       onPopInvoked: (didPop) {
         _scaffoldKey.currentState?.closeDrawer();
-        takePhotoDialog(context, title: 'Are you want to exit?', yesTap: () {
+        takePhotoDialog(context, title: 'Want to exit?', yesTap: () {
           exit(0);
         }, img: 'assets/svg/cross-svgrepo-com.svg');
       },
@@ -42,8 +43,16 @@ class DashboardScreenView extends StatelessWidget {
           },
           child: GetBuilder<DashboardScreenController>(builder: (controller) {
             final data = controller.currentProgressList;
-            final currentTarget =
-                controller.currentProgressList['current_target'];
+            final currentTarget = controller.progressList;
+            final onboard = '${data['doctor_onboard'] ?? ''}';
+            final visited = '${data['doctor_visited'] ?? ''}';
+            final commissions = data['total_commision'] ?? '';
+            final sales = data['total_sales'] ?? '';
+            final title = currentTarget['title'];
+            final progress = currentTarget['progress'] ?? '0.0';
+            final agentsCount = currentTarget['agents_count'] ?? 0;
+            final targetAmount = currentTarget['target_amount'] ?? '0.0';
+            final amountCollected = currentTarget['amount_collected'] ?? '0.0';
             return ListView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 children: [
@@ -51,16 +60,13 @@ class DashboardScreenView extends StatelessWidget {
                       ? const DashboardCountShimmer()
                       : DashboardCount(
                           doctorOnboard: 'Doctor visited',
-                          doctorOnboardCounts:
-                              '${data['doctor_onboard'] ?? ''}',
+                          doctorOnboardCounts: onboard,
                           doctorVisited: 'Doctor onboard',
-                          doctorVisitedCounts:
-                              '${data['doctor_visited'] ?? ''}',
+                          doctorVisitedCounts: visited,
                           totalCommission: 'Total Commission',
                           totalSales: 'Total Sales',
-                          totalCommissionCount:
-                              '${data['total_commision'] ?? ''}',
-                          totalSalesCounts: '${data['total_sales'] ?? ''}',
+                          totalCommissionCount: '$commissions',
+                          totalSalesCounts: '$sales',
                           totalCommissionTap: () {
                             Get.toNamed(RouteName.doctorVisitedScreen);
                           },
@@ -76,58 +82,23 @@ class DashboardScreenView extends StatelessWidget {
                         ),
                   controller.isProgress
                       ? const TargetsCardShimmer()
-                      : currentTarget != null
-                          ? CurrentTargetProgressCard(
-                              isCurrent: false,
-                              onTap: () async {
-                                final targetId = await box
-                                    .read(UserDataKey.currentTargetIdKey);
-                                if (targetId != null) {
-                                  Get.toNamed(RouteName.agentScreen,
-                                      arguments: targetId);
-                                }
-                              },
-                              text: currentTarget['title'] ?? ' ',
-                              progress: currentTarget['progress'] ?? '0.0',
-                              agentsCount: currentTarget['agents_count'] ?? 0,
-                              amountCollected:
-                                  currentTarget['target_amount'] ?? '0.0',
-                              targetAmount:
-                                  currentTarget['amount_collected'] ?? '0.0')
-                          : DemoTargetProgressCard(),
+                      : CurrentTargetProgressCard(
+                          isCurrent: false,
+                          onTap: () async {
+                            final targetId =
+                                await box.read(UserDataKey.currentTargetIdKey);
+                            if (targetId != null) {
+                              Get.toNamed(RouteName.agentScreen,
+                                  arguments: targetId);
+                            }
+                          },
+                          text: title,
+                          progress: progress,
+                          agentsCount: agentsCount,
+                          amountCollected: targetAmount,
+                          targetAmount: amountCollected),
                   const SizedBox(height: 30),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: List.generate(
-                      controller.pieChart.length,
-                      (index) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Column(
-                          children: [
-
-                            Row(
-                              children: [
-                                Container(
-                                  height: 10,
-                                  width: 10,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: AppColor.kRedColor),
-                                ),
-                                SizedBox(width: 10,),
-                                Text(
-                                  '${controller.pieChart[index]['agent_name']} -'
-                                  ' ${controller.pieChart[index]['sell_amount'].toDouble()}%'.toUpperCase(),
-                                  style: TextStyle(
-                                      color: AppColor.kWhiteColor, fontSize: 15),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                  AgentsProgressCount(data: controller.pieChart),
                   SizedBox(height: 80),
                 ]);
           }),
