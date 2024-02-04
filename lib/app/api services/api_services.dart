@@ -42,7 +42,7 @@ class ApiServices {
   static String notificationListUrl = '$_baseUrl$_endPoint/notifications?page=';
   static String notificationReadUrl = '$_baseUrl$_endPoint/notification/read/';
   static String completedTargetsVisitUrl = '$_baseUrl$_endPoint/completed-targets-visits';
-  static String storeCurrentLatAndLongUrl = '$_baseUrl$_endPoint/100/schedule/store-lat-lon';
+  static String storeCurrentLatAndLongUrl = '$_baseUrl$_endPoint';
 
   // Private constructor to prevent instantiation
   ApiServices._();

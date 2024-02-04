@@ -1,13 +1,25 @@
-import '../../../../data/const/export.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
+import 'dart:async';
+import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'package:geocoding/geocoding.dart' as geocoding;
-/*
+
+import '../../../../api services/shedules/store_lat_and_long.dart';
+import '../../../../data/utils/store_data.dart';
+import '../../../../data/utils/user_data_key.dart';
+import '../../../Fcm Notification/document/documents.dart';
 
 class MapScreenNavigate extends StatefulWidget {
   const MapScreenNavigate(
-      {Key? key, required this.lat, required this.long})
+      {Key? key, required this.lat, required this.long, required this.uid})
       : super(key: key);
   final String lat;
   final String long;
+  final String uid;
 
   @override
   State<MapScreenNavigate> createState() => MapScreenNavigateState();
@@ -17,14 +29,60 @@ class MapScreenNavigateState extends State<MapScreenNavigate> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
   List<Marker> markers = [];
-  final List<LatLng> polylinePoints = [];
+  List<LatLng> polylinePoints = [];
+  final PolylinePoints polylinePointHelper = PolylinePoints();
   GoogleMapController? mapController;
   final Location location = Location();
   LatLng? userLocation;
   String currentLocationName = 'Loading...';
   late StreamSubscription<LocationData> locationSubscription;
 
+  Future<void> getDirections() async {
+    final String apiUrl =
+        "https://maps.googleapis.com/maps/api/directions/json";
+    final String origin =
+        "origin=${userLocation?.latitude},${userLocation?.longitude}" ?? "";
+    final String destination = "destination=${widget.lat},${widget.long}";
+
+    final String apiKey = GoogleMapKey.AndroidMapKey;
+
+    final String url = "$apiUrl?$origin&$destination&key=$apiKey";
+
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      // Parse the response and handle directions data
+      Map<String, dynamic> data = json.decode(response.body);
+
+      // Extract encoded polyline from the response
+      String encodedPolyline = data['routes'][0]['overview_polyline']['points'];
+
+      // Decode the polyline into a list of LatLng points
+      List<PointLatLng> decodedPolyline =
+          polylinePointHelper.decodePolyline(encodedPolyline);
+
+      // Clear existing polyline points
+      setState(() {
+        polylinePoints.clear();
+      });
+
+      // Add decoded polyline points to the state
+      setState(() {
+        decodedPolyline.forEach((PointLatLng point) {
+          polylinePoints.add(LatLng(point.latitude, point.longitude));
+        });
+      });
+
+      // Process the directions data as needed
+    } else {
+      // Handle errors
+      print("Error: ${response.statusCode}");
+    }
+  }
+
   Future<void> getCurrentLocation() async {
+    final id = await box.read(UserDataKey.currentTargetIdKey);
+    final token = await box.read(UserDataKey.tokenKey);
     try {
       final permissionStatus = await location.requestPermission();
       if (permissionStatus == PermissionStatus.granted) {
@@ -36,7 +94,14 @@ class MapScreenNavigateState extends State<MapScreenNavigate> {
                 currentLocation.longitude!,
               );
             });
-            
+
+            storeLatAndLongRequest(
+                id: id,
+                token: token,
+                completionLang: userLocation!.longitude,
+                completionLat: userLocation!.latitude,
+                uid: widget.uid);
+            updateLocation();
           },
         );
       }
@@ -152,7 +217,7 @@ class MapScreenNavigateState extends State<MapScreenNavigate> {
   @override
   void initState() {
     userAddMarker();
-    getCurrentLocation().then((value) => updateLocation());
+    getCurrentLocation();
     super.initState();
   }
 
@@ -188,6 +253,7 @@ class MapScreenNavigateState extends State<MapScreenNavigate> {
             ),
             onMapCreated: (GoogleMapController controller) {
               _controller.complete(controller);
+              getDirections(); // Call getDirections here or wherever needed
             },
           ),
           Positioned(
@@ -214,4 +280,4 @@ class MapScreenNavigateState extends State<MapScreenNavigate> {
       ),
     );
   }
-}*/
+}

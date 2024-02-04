@@ -10,13 +10,10 @@ Future<Map<String, dynamic>> completeScheduleRequest(
     {path, token, uid, completionLat, completionLang,id}) async {
   // Parse the API URL for updating the avatar from the ApiServices class
   var uri = Uri.parse('${ApiServices.completeScheduleUrl}/$id/complete-schedule');
-
   // Create a multipart POST request
   var request = http.MultipartRequest("POST", uri);
-
   // Set the Authorization header with the user's authentication token
   request.headers['Authorization'] = 'Bearer $token';
-
   // Add the image file to the request
   var imageUpload = await http.MultipartFile.fromPath('picture', path);
   request.files.add(imageUpload);

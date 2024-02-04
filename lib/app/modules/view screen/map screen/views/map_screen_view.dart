@@ -1,7 +1,11 @@
+import 'package:amin_agent/app/api%20services/shedules/store_lat_and_long.dart';
+import 'package:amin_agent/app/data/utils/user_data_key.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../data/const/export.dart';
 import 'package:geocoding/geocoding.dart' as geocoding;
-/*
+
 class MapScreenView extends StatefulWidget {
   const MapScreenView({Key? key}) : super(key: key);
 
@@ -26,6 +30,7 @@ class MapScreenViewState extends State<MapScreenView> {
   );
 
   Future<void> getCurrentLocation() async {
+
     try {
       final permissionStatus = await location.requestPermission();
       if (permissionStatus == PermissionStatus.granted) {
@@ -171,19 +176,9 @@ class MapScreenViewState extends State<MapScreenView> {
                 ),
               ),
             ),
-            const Positioned(
-              bottom: 100,
-              right: 10,
-              left: 10,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [],
-              ),
-            ),
           ],
         ),
       ),
     );
   }
 }
-*/

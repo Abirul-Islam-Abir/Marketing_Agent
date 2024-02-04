@@ -20,7 +20,7 @@ class BottomNav extends StatelessWidget {
   final List<Widget> bottomBarPages = [
     DashboardScreenView(),
       ScheduleScreenView(),
-        //MapScreenView(),
+    MapScreenView(),
     ProfileScreenView(),
   ];
 

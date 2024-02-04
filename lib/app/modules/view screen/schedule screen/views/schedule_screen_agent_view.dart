@@ -49,13 +49,13 @@ class ScheduleScreenAgentView extends StatelessWidget {
 
                             return ScheduleCard(
                               sendTap: () {
-                             /*   Get.to(
+                                Get.to(
                                   () => MapScreenNavigate(
-                                    lat: data[index]['chamber_lat'],
-                                    long: data[index]['chamber_long'],
-
+                                    lat: '23.8956812',
+                                    long: '90.3732179',
+                                    uid: data[index]['uid'],
                                   ),
-                                );*/
+                                );
                               },
                               image: data[index]['doctor_avatar'],
                               subtitle:
@@ -78,7 +78,6 @@ class ScheduleScreenAgentView extends StatelessWidget {
                                           uid: data[index]['uid'],
                                           index: index);
                                     },
-
                                   );
                                 });
                               },

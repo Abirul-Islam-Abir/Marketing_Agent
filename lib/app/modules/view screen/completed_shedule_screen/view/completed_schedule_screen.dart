@@ -32,12 +32,13 @@ class CompletedScheduleScreen extends StatelessWidget {
                         itemCount: data.length,
                         itemBuilder: (context, index) => CompletedScheduleCard(
                             sendTap: () {
-                            /*  Get.to(
+                              Get.to(
                                 () => MapScreenNavigate(
                                   lat: '23.8956812',
                                   long: '90.3732179',
+                                  uid: data[index]['uid'],
                                 ),
-                              );*/
+                              );
                             },
                             title: data[index]['doctor_name'],
                             subtitle: data[index]['meeting_start_date'],

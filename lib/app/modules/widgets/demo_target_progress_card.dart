@@ -7,7 +7,7 @@ class DemoTargetProgressCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AgentsTargetedProgressCard(
+    return CurrentTargetProgressCard(
       isCurrent: false,
       onTap: () async {},
       text: 'There is no target',

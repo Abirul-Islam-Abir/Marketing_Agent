@@ -52,12 +52,10 @@
             android:name="flutterEmbedding"
             android:value="2" />
         <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyDt7_bddufmXCTch1u_6OZjfXAxFJUQyII"/>
+           android:value="AIzaSyBC9RrsZaallnu_GU7YxXZNVppIYtuGrw0"/>
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="MPO-Marketing" />
-        <!-- ... other configurations ... -->
-        <!-- ... other configurations ... -->
     </application>
 
 </manifest>

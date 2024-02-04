@@ -1,5 +1,6 @@
 import 'dart:io';
 
+
 import '../../../../data/const/export.dart';
 import '../../../../data/utils/user_data_key.dart';
 import '../../../widgets/dashboard_count_shimmer.dart';
@@ -15,6 +16,7 @@ class DashboardScreenView extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _controller = Get.put(DashboardScreenController());
   final _profileController = Get.put(ProfileScreenController());
+  final _notificationController = Get.put(NotificationScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class DashboardScreenView extends StatelessWidget {
       child: Scaffold(
         appBar: buildPrimaryAppBar(
             text: 'Dashboard',
-            badge: '${_profileController.readNotificationList.length}',
+            badge: '${_notificationController.readNotificationList.length}',
             notificationTap: () {
               Get.toNamed(RouteName.notificationScreen);
             }),
@@ -78,7 +80,7 @@ class DashboardScreenView extends StatelessWidget {
                   controller.isProgress
                       ? const TargetsCardShimmer()
                       : currentTarget != null
-                          ? AgentsTargetedProgressCard(
+                          ? CurrentTargetProgressCard(
                               isCurrent: false,
                               onTap: () async {
                                 final targetId = await box
@@ -88,7 +90,7 @@ class DashboardScreenView extends StatelessWidget {
                                       arguments: targetId);
                                 }
                               },
-                              text: currentTarget['title'] ?? 'Default Title',
+                              text: currentTarget['title'] ?? ' ',
                               progress: currentTarget['progress'] ?? '0.0',
                               agentsCount: currentTarget['agents_count'] ?? 0,
                               amountCollected:
@@ -97,23 +99,23 @@ class DashboardScreenView extends StatelessWidget {
                                   currentTarget['amount_collected'] ?? '0.0')
                           : DemoTargetProgressCard(),
                   const SizedBox(height: 30),
-                  controller.isProgress
-                      ? Container()
-                      : CustomPiChart(
-                          title: currentTarget != null
-                              ? currentTarget['title'] ?? ""
-                              : '',
-                          dataMap: currentTarget != null
-                              ? {
-                                  "Flutter": 5,
-                                  "React": 3,
-                                  "Xamarin": 2,
-                                  "Ionic": 2,
-                                  "ab": 2,
-                                }
-                              : {"Empty": 0},
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: List.generate(
+                      controller.pieChart.length,
+                      (index) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          '${controller.pieChart[index]['agent_name']} -'
+                          ' ${controller.pieChart[index]['sell_amount'].toDouble()}%',
+                          style: TextStyle(
+                              color: AppColor.kWhiteColor,
+                               fontSize: 15),
                         ),
-                  const SizedBox(height: 80),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 80),
                 ]);
           }),
         ),

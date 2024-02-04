@@ -23,9 +23,9 @@ class ProfileScreenController extends GetxController {
   Map<String, dynamic> _userProfileList = {};
   Map<String, dynamic> _completedTargetVisitList = {};
   List _completedSchedulePictureList = [];
-  List _readNotificationList = [];
+
   List get completedSchedulePictureList => _completedSchedulePictureList;
-  List get readNotificationList => _readNotificationList;
+
   Map<String, dynamic> get userProfileList => _userProfileList;
   Map<String, dynamic> get completedTargetVisitList => _completedTargetVisitList;
   var selectedImagePath = '';
@@ -70,17 +70,7 @@ class ProfileScreenController extends GetxController {
       }
     }
   }
-  Future<void> readNotification() async {
-    final token = await box.read(UserDataKey.tokenKey);
-    final targetId = await box.read(UserDataKey.currentTargetIdKey);
-    if (token != null && targetId != null) {
-      final response = await readNotificationRequest(token: token, id: targetId);
-      if (response['success'] == true) {
-        _readNotificationList = response['data'];
-        update();
-      }
-    }
-  }
+
   Future<void> completedTargetsVisit() async {
     final token = await box.read(UserDataKey.tokenKey);
      if (token != null  ) {

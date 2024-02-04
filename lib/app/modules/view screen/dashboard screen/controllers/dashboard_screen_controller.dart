@@ -10,8 +10,11 @@ class DashboardScreenController extends GetxController {
 
   bool get isProgress => _isProgress;
   Map<String, dynamic> _currentProgressList = {};
+  List _pieChart = [];
 
   Map<String, dynamic> get currentProgressList => _currentProgressList;
+  List get pieChart => _pieChart;
+  Map<String, double> convertedDataMap = {};
 
   String? userId;
   String? currentTargetId;
@@ -25,6 +28,32 @@ class DashboardScreenController extends GetxController {
     update();
   }
 
+  Future<void> dashboardData() async {
+    final token = await box.read(UserDataKey.tokenKey);
+    print(token);
+    if (token != null) {
+      final response = await dashboardDataRequest(token);
+      if (response['success'] == true) {
+        _currentProgressList.clear();
+        _currentProgressList = response['data'];
+        _pieChart = response['data']['pie_chart'];
+        print(response['data']['pie_chart']);
+        await StoreData.saveCurrentTargetId(
+            response['data']['current_target']['target_id']);
+        //When dashboard data calling after calling this method because userId not set before called this mehtod and showing empty list
+        Get.put(ScheduleScreenController()).initializeMethod();
+        Get.put(ProfileScreenController()).completedSchedulePicture();
+        Get.put(FcmMessagingController()).getFcmTokenAndStoreDB();
+
+        for (var agent in response['data']['pie_chart']) {
+          convertedDataMap[agent['agent_name']] = agent['sell_amount'].toDouble();
+        }
+print(convertedDataMap);
+
+      }
+    }
+  }
+
   Future<void> logout() async {
     box.erase();
     Get.offAllNamed(RouteName.loginScreen);
@@ -34,28 +63,6 @@ class DashboardScreenController extends GetxController {
       if (response['success'] == true) {
         box.erase();
         Get.offAllNamed(RouteName.loginScreen);
-      }
-    }
-  }
-
-  Future<void> dashboardData() async {
-    final token = await box.read(UserDataKey.tokenKey);
-    print(token);
-    if (token != null) {
-      final response = await dashboardDataRequest(token);
-      if (response['success'] == true) {
-        _currentProgressList.clear();
-        _currentProgressList = response['data'];
-        await StoreData.saveCurrentTargetId(
-            response['data']['current_target']['target_id']);
-        final id = await box.read(UserDataKey.userIdKey);
-        final targetId = await box.read(UserDataKey.currentTargetIdKey);
-        print('$id/' '${targetId}');
-        //When dashboard data calling after calling this method because userId not set before called this mehtod and showing empty list
-        Get.put(ScheduleScreenController()).initializeMethod();
-        Get.put(ProfileScreenController()).completedSchedulePicture();
-        Get.put(ProfileScreenController()).readNotification();
-        Get.put(FcmMessagingController()).getFcmTokenAndStoreDB();
       }
     }
   }

@@ -1,5 +1,6 @@
 import '../../../../data/const/export.dart';
 import '../../../widgets/empty_list_text.dart';
+import '../components/all_targets_progress_card.dart';
 
 class AllTargetsScreenView extends StatelessWidget {
   AllTargetsScreenView({Key? key}) : super(key: key);
@@ -25,13 +26,16 @@ class AllTargetsScreenView extends StatelessWidget {
                         itemCount: data.length,
                         shrinkWrap: true,
                         itemBuilder: (context, index) =>
-                            AgentsTargetedProgressCard(
-                                isCurrent: data[index]['is_current'],
-                                onTap: () {
-                                  //Only navigate current target
-                                  Get.toNamed(RouteName.agentScreen,
-                                      arguments: data[index]['target_id']);
+                            AllTargetsProgressCard(
+                              sendTap: () {
+                                Get.toNamed(RouteName.agentScreen,
+                                    arguments: data[index]['target_id']);
+                              },
+                                doneTap: () {
+
                                 },
+                                isCurrent: data[index]['is_current'],
+
                                 text: data[index]['title'],
                                 progress: '0.5',
                                 agentsCount: data[index]['agents_count'],
