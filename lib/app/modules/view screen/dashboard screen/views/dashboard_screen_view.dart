@@ -1,18 +1,15 @@
 import 'dart:io';
 
-
 import '../../../../data/const/export.dart';
 import '../../../../data/utils/user_data_key.dart';
 import '../../../widgets/dashboard_count_shimmer.dart';
 import '../../../widgets/demo_target_progress_card.dart';
 import '../../../widgets/targets_card_shimmer.dart';
-import '../../../widgets/ticket_shimmer.dart';
-import '../components/custom_pi_chart.dart';
 import '../components/dashboard_count.dart';
-import '../components/ticket.dart';
 
 class DashboardScreenView extends StatelessWidget {
-  DashboardScreenView({Key? key}) : super(key: key);
+  DashboardScreenView({super.key});
+
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _controller = Get.put(DashboardScreenController());
   final _profileController = Get.put(ProfileScreenController());
@@ -105,12 +102,28 @@ class DashboardScreenView extends StatelessWidget {
                       controller.pieChart.length,
                       (index) => Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          '${controller.pieChart[index]['agent_name']} -'
-                          ' ${controller.pieChart[index]['sell_amount'].toDouble()}%',
-                          style: TextStyle(
-                              color: AppColor.kWhiteColor,
-                               fontSize: 15),
+                        child: Column(
+                          children: [
+
+                            Row(
+                              children: [
+                                Container(
+                                  height: 10,
+                                  width: 10,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: AppColor.kRedColor),
+                                ),
+                                SizedBox(width: 10,),
+                                Text(
+                                  '${controller.pieChart[index]['agent_name']} -'
+                                  ' ${controller.pieChart[index]['sell_amount'].toDouble()}%'.toUpperCase(),
+                                  style: TextStyle(
+                                      color: AppColor.kWhiteColor, fontSize: 15),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
