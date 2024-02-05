@@ -5,6 +5,7 @@ import '../../../../data/utils/store_data.dart';
 import '../../../../data/utils/user_data_key.dart';
 
 class AllTestScreenController extends GetxController {
+  final id = Get.arguments;
   bool _isProgress = false;
 
   bool get isProgress => _isProgress;
@@ -12,16 +13,19 @@ class AllTestScreenController extends GetxController {
 
   List get allTestList => _allTestList;
   Future<void> allTestData() async {
+
     final token = await box.read(UserDataKey.tokenKey);
-    final targetId = await box.read(UserDataKey.currentTargetIdKey);
-    if (token != null && targetId != null) {
-      final response = await allTestRequest(token:token,id: targetId);
+    print(id);
+    print(token);
+    if (token != null && id != null) {
+      final response = await allTestRequest(token: token, id: id);
       if (response['success'] == true) {
-        _allTestList.clear();
+        print(response);
         _allTestList = response['data'];
-       }
+      }
     }
   }
+
   Future<void> initializeMethod() async {
     _isProgress = true;
     update();
@@ -36,7 +40,6 @@ class AllTestScreenController extends GetxController {
       update();
     }
   }
-
 
   @override
   void onInit() {

@@ -13,7 +13,6 @@ class DashboardScreenView extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _controller = Get.put(DashboardScreenController());
   final _profileController = Get.put(ProfileScreenController());
-  final _notification = Get.put(NotificationScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -25,34 +24,36 @@ class DashboardScreenView extends StatelessWidget {
           exit(0);
         }, img: 'assets/svg/cross-svgrepo-com.svg');
       },
-      child: Scaffold(
-        appBar: buildPrimaryAppBar(
-            text: 'Dashboard',
-            badge: '${_notification.notificationList.length}',
-            notificationTap: () {
-              Get.toNamed(RouteName.notificationScreen);
-            }),
-        drawer: CustomDrawer(scaffoldKey: _scaffoldKey),
-        key: _scaffoldKey,
-        backgroundColor: AppColor.kSecondaryColor,
-        body: RefreshIndicator(
-          onRefresh: () async {
-            _controller.initializeMethod();
-            _profileController.initializeMethod();
-          },
-          child: GetBuilder<DashboardScreenController>(builder: (controller) {
-            final data = controller.currentProgressList;
-            final currentTarget = controller.progressList;
-            final onboard = '${data['doctor_onboard'] ?? ''}';
-            final visited = '${data['doctor_visited'] ?? ''}';
-            final commissions = data['total_commision'] ?? '';
-            final sales = data['total_sales'] ?? '';
-            final title = currentTarget['title'];
-            final progress = currentTarget['progress'] ?? '0.0';
-            final agentsCount = currentTarget['agents_count'] ?? 0;
-            final targetAmount = currentTarget['target_amount'] ?? '0.0';
-            final amountCollected = currentTarget['amount_collected'] ?? '0.0';
-            return ListView(
+      child: GetBuilder<DashboardScreenController>(builder: (controller) {
+        final data = controller.currentProgressList;
+        final currentTarget = controller.progressList;
+        final onboard = '${data['doctor_onboard'] ?? ''}';
+        final visited = '${data['doctor_visited'] ?? ''}';
+        final commissions = data['total_commision'] ?? '';
+        final sales = data['total_sales'] ?? '';
+        final title = currentTarget['title'];
+        final progress = currentTarget['progress'] ?? '0.0';
+        final agentsCount = currentTarget['agents_count'] ?? 0;
+        final targetAmount = currentTarget['target_amount'] ?? '0.0';
+        final amountCollected = currentTarget['amount_collected'] ?? '0.0';
+        final read =
+            controller.unreadNotification['unread_notifications_count'] ?? 0;
+        return Scaffold(
+          appBar: buildPrimaryAppBar(
+              text: 'Dashboard',
+              badge: '$read',
+              notificationTap: () {
+                Get.toNamed(RouteName.notificationScreen);
+              }),
+          drawer: CustomDrawer(scaffoldKey: _scaffoldKey),
+          key: _scaffoldKey,
+          backgroundColor: AppColor.kSecondaryColor,
+          body: RefreshIndicator(
+            onRefresh: () async {
+              _controller.initializeMethod();
+              _profileController.initializeMethod();
+            },
+            child: ListView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 children: [
                   controller.isProgress
@@ -99,10 +100,10 @@ class DashboardScreenView extends StatelessWidget {
                   const SizedBox(height: 30),
                   AgentsProgressCount(data: controller.pieChart),
                   const SizedBox(height: 80),
-                ]);
-          }),
-        ),
-      ),
+                ]),
+          ),
+        );
+      }),
     );
   }
 }

@@ -27,18 +27,16 @@ class AllTestCard extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
-              child: Expanded(
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    text,
-                    style: const TextStyle(
-                        color: AppColor.kWhiteColor,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 18),
-                    maxLines: 1,
-                    overflow: TextOverflow.visible,
-                  ),
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  text,
+                  style: const TextStyle(
+                      color: AppColor.kWhiteColor,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18),
+                  maxLines: 1,
+                  overflow: TextOverflow.visible,
                 ),
               ),
             ),

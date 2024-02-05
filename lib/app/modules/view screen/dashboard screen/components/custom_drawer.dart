@@ -135,28 +135,17 @@ class CustomDrawer extends StatelessWidget {
                       name: 'All Targets',
                       onTap: () {
                         _controller.selectItem(7);
-
                         Get.toNamed(RouteName.allTargetScreen);
                       },
                     ),
-                    CustomListTile(
-                      selected: index,
-                      index: 8,
-                      name: 'All Tests',
-                      onTap: () {
-                        _controller.selectItem(8);
 
-                        Get.toNamed(RouteName.allTestScreen);
-                      },
-                    ),
                     CustomListTile(
                         onTap: () {
-                          _controller.selectItem(9);
-
+                          _controller.selectItem(8);
                           Get.to(() => const AboutScreen());
                         },
                         selected: index,
-                        index: 9,
+                        index: 8,
                         name: 'About')
                   ]),
                 );

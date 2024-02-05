@@ -24,7 +24,7 @@ Future readNotificationRequest({token,id}) async {
 
   // Send a GET request to the API endpoint with the headers
   final response = await http.post(url, headers: headerWithToken);
-
+print(response.statusCode);
   // Decode the response body from JSON format
   final decodedResponse = jsonDecode(response.body);
    // Check if the request was successful (status code 200) and the API indicates success

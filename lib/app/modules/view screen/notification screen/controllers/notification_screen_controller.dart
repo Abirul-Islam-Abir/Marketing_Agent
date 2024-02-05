@@ -20,6 +20,7 @@ class NotificationScreenController extends GetxController {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
       final response = await notificationListRequest(token: token, id: id);
+      print(response);
       if (response['success'] == true) {
         _paginationData.clear();
         _paginationData = response['data'];
@@ -29,17 +30,19 @@ class NotificationScreenController extends GetxController {
     }
   }
 
-  Future<void> readNotification({id, nId}) async {
+  Future<void> readNotification(id) async {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
       final response = await readNotificationRequest(token: token, id: id);
       if (response['success'] == true) {
         _readNotificationList = response['data'];
-        notificationListData(nId);
+        Get.find<DashboardScreenController>().notificationUnreadCount();
+        update();
+        notificationListData(currentPage);
+        print(response);
       }
     }
   }
-
   Future<void> initializeMethod(id) async {
     _isProgress = true;
     update();
@@ -61,7 +64,7 @@ class NotificationScreenController extends GetxController {
     scrollController.addListener(() {
       if (scrollController.position.pixels ==
           scrollController.position.maxScrollExtent) {
-       // print(paginationData['data']['next_page_url'].toString());
+        // print(paginationData['data']['next_page_url'].toString());
         currentPage++;
         initializeMethod(currentPage);
       }

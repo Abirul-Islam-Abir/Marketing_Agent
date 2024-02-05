@@ -3,18 +3,27 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../data/const/export.dart';
 
 class AllTargetsProgressCard extends StatelessWidget {
-  const AllTargetsProgressCard({super.key, required this.text, required this.targetAmount, required this.amountCollected, required this.agentsCount, required this.progress,   required this.isCurrent, required this.doneTap, required this.sendTap});
+  const AllTargetsProgressCard(
+      {super.key,
+      required this.text,
+      required this.targetAmount,
+      required this.amountCollected,
+      required this.agentsCount,
+      required this.progress,
+      required this.isCurrent,
+      required this.doctorTap,
+      required this.agentTap, required this.testTap});
   final String text, targetAmount, amountCollected;
   final int agentsCount;
   final String progress;
-  final Function()  doneTap,sendTap;
+  final Function() doctorTap, agentTap,testTap;
   final bool isCurrent;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       child: Container(
-        height: 120,
+        height: 180,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: isCurrent
@@ -22,7 +31,9 @@ class AllTargetsProgressCard extends StatelessWidget {
               : AppColor.kWhiteColor.withOpacity(0.20),
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Row(mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
               flex: 5,
@@ -31,7 +42,7 @@ class AllTargetsProgressCard extends StatelessWidget {
                 children: [
                   Padding(
                     padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
+                        const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -51,7 +62,9 @@ class AllTargetsProgressCard extends StatelessWidget {
                             style: const TextStyle(
                                 color: AppColor.kWhiteColor,
                                 fontWeight: FontWeight.w400,
-                                fontSize: 18),maxLines: 1,overflow: TextOverflow.visible,
+                                fontSize: 18),
+                            maxLines: 1,
+                            overflow: TextOverflow.visible,
                           ),
                         ),
                         Row(
@@ -79,16 +92,18 @@ class AllTargetsProgressCard extends StatelessWidget {
                   Text(
                     '$targetAmount / $amountCollected',
                     style: const TextStyle(
-                        color: AppColor.kWhiteColor, fontWeight: FontWeight.bold),
+                        color: AppColor.kWhiteColor,
+                        fontWeight: FontWeight.bold),
                   ),
                   Padding(
                     padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     child: Container(
                       height: 15,
                       decoration: BoxDecoration(
                         color: AppColor.kWhiteColor,
-                        border: Border.all(width: 2, color: AppColor.kWhiteColor),
+                        border:
+                            Border.all(width: 2, color: AppColor.kWhiteColor),
                         borderRadius: BorderRadius.circular(50),
                       ),
                       width: double.infinity,
@@ -96,7 +111,8 @@ class AllTargetsProgressCard extends StatelessWidget {
                         children: [
                           LayoutBuilder(
                             builder: (context, constraints) => Container(
-                              width: constraints.maxWidth * double.parse(progress),
+                              width:
+                                  constraints.maxWidth * double.parse(progress),
                               decoration: BoxDecoration(
                                 color: AppColor.kPrimaryColor,
                                 borderRadius: BorderRadius.circular(50),
@@ -110,27 +126,66 @@ class AllTargetsProgressCard extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
-              flex: 1,
-              child:   Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+            Expanded(flex: 3,
+              child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-              InkWell(
-                onTap: doneTap,
-                child: CircleAvatar(
-                    radius: 18,
-                    backgroundColor: AppColor.kPrimaryColor,
-                    child: SvgPicture.asset(
-                        'assets/svg/doctor-svgrepo-com (1).svg')),
-              ),const SizedBox(height: 10,), InkWell(
-                onTap: sendTap,
-                child: CircleAvatar(
-                    radius: 18,
-                    backgroundColor: AppColor.kPrimaryColor,
-                    child: SvgPicture.asset(
-                        'assets/svg/agent-seller-svgrepo-com.svg')),
+                  InkWell(
+                    onTap: doctorTap,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                          radius: 18,
+                          backgroundColor: AppColor.kPrimaryColor,
+                          child: SvgPicture.asset(
+                             AppImages.doctorSvg)),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  InkWell(
+                    onTap: agentTap,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                          radius: 18,
+                          backgroundColor: AppColor.kPrimaryColor,
+                          child: SvgPicture.asset(
+                              AppImages.agentSvg)),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  InkWell(
+                    onTap: testTap,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                          radius: 18,
+                          backgroundColor: AppColor.kPrimaryColor,
+                          child: SvgPicture.asset(
+                              AppImages.testSvg)),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  InkWell(
+                    onTap: agentTap,
+                    child: CircleAvatar(
+                        radius: 18,
+                        backgroundColor: AppColor.kPrimaryColor,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SvgPicture.asset(
+                              'assets/svg/agent-seller-svgrepo-com.svg'),
+                        )),
+                  ),
+                ],
               ),
-            ],),)
+            ),
           ],
         ),
       ),

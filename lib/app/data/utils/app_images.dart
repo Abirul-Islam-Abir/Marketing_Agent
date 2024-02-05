@@ -11,5 +11,8 @@ class AppImages{
   static String doneIcon = 'assets/svg/tick-svgrepo-com 1.svg';
   static String cameraSvg = 'assets/svg/camera svg.svg';
   static String filterSvg = 'assets/svg/filter svg.svg';
+  static String doctorSvg =  'assets/svg/doctor-svgrepo-com (1).svg';
+  static String agentSvg =  'assets/svg/agent-seller-svgrepo-com.svg';
+  static String testSvg =  'assets/svg/exam-svgrepo-com.svg';
   AppImages._();
 }

@@ -4,6 +4,7 @@ import '../components/all_targets_progress_card.dart';
 
 class AllTargetsScreenView extends StatelessWidget {
   AllTargetsScreenView({super.key});
+
   final controller = Get.put(AllTargetsScreenController());
 
   @override
@@ -17,7 +18,7 @@ class AllTargetsScreenView extends StatelessWidget {
           return controller.isProgress
               ? const ShimmerTargetList()
               : data.isEmpty
-                  ? EmptyListText()
+                  ? const EmptyListText()
                   : RefreshIndicator(
                       onRefresh: () async {
                         controller.initializeMethod();
@@ -29,17 +30,20 @@ class AllTargetsScreenView extends StatelessWidget {
                           final id = data[index]['target_id'];
                           final isCurrent = data[index]['is_current'];
                           final title = data[index]['title'];
-
                           final agentCount = data[index]['agents_count'];
                           final targetAmount = data[index]['target_amount'];
                           final collectedAmount =
                               data[index]['amount_collected'];
                           return AllTargetsProgressCard(
-                              sendTap: () {
+                              testTap: () {
+                                Get.toNamed(RouteName.allTestScreen,
+                                    arguments: id);
+                              },
+                              agentTap: () {
                                 Get.toNamed(RouteName.agentScreen,
                                     arguments: id);
                               },
-                              doneTap: () {
+                              doctorTap: () {
                                 Get.toNamed(
                                     RouteName.targetWiseDoctorVisitedScreen,
                                     arguments: id);

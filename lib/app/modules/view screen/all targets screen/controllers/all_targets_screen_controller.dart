@@ -18,7 +18,7 @@ class AllTargetsScreenController extends GetxController {
     if (token != null) {
       final response = await allTargetDataRequest(token);
        if (response['success'] == true) {
-        _allTargetDataList = response['data'];
+        _allTargetDataList = response['data']['targets'];
       }
     }
   }
@@ -41,7 +41,7 @@ class AllTargetsScreenController extends GetxController {
 
 @override
   void onInit() {
-  scrollController.addListener(() {
+ /* scrollController.addListener(() {
     if(scrollController.position.pixels == scrollController.position.maxScrollExtent){
       _moreLoading = true;
       update();
@@ -50,7 +50,7 @@ class AllTargetsScreenController extends GetxController {
       _isProgress = false;
       update();
     }
-  });
+  });*/
   initializeMethod();
     super.onInit();
   }

@@ -19,7 +19,7 @@ class AllTestScreen extends StatelessWidget {
         final data = controller.allTestList;
         return controller.isProgress
             ? const SimmerScheduleCardList()
-            : controller.allTestList.isEmpty
+            : data.isEmpty
                 ? const EmptyListText()
                 : RefreshIndicator(
                     onRefresh: () async {
@@ -28,6 +28,7 @@ class AllTestScreen extends StatelessWidget {
                     child: SizedBox(
                       height: double.infinity,
                       child: ListView.builder(
+                        shrinkWrap: true,
                         itemCount: data.length,
                         itemBuilder: (context, index) {
                           final name = data[index]['test_name'];
