@@ -3,7 +3,6 @@ import 'package:amin_agent/app/modules/view%20screen/all%20tests%20screen/contro
 import 'package:amin_agent/app/modules/widgets/empty_list_text.dart';
 
 import '../../../widgets/shimmer_schedule_card_list.dart';
-import '../../all targets screen/components/all_targets_progress_card.dart';
 import '../components/all_test_card.dart';
 
 class AllTestScreen extends StatelessWidget {

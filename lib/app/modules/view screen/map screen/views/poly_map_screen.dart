@@ -3,7 +3,6 @@ import 'package:amin_agent/app/data/utils/user_data_key.dart';
 import 'package:amin_agent/app/modules/Fcm%20Notification/document/documents.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart' as location;
 import 'package:geocoding/geocoding.dart' as geocoding;
 
 import '../../../../data/const/export.dart';
@@ -62,10 +61,10 @@ class _MapScreenState extends State<MapScreen> {
             });
             storeLatAndLongRequest(
                 uid: widget.id,
-                completionLat: widget.lat,
+                completionLat: currentLocation.latitude.toString(),
                 token: token,
                 id: currentId,
-                completionLang: widget.lang);
+                completionLang:currentLocation.longitude.toString());
           },
         );
       }
@@ -220,7 +219,7 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   _addPolyLine() {
-    PolylineId id = PolylineId("poly");
+    PolylineId id = const PolylineId("poly");
     Polyline polyline = Polyline(
         polylineId: id, color: Colors.red, points: polylineCoordinates);
     polylines[id] = polyline;
@@ -235,9 +234,9 @@ class _MapScreenState extends State<MapScreen> {
         travelMode: TravelMode.driving,
         wayPoints: [PolylineWayPoint(location: "Sabo, Yaba Lagos Nigeria")]);
     if (result.points.isNotEmpty) {
-      result.points.forEach((PointLatLng point) {
+      for (var point in result.points) {
         polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-      });
+      }
     }
     _addPolyLine();
   }

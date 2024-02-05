@@ -2,10 +2,10 @@ import '../../../../data/const/export.dart';
 
 class CustomPinCodeField extends StatelessWidget {
   CustomPinCodeField({
-    Key? key,
+    super.key,
     required this.otp,
     this.onCompleted,
-  }) : super(key: key);
+  });
 
   final TextEditingController? otp;
   final void Function(String)? onCompleted;

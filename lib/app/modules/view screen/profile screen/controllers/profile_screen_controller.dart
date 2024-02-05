@@ -1,4 +1,3 @@
-import 'package:amin_agent/app/api%20services/push%20notification/read_%20notification.dart';
 import 'package:amin_agent/app/api%20services/shedules/completed_schedules_picture.dart';
 import 'package:amin_agent/app/api%20services/targets/completed_targets_visits.dart';
 import 'package:amin_agent/app/data/const/export.dart';
@@ -75,8 +74,7 @@ class ProfileScreenController extends GetxController {
     final token = await box.read(UserDataKey.tokenKey);
      if (token != null  ) {
       final response = await completedTargetsVisitRequest(token);
-      print(response);
-      if (response['success'] == true) {
+       if (response['success'] == true) {
         _completedTargetVisitList = response['data'];
       }
     }

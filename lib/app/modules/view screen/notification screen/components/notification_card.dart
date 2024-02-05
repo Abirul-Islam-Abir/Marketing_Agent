@@ -47,27 +47,18 @@ class NotificationCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(title,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: AppColor.kPrimaryColor)),
-                  Row(
-                    children: [
-                      Text(
-                        '',
+                  Expanded(
+                    child: Text(title,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: AppColor.kGreyColor),
-                      ),
-                      const SizedBox(width: 5),
-                      Text(
-                        time,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: AppColor.kGreyColor),
-                      ),
-                    ],
+                            fontSize: 16,
+                            color: AppColor.kPrimaryColor)),
+                  ),
+                  Text(
+                    time,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: AppColor.kGreyColor),
                   )
                 ],
               ),

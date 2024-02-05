@@ -4,15 +4,17 @@ import '../../../../data/const/export.dart';
 import '../components/total_commission_card.dart';
 
 class TotalCommissionScreen extends StatelessWidget {
-  const TotalCommissionScreen({Key? key}) : super(key: key);
+  const TotalCommissionScreen({super.key});
 
 
   @override
   Widget build(BuildContext context) => Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
-      appBar: buildNavigateAppbar(
-     'Commissions',
-          ),
+      appBar:  buildFilterAppBars(
+          text: 'Total Commission',
+          filterTap: () {
+            Get.dialog(FilterScreenView());
+          }),
       body: SizedBox( height: double.infinity,
         child: ListView.builder(
           itemCount: commissionDataList.length,

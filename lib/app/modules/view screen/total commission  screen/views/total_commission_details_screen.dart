@@ -4,7 +4,7 @@ import '../../../../data/const/export.dart';
 import '../../target agents  screen/components/sales_target_card.dart';
 
 class TotalCommissionDetailsScreen extends StatelessWidget {
-  const TotalCommissionDetailsScreen(this.list, {Key? key}) : super(key: key);
+  const TotalCommissionDetailsScreen(this.list, {super.key});
   final List<CommissionModel> list;
   @override
   Widget build(BuildContext context) => Scaffold(

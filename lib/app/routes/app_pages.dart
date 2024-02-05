@@ -119,7 +119,7 @@ class AppPages {
       binding: CompletedScheduleScreenBinding(),
     ), GetPage(
       name: RouteName.targetWiseDoctorVisitedScreen,
-      page: () => TargetWiseDoctorVisitedScreen(),
+      page: () => const TargetWiseDoctorVisitedScreen(),
       binding: TargetWiseDoctorVisitedBinding(),
     ),
   ];

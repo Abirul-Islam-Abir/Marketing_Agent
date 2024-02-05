@@ -15,8 +15,7 @@ import '../../../Fcm Notification/document/documents.dart';
 
 class MapScreenNavigate extends StatefulWidget {
   const MapScreenNavigate(
-      {Key? key, required this.lat, required this.long, required this.uid})
-      : super(key: key);
+      {super.key, required this.lat, required this.long, required this.uid});
   final String lat;
   final String long;
   final String uid;
@@ -38,10 +37,10 @@ class MapScreenNavigateState extends State<MapScreenNavigate> {
   late StreamSubscription<LocationData> locationSubscription;
 
   Future<void> getDirections() async {
-    final String apiUrl =
+    const String apiUrl =
         "https://maps.googleapis.com/maps/api/directions/json";
     final String origin =
-        "origin=${userLocation?.latitude},${userLocation?.longitude}" ?? "";
+        "origin=${userLocation?.latitude},${userLocation?.longitude}";
     final String destination = "destination=${widget.lat},${widget.long}";
 
     final String apiKey = GoogleMapKey.AndroidMapKey;
@@ -68,15 +67,14 @@ class MapScreenNavigateState extends State<MapScreenNavigate> {
 
       // Add decoded polyline points to the state
       setState(() {
-        decodedPolyline.forEach((PointLatLng point) {
+        for (var point in decodedPolyline) {
           polylinePoints.add(LatLng(point.latitude, point.longitude));
-        });
+        }
       });
 
       // Process the directions data as needed
     } else {
       // Handle errors
-      print("Error: ${response.statusCode}");
     }
   }
 

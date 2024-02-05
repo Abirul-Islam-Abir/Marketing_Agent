@@ -7,7 +7,7 @@ import '../../../widgets/shimmer_schedule_card_list.dart';
 import '../components/schedule_card.dart';
 
 class ScheduleScreenAgentView extends StatelessWidget {
-  ScheduleScreenAgentView({Key? key}) : super(key: key);
+  ScheduleScreenAgentView({super.key});
   final controller = Get.put(ScheduleScreenController());
   final _dashboardController = Get.put(DashboardScreenController());
   final _bottomNavController = Get.put(BottomNavController());

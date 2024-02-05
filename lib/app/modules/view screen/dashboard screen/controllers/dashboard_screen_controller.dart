@@ -1,4 +1,3 @@
-import 'package:amin_agent/app/api%20services/push%20notification/notification_list.dart';
 import 'package:amin_agent/app/data/const/export.dart';
 import '../../../../api services/auth/log_out.dart';
 import '../../../../api services/dashboard/dashboard_data.dart';
@@ -32,7 +31,6 @@ class DashboardScreenController extends GetxController {
 
   Future<void> dashboardData() async {
     final token = await box.read(UserDataKey.tokenKey);
-    print(token);
     if (token != null) {
       final response = await dashboardDataRequest(token);
       if (response['success'] == true) {
@@ -40,7 +38,6 @@ class DashboardScreenController extends GetxController {
         _currentProgressList = response['data'];
         _progressList = response['data']['current_target'];
         _pieChart = response['data']['pie_chart'];
-        print(response['data']['pie_chart']);
         await StoreData.saveCurrentTargetId(
             response['data']['current_target']['target_id']);
         //When dashboard data calling after calling this method because userId not set before called this mehtod and showing empty list
@@ -49,10 +46,9 @@ class DashboardScreenController extends GetxController {
         Get.put(FcmMessagingController()).getFcmTokenAndStoreDB();
 
         for (var agent in response['data']['pie_chart']) {
-          convertedDataMap[agent['agent_name']] = agent['sell_amount'].toDouble();
+          convertedDataMap[agent['agent_name']] =
+              agent['sell_amount'].toDouble();
         }
-print(convertedDataMap);
-
       }
     }
   }

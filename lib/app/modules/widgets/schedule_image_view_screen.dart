@@ -1,5 +1,4 @@
 import 'package:amin_agent/app/data/const/export.dart';
-import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 
 class ScheduleImageViewScreen extends StatelessWidget {
   const ScheduleImageViewScreen({super.key, required this.img});
@@ -15,11 +14,11 @@ class ScheduleImageViewScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -53,13 +52,13 @@ class ScheduleImageViewScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Hero(
               tag: img,
               child: Image.network(
-                '$img',
+                img,
                 fit: BoxFit.cover,
               ),
             ),

@@ -12,7 +12,6 @@ class OnboardListView extends StatelessWidget {
       itemCount: list.length,
       shrinkWrap: true,
       itemBuilder: (context, index) => DoctorOnboardCard(
-        time: '09:10 PM',
         location: list[index].name,
         date: list[index].date,
       ),

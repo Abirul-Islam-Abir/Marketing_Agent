@@ -1,13 +1,10 @@
-import 'package:amin_agent/app/api%20services/shedules/store_lat_and_long.dart';
-import 'package:amin_agent/app/data/utils/user_data_key.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../data/const/export.dart';
 import 'package:geocoding/geocoding.dart' as geocoding;
 
 class MapScreenView extends StatefulWidget {
-  const MapScreenView({Key? key}) : super(key: key);
+  const MapScreenView({super.key});
 
   @override
   State<MapScreenView> createState() => MapScreenViewState();
@@ -38,6 +35,8 @@ class MapScreenViewState extends State<MapScreenView> {
           setState(() {
             userLocation =
                 LatLng(currentLocation.latitude!, currentLocation.longitude!);
+            updateLocation();
+
           });
 
           updateCurrentLocationName();
@@ -113,7 +112,7 @@ class MapScreenViewState extends State<MapScreenView> {
 
   @override
   void initState() {
-    getCurrentLocation().then((value) => updateLocation());
+    getCurrentLocation();
     super.initState();
   }
 

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 
 class AnimateCongratulate extends StatefulWidget {
-  const AnimateCongratulate({Key? key}) : super(key: key);
+  const AnimateCongratulate({super.key});
 
   @override
   State<AnimateCongratulate> createState() => _AnimateCongratulateState();

@@ -15,7 +15,7 @@ class ImageViewScreen extends StatelessWidget {
         child: Hero(
           tag: img,
           child: CircularProfileAvatar(
-            '$img',
+            img,
              borderColor: Colors.purpleAccent,
             borderWidth: 10,
             elevation: 10,

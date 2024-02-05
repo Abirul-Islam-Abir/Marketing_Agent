@@ -7,7 +7,7 @@ import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import '../../../../data/const/export.dart';
 
 class FilterScreenView extends StatelessWidget {
-  FilterScreenView({Key? key}) : super(key: key);
+  FilterScreenView({super.key});
 
   final _controller = Get.put(FilterScreenController());
 
@@ -43,7 +43,7 @@ class FilterScreenView extends StatelessWidget {
                                     : AppColor.kPrimaryColor,
                               ),
                               const SizedBox(width: 10),
-                              PictureAndTargetButton(
+                             /* PictureAndTargetButton(
                                 tap: _controller.selectCategoryFilter,
                                 text: 'Category',
                                 backColor: _controller.selectedIndex.value == 1
@@ -52,11 +52,18 @@ class FilterScreenView extends StatelessWidget {
                                 textColor: _controller.selectedIndex.value == 1
                                     ? AppColor.kWhiteColor
                                     : AppColor.kPrimaryColor,
-                              ),
+                              ),*/
                             ],
                           ),
                         )),
-                    Obx(() => _controller.selectedIndex.value == 0
+                    CalendarDatePicker2(
+                      config: CalendarDatePicker2Config(
+                        calendarType: CalendarDatePicker2Type.range,
+                      ),
+                      value: _controller.selectedDates,
+                      onValueChanged: _controller.onDateChange,
+                    ),
+                   /* Obx(() => _controller.selectedIndex.value == 0
                         ? CalendarDatePicker2(
                             config: CalendarDatePicker2Config(
                               calendarType: CalendarDatePicker2Type.range,
@@ -65,7 +72,7 @@ class FilterScreenView extends StatelessWidget {
                             onValueChanged: _controller.onDateChange,
                           )
                         : GetBuilder<FilterScreenController>(
-                            builder: (_) => GridBuilder())),
+                            builder: (_) => GridBuilder())),*/
                     SecondaryButton(
                       isProgress: false,
                         text: 'Filter',

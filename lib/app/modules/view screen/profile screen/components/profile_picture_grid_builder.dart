@@ -1,5 +1,4 @@
 import 'package:amin_agent/app/modules/view%20screen/profile%20screen/components/picture_grid_card.dart';
-import 'package:amin_agent/app/modules/widgets/image_view_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,11 +1,9 @@
 import 'package:amin_agent/app/api%20services/push%20notification/store_or_update_fcm_token.dart';
 import 'package:amin_agent/app/data/utils/user_data_key.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:get/get.dart';
 
 import '../../../data/const/export.dart';
-import '../../../data/utils/store_data.dart';
-import '../local notification/local_notification.dart';
+ import '../local notification/local_notification.dart';
 
 class FcmMessagingController extends GetxController {
 //google cloud console enabled
@@ -19,7 +17,7 @@ class FcmMessagingController extends GetxController {
   fcmPermissionRequest() async {
     //!Request here for fcm
     FirebaseMessaging messaging = FirebaseMessaging.instance;
-    NotificationSettings settings = await messaging.requestPermission(
+     await messaging.requestPermission(
       alert: true,
       announcement: true,
       badge: true,
@@ -28,8 +26,7 @@ class FcmMessagingController extends GetxController {
       provisional: false,
       sound: true,
     );
-    print('fcmPermissionRequest $settings');
-  }
+   }
 
   getInitialMessage() async {
 //!Get initial message
@@ -44,8 +41,7 @@ class FcmMessagingController extends GetxController {
         NotificationService().showNotify(message: message, payload: '');
         Get.find<NotificationScreenController>().initializeMethod(0);
         Get.find<ScheduleScreenController>().initializeMethod();
-        print(message.data);
-      }
+       }
     });
   }
 
@@ -63,22 +59,18 @@ class FcmMessagingController extends GetxController {
     FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) async {
       // TODO: If necessary send token to application server.
       if (token != null ) {
-        final response = await storeOrUpdateFcmTokenRequest(
+         await storeOrUpdateFcmTokenRequest(
             fcmToken: fcmToken, token: token);
-        print(response);
-      }
+       }
       // Note: This callback is fired at each app startup and whenever a new
       // token is generated.
-      print('Refreshed token:$fcmToken');
-    }).onError((err) {});
+     }).onError((err) {});
     //!Here have app tokens
     String? fcmToken = await FirebaseMessaging.instance.getToken();
-    print('here have device tokens:$fcmToken');
-    if (token != null && fcmToken != null) {
-      final response =
+     if (token != null && fcmToken != null) {
+
           await storeOrUpdateFcmTokenRequest(fcmToken: fcmToken, token: token);
-      print(response);
-    }
+     }
   }
 
   @override

@@ -5,7 +5,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../data/const/export.dart';
 
 class ProfileScreenView extends GetView<ProfileScreenController> {
-  ProfileScreenView({Key? key}) : super(key: key);
+  ProfileScreenView({super.key});
   final _controller = Get.put(ProfileScreenController());
   final _bottomNavController = Get.put(BottomNavController());
 
@@ -75,7 +75,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                           ],
                         ),
 
-                      /*  Padding(
+                        /*  Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 12.0),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -98,9 +98,23 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                             ],
                           ),
                         ),*/
+                        Padding(
+                          padding: const EdgeInsets.only(top:10,right:20,left: 20),
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: IconButton(
+                              onPressed: () {
+                                Get.dialog(FilterScreenView());
+                              },
+                              icon: const Icon(
+                                Icons.filter_alt_rounded,
+                                color: AppColor.kPrimaryColor,
+                              ),
+                            ),
+                          ),
+                        ),
                         ProfilePictureGridBuilder(
                             list: _controller.completedSchedulePictureList),
-
                       ],
                     ),
                     Positioned(

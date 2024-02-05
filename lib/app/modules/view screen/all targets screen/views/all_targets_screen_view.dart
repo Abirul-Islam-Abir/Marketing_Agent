@@ -3,7 +3,7 @@ import '../../../widgets/empty_list_text.dart';
 import '../components/all_targets_progress_card.dart';
 
 class AllTargetsScreenView extends StatelessWidget {
-  AllTargetsScreenView({Key? key}) : super(key: key);
+  AllTargetsScreenView({super.key});
   final controller = Get.put(AllTargetsScreenController());
 
   @override

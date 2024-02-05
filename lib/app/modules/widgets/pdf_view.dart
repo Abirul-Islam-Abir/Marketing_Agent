@@ -7,7 +7,7 @@ import '../../data/const/export.dart';
 class PdfView extends StatefulWidget {
   final String url;
 
-  const PdfView({Key? key, required this.url}) : super(key: key);
+  const PdfView({super.key, required this.url});
 
   @override
   State<PdfView> createState() => _PdfViewState();

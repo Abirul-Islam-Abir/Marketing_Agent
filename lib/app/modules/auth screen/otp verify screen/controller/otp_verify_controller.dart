@@ -21,7 +21,7 @@ class OtpVerifyScreenController extends GetxController {
   }
   // Start the countdown timer for OTP expiration
   void startCountdown() {
-    countdown.value = 120;
+    countdown.value = 60;
     timeOut(true);
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (countdown.value > 0) {

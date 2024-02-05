@@ -2,12 +2,16 @@ import '../../../../data/const/export.dart';
 import '../components/total_sales_card.dart';
 
 class TotalSalesScreen extends GetView<TotalSalesScreeenController> {
-  const TotalSalesScreen({Key? key}) : super(key: key);
+  const TotalSalesScreen({super.key});
 
   @override
   Widget build(BuildContext context) => Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
-      appBar: buildNavigateAppbar('sales'),
+      appBar:  buildFilterAppBars(
+          text: 'Total Sales',
+          filterTap: () {
+            Get.dialog(FilterScreenView());
+          }),
       body: SizedBox(
         height: double.infinity,
         child: ListView.builder(

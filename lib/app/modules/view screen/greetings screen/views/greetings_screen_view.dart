@@ -1,10 +1,9 @@
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../data/const/export.dart';
-import '../components/animate_congratulate.dart';
 
 class GreetingsScreenView extends StatelessWidget {
-  const GreetingsScreenView({Key? key}) : super(key: key);
+  const GreetingsScreenView({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,6 @@ import 'dart:io';
 import '../../../../data/const/export.dart';
 import '../../../../data/utils/user_data_key.dart';
 import '../../../widgets/dashboard_count_shimmer.dart';
-import '../../../widgets/demo_target_progress_card.dart';
 import '../../../widgets/targets_card_shimmer.dart';
 import '../components/agents_progress_count.dart';
 import '../components/dashboard_count.dart';
@@ -14,7 +13,7 @@ class DashboardScreenView extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _controller = Get.put(DashboardScreenController());
   final _profileController = Get.put(ProfileScreenController());
-  final _notificationController = Get.put(NotificationScreenController());
+  final _notification = Get.put(NotificationScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,7 @@ class DashboardScreenView extends StatelessWidget {
       child: Scaffold(
         appBar: buildPrimaryAppBar(
             text: 'Dashboard',
-            badge: '${_notificationController.readNotificationList.length}',
+            badge: '${_notification.notificationList.length}',
             notificationTap: () {
               Get.toNamed(RouteName.notificationScreen);
             }),
@@ -99,7 +98,7 @@ class DashboardScreenView extends StatelessWidget {
                           targetAmount: amountCollected),
                   const SizedBox(height: 30),
                   AgentsProgressCount(data: controller.pieChart),
-                  SizedBox(height: 80),
+                  const SizedBox(height: 80),
                 ]);
           }),
         ),

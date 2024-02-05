@@ -2,7 +2,9 @@ import 'package:amin_agent/app/data/const/export.dart';
 
 
 class AboutScreen extends StatelessWidget {
-  const AboutScreen({Key? key});
+  const AboutScreen({super.key});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class AboutScreen extends StatelessWidget {
 class FeatureBulletPoint extends StatelessWidget {
   final String text;
 
-  const FeatureBulletPoint({Key? key, required this.text}) : super(key: key);
+  const FeatureBulletPoint({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {

@@ -19,8 +19,7 @@ class AllTestScreenController extends GetxController {
       if (response['success'] == true) {
         _allTestList.clear();
         _allTestList = response['data'];
-        print(response);
-      }
+       }
     }
   }
   Future<void> initializeMethod() async {

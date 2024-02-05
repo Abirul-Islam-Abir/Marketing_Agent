@@ -3,7 +3,7 @@ import '../components/sales_target_card.dart';
 import '../controllers/targets_agents _screen_controller.dart';
 
 class TargetAgentsScreenView extends StatelessWidget {
-  TargetAgentsScreenView({Key? key}) : super(key: key);
+  TargetAgentsScreenView({super.key});
   final controller = Get.put(AgentsScreenController());
 
   @override

@@ -122,7 +122,7 @@ class AllTargetsProgressCard extends StatelessWidget {
                     backgroundColor: AppColor.kPrimaryColor,
                     child: SvgPicture.asset(
                         'assets/svg/doctor-svgrepo-com (1).svg')),
-              ),SizedBox(height: 10,), InkWell(
+              ),const SizedBox(height: 10,), InkWell(
                 onTap: sendTap,
                 child: CircleAvatar(
                     radius: 18,

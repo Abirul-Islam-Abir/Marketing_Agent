@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../controllers/splash_screen_controller.dart';
 
 class SplashScreenView extends StatelessWidget {
-  SplashScreenView({Key? key}) : super(key: key);
+  SplashScreenView({super.key});
   final _controller = Get.put(SplashScreenController());
 
   @override

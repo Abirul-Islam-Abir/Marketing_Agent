@@ -1,10 +1,4 @@
-/***Developer Information:
-    Name: Abirul Islam Abir
-    Email: abir80503@gmail.com
-    Phone Number: 01722734871
-    App Development Notes:
-    - This code is part of the development of MPO.
-    - Additional notes or information about the development process*/
+
 import '../../../../api services/auth/forgot_password.dart';
 import '../../../../data/const/export.dart';
 

@@ -10,7 +10,11 @@ class DoctorVisitedScreenView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
-      appBar: buildNavigateAppbar('Doctor Visited'),
+      appBar: buildFilterAppBars(
+          text: 'Doctor Visited',
+          filterTap: () {
+            Get.dialog(FilterScreenView());
+          }),
       body: GetBuilder<DoctorOnboardScreenController>(builder: (controller) {
         final data = controller.doctorVisitedList;
         return controller.isProgress
@@ -29,9 +33,8 @@ class DoctorVisitedScreenView extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final name = data[index]['doctor_name'];
                           final date = data[index]['completed_date'];
-                          const time = '09:10 PM';
                           return DoctorOnboardCard(
-                            time: time,
+
                             location: name,
                             date: date,
                           );
