@@ -1,8 +1,7 @@
 import 'package:amin_agent/app/modules/widgets/empty_list_text.dart';
-import 'package:intl/intl.dart';
-
 import '../../../../data/const/export.dart';
 import '../components/format_time.dart';
+
 
 class NotificationScreenView extends StatelessWidget {
   NotificationScreenView({super.key});
@@ -63,3 +62,4 @@ class NotificationScreenView extends StatelessWidget {
     );
   }
 }
+//new push
