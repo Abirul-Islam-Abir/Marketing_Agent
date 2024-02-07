@@ -5,12 +5,13 @@ import 'package:amin_agent/app/modules/widgets/server_down_ui_screen.dart';
 import 'package:get/get.dart';
 
 import '../../../../routes/app_pages.dart';
+import '../../../connectivity/controller/internet_connectivity.dart';
 
 class SplashScreenController extends GetxController {
   Future userAlreadyLogged() async {
     Future.delayed(const Duration(seconds: 3)).then((value) async {
       final token = await box.read(UserDataKey.tokenKey);
-      if (token != null) {
+      if (token != null || NetworkController.connectionType!=0) {
         Get.offAllNamed(RouteName.bottomNav);
       } else {
         Get.offAllNamed(RouteName.loginScreen);

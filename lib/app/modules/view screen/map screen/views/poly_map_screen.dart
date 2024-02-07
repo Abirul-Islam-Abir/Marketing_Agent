@@ -83,7 +83,18 @@ class _MapScreenState extends State<MapScreen> {
     getCurrentLocation();
     updateChamberLocationName();
   }
-
+  BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
+  void addCustomIcon() {
+    BitmapDescriptor.fromAssetImage(
+        const ImageConfiguration(), "assets/images/img_location_svgrepo_com.png")
+        .then(
+          (icon) {
+        setState(() {
+          markerIcon = icon;
+        });
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -91,6 +102,9 @@ class _MapScreenState extends State<MapScreen> {
           body: Stack(
         children: [
           GoogleMap(
+            onTap: (v){
+              print(v);
+            },
             initialCameraPosition: CameraPosition(
                 target: LatLng(widget.lat, widget.lang), zoom: 15),
             myLocationEnabled: true,
@@ -137,7 +151,7 @@ class _MapScreenState extends State<MapScreen> {
                     _addMarker(
                         LatLng(userLocation!.latitude, userLocation!.longitude),
                         "destination",
-                        BitmapDescriptor.defaultMarker);
+                        markerIcon);
                     updateCurrentLocationName();
                     await mapController
                         .animateCamera(CameraUpdate.newCameraPosition(
@@ -164,7 +178,7 @@ class _MapScreenState extends State<MapScreen> {
     try {
       if (userLocation != null) {
         List<geocoding.Placemark> placemarks =
-            await geocoding.placemarkFromCoordinates(
+        await geocoding.placemarkFromCoordinates(
           userLocation!.latitude,
           userLocation!.longitude,
         );
@@ -181,31 +195,51 @@ class _MapScreenState extends State<MapScreen> {
         }
       }
     } catch (e) {
-      throw Exception('$e');
+      // Handle network errors or other exceptions
+      print('Error fetching location details: $e');
+      // Retry mechanism
+      // Retry after a delay
+      Future.delayed(Duration(seconds: 5), () {
+        updateCurrentLocationName();
+      });
     }
   }
+
 
   Future<void> updateChamberLocationName() async {
     try {
-      List<geocoding.Placemark> placemarks =
-          await geocoding.placemarkFromCoordinates(
-        widget.lat,
-        widget.lang,
-      );
-      if (placemarks.isNotEmpty) {
-        geocoding.Placemark placemark = placemarks[0];
-        String name = placemark.name ?? '';
-        String thoroughfare = placemark.thoroughfare ?? '';
-        String locality = placemark.locality ?? '';
+      if (isValidCoordinates(widget.lat, widget.lang)) {
+        List<geocoding.Placemark> placemarks =
+        await geocoding.placemarkFromCoordinates(
+          widget.lat,
+          widget.lang,
+        );
 
-        setState(() {
-          currentLocationName = '$name $thoroughfare, $locality';
-        });
+        if (placemarks.isNotEmpty) {
+          geocoding.Placemark placemark = placemarks[0];
+          String name = placemark.name ?? '';
+          String thoroughfare = placemark.thoroughfare ?? '';
+          String locality = placemark.locality ?? '';
+
+          setState(() {
+            currentLocationName = '$name $thoroughfare, $locality';
+          });
+        }
+      } else {
+        // Handle invalid coordinates error
+        print('Invalid coordinates: ${widget.lat}, ${widget.lang}');
       }
     } catch (e) {
-      throw Exception('$e');
+      // Handle other exceptions, e.g., network errors
+      print('Error fetching location details: $e');
     }
   }
+
+  bool isValidCoordinates(double lat, double lng) {
+    // Check if the coordinates are within valid ranges
+    return (lat >= -90 && lat <= 90) && (lng >= -180 && lng <= 180);
+  }
+
 
   void _onMapCreated(GoogleMapController controller) async {
     mapController = controller;
@@ -214,7 +248,8 @@ class _MapScreenState extends State<MapScreen> {
   _addMarker(LatLng position, String id, BitmapDescriptor descriptor) {
     MarkerId markerId = MarkerId(id);
     Marker marker =
-        Marker(markerId: markerId, icon: descriptor, position: position);
+        Marker(
+          markerId: markerId, icon: descriptor, position: position,);
     markers[markerId] = marker;
   }
 
@@ -227,17 +262,27 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   _getPolyline() async {
-    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+    try {
+      PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
         googleAPiKey,
         PointLatLng(widget.lat, widget.lang),
         PointLatLng(userLocation!.latitude, userLocation!.longitude),
         travelMode: TravelMode.driving,
-        wayPoints: [PolylineWayPoint(location: "Sabo, Yaba Lagos Nigeria")]);
-    if (result.points.isNotEmpty) {
-      for (var point in result.points) {
-        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+        wayPoints: [PolylineWayPoint(location: "Sabo, Yaba Lagos Nigeria")],
+      );
+
+      if (result.points.isNotEmpty) {
+        for (var point in result.points) {
+          polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+        }
+        _addPolyLine();
+      } else {
+        print('No polyline points found');
       }
+    } catch (e) {
+      print('Error fetching polyline: $e');
+      // Handle the error, display a message, or retry if needed
     }
-    _addPolyLine();
   }
+
 }

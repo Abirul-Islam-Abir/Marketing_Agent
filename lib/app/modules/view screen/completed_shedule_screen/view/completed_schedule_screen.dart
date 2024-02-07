@@ -3,6 +3,7 @@ import 'package:amin_agent/app/modules/view%20screen/completed_shedule_screen/co
 import 'package:amin_agent/app/modules/widgets/empty_list_text.dart';
 
 import '../../../../data/const/export.dart';
+import '../../../../data/utils/method.dart';
 import '../../../widgets/shimmer_schedule_card_list.dart';
 import '../../map screen/views/map_screen_navigate.dart';
 
@@ -15,7 +16,16 @@ class CompletedScheduleScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
-      appBar: buildNavigateAppbar('Completed Schedule'),
+      appBar: buildFilterAppBars(
+          text: 'Completed Schedules',
+          filterTap: () {
+            Get.dialog(FilterScreenView(
+              onTap: () {
+                controller.initializeMethod(selectedRangeDate);
+                Get.back();
+              },
+            ));
+          }),
       body: GetBuilder<CompleteScheduleScreenController>(builder: (controller) {
         final data = controller.completedScheduleList;
         return controller.isProgress
@@ -24,7 +34,7 @@ class CompletedScheduleScreen extends StatelessWidget {
                 ? const EmptyListText()
                 : RefreshIndicator(
                     onRefresh: () async {
-                      controller.initializeMethod();
+                      controller.initializeMethod(selectedDates);
                     },
                     child: SizedBox(
                       height: double.infinity,

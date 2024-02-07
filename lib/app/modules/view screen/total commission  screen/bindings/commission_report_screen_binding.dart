@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../controllers/commission_report_screen_controller.dart';
+import '../controllers/total_commission_screen_controller.dart';
 
 class TotalCommissionScreenBinding extends Bindings {
   @override

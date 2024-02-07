@@ -59,13 +59,15 @@ class ProfileScreenController extends GetxController {
       }
     }
   }
-  Future<void> completedSchedulePicture() async {
+  Future<void> completedSchedulePicture(date) async {
     final token = await box.read(UserDataKey.tokenKey);
     final targetId = await box.read(UserDataKey.currentTargetIdKey);
     if (token != null && targetId != null) {
-      final response = await completedSchedulePictureRequest(token: token, id: targetId);
+      final response = await completedSchedulePictureRequest(token: token, id: targetId,date: date);
       if (response['success'] == true) {
         _completedSchedulePictureList = response['data'];
+        print(response);
+        update();
       }
     }
   }

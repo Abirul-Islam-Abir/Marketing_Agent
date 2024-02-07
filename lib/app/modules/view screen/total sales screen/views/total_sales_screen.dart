@@ -1,16 +1,20 @@
+import 'package:amin_agent/app/data/utils/method.dart';
+
 import '../../../../data/const/export.dart';
 import '../components/total_sales_card.dart';
 
-class TotalSalesScreen extends GetView<TotalSalesScreeenController> {
-  const TotalSalesScreen({super.key});
-
+class TotalSalesScreen extends StatelessWidget {
+    TotalSalesScreen({super.key});
+final _controller = Get.put(TotalSalesScreenController());
   @override
   Widget build(BuildContext context) => Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
       appBar:  buildFilterAppBars(
           text: 'Total Sales',
           filterTap: () {
-            Get.dialog(FilterScreenView());
+            Get.dialog(FilterScreenView(onTap: () {
+              _controller.initializeMethod(selectedRangeDate);
+            },));
           }),
       body: SizedBox(
         height: double.infinity,

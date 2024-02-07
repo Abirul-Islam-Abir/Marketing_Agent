@@ -14,5 +14,6 @@ class AppImages{
   static String doctorSvg =  'assets/svg/doctor-svgrepo-com (1).svg';
   static String agentSvg =  'assets/svg/agent-seller-svgrepo-com.svg';
   static String testSvg =  'assets/svg/exam-svgrepo-com.svg';
+  static String crossSvg =  'assets/svg/cross-svgrepo-com.svg';
   AppImages._();
 }

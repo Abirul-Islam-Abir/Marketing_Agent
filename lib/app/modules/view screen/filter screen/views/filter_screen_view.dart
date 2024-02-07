@@ -5,12 +5,14 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 
 import '../../../../data/const/export.dart';
+import '../../../../data/utils/method.dart';
 
 class FilterScreenView extends StatelessWidget {
-  FilterScreenView({super.key});
+  FilterScreenView({super.key, this.onTap});
 
   final _controller = Get.put(FilterScreenController());
 
+  final Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +62,7 @@ class FilterScreenView extends StatelessWidget {
                       config: CalendarDatePicker2Config(
                         calendarType: CalendarDatePicker2Type.range,
                       ),
-                      value: _controller.selectedDates,
+                      value: selectedRangeDate,
                       onValueChanged: _controller.onDateChange,
                     ),
                    /* Obx(() => _controller.selectedIndex.value == 0
@@ -76,10 +78,7 @@ class FilterScreenView extends StatelessWidget {
                     SecondaryButton(
                       isProgress: false,
                         text: 'Filter',
-                        onTap: () {
-                          _controller.setCategory();
-                          Get.back();
-                        }),
+                        onTap: onTap),
                   ],
                 ),
               ),

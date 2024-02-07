@@ -1,9 +1,10 @@
 import 'package:amin_agent/app/api%20services/push%20notification/store_or_update_fcm_token.dart';
 import 'package:amin_agent/app/data/utils/user_data_key.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:intl/intl.dart';
 
 import '../../../data/const/export.dart';
- import '../local notification/local_notification.dart';
+import '../local notification/local_notification.dart';
 
 class FcmMessagingController extends GetxController {
 //google cloud console enabled
@@ -14,10 +15,28 @@ class FcmMessagingController extends GetxController {
   var serverKey =
       'AAAAg55L9D8:APA91bEJzSxsFZ0cejUcpqoLGcOW1hKBPjqcE7a9VzUfGqdkQBZKbwyGyMug0p8eNdnKf30EW_WQI1DWMtpLcdPbSdEUGAO2CmT8zj2h9icM2Af7P5ovDus20-03TF-KtuqLUMNVtTeC';
 
+  //This time using for schedule data calling when fcm push notification after calling date wise schedule
+  List<String> formattedDates = [];
+  List<DateTime?> selectedDates = [
+     DateTime(2024),
+    DateTime.now(),
+
+
+  ];
+  String? joinedDates; //using for date filter
+  void onDateChange(List<DateTime?> dates) {
+    selectedDates = List<DateTime?>.from(dates);
+    formattedDates = selectedDates
+        .map((date) => DateFormat('yyyy-MM-dd').format(date!))
+        .toList();
+    // Joining formatted dates with "/"
+    joinedDates = formattedDates.join('/');
+  }
+
   fcmPermissionRequest() async {
     //!Request here for fcm
     FirebaseMessaging messaging = FirebaseMessaging.instance;
-     await messaging.requestPermission(
+    await messaging.requestPermission(
       alert: true,
       announcement: true,
       badge: true,
@@ -26,7 +45,7 @@ class FcmMessagingController extends GetxController {
       provisional: false,
       sound: true,
     );
-   }
+  }
 
   getInitialMessage() async {
 //!Get initial message
@@ -40,8 +59,8 @@ class FcmMessagingController extends GetxController {
       if (message.notification != null) {
         NotificationService().showNotify(message: message, payload: '');
         Get.find<NotificationScreenController>().initializeMethod(0);
-        Get.find<ScheduleScreenController>().initializeMethod();
-       }
+        Get.find<ScheduleScreenController>().initializeMethod(joinedDates);
+      }
     });
   }
 
@@ -49,7 +68,7 @@ class FcmMessagingController extends GetxController {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       if (message.notification != null) {
         NotificationService().showNotify(message: message, payload: '');
-         Get.to(()=>message.data['click_action']);
+        Get.to(() => message.data['click_action']);
       }
     });
   }
@@ -58,23 +77,23 @@ class FcmMessagingController extends GetxController {
     final token = await box.read(UserDataKey.tokenKey);
     FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) async {
       // TODO: If necessary send token to application server.
-      if (token != null ) {
-         await storeOrUpdateFcmTokenRequest(
-            fcmToken: fcmToken, token: token);
-       }
+      if (token != null) {
+        await storeOrUpdateFcmTokenRequest(fcmToken: fcmToken, token: token);
+      }
       // Note: This callback is fired at each app startup and whenever a new
       // token is generated.
-     }).onError((err) {});
+    }).onError((err) {});
     //!Here have app tokens
     String? fcmToken = await FirebaseMessaging.instance.getToken();
-     if (token != null && fcmToken != null) {
-
-          await storeOrUpdateFcmTokenRequest(fcmToken: fcmToken, token: token);
-     }
+    if (token != null && fcmToken != null) {
+      await storeOrUpdateFcmTokenRequest(fcmToken: fcmToken, token: token);
+    }
   }
 
   @override
   void onInit() {
+    onDateChange(selectedDates);
+    print(joinedDates);
     fcmPermissionRequest();
     getInitialMessage();
     onForegroundApp();

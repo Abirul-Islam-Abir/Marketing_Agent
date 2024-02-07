@@ -1,11 +1,12 @@
+import 'package:amin_agent/app/data/utils/method.dart';
 import 'package:get/get.dart';
 
 import '../../../../api services/sales and commission/sales_and_commission.dart';
-import '../../../../data/utils/method.dart';
 import '../../../../data/utils/store_data.dart';
 import '../../../../data/utils/user_data_key.dart';
 
-class TotalSalesScreenController extends GetxController {
+
+class TotalCommissionScreenController extends GetxController {
   bool _isProgress = false;
   bool get isProgress => _isProgress;
   List _salesAndCommissionList = [];

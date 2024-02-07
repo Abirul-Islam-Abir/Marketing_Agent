@@ -1,7 +1,9 @@
 import 'package:amin_agent/app/api%20services/push%20notification/notification_unread_count.dart';
 import 'package:amin_agent/app/data/const/export.dart';
+import 'package:intl/intl.dart';
 import '../../../../api services/auth/log_out.dart';
 import '../../../../api services/dashboard/dashboard_data.dart';
+import '../../../../data/utils/method.dart';
 import '../../../../data/utils/user_data_key.dart';
 import '../../../Fcm Notification/controller/fcm_notification_controller.dart';
 
@@ -15,8 +17,11 @@ class DashboardScreenController extends GetxController {
   List _pieChart = [];
 
   Map<String, dynamic> get currentProgressList => _currentProgressList;
+
   Map<String, dynamic> get unreadNotification => _unreadNotification;
+
   Map<String, dynamic> get progressList => _progressList;
+
   List get pieChart => _pieChart;
   Map<String, double> convertedDataMap = {};
 
@@ -26,6 +31,7 @@ class DashboardScreenController extends GetxController {
   int _selectedIndex = 0;
 
   int get selectedIndex => _selectedIndex;
+
 
   void selectItem(int index) {
     _selectedIndex = index;
@@ -44,8 +50,8 @@ class DashboardScreenController extends GetxController {
         await StoreData.saveCurrentTargetId(
             response['data']['current_target']['target_id']);
         //When dashboard data calling after calling this method because userId not set before called this mehtod and showing empty list
-        Get.put(ScheduleScreenController()).initializeMethod();
-        Get.put(ProfileScreenController()).completedSchedulePicture();
+        Get.put(ScheduleScreenController()).initializeMethod(joinedDates);
+        Get.put(ProfileScreenController()).completedSchedulePicture(joinedDates);
         Get.put(FcmMessagingController()).getFcmTokenAndStoreDB();
 
         for (var agent in response['data']['pie_chart']) {
@@ -58,14 +64,14 @@ class DashboardScreenController extends GetxController {
 
   Future<void> notificationUnreadCount() async {
     final token = await box.read(UserDataKey.tokenKey);
-    print(token);
+
     if (token != null) {
       final response = await notificationUnreadCountRequest(token);
       if (response['success'] == true) {
         _unreadNotification.clear();
         _unreadNotification = response['data'];
         update();
-        print(response);
+
       }
     }
   }
@@ -87,7 +93,10 @@ class DashboardScreenController extends GetxController {
     _isProgress = true;
     update();
     try {
-      await Future.wait([dashboardData(), notificationUnreadCount()]);
+      await Future.wait([
+        dashboardData(),
+        notificationUnreadCount(),
+      ]);
     } catch (e) {
       throw Exception('$e');
     } finally {
@@ -98,6 +107,7 @@ class DashboardScreenController extends GetxController {
 
   @override
   void onInit() {
+    onDateChange(selectedDates);
     initializeMethod();
     super.onInit();
   }

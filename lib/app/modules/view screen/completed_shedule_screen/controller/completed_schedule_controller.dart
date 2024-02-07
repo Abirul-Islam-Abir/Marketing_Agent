@@ -1,4 +1,5 @@
 import 'package:amin_agent/app/api%20services/shedules/completed_schedule.dart';
+import 'package:amin_agent/app/data/utils/method.dart';
 import 'package:amin_agent/app/data/utils/user_data_key.dart';
 
 import '../../../../data/const/export.dart';
@@ -10,23 +11,23 @@ class CompleteScheduleScreenController extends GetxController {
   List _completedScheduleList = [];
 
   List get completedScheduleList => _completedScheduleList;
-  Future<void> completedSchedule() async {
+  Future<void> completedSchedule(date) async {
     final token = await box.read(UserDataKey.tokenKey);
     final targetId = await box.read(UserDataKey.currentTargetIdKey);
     if (token != null && targetId != null) {
-      final response = await completedScheduleRequest(token:token,id: targetId);
+      final response = await completedScheduleRequest(token:token,id: targetId,date: date);
       if (response['success'] == true) {
-        _completedScheduleList.clear();
+
         _completedScheduleList = response['data'];
       }
     }
   }
-  Future<void> initializeMethod() async {
+  Future<void> initializeMethod(date) async {
     _isProgress = true;
     update();
     try {
       await Future.wait([
-        completedSchedule(),
+        completedSchedule(date),
       ]);
     } catch (e) {
       throw Exception('$e');
@@ -39,7 +40,7 @@ class CompleteScheduleScreenController extends GetxController {
 
   @override
   void onInit() {
-    initializeMethod();
+    initializeMethod(selectedDates);
     super.onInit();
   }
 }

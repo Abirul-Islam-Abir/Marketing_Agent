@@ -1,25 +1,20 @@
-
 import '../../data/const/export.dart';
 
-class FilterButton extends StatelessWidget {
-  const FilterButton({
-    super.key,
+class FilterButtons extends StatelessWidget {
+  const FilterButtons({
+    super.key, required this.onTap,
   });
-
+final Function() onTap;
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        CustomBackButton(),
-        Padding(
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Icon(
-            Icons.filter_alt_rounded,
-            color: Colors.white,
-          ),
-        ),
-      ],
+          child: IconButton(
+              onPressed: onTap ,
+              icon:  Icon(Icons.filter_alt,color: AppColor.kPrimaryColor,)
+                )),
     );
   }
 }

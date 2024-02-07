@@ -1,16 +1,14 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../data/utils/method.dart';
 import '../../../../model/category_model.dart';
 
 class FilterScreenController extends GetxController {
-  List<String> formattedDates = [];
   bool isSelected = false;
   RxInt selectedIndex = 0.obs;
   String category = '';
-  List<DateTime?> selectedDates = [
-    DateTime.now(),
-  ];
+
   List<User> userList = [
     User(name: "All category"),
     User(name: "Pathology "),
@@ -25,24 +23,31 @@ class FilterScreenController extends GetxController {
   ];
   final List<User>? selectedUserList = [];
   int? selectedUserIndex;
-  onDateChange(dates) {
-    selectedDates = List<DateTime?>.from(dates);
-    formattedDates = selectedDates
+
+  void onDateChange(List<DateTime?> dates) {
+    selectedRangeDate = List<DateTime?>.from(dates);
+    formattedDates = selectedRangeDate
         .map((date) => DateFormat('yyyy-MM-dd').format(date!))
         .toList();
+    // Joining formatted dates with "/"
+    joinedDates = formattedDates.join('/');
+    print(joinedDates);
   }
-  selectedChangeIndex (index) {
-    selectedUserIndex =
-    isSelected ? null : index;
+
+  void selectedChangeIndex(index) {
+    selectedUserIndex = isSelected ? null : index;
     update();
   }
-  selectDateFilter(){
-       selectedIndex.value = 0;
 
+  void selectDateFilter() {
+    selectedIndex.value = 0;
   }
-  selectCategoryFilter(){
+
+  void selectCategoryFilter() {
     selectedIndex.value = 1;
   }
-  setCategory(){
+
+  void setCategory() {
+    print(joinedDates); // Output: 2024-02-05/2024-02-07
   }
 }

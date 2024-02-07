@@ -95,7 +95,6 @@ class CustomDrawer extends StatelessWidget {
                         name: 'Total commission',
                         onTap: () {
                           _controller.selectItem(3);
-
                           Get.toNamed(RouteName.totalCommissionScreen);
                         }),
                     CustomListTile(
@@ -112,7 +111,6 @@ class CustomDrawer extends StatelessWidget {
                         name: 'Current Target',
                         onTap: () async {
                           _controller.selectItem(5);
-
                           final targetId =
                               await box.read(UserDataKey.currentTargetIdKey);
                           if (targetId != null) {
@@ -126,7 +124,6 @@ class CustomDrawer extends StatelessWidget {
                         name: 'Doctor visited',
                         onTap: () {
                           _controller.selectItem(6);
-
                           Get.toNamed(RouteName.doctorVisitedScreen);
                         }),
                     CustomListTile(
@@ -138,7 +135,6 @@ class CustomDrawer extends StatelessWidget {
                         Get.toNamed(RouteName.allTargetScreen);
                       },
                     ),
-
                     CustomListTile(
                         onTap: () {
                           _controller.selectItem(8);

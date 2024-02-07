@@ -16,7 +16,7 @@ class StateHolderBinding extends Bindings {
     Get.lazyPut(() => BottomNavController());
     Get.lazyPut(() => DashboardScreenController());
     Get.lazyPut(() => TotalCommissionScreenController());
-    Get.lazyPut(() => TotalSalesScreeenController());
+    Get.lazyPut(() => TotalSalesScreenController());
     Get.lazyPut(() => NetworkController());
     Get.lazyPut(() => ForgetPasswordScreenController());
     Get.lazyPut(() => PasswordSetScreenController());

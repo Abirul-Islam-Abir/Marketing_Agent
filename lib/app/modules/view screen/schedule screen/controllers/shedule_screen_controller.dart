@@ -5,6 +5,8 @@ import 'package:amin_agent/app/api%20services/shedules/complete_schedule.dart';
 import 'package:amin_agent/app/data/const/export.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image/image.dart' as img;
+import 'package:intl/intl.dart';
+import '../../../../data/utils/method.dart';
 import '../../../../data/utils/user_data_key.dart';
 
 class ScheduleScreenController extends GetxController {
@@ -13,11 +15,13 @@ class ScheduleScreenController extends GetxController {
   bool get isProgress => _isProgress;
   List _allScheduleList = [];
   List get allScheduleList => _allScheduleList;
-  Future<void> allScheduleData() async {
+
+  Future<void> allScheduleData(date) async {
     final token = await box.read(UserDataKey.tokenKey);
     final targetId = await box.read(UserDataKey.currentTargetIdKey);
     if (token != null && targetId != null) {
-      final response = await allScheduleDataRequest(token: token, id: targetId);
+      final response =
+          await allScheduleDataRequest(token: token, id: targetId, date: date);
       if (response['success'] == true) {
         _allScheduleList = response['data'];
       }
@@ -69,33 +73,12 @@ class ScheduleScreenController extends GetxController {
     }
   }
 
-  // Compress the selected image
-  Future<PickedFile> compressImage(String imagePath) async {
-    final File imageFile = File(imagePath);
-    final img.Image? originalImage =
-        img.decodeImage(imageFile.readAsBytesSync());
-
-    // Resize and encode the image
-    final img.Image compressedImage = img.copyResize(originalImage!,
-        width: 800, height: 600, interpolation: img.Interpolation.linear);
-
-    final List<int> compressedBytes =
-        img.encodeJpg(compressedImage, quality: 85);
-
-    // Save the compressed image to a new file
-    final String compressedImagePath =
-        "${imageFile.parent.path}/compressed_${imageFile.uri.pathSegments.last}";
-    await File(compressedImagePath).writeAsBytes(compressedBytes);
-
-    return PickedFile(compressedImagePath);
-  }
-
-  Future<void> initializeMethod() async {
+  Future<void> initializeMethod(date) async {
     _isProgress = true;
     update();
     try {
       await Future.wait([
-        allScheduleData(),
+        allScheduleData(date),
       ]);
     } catch (e) {
       throw Exception('$e');

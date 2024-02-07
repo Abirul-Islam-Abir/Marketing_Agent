@@ -22,7 +22,7 @@ class DashboardScreenView extends StatelessWidget {
         _scaffoldKey.currentState?.closeDrawer();
         takePhotoDialog(context, title: 'Want to exit?', yesTap: () {
           exit(0);
-        }, img: 'assets/svg/cross-svgrepo-com.svg');
+        }, img: AppImages.crossSvg);
       },
       child: GetBuilder<DashboardScreenController>(builder: (controller) {
         final data = controller.currentProgressList;
@@ -36,12 +36,12 @@ class DashboardScreenView extends StatelessWidget {
         final agentsCount = currentTarget['agents_count'] ?? 0;
         final targetAmount = currentTarget['target_amount'] ?? '0.0';
         final amountCollected = currentTarget['amount_collected'] ?? '0.0';
-        final read =
-            controller.unreadNotification['unread_notifications_count'] ?? 0;
+        final notiLength = controller.unreadNotification;
+        final read = notiLength['unread_notifications_count'] ?? 0;
         return Scaffold(
           appBar: buildPrimaryAppBar(
               text: 'Dashboard',
-              badge: '$read',
+              badge: '${read >= 99 ? '99+' : read}',
               notificationTap: () {
                 Get.toNamed(RouteName.notificationScreen);
               }),

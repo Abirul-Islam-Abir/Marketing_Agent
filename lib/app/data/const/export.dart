@@ -74,7 +74,7 @@ export 'package:amin_agent/app/modules/view%20screen/doctor%20onboard%20screen/c
 export 'package:amin_agent/app/modules/view%20screen/doctor%20onboard%20screen/controllers/doctor_onboard_screen_controller.dart';
 export 'package:amin_agent/app/modules/widgets/secondary_appbar.dart';
 export 'package:amin_agent/app/data/dummy%20data/commission_dummy_data.dart';
-export 'package:amin_agent/app/modules/view%20screen/total%20commission%20%20screen/controllers/commission_report_screen_controller.dart';
+export 'package:amin_agent/app/modules/view%20screen/total%20commission%20%20screen/controllers/total_commission_screen_controller.dart';
 export 'package:amin_agent/app/data/dummy%20data/sales_report_dummy_data.dart';
 export 'package:amin_agent/app/modules/view%20screen/total%20sales%20screen/controllers/total_sales_screen_controller.dart';
 export 'package:amin_agent/app/modules/widgets/user_avatar.dart';

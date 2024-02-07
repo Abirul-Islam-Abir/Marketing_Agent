@@ -1,3 +1,4 @@
+import 'package:amin_agent/app/data/utils/method.dart';
 import 'package:amin_agent/app/modules/view%20screen/profile%20details%20screen/view/profile_details_screen.dart';
 import 'package:amin_agent/app/modules/widgets/image_view_screen.dart';
 import 'package:image_picker/image_picker.dart';
@@ -6,6 +7,7 @@ import '../../../../data/const/export.dart';
 
 class ProfileScreenView extends GetView<ProfileScreenController> {
   ProfileScreenView({super.key});
+
   final _controller = Get.put(ProfileScreenController());
   final _bottomNavController = Get.put(BottomNavController());
 
@@ -74,44 +76,16 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                             }),
                           ],
                         ),
-
-                        /*  Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.arrow_back_ios,
-                                  color: AppColor.kPrimaryColor,
-                                ),
-                              ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.arrow_forward_ios_sharp,
-                                  color: AppColor.kPrimaryColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),*/
-                        Padding(
-                          padding: const EdgeInsets.only(top:10,right:20,left: 20),
-                          child: Align(
-                            alignment: Alignment.bottomRight,
-                            child: IconButton(
-                              onPressed: () {
-                                Get.dialog(FilterScreenView());
+                        FilterButtons(
+                          onTap: () {
+                            Get.dialog(FilterScreenView(
+                              onTap: () {
+                                Get.back();
+                                _controller.completedSchedulePicture(
+                                    selectedRangeDate);
                               },
-                              icon: const Icon(
-                                Icons.filter_alt_rounded,
-                                color: AppColor.kPrimaryColor,
-                              ),
-                            ),
-                          ),
+                            ));
+                          },
                         ),
                         ProfilePictureGridBuilder(
                             list: _controller.completedSchedulePictureList),
