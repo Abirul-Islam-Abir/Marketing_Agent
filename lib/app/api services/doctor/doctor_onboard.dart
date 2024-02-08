@@ -5,9 +5,9 @@ import '../api_services.dart';
 
 // This function initiates a request to retrieve the user profile information by sending a GET request to the specified API endpoint.
 // It expects a 'token' parameter representing the user's authentication token.
-Future doctorOnboardDataRequest(token) async {
+Future doctorOnboardDataRequest({token,date}) async {
   // Get the user profile API URL from the ApiServices class
-  final uri = ApiServices.doctorOnboardUrl;
+  final uri = '${ApiServices.doctorOnboardUrl}/$date';
 
   // Parse the URL into a Uri object
   final url = Uri.parse(uri);

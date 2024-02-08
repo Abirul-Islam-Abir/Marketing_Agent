@@ -206,6 +206,7 @@ class _MapScreenState extends State<MapScreen> {
   }
 
 
+
   Future<void> updateChamberLocationName() async {
     try {
       if (isValidCoordinates(widget.lat, widget.lang)) {
@@ -263,6 +264,11 @@ class _MapScreenState extends State<MapScreen> {
 
   _getPolyline() async {
     try {
+      if (userLocation == null) {
+        print('User location is not available');
+        return;
+      }
+
       PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
         googleAPiKey,
         PointLatLng(widget.lat, widget.lang),
@@ -277,12 +283,14 @@ class _MapScreenState extends State<MapScreen> {
         }
         _addPolyLine();
       } else {
-        print('No polyline points found');
+        print('No route found between the specified points');
+        // Display a user-friendly message or take appropriate action
       }
     } catch (e) {
       print('Error fetching polyline: $e');
       // Handle the error, display a message, or retry if needed
     }
   }
+
 
 }

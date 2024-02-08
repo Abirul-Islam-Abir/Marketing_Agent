@@ -1,4 +1,5 @@
 import 'package:amin_agent/app/data/const/export.dart';
+import 'package:amin_agent/app/data/utils/method.dart';
 import 'package:amin_agent/app/modules/view%20screen/completed_shedule_screen/components/completed_schedule_card.dart';
 import 'package:amin_agent/app/modules/view%20screen/target%20wise%20doctor%20visited/controller/target_wise_doctor_visited_controller.dart';
 
@@ -6,13 +7,15 @@ import '../../../widgets/empty_list_text.dart';
 import '../../map screen/views/poly_map_screen.dart';
 
 class TargetWiseDoctorVisitedScreen extends StatelessWidget {
-  const TargetWiseDoctorVisitedScreen({super.key});
-
+    TargetWiseDoctorVisitedScreen({super.key});
+final _controller = Get.put(TargetWiseDoctorVisitedController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
-      appBar: buildNavigateAppbar(' Target Wise Doctor Visit'),
+      appBar: buildFilterAppBars(text: ' Target Wise Doctor Visit',filterTap: (){
+        _controller.initializeMethod(selectedRangeDate);
+      }),
       body:
           GetBuilder<TargetWiseDoctorVisitedController>(builder: (controller) {
         final data = controller.targetWiseDoctorVisitedList;
@@ -22,7 +25,7 @@ class TargetWiseDoctorVisitedScreen extends StatelessWidget {
                 ? const EmptyListText()
                 : RefreshIndicator(
                     onRefresh: () async {
-                      controller.initializeMethod();
+                      controller.initializeMethod(joinedDates);
                     },
                     child: SizedBox(
                       height: double.infinity,

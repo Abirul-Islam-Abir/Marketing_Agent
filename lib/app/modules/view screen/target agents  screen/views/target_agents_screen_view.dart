@@ -9,30 +9,25 @@ class TargetAgentsScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AgentsScreenController>(builder: (controller) {
-      // Check if data is null, and handle it accordingly
-      if (controller.isProgress) {
-        return const Scaffold(body: ShimmerTargetList());
-      }
-      final data = controller.allTargetsAgentsList;
-
+      final agentsData = controller.allTargetsAgentAppbar;
       return Scaffold(
         backgroundColor: AppColor.kSecondaryColor,
         appBar: buildNavigateAppbar(
-          '${controller.allTargetsAgentsList['title']}',
+          '${agentsData['title']??''}',
         ),
         body: SizedBox(
           height: double.infinity,
           child: ListView.builder(
-            itemCount: data['agents'].length,
+            itemCount: controller.allTargetAgentsList.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              List agentsList = data['agents'];
-              final isMe = agentsList[index]['is_me'];
-              final dayLeft = data['days_left'];
-              final targetAmount = data['target_amount'];
-              final name = agentsList[index]['agent_name'];
-              final progress = agentsList[index]['progress'];
-              final sellAmount = agentsList[index]['sell_amount'];
+              final data = controller.allTargetAgentsList;
+              final isMe = data[index]['is_me'];
+              final dayLeft = agentsData['days_left'];
+              final targetAmount = agentsData['target_amount'];
+              final name = data[index]['agent_name'];
+              final progress = data[index]['progress'];
+              final sellAmount = data[index]['sell_amount'];
               return SalesTargetCard(
                 isMe: isMe,
                 dayLeft: dayLeft,

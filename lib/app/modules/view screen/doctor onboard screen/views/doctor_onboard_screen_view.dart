@@ -1,3 +1,4 @@
+import 'package:amin_agent/app/data/utils/method.dart';
 import 'package:amin_agent/app/modules/widgets/empty_list_text.dart';
 
 import '../../../../data/const/export.dart';
@@ -12,7 +13,10 @@ class DoctorOnboardScreenView extends StatelessWidget {
         appBar: buildFilterAppBars(
             text: 'Doctor Onboard',
             filterTap: () {
-              Get.dialog(FilterScreenView());
+              Get.dialog(FilterScreenView(onTap: () {
+                Get.back();
+                controller.initializeMethod(selectedRangeDate);
+              },));
             }),
         body: GetBuilder<DoctorOnboardScreenController>(builder: (controller) {
           final data = controller.doctorOnboardList;
@@ -22,7 +26,7 @@ class DoctorOnboardScreenView extends StatelessWidget {
                   ? const EmptyListText()
                   : RefreshIndicator(
                       onRefresh: () async {
-                        controller.initializeMethod();
+                        controller.initializeMethod(joinedDates);
                       },
                       child: SizedBox(
                         height: double.infinity,

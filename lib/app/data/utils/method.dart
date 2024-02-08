@@ -21,17 +21,16 @@ void onDateChange(List<DateTime?> dates) {
   // Joining formatted dates with "/"
   joinedDates = formattedDates.join('/');
 }
+
 Future<PickedFile> compressImage(String imagePath) async {
   final File imageFile = File(imagePath);
-  final img.Image? originalImage =
-  img.decodeImage(imageFile.readAsBytesSync());
+  final img.Image? originalImage = img.decodeImage(imageFile.readAsBytesSync());
 
   // Resize and encode the image
   final img.Image compressedImage = img.copyResize(originalImage!,
       width: 800, height: 600, interpolation: img.Interpolation.linear);
 
-  final List<int> compressedBytes =
-  img.encodeJpg(compressedImage, quality: 85);
+  final List<int> compressedBytes = img.encodeJpg(compressedImage, quality: 85);
 
   // Save the compressed image to a new file
   final String compressedImagePath =

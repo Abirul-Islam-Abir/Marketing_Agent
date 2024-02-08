@@ -1,4 +1,5 @@
 import 'package:amin_agent/app/api%20services/doctor/target_wise_doctor.dart';
+import 'package:amin_agent/app/data/utils/method.dart';
 import 'package:get/get.dart';
 
 import '../../../../data/utils/store_data.dart';
@@ -12,22 +13,22 @@ class TargetWiseDoctorVisitedController extends GetxController {
 
   List _targetWiseDoctorVisitedList = [];
   List get targetWiseDoctorVisitedList => _targetWiseDoctorVisitedList;
-  Future targetWiseDoctorVisited() async {
+  Future targetWiseDoctorVisited(date) async {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
-      final response = await targetWiseDoctorRequest(token:token,id: id);
+      final response = await targetWiseDoctorRequest(token:token,id: id,date: date);
       if (response['success'] == true) {
         _targetWiseDoctorVisitedList = response['data'];
        }
     }
   }
 
-  Future<void> initializeMethod() async {
+  Future<void> initializeMethod(date) async {
     _isProgress = true;
     update();
     try {
       await Future.wait([
-        targetWiseDoctorVisited(),
+        targetWiseDoctorVisited(date),
       ]);
     } catch (e) {
       throw Exception('$e');
@@ -38,7 +39,7 @@ class TargetWiseDoctorVisitedController extends GetxController {
   }
   @override
   void onInit() {
-    initializeMethod();
+    initializeMethod(joinedDates);
     super.onInit();
   }
 }

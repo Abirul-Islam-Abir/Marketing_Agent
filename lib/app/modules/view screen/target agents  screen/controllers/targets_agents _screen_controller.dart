@@ -7,8 +7,10 @@ import '../../../../data/utils/user_data_key.dart';
 class AgentsScreenController extends GetxController {
   bool _isProgress = false;
   bool get isProgress => _isProgress;
-  Map<String, dynamic> _allTargetsAgentsList = {};
-  Map<String, dynamic> get allTargetsAgentsList => _allTargetsAgentsList;
+  List _allTargetAgentsList = [];
+  List get allTargetAgentsList => _allTargetAgentsList;
+  Map<String, dynamic> _allTargetsAgentAppbar = {};
+  Map<String, dynamic> get allTargetsAgentAppbar => _allTargetsAgentAppbar;
   final targetId = Get.arguments;
 
   Future<void> allTargetsAgents() async {
@@ -16,8 +18,9 @@ class AgentsScreenController extends GetxController {
     if (token != null ) {
       final response = await allAgentsDataRequest(token: token, id: targetId);
       if (response['success'] == true) {
-        _allTargetsAgentsList.clear();
-        _allTargetsAgentsList = response['data'];
+        _allTargetsAgentAppbar.clear();
+        _allTargetsAgentAppbar = response['data'];
+        _allTargetAgentsList = response['data']['agents'];
       }
     }
   }

@@ -1,3 +1,4 @@
+import 'package:amin_agent/app/data/utils/method.dart';
 import 'package:get/get.dart';
 
 import '../../../../api services/doctor/doctor_onboard.dart';
@@ -11,11 +12,11 @@ class DoctorOnboardScreenController extends GetxController {
   List _doctorVisitedList = [];
   List get doctorOnboardList => _doctorOnboardList;
   List get doctorVisitedList => _doctorVisitedList;
-  Future doctorOnboard() async {
+  Future doctorOnboard(date) async {
     final token = await box.read(UserDataKey.tokenKey);
 
     if (token != null) {
-      final response = await doctorOnboardDataRequest(token);
+      final response = await doctorOnboardDataRequest(token:token,date: date);
       if (response['success'] == true) {
         _doctorOnboardList = response['data']['onboard_doctor'];
         _doctorVisitedList = response['data']['visited_doctor'];
@@ -23,12 +24,12 @@ class DoctorOnboardScreenController extends GetxController {
     }
   }
 
-  Future<void> initializeMethod() async {
+  Future<void> initializeMethod(date) async {
     _isProgress = true;
     update();
     try {
       await Future.wait([
-        doctorOnboard(),
+        doctorOnboard(date),
       ]);
     } catch (e) {
       throw Exception('$e');
@@ -39,7 +40,7 @@ class DoctorOnboardScreenController extends GetxController {
   }
 @override
   void onInit() {
-  initializeMethod();
+  initializeMethod(joinedDates);
     super.onInit();
   }
 }
