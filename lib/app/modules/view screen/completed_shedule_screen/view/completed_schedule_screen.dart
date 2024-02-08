@@ -16,7 +16,7 @@ class CompletedScheduleScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
-      appBar: buildFilterAppBars(
+      appBar: buildNavigateFilterAppBar(
           text: 'Completed Schedules',
           filterTap: () {
             Get.dialog(FilterScreenView(

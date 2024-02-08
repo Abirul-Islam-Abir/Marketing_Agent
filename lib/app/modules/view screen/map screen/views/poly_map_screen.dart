@@ -17,12 +17,12 @@ class MapScreen extends StatefulWidget {
 
   const MapScreen(
       {super.key,
-      required this.lat,
-      required this.lang,
-      required this.name,
-      required this.avatar,
-      required this.id,
-      required this.time});
+        required this.lat,
+        required this.lang,
+        required this.name,
+        required this.avatar,
+        required this.id,
+        required this.time});
 
   @override
   _MapScreenState createState() => _MapScreenState();
@@ -52,7 +52,7 @@ class _MapScreenState extends State<MapScreen> {
       final permissionStatus = await location.requestPermission();
       if (permissionStatus == PermissionStatus.granted) {
         locationSubscription = location.onLocationChanged.listen(
-          (LocationData currentLocation) {
+              (LocationData currentLocation) {
             setState(() {
               userLocation = LatLng(
                 currentLocation.latitude!,
@@ -100,77 +100,77 @@ class _MapScreenState extends State<MapScreen> {
     return SafeArea(
       child: Scaffold(
           body: Stack(
-        children: [
-          GoogleMap(
-            onTap: (v){
-              print(v);
-            },
-            initialCameraPosition: CameraPosition(
-                target: LatLng(widget.lat, widget.lang), zoom: 15),
-            myLocationEnabled: true,
-            tiltGesturesEnabled: true,
-            compassEnabled: true,
-            scrollGesturesEnabled: true,
-            zoomGesturesEnabled: true,
-            onMapCreated: _onMapCreated,
-            markers: Set<Marker>.of(markers.values),
-            polylines: Set<Polyline>.of(polylines.values),
-          ),
-          Positioned(
-            top: 10,
-            right: 50,
-            left: 50,
-            child: Align(
-              alignment: Alignment.center,
-              child: Padding(
-                padding:
+            children: [
+              GoogleMap(
+                onTap: (v){
+                  print(v);
+                },
+                initialCameraPosition: CameraPosition(
+                    target: LatLng(widget.lat, widget.lang), zoom: 15),
+                myLocationEnabled: true,
+                tiltGesturesEnabled: true,
+                compassEnabled: true,
+                scrollGesturesEnabled: true,
+                zoomGesturesEnabled: true,
+                onMapCreated: _onMapCreated,
+                markers: Set<Marker>.of(markers.values),
+                polylines: Set<Polyline>.of(polylines.values),
+              ),
+              Positioned(
+                top: 10,
+                right: 50,
+                left: 50,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 25),
-                child: Text(
-                  currentLocationName,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: Colors.black,
+                    child: Text(
+                      currentLocationName,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-          Positioned(
-            bottom: 10,
-            right: 10,
-            left: 10,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                UserCardLocation(
-                  title: widget.name,
-                  subtitle: widget.time,
-                  image: widget.avatar,
-                  sendTap: () async {
-                    _addMarker(
-                        LatLng(userLocation!.latitude, userLocation!.longitude),
-                        "destination",
-                        markerIcon);
-                    updateCurrentLocationName();
-                    await mapController
-                        .animateCamera(CameraUpdate.newCameraPosition(
-                      CameraPosition(
-                        bearing: 192.8334901395799,
-                        target: LatLng(
-                            userLocation!.latitude, userLocation!.longitude),
-                        tilt: 59.440717697143555,
-                        zoom: 17.00,
-                      ),
-                    ));
-                    _getPolyline();
-                  },
+              Positioned(
+                bottom: 10,
+                right: 10,
+                left: 10,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    UserCardLocation(
+                      title: widget.name,
+                      subtitle: widget.time,
+                      image: widget.avatar,
+                      sendTap: () async {
+                        _addMarker(
+                            LatLng(userLocation!.latitude, userLocation!.longitude),
+                            "destination",
+                            markerIcon);
+                        updateCurrentLocationName();
+                        await mapController
+                            .animateCamera(CameraUpdate.newCameraPosition(
+                          CameraPosition(
+                            bearing: 192.8334901395799,
+                            target: LatLng(
+                                userLocation!.latitude, userLocation!.longitude),
+                            tilt: 59.440717697143555,
+                            zoom: 17.00,
+                          ),
+                        ));
+                        _getPolyline();
+                      },
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-        ],
-      )),
+              ),
+            ],
+          )),
     );
   }
 
@@ -249,8 +249,8 @@ class _MapScreenState extends State<MapScreen> {
   _addMarker(LatLng position, String id, BitmapDescriptor descriptor) {
     MarkerId markerId = MarkerId(id);
     Marker marker =
-        Marker(
-          markerId: markerId, icon: descriptor, position: position,);
+    Marker(
+      markerId: markerId, icon: descriptor, position: position,);
     markers[markerId] = marker;
   }
 

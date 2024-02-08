@@ -123,9 +123,26 @@ AppBar pdfViewScreenAppbar({title, editTap}) {
   );
 }
 
-AppBar buildFilterAppBars({text, filterTap}) {
+AppBar buildNavigateFilterAppBar({text, filterTap}) {
   return AppBar(
     leading: const CustomBackButton(),
+    title: Text(
+      text,
+      style: const TextStyle(fontWeight: FontWeight.bold),
+    ),
+    actions: [
+      IconButton(
+        onPressed: filterTap,
+        icon: const Icon(
+          Icons.filter_alt_rounded,
+          color: Colors.white,
+        ),
+      )
+    ],
+  );
+}
+AppBar buildFilterAppBar({text, filterTap}) {
+  return AppBar(
     title: Text(
       text,
       style: const TextStyle(fontWeight: FontWeight.bold),

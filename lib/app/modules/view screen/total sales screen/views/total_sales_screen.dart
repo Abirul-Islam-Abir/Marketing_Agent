@@ -12,7 +12,7 @@ class TotalSalesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
-      appBar: buildFilterAppBars(
+      appBar: buildNavigateFilterAppBar(
           text: 'Total Sales',
           filterTap: () {
             Get.dialog(FilterScreenView(

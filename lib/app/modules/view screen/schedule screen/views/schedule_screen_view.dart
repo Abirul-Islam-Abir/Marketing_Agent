@@ -22,7 +22,7 @@ class ScheduleScreenView extends StatelessWidget {
         _bottomNavController.selectIndex(0);
       },
       child: Scaffold(
-        appBar: buildFilterAppBars(
+        appBar: buildFilterAppBar(
             text: 'Schedule',
             filterTap: () {
               Get.dialog(FilterScreenView(

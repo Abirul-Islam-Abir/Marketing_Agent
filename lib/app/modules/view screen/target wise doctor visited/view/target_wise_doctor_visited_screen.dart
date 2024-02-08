@@ -13,7 +13,7 @@ final _controller = Get.put(TargetWiseDoctorVisitedController());
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
-      appBar: buildFilterAppBars(text: ' Target Wise Doctor Visit',filterTap: (){
+      appBar: buildNavigateFilterAppBar(text: ' Target Wise Doctor Visit',filterTap: (){
         _controller.initializeMethod(selectedRangeDate);
       }),
       body:
