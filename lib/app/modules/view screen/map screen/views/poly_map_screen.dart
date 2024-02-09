@@ -17,12 +17,12 @@ class MapScreen extends StatefulWidget {
 
   const MapScreen(
       {super.key,
-        required this.lat,
-        required this.lang,
-        required this.name,
-        required this.avatar,
-        required this.id,
-        required this.time});
+      required this.lat,
+      required this.lang,
+      required this.name,
+      required this.avatar,
+      required this.id,
+      required this.time});
 
   @override
   _MapScreenState createState() => _MapScreenState();
@@ -52,19 +52,21 @@ class _MapScreenState extends State<MapScreen> {
       final permissionStatus = await location.requestPermission();
       if (permissionStatus == PermissionStatus.granted) {
         locationSubscription = location.onLocationChanged.listen(
-              (LocationData currentLocation) {
-            setState(() {
-              userLocation = LatLng(
-                currentLocation.latitude!,
-                currentLocation.longitude!,
-              );
-            });
+          (LocationData currentLocation) {
+            userLocation = LatLng(
+              currentLocation.latitude!,
+              currentLocation.longitude!,
+            );
+
+            if (mounted) {
+              setState(() {});
+            }
             storeLatAndLongRequest(
                 uid: widget.id,
                 completionLat: currentLocation.latitude.toString(),
                 token: token,
                 id: currentId,
-                completionLang:currentLocation.longitude.toString());
+                completionLang: currentLocation.longitude.toString());
           },
         );
       }
@@ -83,94 +85,96 @@ class _MapScreenState extends State<MapScreen> {
     getCurrentLocation();
     updateChamberLocationName();
   }
+
   BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
   void addCustomIcon() {
-    BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(), "assets/images/img_location_svgrepo_com.png")
+    BitmapDescriptor.fromAssetImage(const ImageConfiguration(),
+            "assets/images/img_location_svgrepo_com.png")
         .then(
-          (icon) {
+      (icon) {
         setState(() {
           markerIcon = icon;
         });
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
           body: Stack(
-            children: [
-              GoogleMap(
-                onTap: (v){
-                  print(v);
-                },
-                initialCameraPosition: CameraPosition(
-                    target: LatLng(widget.lat, widget.lang), zoom: 15),
-                myLocationEnabled: true,
-                tiltGesturesEnabled: true,
-                compassEnabled: true,
-                scrollGesturesEnabled: true,
-                zoomGesturesEnabled: true,
-                onMapCreated: _onMapCreated,
-                markers: Set<Marker>.of(markers.values),
-                polylines: Set<Polyline>.of(polylines.values),
-              ),
-              Positioned(
-                top: 10,
-                right: 50,
-                left: 50,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding:
+        children: [
+          GoogleMap(
+            onTap: (v) {
+              print(v);
+            },
+            initialCameraPosition: CameraPosition(
+                target: LatLng(widget.lat, widget.lang), zoom: 15),
+            myLocationEnabled: true,
+            tiltGesturesEnabled: true,
+            compassEnabled: true,
+            scrollGesturesEnabled: true,
+            zoomGesturesEnabled: true,
+            onMapCreated: _onMapCreated,
+            markers: Set<Marker>.of(markers.values),
+            polylines: Set<Polyline>.of(polylines.values),
+          ),
+          Positioned(
+            top: 10,
+            right: 50,
+            left: 50,
+            child: Align(
+              alignment: Alignment.center,
+              child: Padding(
+                padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 25),
-                    child: Text(
-                      currentLocationName,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                        color: Colors.black,
-                      ),
-                    ),
+                child: Text(
+                  currentLocationName,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                    color: Colors.black,
                   ),
                 ),
               ),
-              Positioned(
-                bottom: 10,
-                right: 10,
-                left: 10,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    UserCardLocation(
-                      title: widget.name,
-                      subtitle: widget.time,
-                      image: widget.avatar,
-                      sendTap: () async {
-                        _addMarker(
-                            LatLng(userLocation!.latitude, userLocation!.longitude),
-                            "destination",
-                            markerIcon);
-                        updateCurrentLocationName();
-                        await mapController
-                            .animateCamera(CameraUpdate.newCameraPosition(
-                          CameraPosition(
-                            bearing: 192.8334901395799,
-                            target: LatLng(
-                                userLocation!.latitude, userLocation!.longitude),
-                            tilt: 59.440717697143555,
-                            zoom: 17.00,
-                          ),
-                        ));
-                        _getPolyline();
-                      },
-                    ),
-                  ],
+            ),
+          ),
+          Positioned(
+            bottom: 10,
+            right: 10,
+            left: 10,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                UserCardLocation(
+                  title: widget.name,
+                  subtitle: widget.time,
+                  image: widget.avatar,
+                  sendTap: () async {
+                    _addMarker(
+                        LatLng(userLocation!.latitude, userLocation!.longitude),
+                        "destination",
+                        markerIcon);
+                    updateCurrentLocationName();
+                    await mapController
+                        .animateCamera(CameraUpdate.newCameraPosition(
+                      CameraPosition(
+                        bearing: 192.8334901395799,
+                        target: LatLng(
+                            userLocation!.latitude, userLocation!.longitude),
+                        tilt: 59.440717697143555,
+                        zoom: 17.00,
+                      ),
+                    ));
+                    _getPolyline();
+                  },
                 ),
-              ),
-            ],
-          )),
+              ],
+            ),
+          ),
+        ],
+      )),
     );
   }
 
@@ -178,7 +182,7 @@ class _MapScreenState extends State<MapScreen> {
     try {
       if (userLocation != null) {
         List<geocoding.Placemark> placemarks =
-        await geocoding.placemarkFromCoordinates(
+            await geocoding.placemarkFromCoordinates(
           userLocation!.latitude,
           userLocation!.longitude,
         );
@@ -188,10 +192,10 @@ class _MapScreenState extends State<MapScreen> {
           String name = placemark.name ?? '';
           String thoroughfare = placemark.thoroughfare ?? '';
           String locality = placemark.locality ?? '';
-
-          setState(() {
-            currentLocationName = '$name $thoroughfare, $locality';
-          });
+          currentLocationName = '$name $thoroughfare, $locality';
+          if (mounted) {
+            setState(() {});
+          }
         }
       }
     } catch (e) {
@@ -199,19 +203,17 @@ class _MapScreenState extends State<MapScreen> {
       print('Error fetching location details: $e');
       // Retry mechanism
       // Retry after a delay
-      Future.delayed(Duration(seconds: 5), () {
+      Future.delayed(const Duration(seconds: 5), () {
         updateCurrentLocationName();
       });
     }
   }
 
-
-
   Future<void> updateChamberLocationName() async {
     try {
       if (isValidCoordinates(widget.lat, widget.lang)) {
         List<geocoding.Placemark> placemarks =
-        await geocoding.placemarkFromCoordinates(
+            await geocoding.placemarkFromCoordinates(
           widget.lat,
           widget.lang,
         );
@@ -221,10 +223,10 @@ class _MapScreenState extends State<MapScreen> {
           String name = placemark.name ?? '';
           String thoroughfare = placemark.thoroughfare ?? '';
           String locality = placemark.locality ?? '';
-
-          setState(() {
-            currentLocationName = '$name $thoroughfare, $locality';
-          });
+          currentLocationName = '$name $thoroughfare, $locality';
+          if (mounted) {
+            setState(() {});
+          }
         }
       } else {
         // Handle invalid coordinates error
@@ -241,16 +243,17 @@ class _MapScreenState extends State<MapScreen> {
     return (lat >= -90 && lat <= 90) && (lng >= -180 && lng <= 180);
   }
 
-
   void _onMapCreated(GoogleMapController controller) async {
     mapController = controller;
   }
 
   _addMarker(LatLng position, String id, BitmapDescriptor descriptor) {
     MarkerId markerId = MarkerId(id);
-    Marker marker =
-    Marker(
-      markerId: markerId, icon: descriptor, position: position,);
+    Marker marker = Marker(
+      markerId: markerId,
+      icon: descriptor,
+      position: position,
+    );
     markers[markerId] = marker;
   }
 
@@ -259,7 +262,9 @@ class _MapScreenState extends State<MapScreen> {
     Polyline polyline = Polyline(
         polylineId: id, color: Colors.red, points: polylineCoordinates);
     polylines[id] = polyline;
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   _getPolyline() async {
@@ -291,6 +296,4 @@ class _MapScreenState extends State<MapScreen> {
       // Handle the error, display a message, or retry if needed
     }
   }
-
-
 }

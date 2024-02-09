@@ -21,46 +21,47 @@ class CompletedScheduleScreen extends StatelessWidget {
           filterTap: () {
             Get.dialog(FilterScreenView(
               onTap: () {
-                controller.initializeMethod(selectedRangeDate);
                 Get.back();
+                controller.initializeMethod(joinedSelectedDates);
+
               },
             ));
           }),
-      body: GetBuilder<CompleteScheduleScreenController>(builder: (controller) {
-        final data = controller.completedScheduleList;
-        return controller.isProgress
-            ? const SimmerScheduleCardList()
-            : controller.completedScheduleList.isEmpty
-                ? const EmptyListText()
-                : RefreshIndicator(
-                    onRefresh: () async {
-                      controller.initializeMethod(selectedDates);
-                    },
-                    child: SizedBox(
-                      height: double.infinity,
-                      child: ListView.builder(
-                        itemCount: data.length,
-                        itemBuilder: (context, index) {
-                          final name = data[index]['doctor_name'];
-                          final startDate = data[index]['meeting_start_date'];
-                          final avatar = data[index]['doctor_avatar'];
+      body: RefreshIndicator(
+        onRefresh: () async {
+          controller.initializeMethod(joinedDates);
+        },
+        child: GetBuilder<CompleteScheduleScreenController>(builder: (controller) {
+          final data = controller.completedScheduleList;
+          return controller.isProgress
+              ? const SimmerScheduleCardList()
+              : controller.completedScheduleList.isEmpty
+                  ? const EmptyListText()
+                  : SizedBox(
+                    height: double.infinity,
+                    child: ListView.builder(
+                      itemCount: data.length,
+                      itemBuilder: (context, index) {
+                        final name = data[index]['doctor_name'];
+                        final startDate = data[index]['meeting_start_date'];
+                        final avatar = data[index]['doctor_avatar'];
 
-                          final lat = data[index]['chamber_lat'];
-                          final lang = data[index]['chamber_long'];
-                          final id = data[index]['uid'];
-                          return CompletedScheduleCard(
-                              sendTap: () {
-                                Get.to(() => MapScreenNavigate(
-                                    lat: lat, long: lang, uid: id));
-                              },
-                              title: name,
-                              subtitle: startDate,
-                              image: avatar);
-                        },
-                      ),
+                        final lat = data[index]['chamber_lat'];
+                        final lang = data[index]['chamber_long'];
+                        final id = data[index]['uid'];
+                        return CompletedScheduleCard(
+                            sendTap: () {
+                              Get.to(() => MapScreenNavigate(
+                                  lat: lat, long: lang, uid: id));
+                            },
+                            title: name,
+                            subtitle: startDate,
+                            image: avatar);
+                      },
                     ),
                   );
-      }),
+        }),
+      ),
     );
   }
 }

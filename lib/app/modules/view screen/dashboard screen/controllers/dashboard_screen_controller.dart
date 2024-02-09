@@ -1,6 +1,6 @@
 import 'package:amin_agent/app/api%20services/push%20notification/notification_unread_count.dart';
 import 'package:amin_agent/app/data/const/export.dart';
-import 'package:intl/intl.dart';
+ import 'package:intl/intl.dart';
 import '../../../../api services/auth/log_out.dart';
 import '../../../../api services/dashboard/dashboard_data.dart';
 import '../../../../data/utils/method.dart';
@@ -24,14 +24,11 @@ class DashboardScreenController extends GetxController {
 
   List get pieChart => _pieChart;
   Map<String, double> convertedDataMap = {};
-
   String? userId;
   String? currentTargetId;
-
   int _selectedIndex = 0;
 
   int get selectedIndex => _selectedIndex;
-
 
   void selectItem(int index) {
     _selectedIndex = index;
@@ -51,9 +48,9 @@ class DashboardScreenController extends GetxController {
             response['data']['current_target']['target_id']);
         //When dashboard data calling after calling this method because userId not set before called this mehtod and showing empty list
         Get.put(ScheduleScreenController()).initializeMethod(joinedDates);
-        Get.put(ProfileScreenController()).completedSchedulePicture(joinedDates);
+        Get.put(ProfileScreenController())
+            .completedSchedulePicture(joinedDates);
         Get.put(FcmMessagingController()).getFcmTokenAndStoreDB();
-
         for (var agent in response['data']['pie_chart']) {
           convertedDataMap[agent['agent_name']] =
               agent['sell_amount'].toDouble();
@@ -62,19 +59,18 @@ class DashboardScreenController extends GetxController {
     }
   }
 
-  Future<void> notificationUnreadCount() async {
+  Future notificationUnreadCount() async {
     final token = await box.read(UserDataKey.tokenKey);
-
     if (token != null) {
       final response = await notificationUnreadCountRequest(token);
       if (response['success'] == true) {
-        _unreadNotification.clear();
         _unreadNotification = response['data'];
         update();
-
-      }
+       }
     }
   }
+
+
 
   Future<void> logout() async {
     box.erase();
@@ -107,7 +103,6 @@ class DashboardScreenController extends GetxController {
 
   @override
   void onInit() {
-    onDateChange(selectedDates);
     initializeMethod();
     super.onInit();
   }

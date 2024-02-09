@@ -24,7 +24,7 @@ class SalesTargetCard extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: isMe
-              ? AppColor.kGreenColor
+              ? AppColor.kOrangeColor.withOpacity(0.50)
               : AppColor.kWhiteColor.withOpacity(0.20),
           borderRadius: BorderRadius.circular(10),
         ),

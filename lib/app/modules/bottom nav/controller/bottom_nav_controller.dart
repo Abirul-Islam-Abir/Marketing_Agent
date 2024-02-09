@@ -1,3 +1,5 @@
+import 'package:amin_agent/app/data/utils/method.dart';
+
 import '../../../data/const/export.dart';
 
 class BottomNavController extends GetxController {
@@ -5,6 +7,11 @@ class BottomNavController extends GetxController {
 
   void selectIndex(index) {
     if (Get.find<ProfileScreenController>().userProfileList.isNotEmpty) {
+      if(selectedIndex != 1){
+        Get.find<ScheduleScreenController>().initializeMethod(joinedDates);
+        selectedIndex = index;
+        update();
+      }
       selectedIndex = index;
       update();
     }

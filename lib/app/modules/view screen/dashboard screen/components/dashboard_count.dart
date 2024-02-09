@@ -3,21 +3,21 @@ import '../../../../data/const/export.dart';
 class DashboardCount extends StatelessWidget {
   const DashboardCount(
       {super.key,
-      required this.totalCommissionTap,
-      required this.totalSalesTap,
+      required this.visitedTap,
+      required this.onboardTap,
       required this.doctorOnboard,
       required this.doctorOnboardCounts,
       required this.doctorVisited,
       required this.doctorVisitedCounts,
-      required this.totalCommissionOnTap,
-      required this.doctorVisitedTap,
+      required this.commissionTap,
+      required this.salesTap,
       required this.totalCommission,
       required this.totalSales,
       required this.totalCommissionCount, required this.totalSalesCounts});
-  final Function() totalCommissionTap,
-      totalSalesTap,
-      totalCommissionOnTap,
-      doctorVisitedTap;
+  final Function() visitedTap,
+      onboardTap,
+      commissionTap,
+      salesTap;
   final String doctorOnboard,
       doctorOnboardCounts,
       doctorVisited,
@@ -30,15 +30,15 @@ class DashboardCount extends StatelessWidget {
     return Column(
       children: [
         SmallDetailsDashboardCard(
-            totalCommissionTap: totalCommissionTap,
-            totalSalesTap: totalSalesTap,
+            totalCommissionTap: visitedTap,
+            totalSalesTap: onboardTap,
             totalCommissionTitle: doctorOnboard,
             totalCommissionCount: doctorOnboardCounts,
             totalSalesTitle: doctorVisited,
             totalSalesCount: doctorVisitedCounts),
         SmallDetailsDashboardCard(
-            totalCommissionTap: totalCommissionOnTap,
-            totalSalesTap: doctorVisitedTap,
+            totalCommissionTap: commissionTap,
+            totalSalesTap: salesTap,
             totalCommissionTitle: totalCommission,
             totalCommissionCount: totalCommissionCount,
             totalSalesTitle: totalSales,

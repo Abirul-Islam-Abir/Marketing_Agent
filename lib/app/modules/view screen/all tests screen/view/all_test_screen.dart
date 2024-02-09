@@ -15,37 +15,37 @@ class AllTestScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
       appBar: buildNavigateAppbar('Tests'),
-      body: GetBuilder<AllTestScreenController>(builder: (controller) {
-        final data = controller.allTestList;
-        return controller.isProgress
-            ? const SimmerScheduleCardList()
-            : data.isEmpty
-                ? const EmptyListText()
-                : RefreshIndicator(
-                    onRefresh: () async {
-                      controller.initializeMethod();
-                    },
-                    child: SizedBox(
-                      height: double.infinity,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: data.length,
-                        itemBuilder: (context, index) {
-                          final name = data[index]['test_name'];
-                          final progress = data[index]['progress'];
-                          final targetAmount = data[index]['target_amount'];
-                          final collectedAmount =
-                              data[index]['amount_collected'];
-                          return AllTestCard(
-                              text: name,
-                              progress: progress,
-                              amountCollected: targetAmount,
-                              targetAmount: collectedAmount);
-                        },
-                      ),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          controller.initializeMethod();
+        },
+        child: GetBuilder<AllTestScreenController>(builder: (controller) {
+          final data = controller.allTestList;
+          return controller.isProgress
+              ? const SimmerScheduleCardList()
+              : data.isEmpty
+                  ? const EmptyListText()
+                  : SizedBox(
+                    height: double.infinity,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: data.length,
+                      itemBuilder: (context, index) {
+                        final name = data[index]['test_name'];
+                        final progress = data[index]['progress'];
+                        final targetAmount = data[index]['target_amount'];
+                        final collectedAmount =
+                            data[index]['amount_collected'];
+                        return AllTestCard(
+                            text: name,
+                            progress: progress,
+                            amountCollected: targetAmount,
+                            targetAmount: collectedAmount);
+                      },
                     ),
                   );
-      }),
+        }),
+      ),
     );
   }
 }

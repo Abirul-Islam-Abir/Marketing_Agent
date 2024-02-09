@@ -4,6 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:intl/intl.dart';
 
 import '../../../data/const/export.dart';
+import '../../../data/utils/method.dart';
 import '../local notification/local_notification.dart';
 
 class FcmMessagingController extends GetxController {
@@ -16,22 +17,7 @@ class FcmMessagingController extends GetxController {
       'AAAAg55L9D8:APA91bEJzSxsFZ0cejUcpqoLGcOW1hKBPjqcE7a9VzUfGqdkQBZKbwyGyMug0p8eNdnKf30EW_WQI1DWMtpLcdPbSdEUGAO2CmT8zj2h9icM2Af7P5ovDus20-03TF-KtuqLUMNVtTeC';
 
   //This time using for schedule data calling when fcm push notification after calling date wise schedule
-  List<String> formattedDates = [];
-  List<DateTime?> selectedDates = [
-     DateTime(2024),
-    DateTime.now(),
 
-
-  ];
-  String? joinedDates; //using for date filter
-  void onDateChange(List<DateTime?> dates) {
-    selectedDates = List<DateTime?>.from(dates);
-    formattedDates = selectedDates
-        .map((date) => DateFormat('yyyy-MM-dd').format(date!))
-        .toList();
-    // Joining formatted dates with "/"
-    joinedDates = formattedDates.join('/');
-  }
 
   fcmPermissionRequest() async {
     //!Request here for fcm
@@ -57,7 +43,7 @@ class FcmMessagingController extends GetxController {
   onForegroundApp() async {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       if (message.notification != null) {
-        NotificationService().showNotify(message: message, payload: '');
+        NotificationService().showNotify(message: message, payload: 'badge');
         Get.find<NotificationScreenController>().initializeMethod(0);
         Get.find<ScheduleScreenController>().initializeMethod(joinedDates);
       }
@@ -67,7 +53,7 @@ class FcmMessagingController extends GetxController {
   Future<void> onOpenedApp() async {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       if (message.notification != null) {
-        NotificationService().showNotify(message: message, payload: '');
+        NotificationService().showNotify(message: message, payload: 'badge');
         Get.to(() => message.data['click_action']);
       }
     });

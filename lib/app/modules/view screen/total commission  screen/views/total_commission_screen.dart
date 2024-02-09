@@ -17,7 +17,7 @@ class TotalCommissionScreen extends StatelessWidget {
             Get.dialog(FilterScreenView(
               onTap: () {
                 Get.back();
-                _controller.initializeMethod(selectedRangeDate);
+                _controller.initializeMethod(joinedSelectedDates);
               },
             ));
           }),
@@ -42,8 +42,7 @@ class TotalCommissionScreen extends StatelessWidget {
                             target: commissionDataList[index].target,
                             date: '01/12/2024',
                             sendTap: () {
-                              Get.to(TotalCommissionDetailsScreen(
-                                  commissionDataList));
+
                             },
                           );
                         },

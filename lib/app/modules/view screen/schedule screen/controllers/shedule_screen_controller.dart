@@ -52,6 +52,7 @@ class ScheduleScreenController extends GetxController {
               completionLat: completionLat,
               path: compressedImage.path,
               uid: uid);
+          print(response);
           if (response['success'] = true) {
             completedLocationTaskDialog();
             Get.find<DashboardScreenController>().initializeMethod();

@@ -30,7 +30,7 @@ class ApiServices {
   static String updateNIDUrl = '$_baseUrl$_endPoint/update-nid';
   static String updatePassportUrl = '$_baseUrl$_endPoint/update-passport';
   static String dashboardDataUrl = '$_baseUrl$_endPoint/dashboard-data';
-  static String allTargetUrl = '$_baseUrl$_endPoint/targets';
+  static String allTargetUrl = '$_baseUrl$_endPoint/targets?page=';
   static String allAgentsUrl = '$_baseUrl$_endPoint';
   static String schedulesUrl = '$_baseUrl$_endPoint';
   static String completeScheduleUrl = '$_baseUrl$_endPoint';

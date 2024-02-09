@@ -3,7 +3,6 @@ import 'package:amin_agent/app/data/const/export.dart';
 
 import '../../../../data/utils/user_data_key.dart';
 
-
 class AllTargetsScreenController extends GetxController {
   final ScrollController scrollController = ScrollController();
   bool _isProgress = true;
@@ -12,46 +11,45 @@ class AllTargetsScreenController extends GetxController {
   bool get moreLoading => _moreLoading;
   List _allTargetDataList = [];
   List get allTargetDataList => _allTargetDataList;
-  int currentPage = 0;
-  Future<void> allTargetData() async {
+  int currentPage = 1;
+  Future<void> allTargetData(page) async {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
-      final response = await allTargetDataRequest(token);
-       if (response['success'] == true) {
-        _allTargetDataList = response['data']['targets'];
+      final response = await allTargetDataRequest(token: token, page: page);
+      print(response);
+      if (response['success'] == true) {
+        _allTargetDataList = allTargetDataList + response['data']['targets'];
       }
     }
   }
 
-  Future<void> initializeMethod() async {
+  Future<void> initializeMethod(page) async {
     _isProgress = true;
+    _moreLoading = true;
     update();
     try {
       await Future.wait([
-        allTargetData(),
+        allTargetData(page),
       ]);
     } catch (e) {
       throw Exception('$e');
     } finally {
       _isProgress = false;
+      _moreLoading = false;
       update();
     }
   }
 
-
-@override
+  @override
   void onInit() {
- /* scrollController.addListener(() {
-    if(scrollController.position.pixels == scrollController.position.maxScrollExtent){
-      _moreLoading = true;
-      update();
-      currentPage++;
-      //initializeMethod(currentPage);
-      _isProgress = false;
-      update();
-    }
-  });*/
-  initializeMethod();
+    scrollController.addListener(() {
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
+        currentPage++;
+        initializeMethod(currentPage);
+      }
+    });
+    initializeMethod(currentPage);
     super.onInit();
   }
 }

@@ -12,11 +12,11 @@ class AllTargetsProgressCard extends StatelessWidget {
       required this.progress,
       required this.isCurrent,
       required this.doctorTap,
-      required this.agentTap, required this.testTap});
+      required this.agentTap, required this.testTap, required this.commissionTap, required this.salesTap});
   final String text, targetAmount, amountCollected;
   final int agentsCount;
   final String progress;
-  final Function() doctorTap, agentTap,testTap;
+  final Function() doctorTap, agentTap,testTap,commissionTap,salesTap;
   final bool isCurrent;
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class AllTargetsProgressCard extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: isCurrent
-              ? AppColor.kGreenColor
+              ? AppColor.kOrangeColor.withOpacity(0.50)
               : AppColor.kWhiteColor.withOpacity(0.20),
           borderRadius: BorderRadius.circular(10),
         ),
@@ -136,7 +136,7 @@ class AllTargetsProgressCard extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: CircleAvatar(
                           radius: 18,
-                          backgroundColor: AppColor.kPrimaryColor,
+                          backgroundColor: AppColor.kYellowColor,
                           child: SvgPicture.asset(
                              AppImages.doctorSvg)),
                     ),
@@ -164,7 +164,7 @@ class AllTargetsProgressCard extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: CircleAvatar(
                           radius: 18,
-                          backgroundColor: AppColor.kPrimaryColor,
+                          backgroundColor: AppColor.kWhiteColor,
                           child: SvgPicture.asset(
                               AppImages.testSvg)),
                     ),
@@ -173,14 +173,27 @@ class AllTargetsProgressCard extends StatelessWidget {
                     width: 10,
                   ),
                   InkWell(
-                    onTap: agentTap,
+                    onTap: commissionTap,
                     child: CircleAvatar(
                         radius: 18,
-                        backgroundColor: AppColor.kPrimaryColor,
+                        backgroundColor: AppColor.kWhiteColor,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: SvgPicture.asset(
-                              'assets/svg/agent-seller-svgrepo-com.svg'),
+                              AppImages.moneySvg),
+                        )),
+                  ), const SizedBox(
+                    width: 10,
+                  ),
+                  InkWell(
+                    onTap: salesTap,
+                    child: CircleAvatar(
+                        radius: 18,
+                        backgroundColor: AppColor.kOrangeColor,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SvgPicture.asset(
+                              AppImages.salesSvg),
                         )),
                   ),
                 ],

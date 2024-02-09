@@ -37,10 +37,10 @@ class NotificationService {
       message.notification!.android!.smallIcon ?? ' @mipmap/ic_launcher',
       'largeIcon',
     );
-    /* final String bigPicturePath = await _downloadAndSaveFile(
-      message.notification!.android!.imageUrl??'@mipmap/ic_launcher',
+     final String bigPicturePath = await _downloadAndSaveFile(
+      message.notification!.android!.smallIcon??'@mipmap/ic_launcher',
       'bigPicture',
-    );*/
+    );
 
     await flutterLocalNotificationsPlugin.show(
       0,
@@ -55,9 +55,9 @@ class NotificationService {
           ticker: 'ticker',
           largeIcon: FilePathAndroidBitmap(largeIconPath),
           channelDescription: 'big text channel description',
-          /*styleInformation: BigPictureStyleInformation(
+          styleInformation: BigPictureStyleInformation(
             FilePathAndroidBitmap(bigPicturePath),
-          ),*/
+          ),
         ),
       ),
       payload: payload,

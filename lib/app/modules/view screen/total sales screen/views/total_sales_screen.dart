@@ -17,7 +17,8 @@ class TotalSalesScreen extends StatelessWidget {
           filterTap: () {
             Get.dialog(FilterScreenView(
               onTap: () {
-                _controller.initializeMethod(selectedRangeDate);
+                Get.back();
+                _controller.initializeMethod(joinedSelectedDates);
               },
             ));
           }),

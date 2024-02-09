@@ -27,17 +27,16 @@ class MapScreenViewState extends State<MapScreenView> {
   );
 
   Future<void> getCurrentLocation() async {
-
+    Future.delayed(Duration(seconds: 5)).then((value) => updateLocation());
     try {
       final permissionStatus = await location.requestPermission();
       if (permissionStatus == PermissionStatus.granted) {
         location.onLocationChanged.listen((LocationData currentLocation) {
-          setState(() {
-            userLocation =
-                LatLng(currentLocation.latitude!, currentLocation.longitude!);
-            updateLocation();
-
-          });
+          userLocation =
+              LatLng(currentLocation.latitude!, currentLocation.longitude!);
+          if (mounted) {
+            setState(() {});
+          }
 
           updateCurrentLocationName();
         });
@@ -54,10 +53,11 @@ class MapScreenViewState extends State<MapScreenView> {
   Future<void> updateLocation() async {
     final GoogleMapController controller = await _controller.future;
     if (userLocation != null) {
-      setState(() {
-        polylinePoints
-            .add(LatLng(userLocation!.latitude, userLocation!.longitude));
-      });
+      polylinePoints
+          .add(LatLng(userLocation!.latitude, userLocation!.longitude));
+      if (mounted) {
+        setState(() {});
+      }
       addMarkerPosition();
       await controller.animateCamera(CameraUpdate.newCameraPosition(
         CameraPosition(
@@ -85,9 +85,10 @@ class MapScreenViewState extends State<MapScreenView> {
           String thoroughfare = placemark.thoroughfare ?? '';
           String locality = placemark.locality ?? '';
 
-          setState(() {
-            currentLocationName = '$name $thoroughfare, $locality';
-          });
+          currentLocationName = '$name $thoroughfare, $locality';
+          if (mounted) {
+            setState(() {});
+          }
         }
       }
     } catch (e) {
@@ -107,7 +108,11 @@ class MapScreenViewState extends State<MapScreenView> {
       ),
     );
     markers.add(marker);
-    setState(() {});
+    if(mounted){
+      setState(() {
+
+      });
+    }
   }
 
   @override

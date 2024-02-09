@@ -30,8 +30,8 @@ class FilterScreenController extends GetxController {
         .map((date) => DateFormat('yyyy-MM-dd').format(date!))
         .toList();
     // Joining formatted dates with "/"
-    joinedDates = formattedDates.join('/');
-    print(joinedDates);
+    joinedSelectedDates = formattedDates.join('/');
+    print(joinedSelectedDates);
   }
 
   void selectedChangeIndex(index) {
@@ -48,6 +48,6 @@ class FilterScreenController extends GetxController {
   }
 
   void setCategory() {
-    print(joinedDates); // Output: 2024-02-05/2024-02-07
+    print(joinedSelectedDates); // Output: 2024-02-05/2024-02-07
   }
 }

@@ -6,6 +6,7 @@ import '../../../../data/utils/store_data.dart';
 import '../../../../data/utils/user_data_key.dart';
 
 class TotalSalesScreenController extends GetxController {
+  final id = Get.arguments;
   bool _isProgress = false;
   bool get isProgress => _isProgress;
   List _salesAndCommissionList = [];
@@ -13,7 +14,6 @@ class TotalSalesScreenController extends GetxController {
 
   Future<void> salesAndCommission(date) async {
     final token = await box.read(UserDataKey.tokenKey);
-    final id = await box.read(UserDataKey.currentTargetIdKey);
     if (token != null ) {
       final response = await salesAndCommissionRequest(token: token,date:date, id: id);
       print(response);

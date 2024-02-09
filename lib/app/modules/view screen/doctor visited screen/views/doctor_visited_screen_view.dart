@@ -17,37 +17,37 @@ class DoctorVisitedScreenView extends StatelessWidget {
             Get.dialog(FilterScreenView(
               onTap: () {
                 Get.back();
-                controller.initializeMethod(selectedRangeDate);
+                controller.initializeMethod(joinedSelectedDates);
               },
             ));
           }),
-      body: GetBuilder<DoctorOnboardScreenController>(builder: (controller) {
-        final data = controller.doctorVisitedList;
-        return controller.isProgress
-            ? const ShimmerTargetList()
-            : data.isEmpty
-                ? const EmptyListText()
-                : RefreshIndicator(
-                    onRefresh: () async {
-                      controller.initializeMethod(joinedDates);
-                    },
-                    child: SizedBox(
-                      height: double.infinity,
-                      child: ListView.builder(
-                        itemCount: data.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          final name = data[index]['doctor_name'];
-                          final date = data[index]['completed_date'];
-                          return DoctorOnboardCard(
-                            location: name,
-                            date: date,
-                          );
-                        },
-                      ),
+      body:  RefreshIndicator(
+        onRefresh: () async {
+          controller.initializeMethod(joinedDates);
+        },
+        child: GetBuilder<DoctorOnboardScreenController>(builder: (controller) {
+          final data = controller.doctorVisitedList;
+          return controller.isProgress
+              ? const ShimmerTargetList()
+              : data.isEmpty
+                  ? const EmptyListText()
+                  : SizedBox(
+                    height: double.infinity,
+                    child: ListView.builder(
+                      itemCount: data.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        final name = data[index]['doctor_name'];
+                        final date = data[index]['completed_date'];
+                        return DoctorOnboardCard(
+                          location: name,
+                          date: date,
+                        );
+                      },
                     ),
                   );
-      }),
+        }),
+      ),
     );
   }
 }

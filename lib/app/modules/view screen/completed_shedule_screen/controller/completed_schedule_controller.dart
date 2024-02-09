@@ -17,7 +17,6 @@ class CompleteScheduleScreenController extends GetxController {
     if (token != null && targetId != null) {
       final response = await completedScheduleRequest(token:token,id: targetId,date: date);
       if (response['success'] == true) {
-
         _completedScheduleList = response['data'];
       }
     }
@@ -40,7 +39,7 @@ class CompleteScheduleScreenController extends GetxController {
 
   @override
   void onInit() {
-    initializeMethod(selectedDates);
+    initializeMethod(joinedDates);
     super.onInit();
   }
 }

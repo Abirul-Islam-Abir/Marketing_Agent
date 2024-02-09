@@ -83,19 +83,26 @@ class CustomDrawer extends StatelessWidget {
                     CustomListTile(
                         selected: index,
                         index: 2,
-                        name: 'Doctor Total sales',
-                        onTap: () {
+                        name: 'Total sales',
+                        onTap: () async {
                           _controller.selectItem(2);
-
-                          Get.toNamed(RouteName.totalSalesScreen);
+                          final id =
+                              await box.read(UserDataKey.currentTargetIdKey);
+                          if (id != null) {
+                            Get.toNamed(RouteName.totalSalesScreen,arguments: id);
+                          }
                         }),
                     CustomListTile(
                         selected: index,
                         index: 3,
                         name: 'Total commission',
-                        onTap: () {
+                        onTap: () async {
                           _controller.selectItem(3);
-                          Get.toNamed(RouteName.totalCommissionScreen);
+                          final id =
+                              await box.read(UserDataKey.currentTargetIdKey);
+                          if (id != null) {
+                            Get.toNamed(RouteName.totalCommissionScreen,arguments: id);
+                          }
                         }),
                     CustomListTile(
                         selected: index,

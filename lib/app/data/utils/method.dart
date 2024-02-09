@@ -13,6 +13,7 @@ List<DateTime?> selectedDates = [
 ];
 List<DateTime?> selectedRangeDate = [DateTime.now()];
 String? joinedDates; //using for date filter
+String? joinedSelectedDates; //using for date filter
 void onDateChange(List<DateTime?> dates) {
   selectedDates = List<DateTime?>.from(dates);
   formattedDates = selectedDates
@@ -20,6 +21,7 @@ void onDateChange(List<DateTime?> dates) {
       .toList();
   // Joining formatted dates with "/"
   joinedDates = formattedDates.join('/');
+  print(joinedDates);
 }
 
 Future<PickedFile> compressImage(String imagePath) async {

@@ -7,27 +7,30 @@ import '../../../widgets/empty_list_text.dart';
 import '../../map screen/views/poly_map_screen.dart';
 
 class TargetWiseDoctorVisitedScreen extends StatelessWidget {
-    TargetWiseDoctorVisitedScreen({super.key});
-final _controller = Get.put(TargetWiseDoctorVisitedController());
+  TargetWiseDoctorVisitedScreen({super.key});
+  final _controller = Get.put(TargetWiseDoctorVisitedController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
-      appBar: buildNavigateFilterAppBar(text: ' Target Wise Doctor Visit',filterTap: (){
-        _controller.initializeMethod(selectedRangeDate);
-      }),
-      body:
-          GetBuilder<TargetWiseDoctorVisitedController>(builder: (controller) {
-        final data = controller.targetWiseDoctorVisitedList;
-        return controller.isProgress
-            ? const ShimmerTargetList()
-            : data.isEmpty
-                ? const EmptyListText()
-                : RefreshIndicator(
-                    onRefresh: () async {
-                      controller.initializeMethod(joinedDates);
-                    },
-                    child: SizedBox(
+      appBar: buildNavigateFilterAppBar(
+          text: 'Doctor Visited',
+          filterTap: () {
+            Get.back();
+            _controller.initializeMethod(joinedSelectedDates);
+          }),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          _controller.initializeMethod(joinedDates);
+        },
+        child: GetBuilder<TargetWiseDoctorVisitedController>(
+            builder: (controller) {
+          final data = controller.targetWiseDoctorVisitedList;
+          return controller.isProgress
+              ? const ShimmerTargetList()
+              : data.isEmpty
+                  ? const EmptyListText()
+                  : SizedBox(
                       height: double.infinity,
                       child: ListView.builder(
                         itemCount: data.length,
@@ -55,9 +58,9 @@ final _controller = Get.put(TargetWiseDoctorVisitedController());
                           );
                         },
                       ),
-                    ),
-                  );
-      }),
+                    );
+        }),
+      ),
     );
   }
 }

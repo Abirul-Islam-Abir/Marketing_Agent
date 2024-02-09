@@ -1,4 +1,5 @@
 import '../../../../data/const/export.dart';
+import '../../../../data/utils/user_data_key.dart';
 import '../../../widgets/empty_list_text.dart';
 import '../components/all_targets_progress_card.dart';
 
@@ -15,26 +16,35 @@ class AllTargetsScreenView extends StatelessWidget {
       body: GetBuilder<AllTargetsScreenController>(
         builder: (controller) {
           final data = controller.allTargetDataList;
-          return controller.isProgress
-              ? const ShimmerTargetList()
-              : data.isEmpty
-                  ? const EmptyListText()
-                  : RefreshIndicator(
-                      onRefresh: () async {
-                        controller.initializeMethod();
-                      },
+          return data.isEmpty
+              ?   Container()
+              : Column(
+                  children: [
+                    Expanded(
                       child: ListView.builder(
+                        controller: controller.scrollController,
                         itemCount: data.length,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           final id = data[index]['target_id'];
-                          final isCurrent = data[index]['is_current'];
-                          final title = data[index]['title'];
-                          final agentCount = data[index]['agents_count'];
-                          final targetAmount = data[index]['target_amount'];
+                          final isCurrent =
+                              data[index]['is_current'] ?? false;
+                          final title = data[index]['title'] ?? '';
+                          final agentCount = data[index]['agents_count'] ?? 0;
+                          final targetAmount =
+                              data[index]['target_amount'] ?? '';
+                          final progress = data[index]['progress'] ?? '0.0';
                           final collectedAmount =
-                              data[index]['amount_collected'];
+                              data[index]['amount_collected'] ?? '';
                           return AllTargetsProgressCard(
+                              commissionTap: () async {
+                                Get.toNamed(RouteName.totalCommissionScreen,
+                                    arguments: id);
+                              },
+                              salesTap: () {
+                                Get.toNamed(RouteName.totalSalesScreen,
+                                    arguments: id);
+                              },
                               testTap: () {
                                 Get.toNamed(RouteName.allTestScreen,
                                     arguments: id);
@@ -50,13 +60,18 @@ class AllTargetsScreenView extends StatelessWidget {
                               },
                               isCurrent: isCurrent,
                               text: title,
-                              progress: '0.5',
+                              progress: progress,
                               agentsCount: agentCount,
                               amountCollected: targetAmount,
                               targetAmount: collectedAmount);
                         },
                       ),
-                    );
+                    ),
+                    controller.moreLoading
+                        ? const Center(child: CircularProgressIndicator())
+                        : Container(),
+                  ],
+                );
         },
       ),
     );
