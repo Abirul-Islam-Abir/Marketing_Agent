@@ -50,17 +50,16 @@ class CompletedScheduleScreen extends StatelessWidget {
                         final lang = data[index]['chamber_long'];
                         final id = data[index]['uid'];
                          return CompletedScheduleCard(
-                            sendTap: () {
-                              Get.to(() => MapScreen(
-                                  time: date,
-                                  id: id,
-                                 // lat: 23.89174427074331,
-                                  lat: double.parse(lat),
-                                  lang: double.parse(lang),
-                                  avatar: avatar,
-                               //   lang: 90.39004507490078,
-                                  name: name));
-                            },
+                             sendTap: () {
+                               Get.toNamed(RouteName.defaultMapScreen, arguments: {
+                                 'lat': 23.89664433606447 ,
+                                 'lang':  90.35888393304744,
+                                 'name': name,
+                                 'avatar': avatar,
+                                 'id': id,
+                                 'time': date
+                               });
+                             },
                             title: name,
                             subtitle: date,
                             image: avatar);

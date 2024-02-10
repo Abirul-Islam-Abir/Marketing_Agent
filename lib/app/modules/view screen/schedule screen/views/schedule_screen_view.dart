@@ -65,7 +65,6 @@ class ScheduleScreenView extends StatelessWidget {
                         final id = data[index]['uid'];
                         final date = '$formattedStartTime - $formattedEndTime';
                         return ScheduleCard(
-
                           sendTap: () {
                             Get.toNamed(RouteName.defaultMapScreen, arguments: {
                               'lat': 23.89664433606447 ,
@@ -88,7 +87,7 @@ class ScheduleScreenView extends StatelessWidget {
                               addCameraPhotoDialog(
                                 cameraTap: () {
                                   controller.getImage(
-                                      imageSource: ImageSource.camera,
+                                      imageSource: ImageSource.gallery,
                                       completionLat: lat,
                                       completionLang: lang,
                                       uid: id,

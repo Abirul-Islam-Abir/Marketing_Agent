@@ -5,6 +5,6 @@ class AppInfo {
   static String developerNumber = '+8801722734871';
   static String developerFacebookUrl = 'https://www.facebook.com/FlutterDevAbir/';
   static String developerPortfolio = 'https://abirul-islam-abir.github.io/';
-  static String appVersion = '1.0.0+1';
+  static String appVersion = '1.0.2';
   AppInfo._();
 }
