@@ -1,7 +1,10 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../../../api services/shedules/store_lat_and_long.dart';
 import '../../../../data/const/export.dart';
 import 'package:geocoding/geocoding.dart' as geocoding;
+
+import '../../../../data/utils/user_data_key.dart';
 
 class MapScreenView extends StatefulWidget {
   const MapScreenView({super.key});
@@ -27,6 +30,9 @@ class MapScreenViewState extends State<MapScreenView> {
   );
 
   Future<void> getCurrentLocation() async {
+
+    final token = await box.read(UserDataKey.tokenKey);
+    final currentId = box.read(UserDataKey.currentTargetIdKey);
     Future.delayed(Duration(seconds: 5)).then((value) => updateLocation());
     try {
       final permissionStatus = await location.requestPermission();

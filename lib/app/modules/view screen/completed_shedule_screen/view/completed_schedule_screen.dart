@@ -5,7 +5,7 @@ import 'package:amin_agent/app/modules/widgets/empty_list_text.dart';
 import '../../../../data/const/export.dart';
 import '../../../../data/utils/method.dart';
 import '../../../widgets/shimmer_schedule_card_list.dart';
-import '../../map screen/views/map_screen_navigate.dart';
+ import '../../map screen/views/poly_map_screen.dart';
 
 class CompletedScheduleScreen extends StatelessWidget {
   CompletedScheduleScreen({super.key});
@@ -42,20 +42,25 @@ class CompletedScheduleScreen extends StatelessWidget {
                     child: ListView.builder(
                       itemCount: data.length,
                       itemBuilder: (context, index) {
-                        final name = data[index]['doctor_name'];
-                        final startDate = data[index]['meeting_start_date'];
-                        final avatar = data[index]['doctor_avatar'];
 
+                        final name = data[index]['doctor_name'];
+                        final date = data[index]['meeting_start_date'];
+                        final avatar = data[index]['doctor_avatar'];
                         final lat = data[index]['chamber_lat'];
                         final lang = data[index]['chamber_long'];
                         final id = data[index]['uid'];
-                        return CompletedScheduleCard(
+                         return CompletedScheduleCard(
                             sendTap: () {
-                              Get.to(() => MapScreenNavigate(
-                                  lat: lat, long: lang, uid: id));
+                              Get.to(() => MapScreen(
+                                  time: date,
+                                  id: id,
+                                  lat: 23.89174427074331,
+                                  avatar: avatar,
+                                  lang: 90.39004507490078,
+                                  name: name));
                             },
                             title: name,
-                            subtitle: startDate,
+                            subtitle: date,
                             image: avatar);
                       },
                     ),

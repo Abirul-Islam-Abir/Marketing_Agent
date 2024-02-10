@@ -8,18 +8,22 @@ import '../../../../data/utils/user_data_key.dart';
 class TargetWiseDoctorVisitedController extends GetxController {
   final id = Get.arguments;
   bool _isProgress = false;
+
   bool get isProgress => _isProgress;
 
-
   List _targetWiseDoctorVisitedList = [];
+
   List get targetWiseDoctorVisitedList => _targetWiseDoctorVisitedList;
+
   Future targetWiseDoctorVisited(date) async {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
-      final response = await targetWiseDoctorRequest(token:token,id: id,date: date);
+      final response =
+          await targetWiseDoctorRequest(token: token, id: id, date: date);
+      print(response);
       if (response['success'] == true) {
         _targetWiseDoctorVisitedList = response['data'];
-       }
+      }
     }
   }
 
@@ -37,6 +41,7 @@ class TargetWiseDoctorVisitedController extends GetxController {
       update();
     }
   }
+
   @override
   void onInit() {
     initializeMethod(joinedDates);

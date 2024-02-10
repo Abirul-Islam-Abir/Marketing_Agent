@@ -3,6 +3,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../data/const/export.dart';
+import '../../map screen/views/poly_default_map.dart';
 import '../../map screen/views/poly_map_screen.dart';
 import '../components/schedule_card.dart';
 
@@ -20,7 +21,9 @@ class ScheduleScreenView extends StatelessWidget {
       onPopInvoked: (didPop) {
         _bottomNavController.selectIndex(0);
       },
+
       child: Scaffold(
+        backgroundColor: AppColor.kSecondaryColor,
         appBar: buildFilterAppBar(
             text: 'Schedule',
             filterTap: () {
@@ -64,6 +67,7 @@ class ScheduleScreenView extends StatelessWidget {
                       final date = '$formattedStartTime - $formattedEndTime';
                       return ScheduleCard(
                         sendTap: () {
+
                           Get.to(() => MapScreen(
                               time: date,
                               id: id,

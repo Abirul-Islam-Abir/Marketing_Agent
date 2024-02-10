@@ -31,12 +31,14 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
 
-/*  double _originLatitude = 23.8956812, _originLongitude = 90.3732179;
-  double _destLatitude = 23.8737067, _destLongitude = 90.3628324;*/
+  double _originLatitude = 23.8956812, _originLongitude = 90.3732179;
+  double _destLatitude = 23.8737067, _destLongitude = 90.3628324;
+
   /* double _originLatitude = 6.5212402, _originLongitude = 3.3679965;
   double _destLatitude = 6.849660, _destLongitude = 3.648190;*/
   Map<MarkerId, Marker> markers = {};
   Map<PolylineId, Polyline> polylines = {};
+
   List<LatLng> polylineCoordinates = [];
   PolylinePoints polylinePoints = PolylinePoints();
   String googleAPiKey = GoogleMapKey.AndroidMapKey;
@@ -58,15 +60,16 @@ class _MapScreenState extends State<MapScreen> {
               currentLocation.longitude!,
             );
 
-            if (mounted) {
-              setState(() {});
-            }
             storeLatAndLongRequest(
+                //     uid: '1d5604ae-c2d1-34a3-8ca2-b0f50f104ee6',
                 uid: widget.id,
                 completionLat: currentLocation.latitude.toString(),
                 token: token,
                 id: currentId,
                 completionLang: currentLocation.longitude.toString());
+            if (mounted) {
+              setState(() {});
+            }
           },
         );
       }
@@ -82,11 +85,14 @@ class _MapScreenState extends State<MapScreen> {
     super.initState();
     _addMarker(LatLng(widget.lat, widget.lang), "origin",
         BitmapDescriptor.defaultMarker);
+    polylineCoordinates.add(LatLng(widget.lat, widget.lang));
+
     getCurrentLocation();
     updateChamberLocationName();
   }
 
   BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
+
   void addCustomIcon() {
     BitmapDescriptor.fromAssetImage(const ImageConfiguration(),
             "assets/images/img_location_svgrepo_com.png")
@@ -118,7 +124,14 @@ class _MapScreenState extends State<MapScreen> {
             zoomGesturesEnabled: true,
             onMapCreated: _onMapCreated,
             markers: Set<Marker>.of(markers.values),
-            polylines: Set<Polyline>.of(polylines.values),
+            polylines: {
+              Polyline(
+                polylineId: PolylineId("tracking"),
+                color: Colors.blue,
+                points: polylineCoordinates,
+                width: 5,
+              )
+            },
           ),
           Positioned(
             top: 10,
@@ -167,7 +180,8 @@ class _MapScreenState extends State<MapScreen> {
                         zoom: 17.00,
                       ),
                     ));
-                    _getPolyline();
+                    polylineCoordinates.add(
+                        LatLng(userLocation!.latitude, userLocation!.latitude));
                   },
                 ),
               ],
@@ -285,8 +299,8 @@ class _MapScreenState extends State<MapScreen> {
       if (result.points.isNotEmpty) {
         for (var point in result.points) {
           polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+          _addPolyLine();
         }
-        _addPolyLine();
       } else {
         print('No route found between the specified points');
         // Display a user-friendly message or take appropriate action

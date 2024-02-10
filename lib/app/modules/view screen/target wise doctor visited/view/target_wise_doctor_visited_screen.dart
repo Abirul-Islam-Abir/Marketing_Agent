@@ -4,6 +4,7 @@ import 'package:amin_agent/app/modules/view%20screen/completed_shedule_screen/co
 import 'package:amin_agent/app/modules/view%20screen/target%20wise%20doctor%20visited/controller/target_wise_doctor_visited_controller.dart';
 
 import '../../../widgets/empty_list_text.dart';
+import '../../map screen/views/poly_default_map.dart';
 import '../../map screen/views/poly_map_screen.dart';
 
 class TargetWiseDoctorVisitedScreen extends StatelessWidget {
@@ -36,18 +37,18 @@ class TargetWiseDoctorVisitedScreen extends StatelessWidget {
                         itemCount: data.length,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          final name = data[index]['doctor_name'];
-                          final date = data[index]['completed_date'];
-                          final avatar = data[index]['doctor_avatar'];
-                          final lat = data[index]['chamber_lat'];
-                          final lang = data[index]['chamber_long'];
+                          final name = data[index]['doctor_name']??'';
+                          final date = data[index]['completed_date']??'';
+                          final avatar = data[index]['doctor_avatar']??'';
+                          final lat = data[index]['chamber_lat']??'';
+                          final lang = data[index]['chamber_long']??'';
                           final id = controller.id;
                           return CompletedScheduleCard(
                             image: avatar,
                             subtitle: date,
                             title: name,
                             sendTap: () {
-                              Get.to(() => MapScreen(
+                              Get.to(() => MapDefault(
                                   id: id,
                                   time: date,
                                   name: name,

@@ -1,31 +1,43 @@
+import 'package:amin_agent/app/data/const/export.dart';
 import 'package:flutter/material.dart';
 
 class PictureGridCard extends StatelessWidget {
   const PictureGridCard({
     super.key,
     this.image,
-    this.name,
+    this.name, this.time, this.date,
   });
 
-  final String? image, name;
+  final String? image, name,time,date;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Hero(
-        tag: '$image',
-        child: Container(
-          height: 100,
-          width: 100,alignment: Alignment.topLeft,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(
-                  image!,
-                ),
+    return Card(
+      child: Center(
+        child: Stack(
+          children: [
+            Container(
+              height: 150,
+              width: 150,alignment: Alignment.topLeft,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                      image!,
+                    ),
+                  ),
+                  borderRadius: BorderRadius.circular(10)),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(time!,style: TextStyle(fontWeight: FontWeight.bold,color: AppColor.kBlueColor),),
+                  Text(date!,style: TextStyle(fontWeight: FontWeight.bold,color: AppColor.kBlueColor),),
+                ],
               ),
-              borderRadius: BorderRadius.circular(20)),
+            ),
+          ],
         ),
       ),
     );
