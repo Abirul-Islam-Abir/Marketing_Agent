@@ -4,8 +4,7 @@ import 'package:amin_agent/app/modules/view%20screen/completed_shedule_screen/co
 import 'package:amin_agent/app/modules/view%20screen/target%20wise%20doctor%20visited/controller/target_wise_doctor_visited_controller.dart';
 
 import '../../../widgets/empty_list_text.dart';
-import '../../map screen/views/poly_default_map.dart';
-import '../../map screen/views/poly_map_screen.dart';
+ import '../../map screen/views/poly_map_screen.dart';
 
 class TargetWiseDoctorVisitedScreen extends StatelessWidget {
   TargetWiseDoctorVisitedScreen({super.key});
@@ -48,12 +47,12 @@ class TargetWiseDoctorVisitedScreen extends StatelessWidget {
                             subtitle: date,
                             title: name,
                             sendTap: () {
-                              Get.to(() => MapDefault(
+                              Get.to(() => MapScreen(
                                   id: id,
                                   time: date,
                                   name: name,
-                                  lang: lang,
-                                  lat: lat,
+                                  lang: double.parse(lang),
+                                  lat: double.parse(lat),
                                   avatar: avatar));
                             },
                           );

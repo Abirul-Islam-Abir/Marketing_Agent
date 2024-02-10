@@ -25,4 +25,5 @@ abstract class RouteName {
   static const allTestScreen = '/all-test-screen';
   static const completedScheduleScreen = '/completed-schedule-screen';
   static const targetWiseDoctorVisitedScreen = '/target-visited-doctor-screen';
+  static const defaultMapScreen = '/default-map-screen';
 }

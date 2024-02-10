@@ -112,6 +112,8 @@ class _MapScreenState extends State<MapScreen> {
           body: Stack(
         children: [
           GoogleMap(
+            mapToolbarEnabled: false,
+
             onTap: (v) {
               print(v);
             },
@@ -122,16 +124,9 @@ class _MapScreenState extends State<MapScreen> {
             compassEnabled: true,
             scrollGesturesEnabled: true,
             zoomGesturesEnabled: true,
-            onMapCreated: _onMapCreated,
+            onMapCreated: onMapCreated,
             markers: Set<Marker>.of(markers.values),
-            polylines: {
-              Polyline(
-                polylineId: PolylineId("tracking"),
-                color: Colors.blue,
-                points: polylineCoordinates,
-                width: 5,
-              )
-            },
+            polylines: Set<Polyline>.of(polylines.values),
           ),
           Positioned(
             top: 10,
@@ -257,10 +252,16 @@ class _MapScreenState extends State<MapScreen> {
     return (lat >= -90 && lat <= 90) && (lng >= -180 && lng <= 180);
   }
 
-  void _onMapCreated(GoogleMapController controller) async {
-    mapController = controller;
-  }
+  //Here
+  late GoogleMapController googleMapController;
+  final Completer<GoogleMapController> completer = Completer();
 
+  void onMapCreated(GoogleMapController controller) {
+    googleMapController = controller;
+    if (!completer.isCompleted) {
+      completer.complete(controller);
+    }
+  }
   _addMarker(LatLng position, String id, BitmapDescriptor descriptor) {
     MarkerId markerId = MarkerId(id);
     Marker marker = Marker(

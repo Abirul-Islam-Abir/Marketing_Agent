@@ -1,6 +1,7 @@
 import 'package:amin_agent/app/modules/view%20screen/all%20tests%20screen/bindings/all_test_screen_bindings.dart';
 import 'package:amin_agent/app/modules/view%20screen/all%20tests%20screen/view/all_test_screen.dart';
 import 'package:amin_agent/app/modules/view%20screen/completed_shedule_screen/view/completed_schedule_screen.dart';
+import 'package:amin_agent/app/modules/view%20screen/map%20screen/views/dafault_map.dart';
 import 'package:amin_agent/app/modules/view%20screen/target%20agents%20%20screen/bindings/targets_agents_screen_binding.dart';
 import 'package:amin_agent/app/modules/view%20screen/target%20agents%20%20screen/views/target_agents_screen_view.dart';
 
@@ -36,7 +37,7 @@ class AppPages {
     ),
     GetPage(
       name: RouteName.notificationScreen,
-      page: () =>   NotificationScreenView(),
+      page: () => NotificationScreenView(),
       binding: NotificationScreenBinding(),
     ),
     GetPage(
@@ -47,7 +48,7 @@ class AppPages {
     GetPage(
       name: RouteName.bottomNav,
       transition: Transition.rightToLeftWithFade,
-      page: () =>   BottomNav(),
+      page: () => BottomNav(),
       binding: BottomNavBinding(),
     ),
     GetPage(
@@ -57,12 +58,12 @@ class AppPages {
     ),
     GetPage(
       name: RouteName.totalCommissionScreen,
-      page: () =>   TotalCommissionScreen(),
+      page: () => TotalCommissionScreen(),
       binding: TotalCommissionScreenBinding(),
     ),
     GetPage(
       name: RouteName.totalSalesScreen,
-      page: () =>   TotalSalesScreen(),
+      page: () => TotalSalesScreen(),
       binding: TotalSalesScreenBinding(),
     ),
     GetPage(
@@ -72,7 +73,7 @@ class AppPages {
     ),
     GetPage(
       name: RouteName.doctorOnboardScreen,
-      page: () =>   DoctorOnboardScreenView(),
+      page: () => DoctorOnboardScreenView(),
       binding: DoctorOnboardScreenBinding(),
     ),
     GetPage(
@@ -100,7 +101,7 @@ class AppPages {
     ),
     GetPage(
       name: RouteName.doctorVisitedScreen,
-      page: () =>   DoctorVisitedScreenView(),
+      page: () => DoctorVisitedScreenView(),
       binding: DoctorVisitedScreenBinding(),
     ),
     GetPage(
@@ -117,10 +118,15 @@ class AppPages {
       name: RouteName.completedScheduleScreen,
       page: () => CompletedScheduleScreen(),
       binding: CompletedScheduleScreenBinding(),
-    ), GetPage(
+    ),
+    GetPage(
       name: RouteName.targetWiseDoctorVisitedScreen,
-      page: () =>   TargetWiseDoctorVisitedScreen(),
+      page: () => TargetWiseDoctorVisitedScreen(),
       binding: TargetWiseDoctorVisitedBinding(),
     ),
+    GetPage(
+        name: RouteName.defaultMapScreen,
+        page: () => DefaultMap(),
+        binding: MapScreenBinding())
   ];
 }
