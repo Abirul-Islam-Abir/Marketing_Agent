@@ -5,15 +5,13 @@ import '../../../../data/const/export.dart';
 class TotalCommissionCard extends StatelessWidget {
   const TotalCommissionCard({
     super.key,
-    required this.location,
-    required this.target,
+    required this.name,
+    required this.commission,
     required this.date,
-    this.sendTap,
-  });
+   });
 
-  final String location, target, date;
-  final Function()? sendTap;
-
+  final String name, date;
+final int commission;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,7 +32,7 @@ class TotalCommissionCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  location,
+                  name,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: AppColor.kWhiteColor,
@@ -53,26 +51,13 @@ class TotalCommissionCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  '\$$target',
+                  '$commission',
                   style: const TextStyle(
                       color: AppColor.kWhiteColor,
                       fontSize: 16,
                       fontWeight: FontWeight.bold),
                 ),
-                InkWell(
-                  onTap: sendTap,
-                  child: CircleAvatar(
-                    radius: 25,
-                    backgroundColor: AppColor.kWhiteColor,
-                    child: SvgPicture.asset(
-                      'assets/svg/Vector.svg',
-                      color: AppColor.kPrimaryColor,
-
-                      height: 30,
-                      width: 30,
-                    ),
-                  ),
-                ),
+                SizedBox(width: 10,)
               ],
             ),
           ],

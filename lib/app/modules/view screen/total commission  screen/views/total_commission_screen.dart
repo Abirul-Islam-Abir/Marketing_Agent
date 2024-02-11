@@ -7,47 +7,54 @@ import '../components/total_commission_card.dart';
 
 class TotalCommissionScreen extends StatelessWidget {
   TotalCommissionScreen({super.key});
+
   final _controller = Get.put(TotalCommissionScreenController());
+
   @override
   Widget build(BuildContext context) => Scaffold(
-      backgroundColor: AppColor.kSecondaryColor,
-      appBar: buildNavigateFilterAppBar(
-          text: 'Total Commission',
-          filterTap: () {
-            Get.dialog(FilterScreenView(
-              onTap: () {
-                Get.back();
-                _controller.initializeMethod(joinedSelectedDates);
-              },
-            ));
-          }),
-      body: GetBuilder<TotalCommissionScreenController>(builder: (controller) {
-        final data = controller.salesAndCommissionList;
-        return controller.isProgress
-            ? const ShimmerTargetList()
-            : data.isEmpty
-                ? const EmptyListText()
-                : RefreshIndicator(
-                    onRefresh: () async {
-                      controller.initializeMethod(joinedDates);
-                    },
-                    child: SizedBox(
-                      height: double.infinity,
-                      child: ListView.builder(
-                        itemCount: commissionDataList.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return TotalCommissionCard(
-                            location: commissionDataList[index].location,
-                            target: commissionDataList[index].target,
-                            date: '01/12/2024',
-                            sendTap: () {
-
-                            },
-                          );
+        backgroundColor: AppColor.kSecondaryColor,
+        appBar: buildNavigateFilterAppBar(
+            text: 'Total Commission',
+            filterTap: () {
+              Get.dialog(FilterScreenView(
+                onTap: () {
+                  Get.back();
+                  _controller.initializeMethod(joinedSelectedDates, 1);
+                },
+              ));
+            }),
+        body: GetBuilder<TotalCommissionScreenController>(
+          builder: (controller) {
+            final data = controller.salesAndCommissionList;
+            return controller.isProgress
+                ? const ShimmerTargetList()
+                : data.isEmpty
+                    ? const EmptyListText()
+                    : RefreshIndicator(
+                        onRefresh: () async {
+                          controller.initializeMethod(joinedDates, 1);
                         },
-                      ),
-                    ),
-                  );
-      }));
+                        child: SizedBox(
+                          height: double.infinity,
+                          child: ListView.builder(
+                            controller: controller.scrollController,
+                            itemCount: data.length,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              final name = data[index]['doctor_name'] ?? "";
+                              final commission =
+                                  data[index]['sale_amount'] ?? '';
+                              final date = data[index]['date'] ?? '';
+                              return TotalCommissionCard(
+                                name: name,
+                                commission: commission,
+                                date: date,
+                              );
+                            },
+                          ),
+                        ),
+                      );
+          },
+        ),
+      );
 }
