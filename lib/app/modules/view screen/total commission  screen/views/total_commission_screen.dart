@@ -19,7 +19,7 @@ class TotalCommissionScreen extends StatelessWidget {
               Get.dialog(FilterScreenView(
                 onTap: () {
                   Get.back();
-                  _controller.initializeMethod(joinedSelectedDates, 1);
+                  _controller.initializeMethod(date:joinedSelectedDates,page: 1);
                 },
               ));
             }),
@@ -32,7 +32,7 @@ class TotalCommissionScreen extends StatelessWidget {
                     ? const EmptyListText()
                     : RefreshIndicator(
                         onRefresh: () async {
-                          controller.initializeMethod(joinedDates, 1);
+                          controller.initializeMethod(date:joinedDates,page: 1);
                         },
                         child: SizedBox(
                           height: double.infinity,

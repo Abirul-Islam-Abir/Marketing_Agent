@@ -1,9 +1,5 @@
-import 'package:amin_agent/app/data/utils/method.dart';
 
 import '../../../../data/const/export.dart';
-import '../../../widgets/empty_list_text.dart';
-import '../../total commission  screen/components/total_commission_card.dart';
-import '../components/total_sales_card.dart';
 
 class TotalSalesScreen extends StatelessWidget {
   TotalSalesScreen({super.key});
@@ -19,7 +15,7 @@ class TotalSalesScreen extends StatelessWidget {
               Get.dialog(FilterScreenView(
                 onTap: () {
                   Get.back();
-                  _controller.initializeMethod(joinedSelectedDates, 1);
+                  _controller.initializeMethod(date:joinedSelectedDates,page: 1);
                 },
               ));
             }),
@@ -32,11 +28,12 @@ class TotalSalesScreen extends StatelessWidget {
                     ? const EmptyListText()
                     : RefreshIndicator(
                         onRefresh: () async {
-                          controller.initializeMethod(joinedDates, 1);
+                          controller.initializeMethod(date:joinedDates,page: 1);
                         },
                         child: SizedBox(
                           height: double.infinity,
                           child: ListView.builder(
+                            controller: controller.scrollController,
                             itemCount: data.length,
                             shrinkWrap: true,
                             itemBuilder: (context, index) {

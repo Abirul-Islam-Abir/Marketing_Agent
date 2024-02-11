@@ -27,15 +27,17 @@ class ScheduleScreenController extends GetxController {
       }
     }
   }
-
+void progress(v){
+    _isProgress=v;
+    update();
+}
   // Handle the process of selecting an image
   //Complete Schedule here
   Future<void> getImage(
       {imageSource, completionLang, completionLat, uid, index}) async {
     Get.back(); // Close any existing screen
-    _isProgress = true;
-    allScheduleList.removeAt(index);
-    update();
+     allScheduleList.removeAt(index);
+    progress(true);
     try {
       final pickedFile = await ImagePicker().pickImage(source: imageSource);
       if (pickedFile != null) {
@@ -52,31 +54,26 @@ class ScheduleScreenController extends GetxController {
               completionLat: completionLat,
               path: compressedImage.path,
               uid: uid);
-          print(response);
-          if (response['success'] = true) {
+           if (response['success'] = true) {
             completedLocationTaskDialog();
             Get.find<DashboardScreenController>().initializeMethod();
           } else {
-            _isProgress = false;
-            update();
+             progress(false);
             Get.snackbar('Failed!', 'Unsuccessfully operation ');
           }
         }
       } else {
-        _isProgress = false;
-        update();
+        progress(false);
       }
     } catch (e) {
       throw Exception('$e');
     } finally {
-      _isProgress = false;
-      update();
+      progress(false);
     }
   }
 
   Future<void> initializeMethod(date) async {
-    _isProgress = true;
-    update();
+    progress(true);
     try {
       await Future.wait([
         allScheduleData(date),
@@ -84,8 +81,7 @@ class ScheduleScreenController extends GetxController {
     } catch (e) {
       throw Exception('$e');
     } finally {
-      _isProgress = false;
-      update();
+      progress(false);
     }
   }
 }

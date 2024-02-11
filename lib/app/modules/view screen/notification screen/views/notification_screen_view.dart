@@ -1,7 +1,5 @@
-import 'package:amin_agent/app/modules/widgets/empty_list_text.dart';
+
 import '../../../../data/const/export.dart';
-import '../../../../data/utils/method.dart';
-import '../components/format_time.dart';
 
 
 class NotificationScreenView extends StatelessWidget {

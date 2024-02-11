@@ -81,11 +81,14 @@ class ProfileScreenController extends GetxController {
       }
     }
   }
+  void progress(v){
+    _isProgress = v;
+    update();
+  }
   // Initialize the controller
   Future<void> initializeMethod() async {
-    _isProgress = true; // Set progress state to true
-    update();
-    try {
+    progress(true); // Set progress state to true
+     try {
       // Fetch user profile and other asynchronous operations
       await Future.wait([
         userProfile(),
@@ -94,16 +97,14 @@ class ProfileScreenController extends GetxController {
     } catch (e) {
       throw Exception('$e');
     } finally {
-      _isProgress = false; // Update progress state to false
-      update();
+       progress(false);
     }
   }
 
   // Update user profile on the server
   Future<void> userProfileEdit() async {
-    _isProgress = true; // Set progress state to true
-    update();
-    final token = await box.read(UserDataKey.tokenKey);
+    progress(true); // Set progress state to true
+     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
       final response = await updateProfileRequest(
         token: token,
@@ -117,13 +118,10 @@ class ProfileScreenController extends GetxController {
       if (response['success'] == true) {
         await initializeMethod(); // Refresh initializeMethod after successful update
         Get.back(); // Close the current screen
-        _isProgress = false; // Update progress state to false
-        update();
-      } else {
-        _isProgress =
-            false; // Update progress state to false on unsuccessful update
-        update();
-      }
+        progress(false); // Update progress state to false
+       } else {
+        progress(false); // Update progress state to false on unsuccessful update
+       }
     }
   }
 

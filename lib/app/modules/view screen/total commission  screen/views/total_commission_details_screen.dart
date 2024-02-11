@@ -1,7 +1,5 @@
-import 'package:amin_agent/app/model/commission_model.dart';
 
 import '../../../../data/const/export.dart';
-import '../../target agents  screen/components/sales_target_card.dart';
 
 class TotalCommissionDetailsScreen extends StatelessWidget {
   const TotalCommissionDetailsScreen(this.list, {super.key});

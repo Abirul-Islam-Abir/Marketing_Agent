@@ -87,20 +87,22 @@ class DashboardScreenController extends GetxController {
     }
   }
 
+  void progress(v) {
+    _isProgress = v;
+    update();
+  }
 
   Future<void> initializeMethod() async {
-    _isProgress = true;
-    update();
+    progress(true);
     try {
       await Future.wait([
         dashboardData(),
         notificationUnreadCount(),
-       ]);
+      ]);
     } catch (e) {
       throw Exception('$e');
     } finally {
-      _isProgress = false;
-      update();
+      progress(false);
     }
   }
 

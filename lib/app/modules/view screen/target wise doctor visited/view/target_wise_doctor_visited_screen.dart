@@ -1,10 +1,7 @@
-import 'package:amin_agent/app/data/const/export.dart';
-import 'package:amin_agent/app/data/utils/method.dart';
-import 'package:amin_agent/app/modules/view%20screen/completed_shedule_screen/components/completed_schedule_card.dart';
-import 'package:amin_agent/app/modules/view%20screen/target%20wise%20doctor%20visited/controller/target_wise_doctor_visited_controller.dart';
 
-import '../../../widgets/empty_list_text.dart';
- import '../../map screen/views/poly_map_screen.dart';
+
+
+import '../../../../data/const/export.dart';
 
 class TargetWiseDoctorVisitedScreen extends StatelessWidget {
   TargetWiseDoctorVisitedScreen({super.key});

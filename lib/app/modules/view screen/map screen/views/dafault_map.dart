@@ -1,19 +1,5 @@
-// adding packages
-import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:flutter/material.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart' as location;
-import 'package:geocoding/geocoding.dart' as geocoding;
 
-import '../../../../api services/shedules/store_lat_and_long.dart';
 import '../../../../data/const/export.dart';
-import '../../../../data/utils/store_data.dart';
-import '../../../../data/utils/user_data_key.dart';
-import '../../../Fcm Notification/document/documents.dart';
-import '../components/user_card_location.dart';
-import '../controllers/default_map_controller.dart';
 
 class DefaultMap extends StatelessWidget {
 

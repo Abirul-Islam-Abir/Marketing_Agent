@@ -1,16 +1,9 @@
+
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:upgrader/upgrader.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 import '../../../../data/const/export.dart';
-import '../../../../data/utils/user_data_key.dart';
-import '../../../widgets/dashboard_count_shimmer.dart';
-import '../../../widgets/targets_card_shimmer.dart';
-import '../components/agents_progress_count.dart';
-import '../components/dashboard_count.dart';
 
 class DashboardScreenView extends StatelessWidget {
   DashboardScreenView({super.key});
@@ -141,7 +134,7 @@ class UpdateAvailable extends StatelessWidget {
   final bool isUpdate;
   final String? packageName;
 
-  launchPlayStore() async {
+ void launchPlayStore() async {
     String playStoreUrl =
         'https://play.google.com/store/apps/details?id=$packageName';
     final uri = Uri.parse(playStoreUrl);

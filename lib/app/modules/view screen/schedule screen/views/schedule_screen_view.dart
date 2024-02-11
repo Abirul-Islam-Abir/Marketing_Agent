@@ -1,11 +1,7 @@
-import 'package:amin_agent/app/data/utils/method.dart';
-import 'package:image_picker/image_picker.dart';
+
 import 'package:intl/intl.dart';
 
 import '../../../../data/const/export.dart';
-import '../../map screen/views/dafault_map.dart';
-import '../../map screen/views/poly_map_screen.dart';
-import '../components/schedule_card.dart';
 
 class ScheduleScreenView extends StatelessWidget {
   ScheduleScreenView({super.key});

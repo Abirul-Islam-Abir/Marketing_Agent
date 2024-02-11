@@ -1,11 +1,5 @@
-import 'package:amin_agent/app/modules/view%20screen/completed_shedule_screen/components/completed_schedule_card.dart';
-import 'package:amin_agent/app/modules/view%20screen/completed_shedule_screen/controller/completed_schedule_controller.dart';
-import 'package:amin_agent/app/modules/widgets/empty_list_text.dart';
 
 import '../../../../data/const/export.dart';
-import '../../../../data/utils/method.dart';
-import '../../../widgets/shimmer_schedule_card_list.dart';
- import '../../map screen/views/poly_map_screen.dart';
 
 class CompletedScheduleScreen extends StatelessWidget {
   CompletedScheduleScreen({super.key});

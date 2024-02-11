@@ -24,10 +24,12 @@ class AgentsScreenController extends GetxController {
       }
     }
   }
-
-  Future<void> initializeMethod() async {
-    _isProgress = true;
+void progress(v){
+    _isProgress = v;
     update();
+}
+  Future<void> initializeMethod() async {
+    progress(true);
     try {
       await Future.wait([
         allTargetsAgents(),
@@ -35,8 +37,7 @@ class AgentsScreenController extends GetxController {
     } catch (e) {
       throw Exception('$e');
     } finally {
-      _isProgress = false;
-      update();
+      progress(false);
     }
   }
 

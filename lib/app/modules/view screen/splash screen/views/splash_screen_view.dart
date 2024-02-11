@@ -1,7 +1,6 @@
-import 'package:amin_agent/app/data/const/export.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-import '../controllers/splash_screen_controller.dart';
+
+import '../../../../data/const/export.dart';
 
 class SplashScreenView extends StatelessWidget {
   SplashScreenView({super.key});

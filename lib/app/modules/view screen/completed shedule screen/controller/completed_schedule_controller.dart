@@ -21,9 +21,12 @@ class CompleteScheduleScreenController extends GetxController {
       }
     }
   }
-  Future<void> initializeMethod(date) async {
-    _isProgress = true;
+  void     progress(v){
+    _isProgress = v;
     update();
+  }
+  Future<void> initializeMethod(date) async {
+    progress(true);
     try {
       await Future.wait([
         completedSchedule(date),
@@ -31,8 +34,7 @@ class CompleteScheduleScreenController extends GetxController {
     } catch (e) {
       throw Exception('$e');
     } finally {
-      _isProgress = false;
-      update();
+      progress(false);
     }
   }
 

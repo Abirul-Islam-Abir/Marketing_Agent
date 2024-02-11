@@ -44,7 +44,7 @@ class DefaultMapController extends GetxController {
     try {
       if (userLocation != null) {
         List<geocoding.Placemark> placemarks =
-            await geocoding.placemarkFromCoordinates(lat, lang);
+        await geocoding.placemarkFromCoordinates(lat, lang);
 
         if (placemarks.isNotEmpty) {
           geocoding.Placemark placemark = placemarks[0];
@@ -82,7 +82,7 @@ class DefaultMapController extends GetxController {
         position: latLng,
         onTap: () {
           markers.removeWhere(
-              (element) => element.markerId == MarkerId(latLng.toString()));
+                  (element) => element.markerId == MarkerId(latLng.toString()));
           if (markers.length > 1) {
             getDirections(markers);
           } else {
@@ -103,7 +103,8 @@ class DefaultMapController extends GetxController {
     for (var i = 0; i < markers.length; i++) {
       polylineWayPoints.add(PolylineWayPoint(
           location:
-              "${markers[i].position.latitude.toString()},${markers[i].position.longitude.toString()}",
+          "${markers[i].position.latitude.toString()},${markers[i].position
+              .longitude.toString()}",
           stopOver: true));
     }
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
@@ -153,21 +154,21 @@ class DefaultMapController extends GetxController {
       final permissionStatus = await location.requestPermission();
       if (permissionStatus == PermissionStatus.granted) {
         locationSubscription = location.onLocationChanged.listen(
-          (LocationData currentLocation) {
+              (LocationData currentLocation) {
             userLocation = LatLng(
               currentLocation.latitude!,
               currentLocation.longitude!,
             );
 
             final response = storeLatAndLongRequest(
-                //uid: '1d5604ae-c2d1-34a3-8ca2-b0f50f104ee6',
+              //uid: '1d5604ae-c2d1-34a3-8ca2-b0f50f104ee6',
                 uid: id,
                 completionLat: currentLocation.latitude.toString(),
                 token: token,
                 id: currentId,
                 completionLang: currentLocation.longitude.toString());
             update();
-           },
+          },
         );
       }
     } on PlatformException catch (e) {

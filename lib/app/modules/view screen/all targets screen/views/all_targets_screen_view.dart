@@ -1,8 +1,5 @@
-import '../../../../data/const/export.dart';
-import '../../../../data/utils/user_data_key.dart';
-import '../../../widgets/empty_list_text.dart';
-import '../components/all_targets_progress_card.dart';
 
+import '../../../../data/const/export.dart';
 class AllTargetsScreenView extends StatelessWidget {
   AllTargetsScreenView({super.key});
 

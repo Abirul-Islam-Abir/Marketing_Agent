@@ -16,13 +16,24 @@ class ProfileDetailsScreenController extends GetxController {
   bool _isPassport = false;
 
   bool get isNid => _isNid;
+
   bool get isPassport => _isPassport;
+
+  void nid(v) {
+    _isNid = v;
+    update();
+  }
+
+  void passport(v) {
+    _isPassport = v;
+    update();
+  }
+
   Future uploadNidFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
-      _isNid = true;
-      update();
+      nid(true);
       File file = File(result.files.single.path!);
       final token = await box.read(UserDataKey.tokenKey);
       if (token != null) {
@@ -31,22 +42,18 @@ class ProfileDetailsScreenController extends GetxController {
         if (response['success'] == true) {
           await Get.find<ProfileScreenController>().userProfile();
           Get.snackbar('Good Job!', response['message']);
-          _isNid = false;
-          update();
+          nid(false);
         } else {
-          _isNid = false;
-          update();
+          nid(false);
           Get.snackbar(
               'Wrong!', 'The passport pdf field must be a file of type: pdf.',
               backgroundColor: AppColor.kRedColor);
         }
       } else {
-        _isNid = false;
-        update();
+        nid(false);
       }
     } else {
-      _isNid = false;
-      update();
+      nid(false);
     }
   }
 
@@ -54,8 +61,7 @@ class ProfileDetailsScreenController extends GetxController {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
-      _isPassport = true;
-      update();
+      passport(true);
       File file = File(result.files.single.path!);
       final token = await box.read(UserDataKey.tokenKey);
       if (token != null) {
@@ -64,22 +70,18 @@ class ProfileDetailsScreenController extends GetxController {
         if (response['success'] == true) {
           await Get.find<ProfileScreenController>().userProfile();
           Get.snackbar('Good Job!', response['message']);
-          _isPassport = false;
-          update();
+          passport(false);
         } else {
-          _isPassport = false;
-          update();
+          passport(false);
           Get.snackbar(
               'Wrong!', 'The passport pdf field must be a file of type: pdf.',
               backgroundColor: AppColor.kRedColor);
         }
       } else {
-        _isPassport = false;
-        update();
+        passport(false);
       }
     } else {
-      _isPassport = false;
-      update();
+      passport(false);
     }
   }
 }

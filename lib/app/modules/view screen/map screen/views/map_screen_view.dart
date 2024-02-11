@@ -1,4 +1,3 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../data/const/export.dart';
 import 'package:geocoding/geocoding.dart' as geocoding;

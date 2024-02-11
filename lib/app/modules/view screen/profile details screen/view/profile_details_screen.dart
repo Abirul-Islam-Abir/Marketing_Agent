@@ -1,10 +1,5 @@
-import 'package:amin_agent/app/data/const/export.dart';
-import 'package:amin_agent/app/modules/widgets/pdf_view.dart';
 
-import '../../../../data/utils/app_snackbar.dart';
-import '../components/profile_details_card.dart';
-import '../components/profile_details_with_upload_card.dart';
-import '../controller/profile_details_screen_controller.dart';
+import '../../../../data/const/export.dart';
 
 class ProfileDetailsScreen extends StatelessWidget {
   ProfileDetailsScreen({super.key});

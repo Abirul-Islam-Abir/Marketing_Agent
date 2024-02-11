@@ -31,8 +31,7 @@ class FilterScreenController extends GetxController {
         .toList();
     // Joining formatted dates with "/"
     joinedSelectedDates = formattedDates.join('/');
-    print(joinedSelectedDates);
-  }
+   }
 
   void selectedChangeIndex(index) {
     selectedUserIndex = isSelected ? null : index;

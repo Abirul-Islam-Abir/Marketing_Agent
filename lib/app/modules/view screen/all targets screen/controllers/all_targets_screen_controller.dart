@@ -6,12 +6,16 @@ import '../../../../data/utils/user_data_key.dart';
 class AllTargetsScreenController extends GetxController {
   final ScrollController scrollController = ScrollController();
   bool _isProgress = true;
+
   bool get isProgress => _isProgress;
   bool _moreLoading = false;
+
   bool get moreLoading => _moreLoading;
   List _allTargetDataList = [];
+
   List get allTargetDataList => _allTargetDataList;
   int currentPage = 1;
+
   Future<void> allTargetData(page) async {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
@@ -23,10 +27,16 @@ class AllTargetsScreenController extends GetxController {
     }
   }
 
-  Future<void> initializeMethod(page) async {
-    _isProgress = true;
-    _moreLoading = true;
+  void progress(v) {
+    _isProgress = v;
+    _moreLoading = v;
     update();
+  }
+
+
+
+  Future<void> initializeMethod(page) async {
+     progress(true);
     try {
       await Future.wait([
         allTargetData(page),
@@ -34,9 +44,7 @@ class AllTargetsScreenController extends GetxController {
     } catch (e) {
       throw Exception('$e');
     } finally {
-      _isProgress = false;
-      _moreLoading = false;
-      update();
+       progress(false);
     }
   }
 
