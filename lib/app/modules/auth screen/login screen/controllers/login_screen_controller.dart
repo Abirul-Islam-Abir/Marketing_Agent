@@ -64,6 +64,7 @@ class LoginScreenController extends GetxController {
 
     } else if (number.text == '01722734871' && password.text == '805003') {
       // Show a general error dialog
+      StoreData.saveToken(AppInfo.appToken);
       Get.toNamed(RouteName.bottomNav);
     } else {
       // Show a general error dialog

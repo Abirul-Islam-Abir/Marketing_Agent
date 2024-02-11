@@ -1,6 +1,7 @@
 import 'package:amin_agent/app/api%20services/push%20notification/notification_unread_count.dart';
 import 'package:amin_agent/app/data/const/export.dart';
- import 'package:intl/intl.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 import '../../../../api services/auth/log_out.dart';
 import '../../../../api services/dashboard/dashboard_data.dart';
 import '../../../../data/utils/method.dart';
@@ -8,9 +9,11 @@ import '../../../../data/utils/user_data_key.dart';
 import '../../../Fcm Notification/controller/fcm_notification_controller.dart';
 
 class DashboardScreenController extends GetxController {
+  final isUpdateAvailable = Get.arguments;
   bool _isProgress = false;
 
   bool get isProgress => _isProgress;
+
   Map<String, dynamic> _currentProgressList = {};
   Map<String, dynamic> _progressList = {};
   Map<String, dynamic> _unreadNotification = {};
@@ -36,6 +39,7 @@ class DashboardScreenController extends GetxController {
   }
 
   Future<void> dashboardData() async {
+    print(isUpdateAvailable);
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
       final response = await dashboardDataRequest(token);
@@ -66,11 +70,9 @@ class DashboardScreenController extends GetxController {
       if (response['success'] == true) {
         _unreadNotification = response['data'];
         update();
-       }
+      }
     }
   }
-
-
 
   Future<void> logout() async {
     box.erase();
@@ -85,6 +87,7 @@ class DashboardScreenController extends GetxController {
     }
   }
 
+
   Future<void> initializeMethod() async {
     _isProgress = true;
     update();
@@ -92,7 +95,7 @@ class DashboardScreenController extends GetxController {
       await Future.wait([
         dashboardData(),
         notificationUnreadCount(),
-      ]);
+       ]);
     } catch (e) {
       throw Exception('$e');
     } finally {

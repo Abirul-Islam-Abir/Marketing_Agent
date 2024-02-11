@@ -9,42 +9,38 @@ import '../../../../app info/app_info.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../connectivity/controller/internet_connectivity.dart';
 
+import 'package:flutter/material.dart';
+
 class SplashScreenController extends GetxController {
+
+  Map _data = {};
+  Map get data =>_data;
   Future userAlreadyLogged() async {
     Future.delayed(const Duration(seconds: 3)).then((value) async {
       final token = await box.read(UserDataKey.tokenKey);
       if (token != null || NetworkController.connectionType != 0) {
-        Get.offAllNamed(RouteName.bottomNav);
+        Get.offAllNamed(RouteName.bottomNav, arguments: data);
       } else {
         Get.offAllNamed(RouteName.loginScreen);
       }
     });
   }
-
 // Retrieve data from Firestore
-  void getData() {
+  Future<void> checkForUpdates() async {
     FirebaseFirestore.instance
         .collection('mpo_flutter')
         .get()
         .then((querySnapshot) {
       for (var doc in querySnapshot.docs) {
-        if (doc.data()['appVersion'] == AppInfo.appVersion) {
-          print('latest version');
-          userAlreadyLogged();
-        } else if (doc.data()['appVersion'] != AppInfo.appVersion &&
-            doc.data()['useApp'] == true) {
-          print('update availaabe');
-          userAlreadyLogged();
-        } else {
-          print('update');
-        }
+        _data = doc.data();
+        userAlreadyLogged();
       }
     });
   }
 
   @override
   void onInit() {
-    getData();
+    checkForUpdates();
     super.onInit();
   }
 }

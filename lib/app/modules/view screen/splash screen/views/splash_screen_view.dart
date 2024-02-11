@@ -21,10 +21,7 @@ class SplashScreenView extends StatelessWidget {
                 SvgPicture.asset('assets/images/MPO TRACKING.svg'),
                const Spacer(),
                 Text(AppInfo.appName,style: const TextStyle(color: AppColor.kGreyColor),),
-                InkWell(
-                    onTap: (){
-                    },
-                    child: Text('Version:${AppInfo.appVersion}',style: const TextStyle(color: AppColor.kGreyColor),)),
+                Text('Version:${AppInfo.appVersion}',style: const TextStyle(color: AppColor.kGreyColor),),
               ],
             )),
       ),
