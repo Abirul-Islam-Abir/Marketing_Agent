@@ -1,7 +1,6 @@
 import 'package:amin_agent/app/api%20services/targets/all_targets.dart';
 import 'package:amin_agent/app/data/const/export.dart';
 
-import '../../../../data/utils/user_data_key.dart';
 
 class AllTargetsScreenController extends GetxController {
   final ScrollController scrollController = ScrollController();
@@ -20,8 +19,7 @@ class AllTargetsScreenController extends GetxController {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
       final response = await allTargetDataRequest(token: token, page: page);
-      print(response);
-      if (response['success'] == true) {
+       if (response['success'] == true) {
         _allTargetDataList = allTargetDataList + response['data']['targets'];
       }
     }

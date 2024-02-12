@@ -15,13 +15,10 @@ class AllTestScreenController extends GetxController {
   Future<void> allTestData() async {
 
     final token = await box.read(UserDataKey.tokenKey);
-    print(id);
-    print(token);
-    if (token != null && id != null) {
+     if (token != null && id != null) {
       final response = await allTestRequest(token: token, id: id);
       if (response['success'] == true) {
-        print(response);
-        _allTestList = response['data'];
+         _allTestList = response['data'];
       }
     }
   }

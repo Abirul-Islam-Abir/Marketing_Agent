@@ -1,15 +1,11 @@
-import 'package:amin_agent/app/api%20services/auth/test_api.dart';
-import 'package:amin_agent/app/data/utils/store_data.dart';
+ import 'package:amin_agent/app/data/utils/store_data.dart';
 import 'package:amin_agent/app/data/utils/user_data_key.dart';
-import 'package:amin_agent/app/modules/widgets/server_down_ui_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../../../../app info/app_info.dart';
-import '../../../../routes/app_pages.dart';
+ import '../../../../routes/app_pages.dart';
 import '../../../connectivity/controller/internet_connectivity.dart';
 
-import 'package:flutter/material.dart';
 
 class SplashScreenController extends GetxController {
 

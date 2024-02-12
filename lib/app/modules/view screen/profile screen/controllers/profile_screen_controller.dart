@@ -1,13 +1,11 @@
 import 'package:amin_agent/app/api%20services/shedules/completed_schedules_picture.dart';
 import 'package:amin_agent/app/api%20services/targets/completed_targets_visits.dart';
 import 'package:amin_agent/app/data/const/export.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
+ import 'dart:io';
 import 'package:image/image.dart' as img;
 import '../../../../api services/profile/update_profile.dart';
 import '../../../../api services/profile/upload_avatar.dart';
 import '../../../../api services/profile/user_profile.dart';
-import '../../../../data/utils/user_data_key.dart';
 
 class ProfileScreenController extends GetxController {
   // Track the selected index (Purpose not entirely clear from the provided snippet)
@@ -66,8 +64,7 @@ class ProfileScreenController extends GetxController {
       final response = await completedSchedulePictureRequest(token: token, id: targetId,date: date);
       if (response['success'] == true) {
         _completedSchedulePictureList = response['data'];
-        print(response);
-        update();
+         update();
       }
     }
   }

@@ -1,5 +1,4 @@
 import 'package:amin_agent/app/data/const/export.dart';
-import 'package:flutter/material.dart';
 
 class PictureGridCard extends StatelessWidget {
   const PictureGridCard({
@@ -32,8 +31,8 @@ class PictureGridCard extends StatelessWidget {
               padding: const EdgeInsets.all(5.0),
               child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(time!,style: TextStyle(fontWeight: FontWeight.bold,color: AppColor.kBlueColor),),
-                  Text(date!,style: TextStyle(fontWeight: FontWeight.bold,color: AppColor.kBlueColor),),
+                  Text(time!,style: const TextStyle(fontWeight: FontWeight.bold,color: AppColor.kBlueColor),),
+                  Text(date!,style: const TextStyle(fontWeight: FontWeight.bold,color: AppColor.kBlueColor),),
                 ],
               ),
             ),

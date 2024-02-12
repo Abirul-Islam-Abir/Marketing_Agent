@@ -1,18 +1,6 @@
-// adding packages
-import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:flutter/material.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart' as location;
-import 'package:geocoding/geocoding.dart' as geocoding;
+  import 'package:geocoding/geocoding.dart' as geocoding;
 
-import '../../../../api services/shedules/store_lat_and_long.dart';
-import '../../../../data/const/export.dart';
-import '../../../../data/utils/store_data.dart';
-import '../../../../data/utils/user_data_key.dart';
-import '../../../Fcm Notification/document/documents.dart';
-import '../components/user_card_location.dart';
+ import '../../../../data/const/export.dart';
 
 class DefaultMapController extends GetxController {
   final double lat = Get.arguments['lat'];
@@ -108,7 +96,7 @@ class DefaultMapController extends GetxController {
           stopOver: true));
     }
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      GoogleMapKey.AndroidMapKey, //GoogleMap ApiKey
+      GoogleMapKey.androidMapKey, //GoogleMap ApiKey
       PointLatLng(
           markers.first.position.latitude, markers.first.position.longitude),
       PointLatLng(
@@ -116,12 +104,11 @@ class DefaultMapController extends GetxController {
       travelMode: TravelMode.driving,
     );
     if (result.points.isNotEmpty) {
-      result.points.forEach((PointLatLng point) {
+      for (var point in result.points) {
         polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-      });
+      }
     } else {
-      print(result.errorMessage);
-    }
+     }
 
     update();
     addPolyLine(polylineCoordinates);

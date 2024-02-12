@@ -1,13 +1,7 @@
-import 'dart:io';
 
 import 'package:amin_agent/app/api%20services/shedules/all_shedules.dart';
 import 'package:amin_agent/app/api%20services/shedules/complete_schedule.dart';
 import 'package:amin_agent/app/data/const/export.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:image/image.dart' as img;
-import 'package:intl/intl.dart';
-import '../../../../data/utils/method.dart';
-import '../../../../data/utils/user_data_key.dart';
 
 class ScheduleScreenController extends GetxController {
   bool _isProgress = true;

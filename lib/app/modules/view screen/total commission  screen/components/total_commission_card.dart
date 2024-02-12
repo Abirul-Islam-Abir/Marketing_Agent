@@ -1,4 +1,3 @@
-import 'package:flutter_svg/svg.dart';
 
 import '../../../../data/const/export.dart';
 
@@ -57,7 +56,7 @@ final int commission;
                       fontSize: 16,
                       fontWeight: FontWeight.bold),
                 ),
-                SizedBox(width: 10,)
+                const SizedBox(width: 10,)
               ],
             ),
           ],

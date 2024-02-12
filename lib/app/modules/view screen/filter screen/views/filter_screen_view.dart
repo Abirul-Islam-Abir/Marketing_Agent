@@ -5,7 +5,6 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 
 import '../../../../data/const/export.dart';
-import '../../../../data/utils/method.dart';
 
 class FilterScreenView extends StatelessWidget {
   FilterScreenView({super.key, this.onTap});

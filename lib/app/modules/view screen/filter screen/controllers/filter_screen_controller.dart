@@ -47,6 +47,5 @@ class FilterScreenController extends GetxController {
   }
 
   void setCategory() {
-    print(joinedSelectedDates); // Output: 2024-02-05/2024-02-07
-  }
+   }
 }

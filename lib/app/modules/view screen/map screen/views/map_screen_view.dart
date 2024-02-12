@@ -26,7 +26,7 @@ class MapScreenViewState extends State<MapScreenView> {
   );
 
   Future<void> getCurrentLocation() async {
-    Future.delayed(Duration(seconds: 5)).then((value) => updateLocation());
+    Future.delayed(const Duration(seconds: 5)).then((value) => updateLocation());
     try {
       final permissionStatus = await location.requestPermission();
       if (permissionStatus == PermissionStatus.granted) {
@@ -113,74 +113,72 @@ class MapScreenViewState extends State<MapScreenView> {
       });
     }
   }
-
+@override
+  void dispose() {
+  _controller.future.then((controller) {
+    controller.dispose();
+  });
+     super.dispose();
+  }
   @override
   void initState() {
     getCurrentLocation();
     super.initState();
   }
 
-  final _bottomNavController = Get.put(BottomNavController());
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      onPopInvoked: (didPop) {
-        _bottomNavController.selectIndex(0);
-      },
-      child: Scaffold(
-        body: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            Column(
-              children: [
-                Expanded(
-                  child: GoogleMap(
-                    onTap: (v) {},
-                    mapType: MapType.normal,
-                    polylines: {
-                      Polyline(
-                        polylineId: const PolylineId("tracking"),
-                        color: Colors.blue,
-                        points: polylinePoints,
-                        width: 5,
-                      )
-                    },
-                    markers: Set<Marker>.of(markers),
-                    initialCameraPosition: cameraPosition,
-                    onMapCreated: (GoogleMapController controller) {
-                      _controller.complete(controller);
-                    },
-                  ),
+    return Scaffold(
+      appBar: buildNavigateAppbar('MPO Track'),
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Column(
+            children: [
+              Expanded(
+                child: GoogleMap(
+                  onTap: (v) {},
+                  mapType: MapType.normal,
+                  polylines: {
+                    Polyline(
+                      polylineId: const PolylineId("tracking"),
+                      color: Colors.blue,
+                      points: polylinePoints,
+                      width: 5,
+                    )
+                  },
+                  markers: Set<Marker>.of(markers),
+                  initialCameraPosition: cameraPosition,
+                  onMapCreated: (GoogleMapController controller) {
+                    _controller.complete(controller);
+                  },
                 ),
-                const SizedBox(
-                  height: 60,
-                )
-              ],
-            ),
-            Positioned(
-              top: 10,
-              right: 50,
-              left: 50,
-              child: Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 25),
-                  child: Text(
-                    currentLocationName,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                      color: Colors.black,
-                    ),
+              ),
+
+            ],
+          ),
+          Positioned(
+            top: 10,
+            right: 50,
+            left: 50,
+            child: Align(
+              alignment: Alignment.center,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 25),
+                child: Text(
+                  currentLocationName,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                    color: Colors.black,
                   ),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

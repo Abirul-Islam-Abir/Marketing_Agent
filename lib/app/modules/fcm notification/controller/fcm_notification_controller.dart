@@ -1,11 +1,8 @@
 import 'package:amin_agent/app/api%20services/push%20notification/store_or_update_fcm_token.dart';
-import 'package:amin_agent/app/data/utils/user_data_key.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:intl/intl.dart';
+ import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../../../data/const/export.dart';
-import '../../../data/utils/method.dart';
-import '../local notification/local_notification.dart';
+ import '../local notification/local_notification.dart';
 
 class FcmMessagingController extends GetxController {
 //google cloud console enabled
@@ -79,8 +76,7 @@ class FcmMessagingController extends GetxController {
   @override
   void onInit() {
     onDateChange(selectedDates);
-    print(joinedDates);
-    fcmPermissionRequest();
+     fcmPermissionRequest();
     getInitialMessage();
     onForegroundApp();
     onOpenedApp();

@@ -5,6 +5,8 @@ class DefaultMap extends StatelessWidget {
 
   final controller = Get.put(DefaultMapController());
 
+    DefaultMap({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

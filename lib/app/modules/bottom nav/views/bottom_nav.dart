@@ -19,7 +19,7 @@ class BottomNav extends StatelessWidget {
   final List<Widget> bottomBarPages = [
     DashboardScreenView(),
       ScheduleScreenView(),
-      MapScreenView(),
+      const MapScreenView(),
     ProfileScreenView(),
   ];
 
@@ -31,7 +31,7 @@ class BottomNav extends StatelessWidget {
           builder: (_) => bottomBarPages[_controller.selectedIndex]),
       extendBody: true,
       bottomNavigationBar: GetBuilder<BottomNavController>(
-        builder: (_) => BottomBarBubble(color: AppColor.kPrimaryColor,
+        builder: (_) => BottomBarBubble(color: AppColor.kSecondaryColor,
           backgroundColor: AppColor.kWhiteColor,
           selectedIndex: _controller.selectedIndex,
           items: List.generate(items.length, (index) => items[index]),

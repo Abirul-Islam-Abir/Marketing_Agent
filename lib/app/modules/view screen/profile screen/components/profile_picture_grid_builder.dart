@@ -1,8 +1,6 @@
 import 'package:amin_agent/app/modules/view%20screen/profile%20screen/components/picture_grid_card.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../../../widgets/schedule_image_view_screen.dart';
 
 
 class ProfilePictureGridBuilder extends StatelessWidget {

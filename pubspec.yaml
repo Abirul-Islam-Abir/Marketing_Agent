@@ -64,14 +64,4 @@ fonts:
     - family: Rubik
       fonts:
         - asset: assets/fonts/rubik/Rubik-Regular.ttf
-        - asset: assets/fonts/rubik/Rubik-Black.ttf
-        - asset: assets/fonts/rubik/Rubik-BlackItalic.ttf
-        - asset: assets/fonts/rubik/Rubik-Bold.ttf
-        - asset: assets/fonts/rubik/Rubik-BoldItalic.ttf
-        - asset: assets/fonts/rubik/Rubik-ExtraBold.ttf
-        - asset: assets/fonts/rubik/Rubik-ExtraBoldItalic.ttf
-        - asset: assets/fonts/rubik/Rubik-Light.ttf
-        - asset: assets/fonts/rubik/Rubik-Medium.ttf
-        - asset: assets/fonts/rubik/Rubik-SemiBoldItalic.ttf
-        - asset: assets/fonts/rubik/Rubik-SemiBold.ttf
           style: Regular

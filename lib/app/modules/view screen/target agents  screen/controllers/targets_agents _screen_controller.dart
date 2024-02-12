@@ -1,8 +1,6 @@
-// ignore_for_file: file_names
 
 import '../../../../api services/agents/all_agents.dart';
 import '../../../../data/const/export.dart';
-import '../../../../data/utils/user_data_key.dart';
 
 class AgentsScreenController extends GetxController {
   bool _isProgress = false;

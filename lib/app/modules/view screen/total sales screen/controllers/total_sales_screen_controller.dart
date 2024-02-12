@@ -16,8 +16,7 @@ class TotalSalesScreenController extends GetxController {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null ) {
       final response = await salesAndCommissionRequest(token: token,date:date, id: id);
-      print(response);
-      if (response['success'] == true) {
+       if (response['success'] == true) {
         _salesAndCommissionList = response['data']['sales_and_commissions'];
       }
     }

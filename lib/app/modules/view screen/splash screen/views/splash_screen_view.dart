@@ -1,5 +1,7 @@
 
 
+import 'package:flutter_svg/flutter_svg.dart';
+
 import '../../../../data/const/export.dart';
 
 class SplashScreenView extends StatelessWidget {

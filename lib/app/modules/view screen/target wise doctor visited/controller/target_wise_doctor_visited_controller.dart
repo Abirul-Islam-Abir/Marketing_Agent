@@ -20,8 +20,7 @@ class TargetWiseDoctorVisitedController extends GetxController {
     if (token != null) {
       final response =
           await targetWiseDoctorRequest(token: token, id: id, date: date);
-      print(response);
-      if (response['success'] == true) {
+       if (response['success'] == true) {
         _targetWiseDoctorVisitedList = response['data'];
       }
     }

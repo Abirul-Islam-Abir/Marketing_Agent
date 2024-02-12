@@ -1,7 +1,6 @@
 import '../../../../api services/push notification/notification_list.dart';
 import '../../../../api services/push notification/read_ notification.dart';
 import '../../../../data/const/export.dart';
-import '../../../../data/utils/user_data_key.dart';
 
 class NotificationScreenController extends GetxController {
   ScrollController scrollController = ScrollController();
@@ -20,8 +19,7 @@ class NotificationScreenController extends GetxController {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
       final response = await notificationListRequest(token: token, id: id);
-      print(response);
-      if (response['success'] == true) {
+       if (response['success'] == true) {
         _paginationData.clear();
         _paginationData = response['data'];
         _notificationList = notificationList + response['data']['data'];
@@ -39,8 +37,7 @@ class NotificationScreenController extends GetxController {
         Get.find<DashboardScreenController>().notificationUnreadCount();
         update();
         notificationListData(currentPage);
-        print(response);
-      }
+       }
     }
   }
   Future<void> initializeMethod(id) async {

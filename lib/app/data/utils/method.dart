@@ -1,8 +1,6 @@
-// Compress the selected image
-import 'dart:io';
+ import 'dart:io';
 
-import 'package:image_picker/image_picker.dart';
-import 'package:image/image.dart' as img;
+ import 'package:image/image.dart' as img;
 import 'package:intl/intl.dart';
 import '../const/export.dart';
 
@@ -21,8 +19,7 @@ void onDateChange(List<DateTime?> dates) {
       .toList();
   // Joining formatted dates with "/"
   joinedDates = formattedDates.join('/');
-  print(joinedDates);
-}
+ }
 
 Future<PickedFile> compressImage(String imagePath) async {
   final File imageFile = File(imagePath);

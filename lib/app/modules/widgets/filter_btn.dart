@@ -10,10 +10,10 @@ final Function() onTap;
     return Align(
       alignment: Alignment.bottomRight,
       child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: IconButton(
               onPressed: onTap ,
-              icon:  Icon(Icons.filter_alt,color: AppColor.kPrimaryColor,)
+              icon:  const Icon(Icons.filter_alt,color: AppColor.kPrimaryColor,)
                 )),
     );
   }

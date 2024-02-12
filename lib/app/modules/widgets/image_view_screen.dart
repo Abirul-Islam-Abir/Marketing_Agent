@@ -19,7 +19,7 @@ class ImageViewScreen extends StatelessWidget {
              borderColor: Colors.purpleAccent,
             borderWidth: 10,
             elevation: 10,
-            radius: MediaQuery.of(context).size.width/2.3,
+            radius: MediaQuery.of(context).size.width/2.3,imageFit: BoxFit.fitHeight,
           ),
         ),
       ),

@@ -1,10 +1,7 @@
-import 'package:amin_agent/app/data/utils/method.dart';
-import 'package:get/get.dart';
+
 
 import '../../../../api services/sales and commission/sales_and_commission.dart';
 import '../../../../data/const/export.dart';
-import '../../../../data/utils/store_data.dart';
-import '../../../../data/utils/user_data_key.dart';
 
 class TotalCommissionScreenController extends GetxController {
   final id = Get.arguments;
@@ -23,8 +20,7 @@ class TotalCommissionScreenController extends GetxController {
     if (token != null) {
       final response = await salesAndCommissionRequest(
           token: token, date: date, id: id, page: page);
-      print(response);
-      if (response['success'] == true) {
+       if (response['success'] == true) {
         _salesAndCommissionList = response['data']['sales_and_commissions'];
       }
     }

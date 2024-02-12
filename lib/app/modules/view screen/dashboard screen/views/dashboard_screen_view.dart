@@ -1,7 +1,4 @@
-
 import 'dart:io';
-
-import 'package:upgrader/upgrader.dart';
 
 import '../../../../data/const/export.dart';
 
@@ -119,48 +116,6 @@ class DashboardScreenView extends StatelessWidget {
           }),
         ),
       ),
-    );
-  }
-}
-
-class UpdateAvailable extends StatelessWidget {
-  UpdateAvailable(
-      {super.key,
-      required this.child,
-      required this.isUpdate,
-      this.packageName});
-
-  final Widget child;
-  final bool isUpdate;
-  final String? packageName;
-
- void launchPlayStore() async {
-    String playStoreUrl =
-        'https://play.google.com/store/apps/details?id=$packageName';
-    final uri = Uri.parse(playStoreUrl);
-    await launchUrl(uri);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return UpgradeAlert(
-      shouldPopScope: () {
-        return false;
-      },
-      onUpdate: () {
-        launchPlayStore();
-        print('Update available');
-        return true;
-      },
-      canDismissDialog: true,
-      upgrader: Upgrader(
-        debugDisplayAlways: isUpdate,
-        debugLogging: true,
-        debugDisplayOnce: false,
-        durationUntilAlertAgain: Duration(seconds: 5),
-        countryCode: '+880',
-      ),
-      child: child,
     );
   }
 }
