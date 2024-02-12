@@ -13,7 +13,7 @@ class EmptyListText extends StatelessWidget {
           style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
-              color: AppColor.kWhiteColor),
+              color: AppColor.kOrangeColor),
         ));
   }
 }

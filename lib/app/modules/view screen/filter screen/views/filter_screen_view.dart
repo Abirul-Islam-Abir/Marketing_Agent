@@ -62,18 +62,18 @@ class FilterScreenView extends StatelessWidget {
                         calendarType: CalendarDatePicker2Type.range,
                       ),
                       value: selectedRangeDate,
-                      onValueChanged: _controller.onDateChange,
+
+                      onValueChanged: (dates) {
+                        if(dates.length==1){
+                          List<DateTime?> duplicatedDate = [dates[0], dates[0]];
+                          _controller.onDateChange(duplicatedDate);
+                        }else{
+                          _controller.onDateChange(dates);
+                        }
+
+                      },
                     ),
-                   /* Obx(() => _controller.selectedIndex.value == 0
-                        ? CalendarDatePicker2(
-                            config: CalendarDatePicker2Config(
-                              calendarType: CalendarDatePicker2Type.range,
-                            ),
-                            value: _controller.selectedDates,
-                            onValueChanged: _controller.onDateChange,
-                          )
-                        : GetBuilder<FilterScreenController>(
-                            builder: (_) => GridBuilder())),*/
+
                     SecondaryButton(
                       isProgress: false,
                         text: 'Filter',
@@ -87,4 +87,13 @@ class FilterScreenView extends StatelessWidget {
       ),
     );
   }
-}
+} /* Obx(() => _controller.selectedIndex.value == 0
+                        ? CalendarDatePicker2(
+                            config: CalendarDatePicker2Config(
+                              calendarType: CalendarDatePicker2Type.range,
+                            ),
+                            value: _controller.selectedDates,
+                            onValueChanged: _controller.onDateChange,
+                          )
+                        : GetBuilder<FilterScreenController>(
+                            builder: (_) => GridBuilder())),*/

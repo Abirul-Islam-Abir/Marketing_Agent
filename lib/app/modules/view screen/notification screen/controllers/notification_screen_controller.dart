@@ -11,15 +11,19 @@ class NotificationScreenController extends GetxController {
   bool get isProgress => _isProgress;
   List _notificationList = [];
   Map<String, dynamic> _paginationData = {};
+
   Map<String, dynamic> get paginationData => _paginationData;
+
   List get notificationList => _notificationList;
   List _readNotificationList = [];
+
   List get readNotificationList => _readNotificationList;
+
   Future<void> notificationListData(id) async {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
       final response = await notificationListRequest(token: token, id: id);
-       if (response['success'] == true) {
+      if (response['success'] == true) {
         _paginationData.clear();
         _paginationData = response['data'];
         _notificationList = notificationList + response['data']['data'];
@@ -28,18 +32,19 @@ class NotificationScreenController extends GetxController {
     }
   }
 
-  Future<void> readNotification(id) async {
+  Future<void> readNotification() async {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
-      final response = await readNotificationRequest(token: token, id: id);
+      final response = await readNotificationRequest(token: token);
       if (response['success'] == true) {
         _readNotificationList = response['data'];
-        Get.find<DashboardScreenController>().notificationUnreadCount();
-        update();
+        print(response['data']);
         notificationListData(currentPage);
-       }
+        update();
+      }
     }
   }
+
   Future<void> initializeMethod(id) async {
     _isProgress = true;
     update();

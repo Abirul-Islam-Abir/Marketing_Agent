@@ -1,10 +1,13 @@
 import 'package:amin_agent/app/api%20services/push%20notification/notification_unread_count.dart';
 import 'package:amin_agent/app/data/const/export.dart';
- import '../../../../api services/auth/log_out.dart';
+import '../../../../api services/auth/log_out.dart';
 import '../../../../api services/dashboard/dashboard_data.dart';
-  import '../../../Fcm Notification/controller/fcm_notification_controller.dart';
+import '../../../Fcm Notification/controller/fcm_notification_controller.dart';
 
 class DashboardScreenController extends GetxController {
+  List<String> items = List.generate(10, (index) => "Item $index");
+  ScrollController controller = ScrollController();
+
   final isUpdateAvailable = Get.arguments;
   bool _isProgress = false;
 
@@ -13,7 +16,8 @@ class DashboardScreenController extends GetxController {
   Map<String, dynamic> _currentProgressList = {};
   Map<String, dynamic> _progressList = {};
   Map<String, dynamic> _unreadNotification = {};
-  List _pieChart = [];
+  List _pieChart = [
+  ];
 
   Map<String, dynamic> get currentProgressList => _currentProgressList;
 
@@ -35,14 +39,16 @@ class DashboardScreenController extends GetxController {
   }
 
   Future<void> dashboardData() async {
-     final token = await box.read(UserDataKey.tokenKey);
+    final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
       final response = await dashboardDataRequest(token);
       if (response['success'] == true) {
         _currentProgressList.clear();
         _currentProgressList = response['data'];
         _progressList = response['data']['current_target'];
-        _pieChart = response['data']['pie_chart'];
+         _pieChart = response['data']['pie_chart'];
+        print(token);
+        print(response['data']['current_target']['target_id']);
         await StoreData.saveCurrentTargetId(
             response['data']['current_target']['target_id']);
         //When dashboard data calling after calling this method because userId not set before called this mehtod and showing empty list
@@ -64,6 +70,8 @@ class DashboardScreenController extends GetxController {
       final response = await notificationUnreadCountRequest(token);
       if (response['success'] == true) {
         _unreadNotification = response['data'];
+        print(response['data']);
+        Get.find<NotificationScreenController>().readNotification();
         update();
       }
     }
@@ -104,6 +112,17 @@ class DashboardScreenController extends GetxController {
   @override
   void onInit() {
     initializeMethod();
+    controller.addListener(_scrollListener);
     super.onInit();
+  }
+
+  void _scrollListener() {
+    if (controller.position.pixels == controller.position.maxScrollExtent) {
+      // Load more items when the user reaches the end of the list
+
+      items
+          .addAll(List.generate(10, (index) => "Item ${items.length + index}"));
+      update();
+    }
   }
 }

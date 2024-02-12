@@ -9,72 +9,61 @@ class NotificationCard extends StatelessWidget {
     required this.desc,
     required this.time,
     required this.title,
-    required this.isRead,
-    required this.readTap,
   });
 
   final String desc, time, title;
-  final Function() readTap;
-  final String isRead;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 30,right: 10,left: 10),
-      child: InkWell(
-        onTap: readTap,
-        child: Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(12),
-
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: AppColor.kPrimaryColor.withOpacity(0.2),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: const Offset(0, 3), // changes position of shadow
-              ),
-            ],
-            color: isRead == 'Unread'
-                ? AppColor.kWhiteColor.withOpacity(0.70)
-                : AppColor.kWhiteColor,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Text(title,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: AppColor.kPrimaryColor)),
-                  ),
-                  Text(
-                    time,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: AppColor.kGreyColor),
-                  )
-                ],
-              ),
-              const SizedBox(height: 10),
-              ReadMoreText(
-                desc,
-                trimLines: 3,
-                style: const TextStyle(color: AppColor.kBlackColor),
-                colorClickableText: AppColor.kBlueColor,
-                trimMode: TrimMode.Line,
-                trimCollapsedText: 'Read more',
-                trimExpandedText: ' Less',
-              ),
-              const SizedBox(height: 10),
-            ],
-          ),
+      padding: const EdgeInsets.only(top: 30, right: 10, left: 10),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: AppColor.kPrimaryColor.withOpacity(0.2),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: const Offset(0, 3), // changes position of shadow
+            ),
+          ],
+          color: AppColor.kWhiteColor ,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(title,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: AppColor.kPrimaryColor)),
+                ),
+                Text(
+                  time,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: AppColor.kGreyColor),
+                )
+              ],
+            ),
+            const SizedBox(height: 10),
+            ReadMoreText(
+              desc,
+              trimLines: 3,
+              style: const TextStyle(color: AppColor.kBlackColor),
+              colorClickableText: AppColor.kBlueColor,
+              trimMode: TrimMode.Line,
+              trimCollapsedText: 'Read more',
+              trimExpandedText: ' Less',
+            ),
+            const SizedBox(height: 10),
+          ],
         ),
       ),
     );

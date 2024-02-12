@@ -31,21 +31,15 @@ class NotificationScreenView extends StatelessWidget {
                             itemCount: data.length,
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
-                              final date = formatDateTime(data[index]
+                              final date =  data[index]
                                       ['created_at'] ??
-                                  '01-02-2024 • 01:36 PM');
-
+                                  '01-02-2024 • 01:36 PM';
                               final id = data[index]['id'];
                               final status = data[index]['status'] ?? '';
                               final title = data[index]['title'] ?? '';
                               final description =
                                   data[index]['description'] ?? '';
-
                               return NotificationCard(
-                                  readTap: () {
-                                    controller.readNotification(id);
-                                  },
-                                  isRead: status,
                                   title: '$index$title',
                                   time: date,
                                   desc: description);

@@ -1,0 +1,15 @@
+keytool -genkey -v -keystore C:\Users\abir8\StudioProjects\Marketing_Agent\android\app\upload-keystore.jks ^
+        -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 ^
+        -alias upload
+Enter keystore password:
+
+password:123456
+first and last name: Abirul Islam Abir
+organization unit:codecell
+organization:codecell
+city:dhaka
+province:dhaka
+country code:DH
+
+Is CN=Abirul Islam Abir, OU=codecell, O=codecell, L=dhaka, ST=dhaka, C=DH correct?
+

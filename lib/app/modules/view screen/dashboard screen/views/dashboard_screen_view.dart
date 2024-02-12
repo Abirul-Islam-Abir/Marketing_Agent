@@ -1,13 +1,18 @@
 import 'dart:io';
-
+import 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/custom_pi_chart.dart';
+import 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/data_table.dart';
+import 'package:data_table_2/data_table_2.dart';
+import 'package:shimmer/shimmer.dart';
 import '../../../../data/const/export.dart';
+import 'package:scroll_snap_list/scroll_snap_list.dart';
+import '../../../widgets/shimmer_table.dart';
 
 class DashboardScreenView extends StatelessWidget {
   DashboardScreenView({super.key});
-
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _controller = Get.put(DashboardScreenController());
   final _profileController = Get.put(ProfileScreenController());
+  final noti = Get.put(NotificationScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -48,70 +53,71 @@ class DashboardScreenView extends StatelessWidget {
               appBar: buildPrimaryAppBar(
                   text: 'Dashboard',
                   badge: '${read >= 99 ? '99+' : read}',
-                  notificationTap: () {
+                  notificationTap: () async {
+
                     Get.toNamed(RouteName.notificationScreen);
                   }),
               drawer: CustomDrawer(scaffoldKey: _scaffoldKey),
               key: _scaffoldKey,
               backgroundColor: AppColor.kSecondaryColor,
-              body: ListView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  children: [
-                    controller.isProgress
-                        ? const DashboardCountShimmer()
-                        : DashboardCount(
-                            doctorOnboard: AppString.doctorVisited,
-                            doctorOnboardCounts: onboard,
-                            doctorVisited: AppString.doctorOnboard,
-                            doctorVisitedCounts: visited,
-                            totalCommission: AppString.totalCommission,
-                            totalSales: AppString.totalSales,
-                            totalCommissionCount: '$commissions',
-                            totalSalesCounts: '$sales',
-                            visitedTap: () {
-                              Get.toNamed(RouteName.doctorVisitedScreen);
-                            },
-                            onboardTap: () {
-                              Get.toNamed(RouteName.doctorOnboardScreen);
-                            },
-                            commissionTap: () async {
-                              final id = await box
-                                  .read(UserDataKey.currentTargetIdKey);
-                              if (id != null) {
-                                Get.toNamed(RouteName.totalCommissionScreen,
-                                    arguments: id);
-                              }
-                            },
-                            salesTap: () async {
-                              final id = await box
-                                  .read(UserDataKey.currentTargetIdKey);
-                              if (id != null) {
-                                Get.toNamed(RouteName.totalSalesScreen,
-                                    arguments: id);
-                              }
-                            },
-                          ),
-                    controller.isProgress
-                        ? const TargetsCardShimmer()
-                        : CurrentTargetProgressCard(
-                            isCurrent: false,
-                            onTap: () async {
-                              final targetId = await box
-                                  .read(UserDataKey.currentTargetIdKey);
-                              if (targetId != null) {
-                                Get.toNamed(RouteName.agentScreen,
-                                    arguments: targetId);
-                              }
-                            },
-                            text: title,
-                            progress: progress,
-                            agentsCount: agentsCount,
-                            amountCollected: targetAmount,
-                            targetAmount: amountCollected),
-                    const SizedBox(height: 30),
-                    AgentsProgressCount(data: controller.pieChart),
-                    const SizedBox(height: 80),
-                  ]),
+              body: ListView(children: [
+                controller.isProgress
+                    ? const DashboardCountShimmer()
+                    : DashboardCount(
+                        doctorOnboard: AppString.doctorVisited,
+                        doctorOnboardCounts: onboard,
+                        doctorVisited: AppString.doctorOnboard,
+                        doctorVisitedCounts: visited,
+                        totalCommission: AppString.totalCommission,
+                        totalSales: AppString.totalSales,
+                        totalCommissionCount: '$commissions',
+                        totalSalesCounts: '$sales',
+                        visitedTap: () {
+                          Get.toNamed(RouteName.doctorVisitedScreen);
+                        },
+                        onboardTap: () {
+                          Get.toNamed(RouteName.doctorOnboardScreen);
+                        },
+                        commissionTap: () async {
+                          final id =
+                              await box.read(UserDataKey.currentTargetIdKey);
+                          if (id != null) {
+                            Get.toNamed(RouteName.totalCommissionScreen,
+                                arguments: id);
+                          }
+                        },
+                        salesTap: () async {
+                          final id =
+                              await box.read(UserDataKey.currentTargetIdKey);
+                          if (id != null) {
+                            Get.toNamed(RouteName.totalSalesScreen,
+                                arguments: id);
+                          }
+                        },
+                      ),
+                controller.isProgress
+                    ? const TargetsCardShimmer()
+                    : CurrentTargetProgressCard(
+                        isCurrent: false,
+                        onTap: () async {
+                          final targetId =
+                              await box.read(UserDataKey.currentTargetIdKey);
+                          if (targetId != null) {
+                            Get.toNamed(RouteName.agentScreen,
+                                arguments: targetId);
+                          }
+                        },
+                        text: title,
+                        progress: progress,
+                        agentsCount: agentsCount,
+                        amountCollected: targetAmount,
+                        targetAmount: amountCollected),
+                const SizedBox(height: 15),
+                controller.isProgress
+                    ? const ShimmerTable()
+                    : DataTable2SimpleDemo(),
+                const SizedBox(height: 60),
+              ]),
             );
           }),
         ),

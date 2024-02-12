@@ -136,9 +136,8 @@ class AllTargetsProgressCard extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: CircleAvatar(
                           radius: 18,
-                          backgroundColor: AppColor.kYellowColor,
-                          child: SvgPicture.asset(
-                             AppImages.doctorSvg)),
+                          backgroundColor: AppColor.kWhiteColor,
+                          child: Icon(Icons.supervisor_account_sharp)),
                     ),
                   ),
                   const SizedBox(
@@ -150,9 +149,8 @@ class AllTargetsProgressCard extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: CircleAvatar(
                           radius: 18,
-                          backgroundColor: AppColor.kPrimaryColor,
-                          child: SvgPicture.asset(
-                              AppImages.agentSvg)),
+                          backgroundColor: AppColor.kWhiteColor,
+                          child: Icon(Icons.account_circle_outlined)),
                     ),
                   ),
                   const SizedBox(
@@ -165,8 +163,7 @@ class AllTargetsProgressCard extends StatelessWidget {
                       child: CircleAvatar(
                           radius: 18,
                           backgroundColor: AppColor.kWhiteColor,
-                          child: SvgPicture.asset(
-                              AppImages.testSvg)),
+                          child:  Icon(Icons.support_agent)),
                     ),
                   ),
                   const SizedBox(
@@ -179,8 +176,7 @@ class AllTargetsProgressCard extends StatelessWidget {
                         backgroundColor: AppColor.kWhiteColor,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: SvgPicture.asset(
-                              AppImages.moneySvg),
+                          child: Icon(Icons.monetization_on_outlined)
                         )),
                   ), const SizedBox(
                     width: 10,
@@ -189,11 +185,10 @@ class AllTargetsProgressCard extends StatelessWidget {
                     onTap: salesTap,
                     child: CircleAvatar(
                         radius: 18,
-                        backgroundColor: AppColor.kOrangeColor,
+                        backgroundColor: AppColor.kWhiteColor,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: SvgPicture.asset(
-                              AppImages.salesSvg),
+                          child:Icon(Icons.attach_money)
                         )),
                   ),
                 ],

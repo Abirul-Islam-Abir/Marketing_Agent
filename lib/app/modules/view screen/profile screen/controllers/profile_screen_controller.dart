@@ -63,6 +63,7 @@ class ProfileScreenController extends GetxController {
     if (token != null && targetId != null) {
       final response = await completedSchedulePictureRequest(token: token, id: targetId,date: date);
       if (response['success'] == true) {
+        print(response['success']);
         _completedSchedulePictureList = response['data'];
          update();
       }

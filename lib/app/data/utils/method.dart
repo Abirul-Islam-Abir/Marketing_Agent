@@ -1,13 +1,13 @@
- import 'dart:io';
+import 'dart:io';
 
- import 'package:image/image.dart' as img;
+import 'package:image/image.dart' as img;
 import 'package:intl/intl.dart';
 import '../const/export.dart';
 
 List<String> formattedDates = [];
 List<DateTime?> selectedDates = [
   DateTime(2000),
-  DateTime(2030),
+  DateTime(2050),
 ];
 List<DateTime?> selectedRangeDate = [DateTime.now()];
 String? joinedDates; //using for date filter
@@ -19,7 +19,9 @@ void onDateChange(List<DateTime?> dates) {
       .toList();
   // Joining formatted dates with "/"
   joinedDates = formattedDates.join('/');
- }
+  print(joinedDates);
+  print(joinedDates!.length);
+}
 
 Future<PickedFile> compressImage(String imagePath) async {
   final File imageFile = File(imagePath);

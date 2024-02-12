@@ -15,34 +15,42 @@ class AllTargetsScreenController extends GetxController {
   List get allTargetDataList => _allTargetDataList;
   int currentPage = 1;
 
-  Future<void> allTargetData(page) async {
+  Future<void> allTargetData({date,page}) async {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
-      final response = await allTargetDataRequest(token: token, page: page);
+      final response = await allTargetDataRequest(token: token, page: page,date: date);
        if (response['success'] == true) {
+         print(response['success']);
         _allTargetDataList = allTargetDataList + response['data']['targets'];
+
       }
     }
   }
 
   void progress(v) {
     _isProgress = v;
-    _moreLoading = v;
+
     update();
   }
 
 
+  void moreLoad(v) {
+    _moreLoading = v;
+    update();
+  }
 
-  Future<void> initializeMethod(page) async {
-     progress(true);
+  Future<void> initializeMethod({date,page}) async {
+
+     moreLoad(true);
     try {
       await Future.wait([
-        allTargetData(page),
+        allTargetData(date:date,page:page),
       ]);
     } catch (e) {
       throw Exception('$e');
     } finally {
        progress(false);
+       moreLoad(false);
     }
   }
 
@@ -52,10 +60,11 @@ class AllTargetsScreenController extends GetxController {
       if (scrollController.position.pixels ==
           scrollController.position.maxScrollExtent) {
         currentPage++;
-        initializeMethod(currentPage);
+        initializeMethod(date:joinedDates,page: currentPage);
       }
     });
-    initializeMethod(currentPage);
+    initializeMethod(date:joinedDates,page:joinedDates);
+
     super.onInit();
   }
 }

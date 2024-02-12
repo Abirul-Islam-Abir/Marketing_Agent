@@ -46,22 +46,15 @@ class ScheduleScreenView extends StatelessWidget {
                         child: ListView.builder(
                           itemCount: controller.allScheduleList.length,
                           itemBuilder: (context, index) {
-                            DateTime startTime = DateFormat("HH:mm:ss")
-                                .parse(data[index]['meeting_start_date']);
-                            DateTime endTime = DateFormat("HH:mm:ss")
-                                .parse(data[index]['meeting_end_time']);
-                            // Format the times in the desired format
-                            String formattedStartTime =
-                                DateFormat("h:mma").format(startTime);
-                            String formattedEndTime =
-                                DateFormat("h:mma").format(endTime);
+                            final startTime = data[index]['meeting_start_time']??'';
+                            final endTime = data[index]['meeting_end_time']??'';
                             final avatar = data[index]['doctor_avatar'];
                             final name = data[index]['doctor_name'];
                             final lat = data[index]['chamber_lat'];
                             final lang = data[index]['chamber_long'];
                             final id = data[index]['uid'];
                             final date =
-                                '$formattedStartTime - $formattedEndTime';
+                                '$startTime - $endTime';
                             return ScheduleCard(
                               sendTap: () {
                                 Get.toNamed(RouteName.defaultMapScreen,

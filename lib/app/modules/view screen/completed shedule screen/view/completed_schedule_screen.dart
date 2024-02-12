@@ -38,11 +38,14 @@ class CompletedScheduleScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
 
                         final name = data[index]['doctor_name'];
-                        final date = data[index]['meeting_start_date'];
+                        final startTime = data[index]['meeting_start_time']??'';
+                        final endTime = data[index]['meeting_end_time']??'';
                         final avatar = data[index]['doctor_avatar'];
                         final lat = data[index]['chamber_lat'];
                         final lang = data[index]['chamber_long'];
                         final id = data[index]['uid'];
+                        final date =
+                            '$startTime - $endTime';
                          return CompletedScheduleCard(
                              sendTap: () {
                                Get.toNamed(RouteName.defaultMapScreen, arguments: {

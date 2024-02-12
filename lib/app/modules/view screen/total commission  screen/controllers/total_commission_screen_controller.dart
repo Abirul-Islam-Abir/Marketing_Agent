@@ -1,5 +1,3 @@
-
-
 import '../../../../api services/sales and commission/sales_and_commission.dart';
 import '../../../../data/const/export.dart';
 
@@ -18,9 +16,9 @@ class TotalCommissionScreenController extends GetxController {
   Future<void> salesAndCommission({date, page}) async {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
-      final response = await salesAndCommissionRequest(
-          token: token, date: date, id: id, page: page);
-       if (response['success'] == true) {
+      final response =
+          await salesAndCommissionRequest(token: token, date: date, page: page);
+      if (response['success'] == true) {
         _salesAndCommissionList = response['data']['sales_and_commissions'];
       }
     }
@@ -51,10 +49,10 @@ class TotalCommissionScreenController extends GetxController {
           scrollController.position.maxScrollExtent) {
         // print(paginationData['data']['next_page_url'].toString());
         currentPage++;
-        initializeMethod(date:joinedDates, page: currentPage);
+        initializeMethod(date: joinedDates, page: currentPage);
       }
     });
-    initializeMethod(date:joinedDates, page: currentPage);
+    initializeMethod(date: joinedDates, page: currentPage);
     super.onInit();
   }
 }

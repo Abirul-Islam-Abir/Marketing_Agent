@@ -1,5 +1,5 @@
-
 import '../../../../data/const/export.dart';
+
 class AllTargetsScreenView extends StatelessWidget {
   AllTargetsScreenView({super.key});
 
@@ -9,12 +9,26 @@ class AllTargetsScreenView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.kSecondaryColor,
-      appBar: buildNavigateAppbar('All Targets'),
+      appBar: buildNavigateFilterAppBar(
+          text: 'All Targets',
+          filterTap: () {
+            Get.dialog(
+              FilterScreenView(
+                onTap: () {
+                  Get.back();
+                  controller.allTargetDataList.clear();
+                  controller.progress(true);
+                  controller.initializeMethod(
+                      date: joinedSelectedDates, page: 0);
+                },
+              ),
+            );
+          }),
       body: GetBuilder<AllTargetsScreenController>(
         builder: (controller) {
           final data = controller.allTargetDataList;
-          return data.isEmpty
-              ?   Container()
+          return controller.isProgress?Center(child: CircularProgressIndicator(),): data.isEmpty
+              ? const EmptyListText()
               : Column(
                   children: [
                     Expanded(
@@ -24,8 +38,7 @@ class AllTargetsScreenView extends StatelessWidget {
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           final id = data[index]['target_id'];
-                          final isCurrent =
-                              data[index]['is_current'] ?? false;
+                          final isCurrent = data[index]['is_current'] ?? false;
                           final title = data[index]['title'] ?? '';
                           final agentCount = data[index]['agents_count'] ?? 0;
                           final targetAmount =

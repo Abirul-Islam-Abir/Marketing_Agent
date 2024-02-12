@@ -91,17 +91,22 @@ class ProfileScreenView extends StatelessWidget {
                         ),
                         FilterButtons(
                           onTap: () {
-                            Get.dialog(FilterScreenView(
-                              onTap: () {
-                                Get.back();
-                                _controller.completedSchedulePicture(
-                                    joinedSelectedDates);
-                              },
-                            ));
+                            Get.dialog(
+                              FilterScreenView(
+                                onTap: () {
+                                  Get.back();
+                                  _controller.completedSchedulePicture(
+                                      joinedSelectedDates);
+                                },
+                              ),
+                            );
                           },
                         ),
-                        ProfilePictureGridBuilder(
-                            list: _controller.completedSchedulePictureList),
+                        GetBuilder<ProfileScreenController>(
+                            builder: (controller) {
+                          return ProfilePictureGridBuilder(
+                              list: controller.completedSchedulePictureList);
+                        }),
                       ],
                     ),
                     Positioned(

@@ -30,7 +30,7 @@ class ApiServices {
   static String updateNIDUrl = '$_baseUrl$_endPoint/update-nid';
   static String updatePassportUrl = '$_baseUrl$_endPoint/update-passport';
   static String dashboardDataUrl = '$_baseUrl$_endPoint/dashboard-data';
-  static String allTargetUrl = '$_baseUrl$_endPoint/targets?page=';
+  static String allTargetUrl = '$_baseUrl$_endPoint/targets';
   static String allAgentsUrl = '$_baseUrl$_endPoint';
   static String schedulesUrl = '$_baseUrl$_endPoint';
   static String completeScheduleUrl = '$_baseUrl$_endPoint';
@@ -40,7 +40,7 @@ class ApiServices {
   static String targetWiseDoctorUrl = '$_baseUrl$_endPoint';
   static String storeOrUpdateFcmTokenUrl = '$_baseUrl$_endPoint/store/fcm-token/';
   static String notificationListUrl = '$_baseUrl$_endPoint/notifications?page=';
-  static String notificationReadUrl = '$_baseUrl$_endPoint/notification/read/';
+  static String notificationReadUrl = '$_baseUrl$_endPoint/notifications/read';
   static String completedTargetsVisitUrl = '$_baseUrl$_endPoint/completed-targets-visits';
   static String storeCurrentLatAndLongUrl = '$_baseUrl$_endPoint';
   static String targetWiseDoctorVisitedUrl = '$_baseUrl$_endPoint';
