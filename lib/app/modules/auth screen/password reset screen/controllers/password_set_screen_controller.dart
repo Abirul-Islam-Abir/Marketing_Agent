@@ -1,5 +1,6 @@
 import 'package:amin_agent/app/api%20services/auth/reset_password.dart';
 import 'package:amin_agent/app/data/const/export.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 // PasswordSetScreenController is a GetX controller for managing the password setting/resetting screen.
@@ -28,7 +29,8 @@ class PasswordSetScreenController extends GetxController {
 
   bool get isSecurePass => _isSecurePass.value;
   bool get isSecureCPass => _isSecureCPass.value;
-
+  Map _data = {};
+  Map get data =>_data;
   // Method to toggle password visibility for the password field
   void isSecurePassChange() {
     _isSecurePass.value = !_isSecurePass.value;
@@ -46,7 +48,7 @@ class PasswordSetScreenController extends GetxController {
     if (response['success'] == true) {
       // Save the token and navigate to the bottom navigation screen
       await StoreData.saveToken(response['data']['token']);
-       Get.offAllNamed(RouteName.bottomNav);
+       Get.offAllNamed(RouteName.bottomNav,arguments: data);
     } else {
       // Show an error dialog if the password reset fails
       AwesomeDialogs.showErrorDialog(context,
@@ -74,6 +76,16 @@ void progress(v){
     }
   }
 
+  // Method to retrieve data from Firestore
+  Future<void> checkForUpdates() async {
+    // Retrieve data from the 'mpo_flutter' collection in Firestore
+    FirebaseFirestore.instance.collection('mpo_flutter').get().then((querySnapshot) {
+      for (var doc in querySnapshot.docs) {
+        // Store the retrieved data in the _data map
+        _data = doc.data();
+      }
+    });
+  }
   // Method to validate the form and initiate the password reset process
   void validateMethod(context) {
     // Unfocus the confirm password field
@@ -92,7 +104,11 @@ void progress(v){
       }
     }
   }
-
+@override
+  void onInit() {
+    checkForUpdates();
+    super.onInit();
+  }
   @override
   void dispose() {
     // Dispose of controllers and focus nodes to free up resources

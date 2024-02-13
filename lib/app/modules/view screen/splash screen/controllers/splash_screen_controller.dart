@@ -26,7 +26,7 @@ import '../../../connectivity/controller/internet_connectivity.dart';
          Get.offAllNamed(RouteName.bottomNav, arguments: data);
        } else {
          // Navigate to the login screen if the user is not logged in
-         Get.offAllNamed(RouteName.loginScreen);
+         Get.offAllNamed(RouteName.loginScreen,arguments: data);
        }
      });
    }

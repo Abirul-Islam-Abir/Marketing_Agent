@@ -50,7 +50,7 @@ final int commission;
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  '$commission',
+                  '$commission BDT',
                   style: const TextStyle(
                       color: AppColor.kWhiteColor,
                       fontSize: 16,

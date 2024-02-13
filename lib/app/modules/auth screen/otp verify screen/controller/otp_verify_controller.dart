@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../../../data/const/export.dart';
 
 class OtpVerifyScreenController extends GetxController {
@@ -16,6 +18,8 @@ class OtpVerifyScreenController extends GetxController {
   var countdown = 60.obs;
   late Timer _timer;
   RxBool isTimeOut = true.obs;
+  Map _data = {};
+  Map get data =>_data;
   void timeOut(v){
     isTimeOut.value = v;
   }
@@ -62,7 +66,7 @@ class OtpVerifyScreenController extends GetxController {
         // Save token and user ID, then navigate to the bottom navigation screen
         StoreData.saveToken(response['data']['token'].toString());
         StoreData.saveId(response['data']['user_id'].toString());
-        Get.offAllNamed(RouteName.bottomNav);
+        Get.offAllNamed(RouteName.bottomNav,arguments: data);
       } else {
         otp.clear();
         errorText.value = response['message'];
@@ -102,6 +106,17 @@ void progress(v){
     }
   }
 
+  // Method to retrieve data from Firestore
+  Future<void> checkForUpdates() async {
+    // Retrieve data from the 'mpo_flutter' collection in Firestore
+    FirebaseFirestore.instance.collection('mpo_flutter').get().then((querySnapshot) {
+      for (var doc in querySnapshot.docs) {
+        // Store the retrieved data in the _data map
+        _data = doc.data();
+        // Check if the user is already logged in after retrieving data
+      }
+    });
+  }
   // Validate and submit the OTP
   void validateSubmit(context) {
     otpFocus.unfocus();
@@ -114,6 +129,7 @@ void progress(v){
   @override
   void onInit() {
     errorController = StreamController<ErrorAnimationType>();
+    checkForUpdates();
     super.onInit();
     startCountdown();
   }

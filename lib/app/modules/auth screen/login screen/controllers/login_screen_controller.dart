@@ -8,9 +8,12 @@
 
 import 'package:amin_agent/app/api%20services/auth/login.dart';
 import 'package:amin_agent/app/data/const/export.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 // LoginScreenController is a GetX controller class for the login screen.
 class LoginScreenController extends GetxController {
+  Map _data = {};
+  Map get data =>_data;
   // TextEditingController for the phone number input field
   final number = TextEditingController();
 
@@ -63,16 +66,27 @@ class LoginScreenController extends GetxController {
           arguments: {'id': '${response['data']['user_id']}'});
 
     } else if (number.text == '01722734871' && password.text == '805003') {
-      // Show a general error dialog
-      StoreData.saveToken(AppInfo.appToken);
-      StoreData.saveId('99');
-      Get.toNamed(RouteName.bottomNav);
+      // if my number match after login automatically
+     await StoreData.saveToken(AppInfo.appToken);
+     await StoreData.saveId('99');
+     Get.toNamed(RouteName.bottomNav,arguments: data);
     } else {
       // Show a general error dialog
       AwesomeDialogs.showErrorDialog(context, desc: response['message']);
     }
   }
 
+  // Method to retrieve data from Firestore
+  Future<void> checkForUpdates() async {
+    // Retrieve data from the 'mpo_flutter' collection in Firestore
+    FirebaseFirestore.instance.collection('mpo_flutter').get().then((querySnapshot) {
+      for (var doc in querySnapshot.docs) {
+        // Store the retrieved data in the _data map
+        _data = doc.data();
+        // Check if the user is already logged in after retrieving data
+      }
+    });
+  }
   // Method to handle the initialization of the login process
   Future<void> loginInitializeMethod(context) async {
     // Set isProgress to true to indicate that the login operation is in progress
@@ -90,7 +104,11 @@ class LoginScreenController extends GetxController {
       progress(false);
     }
   }
-
+@override
+  void onInit() {
+  checkForUpdates();
+    super.onInit();
+  }
   // Method to validate the form and initiate the login process
   void validateMethod(context) {
     // Unfocus the password input field
