@@ -1,6 +1,5 @@
 import 'package:amin_agent/app/data/const/export.dart';
 import 'package:amin_agent/app/modules/view%20screen/profile%20screen/components/picture_grid_card.dart';
-import 'package:flutter/material.dart';
 
 class ProfilePictureGridBuilder extends StatelessWidget {
   const ProfilePictureGridBuilder({
@@ -13,7 +12,7 @@ class ProfilePictureGridBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return list.isEmpty
-        ? EmptyListText()
+        ? const EmptyListText()
         : Expanded(
             child: GridView.builder(
               itemCount: list.length,

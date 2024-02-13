@@ -13,16 +13,19 @@ class CompleteScheduleScreenController extends GetxController {
     final token = await box.read(UserDataKey.tokenKey);
     final targetId = await box.read(UserDataKey.currentTargetIdKey);
     if (token != null && targetId != null) {
-      final response = await completedScheduleRequest(token:token,id: targetId,date: date);
+      final response = await completedScheduleRequest(
+          token: token, id: targetId, date: date);
       if (response['success'] == true) {
         _completedScheduleList = response['data'];
       }
     }
   }
-  void     progress(v){
+
+  void progress(v) {
     _isProgress = v;
     update();
   }
+
   Future<void> initializeMethod(date) async {
     progress(true);
     try {
@@ -35,7 +38,6 @@ class CompleteScheduleScreenController extends GetxController {
       progress(false);
     }
   }
-
 
   @override
   void onInit() {

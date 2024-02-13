@@ -45,4 +45,5 @@ class AllTestScreenController extends GetxController {
     initializeMethod();
     super.onInit();
   }
+
 }

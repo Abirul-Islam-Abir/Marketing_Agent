@@ -14,28 +14,28 @@ class AnimateCongratulate extends StatefulWidget {
 
 class _AnimateCongratulateState extends State<AnimateCongratulate> {
   late bool isPlaying;
-  late final _controller;
+  late final data;
 
   @override
   void initState() {
     super.initState();
     isPlaying = false;
-    _controller = ConfettiController();
+    data = ConfettiController();
 
     // Delay the play call by a short duration
     Future.delayed(const Duration(milliseconds: 100), () {
-      _controller.play();
+      data.play();
 
       // Stop the confetti after one second
       Timer(const Duration(seconds: 1), () {
-        _controller.stop();
+        data.stop();
       });
     });
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    data.dispose();
     super.dispose();
   }
 
@@ -90,7 +90,7 @@ class _AnimateCongratulateState extends State<AnimateCongratulate> {
       // manually specify the colors to be used
       createParticlePath: drawStar,
       shouldLoop: true,
-      confettiController: _controller,
+      confettiController: data,
       blastDirectionality: BlastDirectionality.explosive,
       numberOfParticles: 20,
       minBlastForce: 1,

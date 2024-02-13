@@ -147,7 +147,7 @@ class DefaultMapController extends GetxController {
               currentLocation.longitude!,
             );
 
-            final response = storeLatAndLongRequest(
+             storeLatAndLongRequest(
               //uid: '1d5604ae-c2d1-34a3-8ca2-b0f50f104ee6',
                 uid: id,
                 completionLat: currentLocation.latitude.toString(),

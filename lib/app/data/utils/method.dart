@@ -19,8 +19,6 @@ void onDateChange(List<DateTime?> dates) {
       .toList();
   // Joining formatted dates with "/"
   joinedDates = formattedDates.join('/');
-  print(joinedDates);
-  print(joinedDates!.length);
 }
 
 Future<PickedFile> compressImage(String imagePath) async {

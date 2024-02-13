@@ -30,7 +30,7 @@ class TargetsCardShimmer extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '                ',
+                        '',
                         style: TextStyle(
                             color: AppColor.kWhiteColor,
                             fontWeight: FontWeight.w400,fontSize: 18),

@@ -18,7 +18,7 @@ class ScheduleScreenController extends GetxController {
           await allScheduleDataRequest(token: token, id: targetId, date: date);
       if (response['success'] == true) {
         _allScheduleList = response['data'];
-        print(response['data']);
+
       }
     }
   }

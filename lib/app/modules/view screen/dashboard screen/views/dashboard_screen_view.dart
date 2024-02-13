@@ -1,10 +1,6 @@
 import 'dart:io';
-import 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/custom_pi_chart.dart';
 import 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/components/data_table.dart';
-import 'package:data_table_2/data_table_2.dart';
-import 'package:shimmer/shimmer.dart';
 import '../../../../data/const/export.dart';
-import 'package:scroll_snap_list/scroll_snap_list.dart';
 import '../../../widgets/shimmer_table.dart';
 
 class DashboardScreenView extends StatelessWidget {
@@ -30,7 +26,7 @@ class DashboardScreenView extends StatelessWidget {
           _profileController.initializeMethod();
         },
         child: UpdateAvailable(
-          packageName: _controller.isUpdateAvailable['packageName'],
+          packageName: _controller.isUpdateAvailable['packageName'] ?? '',
           isUpdate:
               _controller.isUpdateAvailable['appVersion'] != AppInfo.appVersion
                   ? true
@@ -42,7 +38,8 @@ class DashboardScreenView extends StatelessWidget {
             final visited = '${data['doctor_visited'] ?? ''}';
             final commissions = data['total_commision'] ?? '';
             final sales = data['total_sales'] ?? '';
-            final title = currentTarget['title'];
+            final title =
+                currentTarget['title'] ?? 'You have no target right now';
             final progress = currentTarget['progress'] ?? '0.0';
             final agentsCount = currentTarget['agents_count'] ?? 0;
             final targetAmount = currentTarget['target_amount'] ?? '0.0';
@@ -54,7 +51,6 @@ class DashboardScreenView extends StatelessWidget {
                   text: 'Dashboard',
                   badge: '${read >= 99 ? '99+' : read}',
                   notificationTap: () async {
-
                     Get.toNamed(RouteName.notificationScreen);
                   }),
               drawer: CustomDrawer(scaffoldKey: _scaffoldKey),
@@ -79,20 +75,10 @@ class DashboardScreenView extends StatelessWidget {
                           Get.toNamed(RouteName.doctorOnboardScreen);
                         },
                         commissionTap: () async {
-                          final id =
-                              await box.read(UserDataKey.currentTargetIdKey);
-                          if (id != null) {
-                            Get.toNamed(RouteName.totalCommissionScreen,
-                                arguments: id);
-                          }
+                          Get.toNamed(RouteName.totalCommissionScreen);
                         },
                         salesTap: () async {
-                          final id =
-                              await box.read(UserDataKey.currentTargetIdKey);
-                          if (id != null) {
-                            Get.toNamed(RouteName.totalSalesScreen,
-                                arguments: id);
-                          }
+                          Get.toNamed(RouteName.totalSalesScreen);
                         },
                       ),
                 controller.isProgress

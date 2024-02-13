@@ -28,6 +28,7 @@ Future<Map<String, dynamic>> completeScheduleRequest(
   if (response.statusCode == 200) {
     // Decode the response body from JSON format
     final decodedResponse = jsonDecode(await response.stream.bytesToString());
+    print(decodedResponse);
     // Return the decoded response if the request was successful
     return decodedResponse;
   }

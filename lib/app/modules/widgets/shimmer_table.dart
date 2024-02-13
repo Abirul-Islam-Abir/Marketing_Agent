@@ -21,10 +21,10 @@ class ShimmerTable extends StatelessWidget {
                 color: AppColor.kWhiteColor.withOpacity(0.20),
               ),
               child:
-              DataTable2(columnSpacing: 10, horizontalMargin: 10, columns: [
+              DataTable2(columnSpacing: 10, horizontalMargin: 10, columns: const [
                 DataColumn(
                   label: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    padding: EdgeInsets.symmetric(horizontal: 8),
                     child: Text(
                       'Name',
                       style:
@@ -34,7 +34,7 @@ class ShimmerTable extends StatelessWidget {
                 ),
                 DataColumn(
                   label: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    padding: EdgeInsets.symmetric(horizontal: 8),
                     child: Text(
                       'Progress',
                       style:
@@ -42,7 +42,7 @@ class ShimmerTable extends StatelessWidget {
                     ),
                   ),
                 ),
-              ], rows: [
+              ], rows: const [
                 DataRow(cells: [
                   DataCell(
                     Text(""),

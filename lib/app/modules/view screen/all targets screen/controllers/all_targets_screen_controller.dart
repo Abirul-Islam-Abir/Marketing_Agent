@@ -20,7 +20,6 @@ class AllTargetsScreenController extends GetxController {
     if (token != null) {
       final response = await allTargetDataRequest(token: token, page: page,date: date);
        if (response['success'] == true) {
-         print(response['success']);
         _allTargetDataList = allTargetDataList + response['data']['targets'];
 
       }
@@ -32,8 +31,12 @@ class AllTargetsScreenController extends GetxController {
 
     update();
   }
-
-
+bool _isFilter = false;
+  bool get isFilter=>_isFilter;
+void isFilterTap(v){
+  _isFilter= v;
+  update();
+}
   void moreLoad(v) {
     _moreLoading = v;
     update();
@@ -60,11 +63,16 @@ class AllTargetsScreenController extends GetxController {
       if (scrollController.position.pixels ==
           scrollController.position.maxScrollExtent) {
         currentPage++;
-        initializeMethod(date:joinedDates,page: currentPage);
+        isFilter?  initializeMethod(date:joinedSelectedDates,page: currentPage):initializeMethod(date:joinedDates,page: currentPage);
       }
     });
     initializeMethod(date:joinedDates,page:joinedDates);
 
     super.onInit();
+  }
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 }

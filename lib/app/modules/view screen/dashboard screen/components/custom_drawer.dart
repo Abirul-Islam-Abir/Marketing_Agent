@@ -2,7 +2,7 @@ import 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/componen
 import 'package:amin_agent/app/modules/widgets/about_app_screen.dart';
 
 import '../../../../data/const/export.dart';
- import '../../../widgets/custom_listtile.dart';
+import '../../../widgets/custom_listtile.dart';
 
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({super.key, required this.scaffoldKey});
@@ -85,11 +85,7 @@ class CustomDrawer extends StatelessWidget {
                         name: 'Total sales',
                         onTap: () async {
                           _controller.selectItem(2);
-                          final id =
-                              await box.read(UserDataKey.currentTargetIdKey);
-                          if (id != null) {
-                            Get.toNamed(RouteName.totalSalesScreen,arguments: id);
-                          }
+                          Get.toNamed(RouteName.totalSalesScreen);
                         }),
                     CustomListTile(
                         selected: index,
@@ -97,11 +93,7 @@ class CustomDrawer extends StatelessWidget {
                         name: 'Total commission',
                         onTap: () async {
                           _controller.selectItem(3);
-                          final id =
-                              await box.read(UserDataKey.currentTargetIdKey);
-                          if (id != null) {
-                            Get.toNamed(RouteName.totalCommissionScreen,arguments: id);
-                          }
+                          Get.toNamed(RouteName.totalCommissionScreen);
                         }),
                     CustomListTile(
                         selected: index,
@@ -122,6 +114,8 @@ class CustomDrawer extends StatelessWidget {
                           if (targetId != null) {
                             Get.toNamed(RouteName.agentScreen,
                                 arguments: targetId);
+                          } else {
+                            Get.snackbar('Opps!', 'You have no target');
                           }
                         }),
                     CustomListTile(

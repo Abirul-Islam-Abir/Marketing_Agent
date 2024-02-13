@@ -1,4 +1,3 @@
-import 'package:flutter_svg/svg.dart';
 
 import '../../../../data/const/export.dart';
 
@@ -132,8 +131,8 @@ class AllTargetsProgressCard extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: doctorTap,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: CircleAvatar(
                           radius: 18,
                           backgroundColor: AppColor.kWhiteColor,
@@ -145,8 +144,8 @@ class AllTargetsProgressCard extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: agentTap,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: CircleAvatar(
                           radius: 18,
                           backgroundColor: AppColor.kWhiteColor,
@@ -158,8 +157,8 @@ class AllTargetsProgressCard extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: testTap,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: CircleAvatar(
                           radius: 18,
                           backgroundColor: AppColor.kWhiteColor,
@@ -171,11 +170,11 @@ class AllTargetsProgressCard extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: commissionTap,
-                    child: CircleAvatar(
+                    child: const CircleAvatar(
                         radius: 18,
                         backgroundColor: AppColor.kWhiteColor,
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Icon(Icons.monetization_on_outlined)
                         )),
                   ), const SizedBox(
@@ -183,11 +182,11 @@ class AllTargetsProgressCard extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: salesTap,
-                    child: CircleAvatar(
+                    child: const CircleAvatar(
                         radius: 18,
                         backgroundColor: AppColor.kWhiteColor,
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child:Icon(Icons.attach_money)
                         )),
                   ),

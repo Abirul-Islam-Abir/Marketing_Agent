@@ -1,5 +1,4 @@
-import 'package:amin_agent/app/modules/view%20screen/dashboard%20screen/controllers/dashboard_screen_controller.dart';
-import 'package:data_table_2/data_table_2.dart';
+ import 'package:data_table_2/data_table_2.dart';
 
 import '../../../../data/const/export.dart';
 
@@ -22,10 +21,10 @@ class DataTable2SimpleDemo extends StatelessWidget {
           child: DataTable2(
             columnSpacing: 10,
             horizontalMargin: 10,
-            columns: [
+            columns: const [
               DataColumn(
                 label: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  padding: EdgeInsets.symmetric(horizontal: 8),
                   child: Text(
                     'Name',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,color: AppColor.kWhiteColor),
@@ -34,7 +33,7 @@ class DataTable2SimpleDemo extends StatelessWidget {
               ),
               DataColumn(
                 label: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  padding: EdgeInsets.symmetric(horizontal: 8),
                   child: Text(
                     'Progress',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,color: AppColor.kWhiteColor),
@@ -45,10 +44,10 @@ class DataTable2SimpleDemo extends StatelessWidget {
             rows: controller.pieChart.map((item) {
               return DataRow(cells: [
                 DataCell(
-                  Text(item["agent_name"] ?? "",style: TextStyle(color: AppColor.kWhiteColor),),
+                  Text(item["agent_name"] ?? "",style: const TextStyle(color: AppColor.kWhiteColor),),
                 ),
                 DataCell(
-                  Text(item["sell_amount"].toString() ?? "",style: TextStyle(color: AppColor.kWhiteColor)),
+                  Text(item["sell_amount"].toString(),style: const TextStyle(color: AppColor.kWhiteColor)),
                 ),
               ]);
             }).toList(),

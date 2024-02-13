@@ -25,7 +25,7 @@ Future storeLatAndLongRequest(
   var response = await request.send();
   // Check if the request was successful (status code 200)
   final decodedResponse = jsonDecode(await response.stream.bytesToString());
-
+  print(decodedResponse);
   if (response.statusCode == 200) {
     // Decode the response body from JSON format
     // Return the decoded response if the request was successful

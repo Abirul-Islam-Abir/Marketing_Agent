@@ -75,6 +75,7 @@ class ForgetPasswordScreenController extends GetxController {
   void dispose() {
     number.dispose();
     numberFocus.dispose();
+
     super.dispose();
   }
 }

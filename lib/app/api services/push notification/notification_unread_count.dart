@@ -24,6 +24,7 @@ Future notificationUnreadCountRequest(token ) async {
 
   // Decode the response body from JSON format
   final decodedResponse = jsonDecode(response.body);
+  print(decodedResponse);
    // Check if the request was successful (status code 200) and the API indicates success
   if (response.statusCode == 200 && decodedResponse['success'] == true) {
     // Return the decoded response if the request was successful

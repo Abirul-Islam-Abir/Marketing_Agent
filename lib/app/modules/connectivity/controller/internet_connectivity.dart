@@ -74,4 +74,5 @@ void showNetworkSnackBar() {
     backgroundColor: AppColor.kPrimaryColor,
     showProgressIndicator: true,
   ));
+
 }
