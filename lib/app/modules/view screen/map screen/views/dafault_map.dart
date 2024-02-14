@@ -10,8 +10,7 @@ class DefaultMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetBuilder<DefaultMapController>(builder: (logic) {
-        return Stack(
+      body: GetBuilder<DefaultMapController>(builder: (logic) => Stack(
           children: [
             GoogleMap(
               mapToolbarEnabled: false,
@@ -61,8 +60,7 @@ class DefaultMap extends StatelessWidget {
               ),
             ),
           ],
-        );
-      }),
+        )),
     );
   }
 }

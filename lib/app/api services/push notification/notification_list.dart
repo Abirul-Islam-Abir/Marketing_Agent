@@ -9,8 +9,10 @@ Future notificationListRequest({token,id}) async {
   // Get the user profile API URL from the ApiServices class
   final uri = '${ApiServices.notificationListUrl}$id';
 
+
   // Parse the URL into a Uri object
   final url = Uri.parse(uri);
+  print(url);
 
   // Create headers with the specified content type and include the user's authentication token
   final headerWithToken = {

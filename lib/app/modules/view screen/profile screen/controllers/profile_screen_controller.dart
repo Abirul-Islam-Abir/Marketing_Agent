@@ -1,7 +1,7 @@
 import 'package:amin_agent/app/api%20services/shedules/completed_schedules_picture.dart';
 import 'package:amin_agent/app/api%20services/targets/completed_targets_visits.dart';
 import 'package:amin_agent/app/data/const/export.dart';
- import 'dart:io';
+import 'dart:io';
 import 'package:image/image.dart' as img;
 import '../../../../api services/profile/update_profile.dart';
 import '../../../../api services/profile/upload_avatar.dart';
@@ -24,7 +24,8 @@ class ProfileScreenController extends GetxController {
   List get completedSchedulePictureList => _completedSchedulePictureList;
 
   Map<String, dynamic> get userProfileList => _userProfileList;
-  Map<String, dynamic> get completedTargetVisitList => _completedTargetVisitList;
+  Map<String, dynamic> get completedTargetVisitList =>
+      _completedTargetVisitList;
   var selectedImagePath = '';
   // Text editing controllers for various user profile details
   final TextEditingController nameController = TextEditingController();
@@ -51,41 +52,46 @@ class ProfileScreenController extends GetxController {
         passportController.text = ' ${userProfileList['passport']}';
         // When upload pdf in profile details screen after updating widget for view pdf
         selectedImagePath = '';
+        if (userProfileList.isEmpty) {
+          Get.find<DashboardScreenController>().logout();
+        }
         update();
-      } else {
-        Get.find<DashboardScreenController>().logout();
       }
     }
   }
+
   Future<void> completedSchedulePicture(date) async {
     final token = await box.read(UserDataKey.tokenKey);
     final targetId = await box.read(UserDataKey.currentTargetIdKey);
     if (token != null && targetId != null) {
-      final response = await completedSchedulePictureRequest(token: token, id: targetId,date: date);
+      final response = await completedSchedulePictureRequest(
+          token: token, id: targetId, date: date);
       if (response['success'] == true) {
         _completedSchedulePictureList = response['data'];
-         update();
+        update();
       }
     }
   }
 
   Future<void> completedTargetsVisit() async {
     final token = await box.read(UserDataKey.tokenKey);
-     if (token != null  ) {
+    if (token != null) {
       final response = await completedTargetsVisitRequest(token);
-       if (response['success'] == true) {
+      if (response['success'] == true) {
         _completedTargetVisitList = response['data'];
       }
     }
   }
-  void progress(v){
+
+  void progress(v) {
     _isProgress = v;
     update();
   }
+
   // Initialize the controller
   Future<void> initializeMethod() async {
     progress(true); // Set progress state to true
-     try {
+    try {
       // Fetch user profile and other asynchronous operations
       await Future.wait([
         userProfile(),
@@ -94,14 +100,14 @@ class ProfileScreenController extends GetxController {
     } catch (e) {
       throw Exception('$e');
     } finally {
-       progress(false);
+      progress(false);
     }
   }
 
   // Update user profile on the server
   Future<void> userProfileEdit() async {
     progress(true); // Set progress state to true
-     final token = await box.read(UserDataKey.tokenKey);
+    final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
       final response = await updateProfileRequest(
         token: token,
@@ -116,9 +122,10 @@ class ProfileScreenController extends GetxController {
         await initializeMethod(); // Refresh initializeMethod after successful update
         Get.back(); // Close the current screen
         progress(false); // Update progress state to false
-       } else {
-        progress(false); // Update progress state to false on unsuccessful update
-       }
+      } else {
+        progress(
+            false); // Update progress state to false on unsuccessful update
+      }
     }
   }
 

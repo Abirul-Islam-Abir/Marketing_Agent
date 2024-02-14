@@ -83,7 +83,6 @@ class DashboardScreenController extends GetxController {
       final response = await notificationUnreadCountRequest(token);
       if (response['success'] == true) {
         _unreadNotification = response['data'];
-        Get.find<NotificationScreenController>().readNotification();
         update();
       }
     }

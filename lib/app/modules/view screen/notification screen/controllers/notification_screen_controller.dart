@@ -59,7 +59,7 @@ class NotificationScreenController extends GetxController {
         // Update read notification list
         _readNotificationList = response['data'];
         // Refresh notification list data
-        notificationListData(currentPage);
+        Get.find<DashboardScreenController>().notificationUnreadCount();
         // Trigger update to reflect changes in the UI
         update();
       }

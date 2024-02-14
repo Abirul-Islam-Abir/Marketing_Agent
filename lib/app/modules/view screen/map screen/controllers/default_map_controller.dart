@@ -1,6 +1,6 @@
-  import 'package:geocoding/geocoding.dart' as geocoding;
+import 'package:geocoding/geocoding.dart' as geocoding;
 
- import '../../../../data/const/export.dart';
+import '../../../../data/const/export.dart';
 
 class DefaultMapController extends GetxController {
   final double lat = Get.arguments['lat'];
@@ -14,7 +14,8 @@ class DefaultMapController extends GetxController {
   Map<PolylineId, Polyline> polylines = {};
   late GoogleMapController googleMapController;
   final Completer<GoogleMapController> completer = Completer();
-
+  bool _isLocationPress = false;
+  bool get isLocationPress => _isLocationPress;
   void onMapCreated(GoogleMapController controller) {
     googleMapController = controller;
     if (!completer.isCompleted) {
@@ -32,7 +33,7 @@ class DefaultMapController extends GetxController {
     try {
       if (userLocation != null) {
         List<geocoding.Placemark> placemarks =
-        await geocoding.placemarkFromCoordinates(lat, lang);
+            await geocoding.placemarkFromCoordinates(lat, lang);
 
         if (placemarks.isNotEmpty) {
           geocoding.Placemark placemark = placemarks[0];
@@ -70,7 +71,7 @@ class DefaultMapController extends GetxController {
         position: latLng,
         onTap: () {
           markers.removeWhere(
-                  (element) => element.markerId == MarkerId(latLng.toString()));
+              (element) => element.markerId == MarkerId(latLng.toString()));
           if (markers.length > 1) {
             getDirections(markers);
           } else {
@@ -91,8 +92,7 @@ class DefaultMapController extends GetxController {
     for (var i = 0; i < markers.length; i++) {
       polylineWayPoints.add(PolylineWayPoint(
           location:
-          "${markers[i].position.latitude.toString()},${markers[i].position
-              .longitude.toString()}",
+              "${markers[i].position.latitude.toString()},${markers[i].position.longitude.toString()}",
           stopOver: true));
     }
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
@@ -107,8 +107,7 @@ class DefaultMapController extends GetxController {
       for (var point in result.points) {
         polylineCoordinates.add(LatLng(point.latitude, point.longitude));
       }
-    } else {
-     }
+    } else {}
 
     update();
     addPolyLine(polylineCoordinates);
@@ -140,15 +139,16 @@ class DefaultMapController extends GetxController {
     try {
       final permissionStatus = await location.requestPermission();
       if (permissionStatus == PermissionStatus.granted) {
+        locationNameUpdate(lat, lang);
         locationSubscription = location.onLocationChanged.listen(
-              (LocationData currentLocation) {
+          (LocationData currentLocation) {
             userLocation = LatLng(
               currentLocation.latitude!,
               currentLocation.longitude!,
             );
 
-             storeLatAndLongRequest(
-              //uid: '1d5604ae-c2d1-34a3-8ca2-b0f50f104ee6',
+            storeLatAndLongRequest(
+                //uid: '1d5604ae-c2d1-34a3-8ca2-b0f50f104ee6',
                 uid: id,
                 completionLat: currentLocation.latitude.toString(),
                 token: token,
@@ -168,7 +168,7 @@ class DefaultMapController extends GetxController {
   @override
   void onInit() {
     getCurrentLocation();
-    locationNameUpdate(lat, lang);
+
     super.onInit();
   }
 }

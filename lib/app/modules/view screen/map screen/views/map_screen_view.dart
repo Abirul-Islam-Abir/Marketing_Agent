@@ -130,7 +130,7 @@ class MapScreenViewState extends State<MapScreenView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildNavigateAppbar('MPO Track'),
+      appBar: buildSecondaryAppbar('MPO Track'),
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [

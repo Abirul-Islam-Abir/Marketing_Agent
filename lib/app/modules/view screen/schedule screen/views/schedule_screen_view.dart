@@ -54,12 +54,24 @@ class ScheduleScreenView extends StatelessWidget {
                             final id = data[index]['uid'];
                             final date =
                                 '$startTime - $endTime';
+                            var lt = 23.901178327001023;
+                            var ln = 90.35821189567085;
+                            double roundedLat =
+                            double.parse(lt.toStringAsFixed(2));
+                            double roundedLng =
+                            double.parse(ln.toStringAsFixed(2));
+                            double userLat = 23.900741394283624;
+                            double userLang = 90.35748546437945;
+                            double currentLat =
+                            double.parse(userLat.toStringAsFixed(3));
+                            double currentLan =
+                            double.parse(userLang.toStringAsFixed(3));
                             return ScheduleCard(
                               sendTap: () {
                                 Get.toNamed(RouteName.defaultMapScreen,
                                     arguments: {
-                                      'lat': 23.89664433606447,
-                                      'lang': 90.35888393304744,
+                                      'lat': lt,
+                                      'lang': ln,
                                       'name': name,
                                       'avatar': avatar,
                                       'id': id,
