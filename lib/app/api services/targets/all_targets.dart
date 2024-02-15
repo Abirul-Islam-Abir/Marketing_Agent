@@ -7,11 +7,10 @@ import '../api_services.dart';
 // It expects a 'token' parameter representing the user's authentication token.
 Future allTargetDataRequest({token,page,date}) async {
   // Get the user profile API URL from the ApiServices class
-  final uri = '${ApiServices.allTargetUrl}/$date?pages=$page';
+  final uri = '${ApiServices.allTargetUrl}/$date?page=$page';
 
   // Parse the URL into a Uri object
   final url = Uri.parse(uri);
-
   // Create headers with the specified content type and include the user's authentication token
   final headerWithToken = {
     'Content-Type': 'application/json',
@@ -23,7 +22,7 @@ Future allTargetDataRequest({token,page,date}) async {
 
   // Decode the response body from JSON format
   final decodedResponse = jsonDecode(response.body);
-  print(decodedResponse);
+
   // Check if the request was successful (status code 200) and the API indicates success
   if (response.statusCode == 200 && decodedResponse['success'] == true) {
     // Return the decoded response if the request was successful

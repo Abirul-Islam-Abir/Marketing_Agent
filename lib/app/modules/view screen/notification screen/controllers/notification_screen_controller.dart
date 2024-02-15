@@ -34,10 +34,10 @@ class NotificationScreenController extends GetxController {
   List get readNotificationList => _readNotificationList;
 
   // Method to fetch notification list data
-  Future<void> notificationListData(id) async {
+  Future<void> notificationListData(page) async {
     final token = await box.read(UserDataKey.tokenKey);
     if (token != null) {
-      final response = await notificationListRequest(token: token, id: id);
+      final response = await notificationListRequest(token: token, page: page);
       if (response['success'] == true) {
         // Clear pagination data and update with new data
         _paginationData.clear();
@@ -67,14 +67,14 @@ class NotificationScreenController extends GetxController {
   }
 
   // Method to initialize the controller
-  Future<void> initializeMethod(id) async {
+  Future<void> initializeMethod(page) async {
     // Set progress to true indicating an operation is ongoing
     _isProgress = true;
     update();
     try {
       // Fetch notification list data
       await Future.wait([
-        notificationListData(id),
+        notificationListData(page),
       ]);
     } catch (e) {
       // Throw an exception if an error occurs during initialization

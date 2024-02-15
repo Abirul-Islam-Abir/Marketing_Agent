@@ -10,11 +10,9 @@ class AllTargetsScreenController extends GetxController {
 
   bool get moreLoading => _moreLoading;
   List _allTargetDataList = [];
-  // Pagination data
-  Map<String, dynamic> _paginationData = {};
+  Map _nextPageUrl = {};
 
-  // Getter for accessing pagination data
-  Map<String, dynamic> get paginationData => _paginationData;
+  Map get nextPageUrl => _nextPageUrl;
 
   List get allTargetDataList => _allTargetDataList;
   int currentPage = 1;
@@ -28,12 +26,9 @@ class AllTargetsScreenController extends GetxController {
       final response =
           await allTargetDataRequest(token: token, page: page, date: date);
       if (response['success'] == true) {
-        _paginationData.clear();
-        _paginationData = response['data'];
-        print(response['data']['next_page_url']);
+        nextPageUrl.clear();
+        _nextPageUrl = response['data'];
         _allTargetDataList = allTargetDataList + response['data']['targets'];
-
-
       }
     }
   }
@@ -44,9 +39,12 @@ class AllTargetsScreenController extends GetxController {
   }
 
   bool _isFilter = false;
+
   bool get isFilter => _isFilter;
+
   void isFilterTap(v) {
     _isFilter = v;
+    currentPage = 1;
     update();
   }
 
@@ -72,24 +70,19 @@ class AllTargetsScreenController extends GetxController {
   @override
   void onInit() {
     print(currentPage);
-
+    //first time called this date and method
+    initializeMethod(date: joinedDates, page: currentPage);
     scrollController.addListener(() {
       if (scrollController.position.pixels ==
           scrollController.position.maxScrollExtent) {
-        print('working');
+        //when scroll after call this method
+        print(nextPageUrl['next_page_url']);
         currentPage++;
-        print(currentPage);
-        initializeMethod(date: joinedDates, page: currentPage);
-
+        isFilter
+            ? initializeMethod(date: joinedSelectedDates, page: currentPage)
+            : initializeMethod(date: joinedDates, page: currentPage);
       }
     });
-    initializeMethod(date: joinedDates, page: currentPage);
     super.onInit();
-  }
-
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
   }
 }
