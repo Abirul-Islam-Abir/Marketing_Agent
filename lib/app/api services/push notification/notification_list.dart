@@ -12,7 +12,6 @@ Future notificationListRequest({token,page}) async {
 
   // Parse the URL into a Uri object
   final url = Uri.parse(uri);
-  print(url);
 
   // Create headers with the specified content type and include the user's authentication token
   final headerWithToken = {
@@ -25,7 +24,6 @@ Future notificationListRequest({token,page}) async {
 
   // Decode the response body from JSON format
   final decodedResponse = jsonDecode(response.body);
-  print(decodedResponse);
   // Check if the request was successful (status code 200) and the API indicates success
   if (response.statusCode == 200 && decodedResponse['success'] == true) {
     // Return the decoded response if the request was successful

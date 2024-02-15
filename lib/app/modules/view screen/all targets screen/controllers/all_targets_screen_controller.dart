@@ -20,8 +20,6 @@ class AllTargetsScreenController extends GetxController {
   Future<void> allTargetData({date, page}) async {
     final token = await box.read(UserDataKey.tokenKey);
     final d = await box.read(UserDataKey.currentTargetIdKey);
-    print(token);
-    print(d);
     if (token != null) {
       final response =
           await allTargetDataRequest(token: token, page: page, date: date);
@@ -69,14 +67,12 @@ class AllTargetsScreenController extends GetxController {
 
   @override
   void onInit() {
-    print(currentPage);
     //first time called this date and method
     initializeMethod(date: joinedDates, page: currentPage);
     scrollController.addListener(() {
       if (scrollController.position.pixels ==
           scrollController.position.maxScrollExtent) {
         //when scroll after call this method
-        print(nextPageUrl['next_page_url']);
         currentPage++;
         isFilter
             ? initializeMethod(date: joinedSelectedDates, page: currentPage)

@@ -7,15 +7,17 @@ class DefaultMapController extends GetxController {
   final double lang = Get.arguments['lang'];
   final String name = Get.arguments['name'];
   final String avatar = Get.arguments['avatar'];
-  final String id = Get.arguments['id'];
+  final String uid = Get.arguments['id'];
   final String time = Get.arguments['time'];
   List<Marker> markers = [];
   PolylinePoints polylinePoints = PolylinePoints();
   Map<PolylineId, Polyline> polylines = {};
   late GoogleMapController googleMapController;
   final Completer<GoogleMapController> completer = Completer();
-  bool _isLocationPress = false;
+  final bool _isLocationPress = false;
+
   bool get isLocationPress => _isLocationPress;
+
   void onMapCreated(GoogleMapController controller) {
     googleMapController = controller;
     if (!completer.isCompleted) {
@@ -23,6 +25,7 @@ class DefaultMapController extends GetxController {
     }
   }
 
+//when click on the map after call this
   onMapChange(newLatLng) async {
     await addMarker(newLatLng);
     locationNameUpdate(userLocation!.latitude, userLocation!.longitude);
@@ -34,13 +37,11 @@ class DefaultMapController extends GetxController {
       if (userLocation != null) {
         List<geocoding.Placemark> placemarks =
             await geocoding.placemarkFromCoordinates(lat, lang);
-
         if (placemarks.isNotEmpty) {
           geocoding.Placemark placemark = placemarks[0];
           String name = placemark.name ?? '';
           String thoroughfare = placemark.thoroughfare ?? '';
           String locality = placemark.locality ?? '';
-
           currentLocationName = '$name $thoroughfare, $locality';
           update();
         }
@@ -51,7 +52,7 @@ class DefaultMapController extends GetxController {
   }
 
   currentLocation() async {
-    locationNameUpdate(userLocation!.latitude, userLocation!.longitude);
+    // locationNameUpdate(userLocation!.latitude, userLocation!.longitude);
     await googleMapController.animateCamera(CameraUpdate.newCameraPosition(
       CameraPosition(
         bearing: 192.8334901395799,
@@ -60,29 +61,31 @@ class DefaultMapController extends GetxController {
         zoom: 17.00,
       ),
     ));
-    await addMarker(userLocation);
+    addMarker(userLocation);
     update();
   }
 
   addMarker(latLng) {
-    markers.add(Marker(
+    markers.add(
+      Marker(
         consumeTapEvents: true,
         markerId: MarkerId(latLng.toString()),
         position: latLng,
         onTap: () {
-          markers.removeWhere(
+         /* markers.removeWhere(
               (element) => element.markerId == MarkerId(latLng.toString()));
           if (markers.length > 1) {
             getDirections(markers);
           } else {
             polylines.clear();
           }
-          update();
-        }));
+          update();*/
+        },
+      ),
+    );
     if (markers.length > 1) {
       getDirections(markers);
     }
-
     update();
   }
 
@@ -109,8 +112,8 @@ class DefaultMapController extends GetxController {
       }
     } else {}
 
-    update();
     addPolyLine(polylineCoordinates);
+    update();
   }
 
   addPolyLine(List<LatLng> polylineCoordinates) {
@@ -122,7 +125,6 @@ class DefaultMapController extends GetxController {
       width: 10,
     );
     polylines[id] = polyline;
-
     update();
   }
 
@@ -139,21 +141,23 @@ class DefaultMapController extends GetxController {
     try {
       final permissionStatus = await location.requestPermission();
       if (permissionStatus == PermissionStatus.granted) {
-        locationNameUpdate(lat, lang);
+        Future.delayed(const Duration(seconds: 5))
+            .then((value) => locationNameUpdate(lat, lang));
         locationSubscription = location.onLocationChanged.listen(
+
           (LocationData currentLocation) {
             userLocation = LatLng(
               currentLocation.latitude!,
               currentLocation.longitude!,
             );
-
+            getDirections(markers);
             storeLatAndLongRequest(
                 //uid: '1d5604ae-c2d1-34a3-8ca2-b0f50f104ee6',
-                uid: id,
-                completionLat: currentLocation.latitude.toString(),
+                uid: uid,
+                latitude: currentLocation.latitude.toString(),
                 token: token,
-                id: currentId,
-                completionLang: currentLocation.longitude.toString());
+                currentId: currentId,
+                longitude: currentLocation.longitude.toString());
             update();
           },
         );
@@ -168,7 +172,6 @@ class DefaultMapController extends GetxController {
   @override
   void onInit() {
     getCurrentLocation();
-
     super.onInit();
   }
 }

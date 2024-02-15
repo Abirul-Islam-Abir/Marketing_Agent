@@ -74,5 +74,3 @@ class AgentsScreenController extends GetxController {
     super.onInit();
   }
 }
-//01892699261
-//12345678

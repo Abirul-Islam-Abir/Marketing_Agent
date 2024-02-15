@@ -34,7 +34,7 @@ class FcmMessagingController extends GetxController {
 //!Get initial message
     FirebaseMessaging.instance
         .getInitialMessage()
-        .then((message) => print('getInitialMessage $message'));
+        .then((message) => null);
   }
 
   onForegroundApp() async {

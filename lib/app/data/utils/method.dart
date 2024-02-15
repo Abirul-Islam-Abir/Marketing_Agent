@@ -6,8 +6,8 @@ import '../const/export.dart';
 
 List<String> formattedDates = [];
 List<DateTime?> selectedDates = [
-  DateTime(2000),
-  DateTime(2050),
+  DateTime(1000),
+  DateTime(3000),
 ];
 List<DateTime?> selectedRangeDate = [DateTime.now()];
 String? joinedDates; //using for date filter
